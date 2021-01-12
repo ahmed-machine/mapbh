@@ -1,0 +1,40 @@
+(ns app.pages.about
+  (:require [reagent.core :as r]
+            [app.routes :as routes]))
+
+(defn image
+  [src alt caption]
+  [:figure.image
+   {:style { :text-align :center}}
+   [:a {:href src} [:img {:alt alt :src src}]]
+   [:figcaption caption]])
+
+
+(defn en []
+  [:div.container.about
+   [:h1.title "About this project"]
+   [:p  "Bahrain has always been an archipalego in a state of flux. In antiquity, residents terraformed this landscape with burial mounds spanning one of the world's largest cemeteries and extensive, centuries-old irrigation canals flowing from once-plentiful freshwater springs as recently as the 1980s. Bahrain's green belt and many villages formed around springs and along canals on the northern, western, and eastern coasts. In the sea, many of Bahrain's deep harbours were dredged up thousands of years ago to allow ships to dock in capital cities now in ruins. Bahrain's many towns transformed the islands' shorelines in pursuit of limestone cliffs to build temples and homes. No part of Bahrain was unloved, even its seabed was actively maintained where there were pearl oyster beds, bountiful coral reefs, and bubbling freshwater springs (چواچب)." ]
+   [:p "Change is a constant in these islands and has only accelerated since the 1970s with explosive population growth. As irrigation canals flowed dry and springs drained empty, Bahrain's plantations, ancient coral reefs, and seabeds were reclaimed by an all-encompassing urban sprawl. Bahrain's numerous villages would disappear with depopulation, absorption into the urban sprawl, and the bulldozing of the green belt surrounding them for commercial and residental projects. With their lifeblood dry and way of life gone, few villages retain any of their historic agricultural signifiers or trades today."]
+   [:p "To accommodate its growth, Bahrain's landmass grew with land reclamation from 620km² in 1965 to 780km² in 2020 (roughly a ~25% increase) which accompanied a near doubling in urbanized land cover. Bahrain's largest cities, Manama and Muharraq, virtually retain none of their original shoreline as the coastline now plays host to many artifical islands of varying shapes and sizes. Yet, as climate change marches on at an increasingly rapid pace, Bahrain is once again on the cusp of drastic change as one of the world's most at-risk nations in danger of losing vast swaths of coastlines to rising sea levels."]
+   [image "/img/side-by-side land reclamation '43.png"
+    "Satellite image of Bahrain in 2020 on the left, Map of Bahrain in 1943 on the right"
+    "Northern Bahrain in 2020 (left) and 1943 (right)."]
+   [image "/img/side-by-side land reclamation '37.png"
+    "Satellite image of Bahrain in 2020 on the left, Map of Bahrain in 1937 on the right"
+    "Shallow water boundaries shown in this 1937 map have been almost entirely reclaimed in 2020."]
+   [image "/img/Land reclamation '43.png"
+    "Satellite image of Bahrain in 2020 overlayed on a map of Bahrain in 1943"
+    "Map of Bahrain in 1943 overlayed atop satellite imagery from 2020."]
+   [:p "This project consists of three lanes of work: building visualization tools to explore maps, open sourcing a database of high-resolution maps with their geographic metadata, and processing them into a uniform standard projection. Many older maps were drawn in unique projections that make direct comparisons with modern maps of Bahrain quite difficult. To standardize the maps, we attempt to warp and rectify that data to match the Web Mercator projection (which can result in inaccuracies due to past human error or imprecise transformation). That work also depends on collecting high-resolution maps that are often hard to discover, improperly digitized, or only exists in physical forms at libraries globally. While several archival projects have made these maps more available in recent years, more effort is needed to surface these maps in a freely-available, accessible manner. This project attempts to bridge this gap by making modern and historic maps of Bahrain freely available and providing tools to make them directly comparable by aligning them and providing tools to explore them."]
+   [image "/img/Streets of Muharraq.png"
+    "Split view of a terrain map of Muharraq in 2020 and a map of the streets of Muharraq in 1931."
+    "Muharraq in 2020 (left) versus Muharraq in 1931 (right)"]
+  [:p "This project came out of discussions of Bahrain's fading agricultural and maritime cultures. It's become impossible for newer residents and generations to imagine the radically-changed geographic features that shaped the traditions, culture, cuisine, language, and genetics of the people of Bahrain. The marshes, plantations, dunes, canals, and springs of Bahrain now only live on in the memories of a rapidly aging generation and the cusp of being forgotten. It is our hope for this project to become part of a series of tools and resources that visualize and explore Bahrain's history and culture. By knowing the past lives of Bahrain, we can strive to build a more sustainable future in Bahrain's own mold."]
+   [:p {:style {:text-align :right}} "- Ahmed AlMutawa"]])
+
+
+(defn ar []
+  [:div.container.about {:dir "rtl" :lang "ar" :style {:font-size "125%"}}
+   [:h1.title "نبذة عن المشروع"]
+
+   #_[:p {:style {:text-align :left}} "- أحمد المطوع"]])

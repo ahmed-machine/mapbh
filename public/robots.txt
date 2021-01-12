@@ -1,0 +1,3 @@
+User-agent: googlebot
+Disallow: /maps/
+Sitemap: http://example.com/sitemap.xml
