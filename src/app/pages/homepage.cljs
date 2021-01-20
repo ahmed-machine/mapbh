@@ -27,7 +27,7 @@
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
     [:span.icon [:a {:style {:color :black}
-                      :href "https://github.com/AHAAAAAAA"} [:i.fab.fa-github]]]
+                      :href "https://github.com/AHAAAAAAA/mapbh"} [:i.fab.fa-github]]]
     [:span.icon.home [:a {:style {:color :black}
                      :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
    [:a.column.is-full {:role "navigation"
@@ -56,7 +56,7 @@
     [:span.icon.home [:a {:style {:color :black :padding-right "1%"}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
     [:span.icon [:a {:style {:color :black}
-                      :href "https://github.com/AHAAAAAAA"} [:i.fab.fa-github]]]
+                      :href "https://github.com/AHAAAAAAA/mapbh"} [:i.fab.fa-github]]]
     [:span.icon.home [:a {:style {:color :black}
                      :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
    [:a.column.is-full {:role "navigation"
