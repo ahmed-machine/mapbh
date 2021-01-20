@@ -1,9 +1,10 @@
 # MapBH ![Deploy](https://github.com/AHAAAAAAA/mapbh/workflows/Deploy/badge.svg)
 
-Minimal frontend to host set of tools to explore old maps of Bahrain and interface with wrapped/rectified maps hosted on our tile server.
+Minimal frontend with set of tools to explore old maps of Bahrain and interface with wrapped/rectified maps hosted on our tile server.
 
 ### Setup
 
+Requirements: openjdk, node, npm, internet
 1. `npm install` to install packages
 2. In CIDER (emacs), `M-x cider-jack-in-cljs` and select shadow and :app. Non-CIDER and emacs, `npx shadow-cljs watch app`.
 
