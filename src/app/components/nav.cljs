@@ -44,6 +44,8 @@
      [:span.icon [:a {:style {:color :black}
                       :href "https://github.com/AHAAAAAAA/mapbh"} [:i.fab.fa-github]]]
      [:span.icon [:a {:style {:color :black}
+                      :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
+     [:span.icon [:a {:style {:color :black}
                       :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
    [:div.content.has-text-centered "Developed by Ahmed AlMutawa."]])
 
@@ -55,6 +57,8 @@
                       :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
      [:span.icon [:a {:style {:color :black}
                       :href "https://github.com/AHAAAAAAA/mapbh"} [:i.fab.fa-github]]]
+     [:span.icon [:a {:style {:color :black}
+                      :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
      [:span.icon [:a {:style {:color :black}
                       :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
    [:div.content.has-text-centered "من تصميم أحمد المطوع "]])
