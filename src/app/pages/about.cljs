@@ -29,12 +29,28 @@
    [image "/img/Streets of Muharraq.png"
     "Split view of a terrain map of Muharraq in 2020 and a map of the streets of Muharraq in 1931."
     "Muharraq in 2020 (left) versus Muharraq in 1931 (right)"]
-  [:p "This project came out of discussions of Bahrain's fading agricultural and maritime cultures. It's become impossible for newer residents and generations to imagine the radically-changed geographic features that shaped the traditions, culture, cuisine, language, and genetics of the people of Bahrain. The marshes, plantations, dunes, canals, and springs of Bahrain now only live on in the memories of a rapidly aging generation and the cusp of being forgotten. It is our hope for this project to become part of a series of tools and resources that visualize and explore Bahrain's history and culture. By knowing the past lives of Bahrain, we can strive to build a more sustainable future in Bahrain's own mold."]
+   [:p "This project came out of discussions of Bahrain's fading agricultural and maritime cultures. It's become impossible for newer residents and generations to imagine the radically-changed geographic features that shaped the traditions, culture, cuisine, language, and genetics of the people of Bahrain. The marshes, plantations, dunes, canals, and springs of Bahrain now only live on in the memories of a rapidly aging generation and the cusp of being forgotten. It is our hope for this project to become part of a series of tools and resources that visualize and explore Bahrain's history and culture. By knowing the past lives of Bahrain, we can strive to build a more sustainable future in Bahrain's own mold."]
    [:p {:style {:text-align :right}} "- Ahmed AlMutawa"]])
 
 
 (defn ar []
   [:div.container.about {:dir "rtl" :lang "ar" :style {:font-size "125%"}}
    [:h1.title "نبذة عن المشروع"]
-
-   #_[:p {:style {:text-align :left}} "- أحمد المطوع"]])
+   [:p  "لم تزل البحرين جزرًا في تبديل دائم وتغيير. في سالف الزمان قلّب أهلها الأرض يشيّدون جثىً فجعلوا منها مقابر من اعظم ما يكون في العالم وفجّروا فيها قنوات ريّ تجري من عيون عذبة لم ينضب ماؤها حتى الثمانينيات. ومن تلك العيون والقنوات (السيبان) أزهر نطاق البحرين الأخضر على سواحلها شمالا وشرقا وغربا. وفي البحر جُرّفت مواني البحرين العميقة من آلاف السنين لترسو السفن في عواصم صارت اليوم اطلالا. وغيّر حضر البحرين تركيبة سواحل جزرها سعيًا وراء أجراف الحجر الجيري ليتخذوا منها بيوتًا ومعابد. فليس في البحرين شبر لم يغمره الحب والاهتمام، حتى قيعان البحار بمحارها ومرجانها وينابيعها النضّاخة العذبة (الچواچب) كانت تحت رعاية دائمة." ]
+   [:p "التغيير سنة الحياة على هذه الجزر ولم يزده التفجّر السكانيّ في السبعينيات الا سرعةً. فلمّا جفّت المجاري ونضبت الينابيع غمر الزحف العمراني الأخضر واليابس في البحرين من المرجان العتيق والمزارع الخصبة وقيعان البحر، وقفرت القرى بعد الهجر السكاني والتمدين وهدْم ما حولها من نطاق البحرين الأخضر لخدمة مشاريع سكنية وتجارية. بجفاف شريان حياتها وتلاشي أسلوب عيشها لم تبقى سوى قرىً معدودة استطاعت الحفاظ على سماتها الزراعية والتجارية العتيقة."]
+   [:p "لاستيعاب هذا النمو كبرت مساحة البحرين الأرضية مع ردم البحر من ٦٢٠ كم² في ١٩٦٥ الى  ٧٨٠ كم² في ٢٠٢٠ اي بنسبة ٢٥٪، صاحبه تضاعفٌ في الغطاء المدني. ولا تكاد مدن البحرين الكبرى المنامة والمحرق تحتفظ على سواحلها الأصلية لما تحمله السواحل من جزر اصطناعية على شتى الاشكال والاحجام. ونتيجة تسارع التحوّل المناخي وارتفاع مستوى البحر أضحت البحرين مجددًا على ابواب تحوّل جذريّ يهدّد بضياع مساحات واسعة من سواحلها."]
+   [image "/img/side-by-side land reclamation '43.png"
+    "Satellite image of Bahrain in 2020 on the left, Map of Bahrain in 1943 on the right"
+   "شمال البحرين في ٢٠٢٠ (يسار) و ١٩٤٣ (يمين)"]
+   [image "/img/side-by-side land reclamation '37.png"
+    "Satellite image of Bahrain in 2020 on the left, Map of Bahrain in 1937 on the right"
+    "تم ردم المياه الضحلة الموضحة في الخريطة من عام ١٩٣٧ بشكل شبه كلي"]
+   [image "/img/Land reclamation '43.png"
+    "Satellite image of Bahrain in 2020 overlayed on a map of Bahrain in 1943"
+    "خارطة للبحرين من ١٩٤٣ فوق صورة جوية من ٢٠٢٠"]
+   [:p "لهذا المشروع ثلاث خصال: بناء ادوات تصوير لتصفّح الخرائط، وعمل قاعدة بيانات، مفتوحة المصدر، لخرائط عالية الجودة مصحوبة ببياناتها الوصفية الجغرافية، وتنسيقها في إسقاط معياري. كانت العديد من الخرائط القديمة ترسم بإسقاطات فريدة ممّا يجعل المقارنة بالخرائط الحديثة أمرا فيه إشكال. في سبيل توحيد نسق الخرائط، نقوم بتحوير وتصحيح تلك البيانات لتنتظم على إسقاط «مركاتور» الشبكي. هذا العمل يعتمد ايضًا على تجميع خرائط عالية الجودة لطالما كانت صعبة المنال، او مغلوطة الرقمنة، او قد لا توجد الا ماديًّا في مكاتب حول العالم. وإن حقّقت عدة مشاريع أرشيفية حديثة نجاحًا محدودًا في توفير تلك الخرائط، لم تزل الحاجة الى جهدٍ اكبر في اظهار تلك الخرائط ووضعها بين يدي الجميع. يهدف هذا المشروع الى سدّ هذا الفراغ بإبراز خرائط البحرين العتيق منها والحديث لتكون سهلة المنال منظومة النسق تمكّن المقارنة المباشرة بينها، والى توفير الأدوات اللازمة لاستكشافها."]
+   [image "/img/Streets of Muharraq.png"
+    "Split view of a terrain map of Muharraq in 2020 and a map of the streets of Muharraq in 1931."
+    "المحرق في ٢٠٢٠ (يسار) و ١٩٣١ (يمين)"]
+   [:p "برزت معالم هذا المشروع من نقاشات حول تلاشي ثقافتي البحرين الزراعية والبحرية، فإنّه يستحيل على حديثي العهد في البحرين تخيّل المعالم الجغرافية التي شهدت تغييراتٍ جذرية والتي كوّنت أهل البحرين فشكّلت عاداتهم وتقاليدهم ومطبخهم ولغتهم وجيناتهم. كم من هور ومزرعة وكثيب وقناة وينبوع في البحرين لم يعد له أثر الا في ذاكرة المشايخ فأصبح على مشارف النسيان. أملنا في هذا المشروع أن يكون حلقةً في سلسلة موارد وأدواتٍ تساعد على تصوير واستكشاف تاريخ البحرين وثقافتها، لأن بمعرفة ماضي البحرين يتأتّى لنا صناعة مستقبلٍ له على نهج تاريخه أكثر ثباتًا ودواما."]
+   [:p {:style {:text-align :left}} "- أحمد المطوع"]])
