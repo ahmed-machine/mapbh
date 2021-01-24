@@ -2,9 +2,9 @@
   (:require [re-frame.core :as rf]
             [reagent.core :as reagent]
             [app.model :as model]
-            [app.pages.map.map-data :refer [layers ar-layers base-satellite]]
-            ["leaflet" :as l]))
+            [app.pages.map.map-data :refer [layers ar-layers base-satellite]]))
 
+(def l js/L)
 
 (defn map-description
   [state* arabic?]
