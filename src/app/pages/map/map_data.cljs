@@ -58,8 +58,6 @@
                       :notes "Accurate in Old Muharraq. Drifts in the southern part of the map near Bu Maher."
                       :source-link "/maps/1931-Muharraq.jpg"
                       :source "Unknown"
-                      :submitted-by "Ali Karimi"
-                      :submitted-by-url nil
                       :scale "1:200ft"
                       :issuer "Historic Maps of Bahrain 1817 - 1970"
                       :opts (merge base-opts {:maxZoom 20
@@ -98,8 +96,7 @@
                      :description "Mosaic prepared by SPC RE in 1969 from air photography dated October 1968 and trig control. Names taken from K962 sheet Manama dated 1963. Names and cultural details raised from various sources 1969. This plan supersedes series K962 edit on 3.GSGS sheet Manama."
                      :notes "Excellent."
                      :source-link "/maps/1969-Manama.jpg"
-                     :submitted-by "Ali Karimi"
-                     :submitted-by-url nil
+
                      :source "Ministry of Defence, United Kingdom, 1969"
                      :scale "1:5,000"
                      :issuer "Historic Maps of Bahrain 1817 - 1970"
