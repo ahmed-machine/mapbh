@@ -23,10 +23,11 @@
        (or (when arabic? (:description ar-details)) (:description details))]
       [:p.panel-block  (if arabic? "ملاحظات" "Notes") ": "
        (or (when arabic? (:notes ar-details)) (:notes details))]
-      [:div.panel-block (if arabic? "المصدر" "Source") ": " (:source details)]
-      [:div.panel-block {:style {:padding-bottom "10px"}} (if arabic? "الناشر" "Issuer") ": "
-       [:a {:href (:source-link details)}
-        (str " " (:issuer details))]]
+      [:a {:href (:source-link details) :style {:color "#DA291C"}}
+       [:div.panel-block { :style {:color "#DA291C"}} (if arabic? "المصدر" "Source") ": " (:source details)]]
+      (when (:issuer details)
+        [:div.panel-block {:style {:padding-bottom "10px"}} (if arabic? "الناشر" "Issuer") ": "
+         (str " " (:issuer details))])
       (when (:submitted-by details)
         [:div.panel-block {:style {:padding-bottom "10px"}} (if arabic? "من مساهمة" "Submission by") ": "
          (if (:submitted-by-url details)
@@ -129,7 +130,8 @@
   (let [_  (swap! state* assoc :transparency 1.0)
         {:keys [base-layers overlay-layers zoom lat long map base selected]} (init-map state*)]
     ;; Create side-by-side mode
-    (-> l .-control (.sideBySide base selected) (.addTo map))))
+    (-> l .-control (.sideBySide base selected) (.addTo map))
+    (.setOpacity selected 1.0)))
 
 (defn switch-mode
   [state* arabic?]
