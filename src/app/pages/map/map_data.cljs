@@ -104,7 +104,20 @@
                                              :minZoom 9
                                              :minNativeZoom 13
                                              :maxNativeZoom 18
-                                             :opacity 0.7})}})
+                                             :opacity 0.7})}
+   "1977 - MANAMA" {:title "MANAMA"
+                     :url "https://api.maptiler.com/tiles/2db42a49-7739-4ccf-8740-1ed670a5aea0/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                     :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                     :notes "Part of a 7 map series. Covers northeast Bahrain from Muharraq to Bahrain Fort and down to Ras Sanad. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging."
+                     :source-link "/maps/Manama 1977.jpg"
+                     :source "Fairey Surveys Ltd"
+                     :scale "1:25,000"
+                     :issuer nil
+                     :opts (merge base-opts {:maxZoom 20
+                                             :minZoom 9
+                                             :minNativeZoom 11
+                                             :maxNativeZoom 15
+                                             :opacity 0.8})}})
 
 (def ar-layers
   {"1937 - BAHRAIN" {:title "جزيرة البحرين - ١٩٣٧ "
@@ -113,6 +126,9 @@
    "1969 - MANAMAH" {:title "المنامة و الجفير - ١٩٦٩"
                      :description nil
                      :notes "خارطة دقيقة من دون اي اشكاليات"}
+   "1977 - MANAMA" {:title "المنامة - ١٩٧٧"
+                     :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
+                     :notes " هذه الخارطة جزء من سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. يغطي هذا الجزء شمال شرق البحرين من المحرق إلى قلعة البحرين وصولاً إلى رأس سند. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
    "1943 - BAHRAIN" {:title "جزيرة البحرين - ١٩٤٣"
                      :description nil
                      :notes "خارطة دقيقة بأخطاء بسيطة"}

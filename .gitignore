@@ -3,7 +3,6 @@ node_modules/*
 .shadow-cljs/*
 .clj-kondo
 .#*.cljs
-public/maps/*.tif
 public/maps/*.mbtiles
 public/js/main.js
 public/js/manifest.edn
