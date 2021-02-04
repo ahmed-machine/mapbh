@@ -111,7 +111,7 @@
                                              :maxNativeZoom 18
                                              :opacity 0.7})}
    "1977 - MANAMA" {:title "MANAMA"
-                    :url "https://api.maptiler.com/tiles/2db42a49-7739-4ccf-8740-1ed670a5aea0/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                    :url "https://api.maptiler.com/tiles/ea92f075-3f81-41ef-92aa-a3fc72f02f70/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                     :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
                     :notes "Part of a 7 map series. Covers northeast Bahrain from Muharraq to Bahrain Fort and down to Ras Sanad. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging."
                     :source-link "/maps/1977-Manama.tif"
