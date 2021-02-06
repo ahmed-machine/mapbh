@@ -110,7 +110,7 @@
                                              :minNativeZoom 13
                                              :maxNativeZoom 18
                                              :opacity 0.7})}
-   "1977 - MANAMA" {:title "MANAMA"
+   "1977 - Manama" {:title "MANAMA"
                     :url "https://api.maptiler.com/tiles/ea92f075-3f81-41ef-92aa-a3fc72f02f70/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                     :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
                     :notes "Part of a 7 map series. Covers northeast Bahrain from Muharraq to Bahrain Fort and down to Ras Sanad. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging."
@@ -123,7 +123,21 @@
                                             :minZoom 9
                                             :minNativeZoom 11
                                             :maxNativeZoom 15
-                                            :opacity 0.8})}})
+                                            :opacity 0.8})}
+   "1977 - Budaiya" {:title "Budaiya"
+                     :url "https://api.maptiler.com/tiles/c3d33dec-ff4a-492e-b650-19fea18c2b25/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                     :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                     :notes "Part of a 7 map series. Covers northwest Bahrain from Bahrain Fort to Umm an Nassan down to AlJasrah. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging."
+                     :source-link "/maps/1977-Budaiya.tif"
+                     :source "Fairey Surveys Ltd"
+                     :scale "1:25,000"
+                     :issuer "Unknown"
+                     :issuer-link "/maps/Al Budayyi‘ 1977.jpg"
+                     :opts (merge base-opts {:maxZoom 20
+                                             :minZoom 9
+                                             :minNativeZoom 11
+                                             :maxNativeZoom 15
+                                             :opacity 0.8})}})
 
 (def ar-layers
   {"1937 - BAHRAIN" {:title "جزيرة البحرين - ١٩٣٧ "
@@ -132,9 +146,12 @@
    "1969 - MANAMAH" {:title "المنامة و الجفير - ١٩٦٩"
                      :description nil
                      :notes "خارطة دقيقة من دون اي اشكاليات"}
-   "1977 - MANAMA" {:title "المنامة - ١٩٧٧"
+   "1977 - Manama" {:title "المنامة - ١٩٧٧"
                      :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
-                     :notes " هذه الخارطة جزء من سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. يغطي هذا الجزء شمال شرق البحرين من المحرق إلى قلعة البحرين وصولاً إلى رأس سند. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
+                    :notes " هذه الخارطة جزء من سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. يغطي هذا الجزء شمال شرق البحرين من المحرق إلى قلعة البحرين وصولاً إلى رأس سند. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
+   "1977 - Budaiya" {:title "البديع - ١٩٧٧"
+                     :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
+                     :notes " هذه الخارطة جزء من سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. يغطي هذا الجزء شمال غرب البحرين من قلعة البحرين الى أم النعسان وصولاً إلى الجسره و عالي. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
    "1943 - BAHRAIN" {:title "جزيرة البحرين - ١٩٤٣"
                      :description nil
                      :notes "خارطة دقيقة بأخطاء بسيطة"}
