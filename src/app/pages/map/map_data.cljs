@@ -23,7 +23,7 @@
                                   :opts (assoc base-opts :zoomOffset -1)}})
 
 (def layers
-  {"1937 - BAHRAIN" {;; English
+  {"1937 - Bahrain" {;; English
                      :title "BAHRAIN ISLAND - 1937"
                      :url "https://api.maptiler.com/tiles/1c3695ec-61ea-4e60-be6e-87bf60ceca38/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "Plan of Bahrain. The plan indicates hydrology, settlements and  as well as providing some indication of relief. Included is a table of reference of symbols used. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
@@ -39,7 +39,7 @@
                                              :minNativeZoom 9
                                              :maxNativeZoom 14
                                              :opacity 0.7})}
-   "1943 - BAHRAIN" {:title "BAHRAIN ISLAND - 1943"
+   "1943 - Bahrain" {:title "BAHRAIN ISLAND - 1943"
                      :url "https://api.maptiler.com/tiles/48f771c1-2059-4d94-a863-7510c9434f2c/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description " Shows physical features, residential places, cultivated land, selected buildings, marsh land, and major roads.
   Relief shown by landform drawings, contours, and spot heights. Compiled from Air photographs in A.H.Q. Drawing Office, Hinaidi, 1937. Drawn and Heliographed by O.S. 1939."
@@ -54,7 +54,21 @@
                                              :minNativeZoom 9
                                              :maxNativeZoom 14
                                              :opacity 0.7})}
-   "1931 - MUHARRAQ" {:title "MOHARRAK TOWN - March 1931"
+   "1977 - Bahrain" {:title "Bahrain"
+                     :url "https://api.maptiler.com/tiles/7c1f9fdd-4d72-4dc2-a122-1c23bcc4057a/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                     :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                     :notes "This is a 7 map series produced for the State of Bahrain. It is one of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                     :source-link "/maps/1977-Bahrain-stitched.zip"
+                     :source "Fairey Surveys Ltd"
+                     :scale "1:25,000"
+                     :issuer "Internet"
+                     :issuer-link "/maps/1977-Bahrain.zip"
+                     :opts (merge base-opts {:maxZoom 20
+                                             :minZoom 9
+                                             :minNativeZoom 10
+                                             :maxNativeZoom 15
+                                             :opacity 0.8})}
+   "1931 - Muharraq" {:title "MOHARRAK TOWN - March 1931"
                       :url "https://api.maptiler.com/tiles/a77144f2-7690-4c07-8852-3ac78dca0f35/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                       :description nil
                       :notes "Accurate in Old Muharraq. Drifts in the southern part of the map near Bu Maher."
@@ -68,7 +82,7 @@
                                              :minNativeZoom 13
                                              :maxNativeZoom 18
                                              :opacity 0.7})}
-   "1937 - MUHARRAQ" {:title "MUHARRAQ ISLAND - Jan 1937"
+   "1937 - Muharraq" {:title "MUHARRAQ ISLAND - Jan 1937"
                       :url "https://api.maptiler.com/tiles/7e37e696-7889-461f-81d3-8a3b5e5e0097/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                       :description "The map shows Muhurraq Island, and the causeway linking Muharraq to Manama. Also shown are principal roads, tracks, buildings (including the Political Agency in Manana), islands, and the location of several underwater freshwater springs. A rectangle on Muharraq Island indicates the area specified for the landing ground."
                       :notes "Well-preserved and decently accurate."
@@ -76,13 +90,13 @@
                       :source "British Library: India Office Records and Private Papers"
                       :scale "1:20,000"
                       :issuer "Qatar Digital Library"
-                      :issuer-link "https://www.qdl.qa/en/archive/8955/vdc_9002560898.0x000080"
+                      :issuer-link "https://www.qdl.qa/en/archive/81055/vdc_100025608108.0x000080"
                       :opts (merge base-opts {:maxZoom 20
                                               :minZoom 9
                                               :minNativeZoom 11
                                               :maxNativeZoom 16
                                               :opacity 0.7})}
-   "1937 - MANAMAH" {:title "PLAN OF PORT AND TOWN"
+   "1937 - Manama" {:title "PLAN OF PORT AND TOWN"
                      :url "https://api.maptiler.com/tiles/56815264-b7fe-4b4f-900d-979cb50ff777/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "Plan of Manamah, Bahrain. The plan indicates settlements, streets, buildings and landmarks. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
                      :notes "Some map drift along the southern and western ends of the document. Mostly accurate."
@@ -96,7 +110,7 @@
                                              :minNativeZoom 13
                                              :maxNativeZoom 18
                                              :opacity 0.7})}
-   "1969 - MANAMAH" {:title "AL MANAMAH & AL JUFAYR"
+   "1969 - Manama" {:title "AL MANAMAH & AL JUFAYR"
                      :url "https://api.maptiler.com/tiles/9d3b9e4f-aa2a-4e5e-9301-d1aec153a104/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "Mosaic prepared by SPC RE in 1969 from air photography dated October 1968 and trig control. Names taken from K962 sheet Manama dated 1963. Names and cultural details raised from various sources 1969. This plan supersedes series K962 edit on 3.GSGS sheet Manama."
                      :notes "Excellent."
@@ -109,58 +123,27 @@
                                              :minZoom 9
                                              :minNativeZoom 13
                                              :maxNativeZoom 18
-                                             :opacity 0.7})}
-   "1977 - Manama" {:title "MANAMA"
-                    :url "https://api.maptiler.com/tiles/ea92f075-3f81-41ef-92aa-a3fc72f02f70/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
-                    :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                    :notes "Part of a 7 map series. Covers northeast Bahrain from Muharraq to Bahrain Fort and down to Ras Sanad. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging."
-                    :source-link "/maps/1977-Manama.tif"
-                    :source "Fairey Surveys Ltd"
-                    :scale "1:25,000"
-                    :issuer "Unknown"
-                    :issuer-link "/maps/Manama 1977.jpg"
-                    :opts (merge base-opts {:maxZoom 20
-                                            :minZoom 9
-                                            :minNativeZoom 11
-                                            :maxNativeZoom 15
-                                            :opacity 0.8})}
-   "1977 - Budaiya" {:title "Budaiya"
-                     :url "https://api.maptiler.com/tiles/c3d33dec-ff4a-492e-b650-19fea18c2b25/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
-                     :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                     :notes "Part of a 7 map series. Covers northwest Bahrain from Bahrain Fort to Umm an Nassan down to AlJasrah. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging."
-                     :source-link "/maps/1977-Budaiya.tif"
-                     :source "Fairey Surveys Ltd"
-                     :scale "1:25,000"
-                     :issuer "Unknown"
-                     :issuer-link "/maps/Al Budayyi‘ 1977.jpg"
-                     :opts (merge base-opts {:maxZoom 20
-                                             :minZoom 9
-                                             :minNativeZoom 11
-                                             :maxNativeZoom 15
-                                             :opacity 0.8})}})
+                                             :opacity 0.7})}})
 
 (def ar-layers
-  {"1937 - BAHRAIN" {:title "جزيرة البحرين - ١٩٣٧ "
+  {"1937 - Bahrain" {:title "جزيرة البحرين - ١٩٣٧ "
                      :description nil
                      :notes "الوثيقة الاصلية لم تنسخ و ترقم بشكل جيد. الخارطة تنحرف من الساحل الاصلي بشكل متزايد في جنوب الجزيرة"}
-   "1969 - MANAMAH" {:title "المنامة و الجفير - ١٩٦٩"
+   "1969 - Manama" {:title "المنامة و الجفير - ١٩٦٩"
                      :description nil
                      :notes "خارطة دقيقة من دون اي اشكاليات"}
-   "1977 - Manama" {:title "المنامة - ١٩٧٧"
+   "1977 - Bahrain" {:title "البديع - ١٩٧٧"
                      :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
-                    :notes " هذه الخارطة جزء من سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. يغطي هذا الجزء شمال شرق البحرين من المحرق إلى قلعة البحرين وصولاً إلى رأس سند. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
-   "1977 - Budaiya" {:title "البديع - ١٩٧٧"
-                     :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
-                     :notes " هذه الخارطة جزء من سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. يغطي هذا الجزء شمال غرب البحرين من قلعة البحرين الى أم النعسان وصولاً إلى الجسره و عالي. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
-   "1943 - BAHRAIN" {:title "جزيرة البحرين - ١٩٤٣"
+                     :notes " هذه الخارطة سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
+   "1943 - Bahrain" {:title "جزيرة البحرين - ١٩٤٣"
                      :description nil
                      :notes "خارطة دقيقة بأخطاء بسيطة"}
-   "1937 - MUHARRAQ" {:title "جزيرة المحرق - ١٩٣٧"
+   "1937 - Muharraq" {:title "جزيرة المحرق - ١٩٣٧"
                       :description nil
                       :notes "خارطة دقيقة من دون اي اشكاليات"}
-   "1931 - MUHARRAQ" {:title "مدينة المحرق - ١٩٣١"
+   "1931 - Muharraq" {:title "مدينة المحرق - ١٩٣١"
                       :description nil
                       :notes "الخارطة دقيقة قرب سوق المحرق لكنها تنحذر بقرب بو ماهر في الجنوب "}
-   "1937 - MANAMAH"  {:title "المنامة - ١٩٣٧"
+   "1937 - Manama"  {:title "المنامة - ١٩٣٧"
                       :description nil
                       :notes "خارطة متوسطة الدقة. أخطاء بسيطة في غرب و جنوب الخارطة الأصلية"}})
