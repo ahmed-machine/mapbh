@@ -18,7 +18,7 @@ jobs:
           port: ${{ secrets.LINODE_PORT }}
           password: ""
           script: |
-            cd openmapsbh;git stash; git pull;npm install;shadow-cljs release release;cp -TR public/ /var/www/openmaps/
+            cd openmapsbh;git stash; git pull;git lfs fetch --all;npm install;shadow-cljs release release;cp -TR public/ /var/www/openmaps/
       - name: Purge cache
         uses: jakejarvis/cloudflare-purge-action@master
         env:
