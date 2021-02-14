@@ -157,9 +157,9 @@
 
 
 (defn historical-map []
-  (let [state* (reagent/atom {:selected "1943 - Bahrain"
+  (let [state* (reagent/atom {:selected "1977 - Bahrain"
                               :mode "transparency"
-                              :base "Terrain"
+                              :base "Satellite"
                               :show-description? false
                               :transparency 0.65})
         language* (rf/subscribe [::model/language])]

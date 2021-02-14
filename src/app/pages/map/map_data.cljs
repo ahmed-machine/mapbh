@@ -54,7 +54,7 @@
                                              :minNativeZoom 9
                                              :maxNativeZoom 14
                                              :opacity 0.7})}
-   "1977 - Bahrain" {:title "Bahrain"
+   "1977 - Bahrain" {:title "State of Bahrain - 1977"
                      :url "https://api.maptiler.com/tiles/7c1f9fdd-4d72-4dc2-a122-1c23bcc4057a/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
                      :notes "This is a 7 map series produced for the State of Bahrain. It is one of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
@@ -96,7 +96,7 @@
                                               :minNativeZoom 11
                                               :maxNativeZoom 16
                                               :opacity 0.7})}
-   "1937 - Manama" {:title "PLAN OF PORT AND TOWN"
+   "1937 - Manama" {:title "PLAN OF PORT AND TOWN - Manama 1937"
                      :url "https://api.maptiler.com/tiles/56815264-b7fe-4b4f-900d-979cb50ff777/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "Plan of Manamah, Bahrain. The plan indicates settlements, streets, buildings and landmarks. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
                      :notes "Some map drift along the southern and western ends of the document. Mostly accurate."
@@ -110,7 +110,7 @@
                                              :minNativeZoom 13
                                              :maxNativeZoom 18
                                              :opacity 0.7})}
-   "1969 - Manama" {:title "AL MANAMAH & AL JUFAYR"
+   "1969 - Manama" {:title "AL MANAMAH & AL JUFAYR - 1969"
                      :url "https://api.maptiler.com/tiles/9d3b9e4f-aa2a-4e5e-9301-d1aec153a104/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "Mosaic prepared by SPC RE in 1969 from air photography dated October 1968 and trig control. Names taken from K962 sheet Manama dated 1963. Names and cultural details raised from various sources 1969. This plan supersedes series K962 edit on 3.GSGS sheet Manama."
                      :notes "Excellent."
@@ -132,7 +132,7 @@
    "1969 - Manama" {:title "المنامة و الجفير - ١٩٦٩"
                      :description nil
                      :notes "خارطة دقيقة من دون اي اشكاليات"}
-   "1977 - Bahrain" {:title "البديع - ١٩٧٧"
+   "1977 - Bahrain" {:title "البحرين - ١٩٧٧"
                      :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
                      :notes " هذه الخارطة سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
    "1943 - Bahrain" {:title "جزيرة البحرين - ١٩٤٣"
