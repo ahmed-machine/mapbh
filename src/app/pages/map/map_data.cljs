@@ -30,6 +30,7 @@
                       :issuer-link "/maps/1931-Muharraq.jpg"
                       :source "Unknown"
                       :source-link "/maps/1931-Muharraq.tif"
+                      :submitted-by "Ali Karimi"
                       :scale "1:2,400"
                       :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
                       :opts (merge base-opts {:maxZoom 20
@@ -105,6 +106,7 @@
                                :scale "1:5,000"
                                :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
                                :issuer-link "/maps/1969-Manama.zip"
+                               :submitted-by "Ali Karimi"
                                :opts (merge base-opts {:maxZoom 20
                                                        :minZoom 9
                                                        :minNativeZoom 13
@@ -131,6 +133,7 @@
                      :notes "الوثيقة الاصلية لم تنسخ و ترقم بشكل جيد. الخارطة تنحرف من الساحل الاصلي بشكل متزايد في جنوب الجزيرة"}
    "1969 - Manama & AlJufayr" {:title "المنامة و الجفير - ١٩٦٩"
                                :description nil
+                               :submitted-by "علي كريمي"
                                :notes "سلسلة خرائط فيها ٥ أجزاء. تطلبت تصحيحات لالألوان، تصحيحات تشكيلية، ولم تطابق الإسقاط المحدد"}
    "1977 - Bahrain" {:title "البحرين - ١٩٧٧"
                      :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
@@ -143,6 +146,7 @@
                       :notes "خارطة دقيقة من دون اي اشكاليات"}
    "1931 - Muharraq" {:title "مدينة المحرق - ١٩٣١"
                       :description nil
+                      :submitted-by "علي كريمي"
                       :notes "الخارطة دقيقة قرب سوق المحرق لكنها تنحذر بقرب بو ماهر في الجنوب "}
    "1937 - Manama"  {:title "المنامة - ١٩٣٧"
                      :description nil
