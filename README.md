@@ -27,3 +27,7 @@ Github Actions builds the shadow-cljs site which is a single `main.js` file. It 
 ### Scripts
 Converts GeoTIFF to MBTiles for use on tile server. Handy for converting rectified/corrected tif maps to host on our tile server.
 `scripts/tif2mbtiles.sh <input-path> <output-path>`
+
+Translate and warp a map in a UTM Zone 39 map
+`scripts/utm-zone39-translate.sh <input-path-without-extension-type> <top-left-coordinates/bottom-right-coordinates>`
+e.g. `./scripts/utm-zone39-translate.sh "1969.5000.Manama & AlJufayr.1-5" "453000 2901300 456600 2898900"`
