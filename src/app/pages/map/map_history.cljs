@@ -10,7 +10,7 @@
   [state* arabic?]
   (let [active-key (:selected @state*)
         details (get layers active-key)
-        ar-details (get ar-layers active-key)]
+        ar-details (merge details (get ar-layers active-key))]
     [:nav.panel.is-collapsible {:lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr") :style (merge {:position :absolute :bottom 0 :z-index 1000 :width 225 :height :max-content :background "whitesmoke" :font-size 12} (if arabic? {:right "12px"} {:left "12px"}))}
      [:p.panel-heading {:on-click (fn [e] (swap! state* update :show-description? not)
                                     (-> js/document (.getElementById "description") .-classList (.toggle "is-hidden"))) :class " is-hidden-fullscreen" :aria-label "more options"}(if arabic? "تفاصيل" "Description")
@@ -31,11 +31,11 @@
          [:div.panel-block {:style {:color "#DA291C" :padding-bottom "10px"}} (if arabic? "الناشر" "Issuer") ": "
           (str " " (:issuer details))]])
       (when (:submitted-by details)
-        [:div.panel-block {:style {:padding-bottom "10px"}} (if arabic? "من مساهمة" "Submission by") ": "
+        [:div.panel-block {:style {:padding-bottom "10px"}} (if arabic? " مساهمة" "Submitted by") ": "
          (if (:submitted-by-url details)
            [:a {:href (:submitted-by-url details)}
-            (str " " (:submitted-by details))]
-           (str " " (:submitted-by details)))])]]))
+            (if arabic? (str " " (:submitted-by ar-details)) (str " " (:submitted-by details)))]
+           (if arabic? (str " " (:submitted-by ar-details)) (str " " (:submitted-by details))))])]]))
 
 
 (defn map-container
