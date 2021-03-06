@@ -20,9 +20,10 @@
        (or (when arabic? (:title ar-details)) (:title details))]
       [:div.panel-block (if arabic? "مقياس" "Scale") ": " (:scale details)]
       (when (:description details)
-        [:p.panel-block
+        [:p.panel-block.description-text
          (or (when arabic? (:description ar-details)) (:description details))])
-      [:p.panel-block  (if arabic? "ملاحظات" "Notes") ": "
+      [:p.panel-block.description-text
+       (if arabic? "ملاحظات" "Notes") ": "
        (or (when arabic? (:notes ar-details)) (:notes details))]
       [:a {:href (:source-link details) :style {:color "#DA291C"}}
        [:div.panel-block {:style {:color "#DA291C"}} (if arabic? "المصدر" "Source") ": " (:source details)]]
