@@ -74,3 +74,9 @@ p.logo:hover { color: #DA291C !important;}
                              line-height: 1.75em;}
     .about h1, .contribute h1 {margin: 2rem 1.5rem;}
 }
+
+.description-text {max-height: 10rem;
+                   align-items: start !important;
+                   border-bottom: 2px lightgray solid !important;
+                   padding-bottom: 2px !important;
+                   overflow-y: scroll;}
