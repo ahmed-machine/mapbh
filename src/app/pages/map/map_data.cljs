@@ -84,7 +84,7 @@
                                             :opacity 0.7})}
    "1943 - Bahrain" {:title "BAHRAIN ISLAND - 1943"
                      :url "https://api.maptiler.com/tiles/48f771c1-2059-4d94-a863-7510c9434f2c/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
-                     :description " Shows physical features, residential places, cultivated land, selected buildings, marsh land, and major roads.
+                     :description "Shows physical features, residential places, cultivated land, selected buildings, marsh land, and major roads.
   Relief shown by landform drawings, contours, and spot heights. Compiled from Air photographs in A.H.Q. Drawing Office, Hinaidi, 1937. Drawn and Heliographed by O.S. 1939."
                      :notes "Well-preserved, undistorted scan. Map has relatively few inaccuracies."
                      :issuer-link "https://legacy.lib.utexas.edu/maps/ams/bahrein_island/txu-pclmaps-oclc-6559195-bahrein-island.jpg"
@@ -112,14 +112,28 @@
                                                        :minNativeZoom 13
                                                        :maxNativeZoom 18
                                                        :opacity 0.7})}
+   "1973 - Bahrain" {:title "Bahrain - 1973"
+                     :url "https://api.maptiler.com/tiles/dd069021-aba4-4152-a013-2a7a242cfe00/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                     :description "Compiled and drawn by 42 Survey Engineer Regiment in 1971-2 from air photography dated 1969 and other sources. Control supplied by MCE RE and No 1 A(S)LS RE. Field check 1971 and revision in 1973 from air photography dated 1970. Names rendered in accordance with BGN/PCGN system of transliteration from Arabic. Projection: Traverse Mercator, Spheroid: Clarke 1880, Horizontal Datum: Nahrwan, Vertical Datum: MSL. Series K7610, Edition 1-GSGS. "
+                     :notes "High resolution, with slight alignment issues. Projection is based off the Clarke 1880 Spheroid with a Datum in Nahrwan. Required post-processing/alignment work after translation and warping. Provided parameters appear to be off."
+                     :source-link "/maps/1973-Bahrain.tif"
+                     :source "Ministry of Defence, United Kingdom, 1973"
+                     :scale "1:50,000"
+                     :issuer "Unknown"
+                     :issuer-link "/maps/1973-Bahrain.zip"
+                     :opts (merge base-opts {:maxZoom 20
+                                             :minZoom 9
+                                             :minNativeZoom 10
+                                             :maxNativeZoom 15
+                                             :opacity 0.8})}
    "1977 - Bahrain" {:title "State of Bahrain - 1977"
                      :url "https://api.maptiler.com/tiles/7c1f9fdd-4d72-4dc2-a122-1c23bcc4057a/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                     :notes "This is a 7 map series produced for the State of Bahrain. It is one of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                     :notes "This is a 7 map series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                      :source-link "/maps/1977-Bahrain-stitched.zip"
                      :source "Fairey Surveys Ltd"
                      :scale "1:25,000"
-                     :issuer "Internet"
+                     :issuer "Unknown"
                      :issuer-link "/maps/1977-Bahrain.zip"
                      :opts (merge base-opts {:maxZoom 20
                                              :minZoom 9
@@ -138,6 +152,9 @@
    "1977 - Bahrain" {:title "البحرين - ١٩٧٧"
                      :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
                      :notes " هذه الخارطة سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
+   "1973 - Bahrain" {:title "البحرين - ١٩٧٣"
+                     :description nil
+                     :notes "خرائط عالية الجودة فيها مشاكل بسيطة في دقة المحاذة. الإسقاط الاصلي يعتمد على حسابات كلارك ١٨٨٠ و موقع مرجعي في نهروان. تم محاذة اضافية بعد الترجمة و التحوير بسبب اخطاء في البيانات المدونة في الخارطة"}
    "1943 - Bahrain" {:title "جزيرة البحرين - ١٩٤٣"
                      :description nil
                      :notes "خارطة دقيقة بأخطاء بسيطة"}
