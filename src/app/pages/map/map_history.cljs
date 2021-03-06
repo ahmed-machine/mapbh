@@ -158,7 +158,7 @@
 
 
 (defn historical-map []
-  (let [state* (reagent/atom {:selected "1977 - Bahrain"
+  (let [state* (reagent/atom {:selected "1973 - Bahrain"
                               :mode "transparency"
                               :base "Satellite"
                               :show-description? false
