@@ -139,7 +139,21 @@
                                              :minZoom 9
                                              :minNativeZoom 10
                                              :maxNativeZoom 15
-                                             :opacity 0.8})}})
+                                             :opacity 0.8})}
+   #_#_"1977 - Manama + Muharraq " {:title "Manama and Muharraq - 1977"
+                                :url "https://mapwarper.net/maps/tile/55373/{z}/{x}/{y}.png"
+                                :description "Description in Russian can be found in the bottom-right corner of the map."
+                                :notes "Hand-rectified with control points. This map is two-parts manually stitched together. It's in the SK-42 projection, however we lacked the exact projection metadata required to translate to Web Mercactor. The hand rectified approach results in slight deviations all over the map, most pronounced in the Muharraq portion of the map."
+                                :source-link "/maps/1977 - USSR - Manama & Muharraq.tif"
+                                :source "USSR"
+                                :scale "1:10,000"
+                                :issuer "USSR"
+                                :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
+                                :opts (merge base-opts {:maxZoom 20
+                                                        :minZoom 9
+                                        #_  #_#_              :minNativeZoom 10
+                                          #_              :maxNativeZoom 15
+                                                        :opacity 0.8})}})
 
 (def ar-layers
   {"1937 - Bahrain" {:title "جزيرة البحرين - ١٩٣٧ "
