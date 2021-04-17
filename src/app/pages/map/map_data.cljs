@@ -141,19 +141,33 @@
                                              :maxNativeZoom 15
                                              :opacity 0.8})}
    #_#_"1977 - Manama + Muharraq " {:title "Manama and Muharraq - 1977"
-                                :url "https://mapwarper.net/maps/tile/55373/{z}/{x}/{y}.png"
-                                :description "Description in Russian can be found in the bottom-right corner of the map."
-                                :notes "Hand-rectified with control points. This map is two-parts manually stitched together. It's in the SK-42 projection, however we lacked the exact projection metadata required to translate to Web Mercactor. The hand rectified approach results in slight deviations all over the map, most pronounced in the Muharraq portion of the map."
-                                :source-link "/maps/1977 - USSR - Manama & Muharraq.tif"
-                                :source "USSR"
-                                :scale "1:10,000"
-                                :issuer "USSR"
-                                :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
-                                :opts (merge base-opts {:maxZoom 20
-                                                        :minZoom 9
-                                        #_  #_#_              :minNativeZoom 10
-                                          #_              :maxNativeZoom 15
-                                                        :opacity 0.8})}})
+                                    :url "https://mapwarper.net/maps/tile/55373/{z}/{x}/{y}.png"
+                                    :description "Description in Russian can be found in the bottom-right corner of the map."
+                                    :notes "Hand-rectified with control points. This map is two-parts manually stitched together. It's in the SK-42 projection, however we lacked the exact projection metadata required to translate to Web Mercactor. The hand rectified approach results in slight deviations all over the map, most pronounced in the Muharraq portion of the map."
+                                    :source-link "/maps/1977 - USSR - Manama & Muharraq.tif"
+                                    :source "USSR"
+                                    :scale "1:10,000"
+                                    :issuer "USSR"
+                                    :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
+                                    :opts (merge base-opts {:maxZoom 20
+                                                            :minZoom 9
+                                                            #_  #_#_              :minNativeZoom 10
+                                                            #_              :maxNativeZoom 15
+                                                            :opacity 0.8})}
+   "2030 - Bahrain" {:title "Vision 2030"
+                     :url "https://api.maptiler.com/tiles/851841d7-a3b4-4c31-9aff-832dad0373c4/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                     :description "National Detail Land Use map 2030 is the second version of the National Plan and Development Strategy updated Map illustrating detailed Land Use. Data and Relevant Information produced by GIS in GDUP. Issue Date: 11/1/2016."
+                     :notes "No scale or boundaries provided, hand matched."
+                     :source-link "/maps/2030 - Bahrain.tif"
+                     :source "National Plan and Development"
+                     :scale "N/A, probably 1:50,000"
+                     :issuer "Urban Planning & Development Authority"
+                     :issuer-link "https://upda.gov.bh/Media/ZonningMappings/20190911081035456_n0adrtkg_vek.jpg"
+                     :opts (merge base-opts {:maxZoom 20
+                                             :minZoom 9
+                                             :minNativeZoom 8
+                                             :maxNativeZoom 14
+                                             :opacity 0.8})}})
 
 (def ar-layers
   {"1937 - Bahrain" {:title "جزيرة البحرين - ١٩٣٧ "
@@ -181,4 +195,7 @@
                       :notes "الخارطة دقيقة قرب سوق المحرق لكنها تنحذر بقرب بو ماهر في الجنوب "}
    "1937 - Manama"  {:title "المنامة - ١٩٣٧"
                      :description nil
-                     :notes "خارطة متوسطة الدقة. أخطاء بسيطة في غرب و جنوب الخارطة الأصلية"}})
+                     :notes "خارطة متوسطة الدقة. أخطاء بسيطة في غرب و جنوب الخارطة الأصلية"}
+   "2030 - Bahrain"  {:title "رؤية البحرين ‫-‬ ٢٠٣٠"
+                      :description "ﺧﺎرﻃﺔ اﻟﻤﺨﻄﻂ اﻟﮭﯿﻜﻠﻲ اﻻﺳﺘﺮاﺗﯿﺠﻲ ﻟﻤﻤﻠﻜﺔ اﻟﺒﺤﺮﯾﻦ لاستخدام الأراضي ٢٠٣٠، النسخة الثانية. الخطة الوطنية توضح استخدامات الأراضي بالتفصيل. البيانات والمعلومات ذات انتجت بـ GIS في GDUP. تاريخ الإصدار: ١١/١/٢٠١٦"
+                      :notes "تم التنسيق باليد لعدم وجود البيانات الجيوغرافية"}})
