@@ -23,7 +23,22 @@
                                   :opts (assoc base-opts :zoomOffset -1)}})
 
 (def layers
-  {"1931 - Muharraq" {:title "MOHARRAK TOWN - March 1931"
+  {"1914 - Bahrain Harbour" {:title "1914 - Bahrain Harbour"
+                             :url "https://api.maptiler.com/tiles/4bd59a4a-2364-45a5-8407-b91db1341af7/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                             :description nil
+                             :notes "Gets less accurate in the south."
+                             :issuer-link "/maps/1914 - Bahrain Harbour.png"
+                             :source "Marine Survey of India - Officers of R.I.M.S Investigator"
+                             :source-link "/maps/1914 - Bahrain Harbour.tif"
+                             :submitted-by "Ali Karimi"
+                             :scale "1:73,000"
+                             :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+                             :opts (merge base-opts {:maxZoom 20
+                                                     :minZoom 9
+                                                     :minNativeZoom 9
+                                                     :maxNativeZoom 14
+                                                     :opacity 0.8})}
+   "1931 - Muharraq" {:title "MOHARRAK TOWN - March 1931"
                       :url "https://api.maptiler.com/tiles/a77144f2-7690-4c07-8852-3ac78dca0f35/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                       :description nil
                       :notes "Accurate in Old Muharraq. Drifts in the southern part of the map near Bu Maher."
@@ -159,6 +174,7 @@
                      :description "National Detail Land Use map 2030 is the second version of the National Plan and Development Strategy updated Map illustrating detailed Land Use. Data and Relevant Information produced by GIS in GDUP. Issue Date: 11/1/2016."
                      :notes "No scale or boundaries provided, hand matched."
                      :source-link "/maps/2030 - Bahrain.tif"
+                     :submitted-by "Maitham Almubarak"
                      :source "National Plan and Development"
                      :scale "N/A, probably 1:50,000"
                      :issuer "Urban Planning & Development Authority"
@@ -170,7 +186,11 @@
                                              :opacity 0.8})}})
 
 (def ar-layers
-  {"1937 - Bahrain" {:title "جزيرة البحرين - ١٩٣٧ "
+  {"1914 - Bahrain Harbour" {:title "١٩١٤ - ميناء البحرين"
+                             :description nil
+                             :submitted-by "علي كريمي"
+                             :notes "أقل دقة في الجنوب."}
+   "1937 - Bahrain" {:title "جزيرة البحرين - ١٩٣٧ "
                      :description nil
                      :notes "الوثيقة الاصلية لم تنسخ و ترقم بشكل جيد. الخارطة تنحرف من الساحل الاصلي بشكل متزايد في جنوب الجزيرة"}
    "1969 - Manama & AlJufayr" {:title "المنامة و الجفير - ١٩٦٩"
