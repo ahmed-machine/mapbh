@@ -33,9 +33,7 @@
                              :submitted-by "Ali Karimi"
                              :scale "1:73,000"
                              :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
-                             :opts (merge base-opts {:maxZoom 20
-                                                     :minZoom 9
-                                                     :minNativeZoom 9
+                             :opts (merge base-opts {:minNativeZoom 9
                                                      :maxNativeZoom 14
                                                      :opacity 0.8})}
    "1931 - Muharraq" {:title "MOHARRAK TOWN - March 1931"
@@ -48,9 +46,7 @@
                       :submitted-by "Ali Karimi"
                       :scale "1:2,400"
                       :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
-                      :opts (merge base-opts {:maxZoom 20
-                                              :minZoom 9
-                                              :minNativeZoom 13
+                      :opts (merge base-opts {:minNativeZoom 13
                                               :maxNativeZoom 18
                                               :opacity 0.7})}
    "1937 - Bahrain" {;; English
@@ -64,9 +60,7 @@
                      :issuer "Qatar Digital Library"
                      :scale "1:63,360"
 
-                     :opts (merge base-opts {:maxZoom 20
-                                             :minZoom 9
-                                             :minNativeZoom 9
+                     :opts (merge base-opts {:minNativeZoom 9
                                              :maxNativeZoom 14
                                              :opacity 0.7})}
    "1937 - Muharraq" {:title "MUHARRAQ ISLAND - Jan 1937"
@@ -92,9 +86,7 @@
                     :scale "1:3,639"
                     :issuer "Qatar Digital Library"
                     :issuer-link "https://www.qdl.qa/en/archive/81055/vdc_100043097172.0x000079"
-                    :opts (merge base-opts {:maxZoom 20
-                                            :minZoom 9
-                                            :minNativeZoom 13
+                    :opts (merge base-opts {:minNativeZoom 13
                                             :maxNativeZoom 18
                                             :opacity 0.7})}
    "1943 - Bahrain" {:title "BAHRAIN ISLAND - 1943"
@@ -107,9 +99,7 @@
                      :source-link "/maps/1943-Bahrain.tif"
                      :issuer "University of Texas Library"
                      :scale "1:63,360"
-                     :opts (merge base-opts {:maxZoom 20
-                                             :minZoom 9
-                                             :minNativeZoom 9
+                     :opts (merge base-opts {:minNativeZoom 9
                                              :maxNativeZoom 14
                                              :opacity 0.7})}
    "1969 - Manama & AlJufayr" {:title "AL MANAMAH & AL JUFAYR - 1969"
@@ -122,9 +112,7 @@
                                :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
                                :issuer-link "/maps/1969-Manama.zip"
                                :submitted-by "Ali Karimi"
-                               :opts (merge base-opts {:maxZoom 20
-                                                       :minZoom 9
-                                                       :minNativeZoom 13
+                               :opts (merge base-opts {:minNativeZoom 13
                                                        :maxNativeZoom 18
                                                        :opacity 0.7})}
    "1973 - Bahrain" {:title "Bahrain - 1973"
@@ -136,9 +124,7 @@
                      :scale "1:50,000"
                      :issuer "Unknown"
                      :issuer-link "/maps/1973-Bahrain.zip"
-                     :opts (merge base-opts {:maxZoom 20
-                                             :minZoom 9
-                                             :minNativeZoom 10
+                     :opts (merge base-opts {:minNativeZoom 10
                                              :maxNativeZoom 15
                                              :opacity 0.8})}
    "1977 - Bahrain" {:title "State of Bahrain - 1977"
@@ -150,24 +136,20 @@
                      :scale "1:25,000"
                      :issuer "Unknown"
                      :issuer-link "/maps/1977-Bahrain.zip"
-                     :opts (merge base-opts {:maxZoom 20
-                                             :minZoom 9
-                                             :minNativeZoom 10
+                     :opts (merge base-opts {:minNativeZoom 10
                                              :maxNativeZoom 15
                                              :opacity 0.8})}
-   #_#_"1977 - Manama + Muharraq " {:title "Manama and Muharraq - 1977"
-                                    :url "https://mapwarper.net/maps/tile/55373/{z}/{x}/{y}.png"
-                                    :description "Description in Russian can be found in the bottom-right corner of the map."
-                                    :notes "Hand-rectified with control points. This map is two-parts manually stitched together. It's in the SK-42 projection, however we lacked the exact projection metadata required to translate to Web Mercactor. The hand rectified approach results in slight deviations all over the map, most pronounced in the Muharraq portion of the map."
-                                    :source-link "/maps/1977 - USSR - Manama & Muharraq.tif"
+   "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
+                                    :url "https://api.maptiler.com/tiles/b42fc6c1-6d74-42bf-9d35-f0452588ac70/{z}/{x}/{y}.png?key=bswjrIzAQez3KvqeYAWB"
+                                    :description "Description in Russian can be found in the bottom-right corner of the map. Produced in 1977 and 1980, in a factory in Sverdlovsk (now Ekaterinburg). There are many exciting features in these maps that are sorely missing in other contemporary maps. NATO mappers intentionally obfuscated sensitive areas like airports and navy yards from their maps but the Soviets include these on theirs. To produce these details, the Soviets had to rely on ground intelligence to obtain both aerial and ground measurements. Discovered in second-hand thrift stores following the collapse of the Soviet Union."
+                                    :notes "While we know this is a SK-42 projection (also known as Pulkovo) with a PZ-90 datum, tracking down the exact datum was difficult as few maps of this sort have been translated for our part of the world. In the end, we had to adjust it by hand using ground control points. Special shoutout to Tristan Bobin for his contributions in rectifying this map."
+                                    :source-link "/maps/1977_ManamaMuharraq_USSRMap.tif"
                                     :source "USSR"
                                     :scale "1:10,000"
                                     :issuer "USSR"
                                     :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
-                                    :opts (merge base-opts {:maxZoom 20
-                                                            :minZoom 9
-                                                            #_  #_#_              :minNativeZoom 10
-                                                            #_              :maxNativeZoom 15
+                                    :opts (merge base-opts {:minNativeZoom 13
+                                                            :maxNativeZoom 18
                                                             :opacity 0.8})}
    "2030 - Bahrain" {:title "Vision 2030"
                      :url "https://api.maptiler.com/tiles/851841d7-a3b4-4c31-9aff-832dad0373c4/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
@@ -179,9 +161,7 @@
                      :scale "N/A, probably 1:50,000"
                      :issuer "Urban Planning & Development Authority"
                      :issuer-link "https://upda.gov.bh/Media/ZonningMappings/20190911081035456_n0adrtkg_vek.jpg"
-                     :opts (merge base-opts {:maxZoom 20
-                                             :minZoom 9
-                                             :minNativeZoom 8
+                     :opts (merge base-opts {:minNativeZoom 8
                                              :maxNativeZoom 14
                                              :opacity 0.8})}})
 
@@ -218,4 +198,7 @@
                      :notes "خارطة متوسطة الدقة. أخطاء بسيطة في غرب و جنوب الخارطة الأصلية"}
    "2030 - Bahrain"  {:title "رؤية البحرين ‫-‬ ٢٠٣٠"
                       :description "ﺧﺎرﻃﺔ اﻟﻤﺨﻄﻂ اﻟﮭﯿﻜﻠﻲ اﻻﺳﺘﺮاﺗﯿﺠﻲ ﻟﻤﻤﻠﻜﺔ اﻟﺒﺤﺮﯾﻦ لاستخدام الأراضي ٢٠٣٠، النسخة الثانية. الخطة الوطنية توضح استخدامات الأراضي بالتفصيل. البيانات والمعلومات ذات انتجت بـ GIS في GDUP. تاريخ الإصدار: ١١/١/٢٠١٦"
-                      :notes "تم التنسيق باليد لعدم وجود البيانات الجيوغرافية"}})
+                      :notes "تم التنسيق باليد لعدم وجود البيانات الجيوغرافية"}
+   "1977 - USSR - Manama/Muharraq"  {:title "المنامة و المحرق ١٩٧٧"
+                                     :description "يوجد الوصف باللغة الروسية في الركن الأيمن السفلي من الخريطة.  تم إنتاج هذه الخريطة بين عامي   ١٩٧٧ و ١٩٨٠ في مصنع في سفيردلوفسك (إيكاترينبرج اليوم). تم اكتشاف هذه الخرائط في متاجر سيكوند هاند في الفترة ما بعد انهيار الاتحاد السوفيتي وتم جمعها عشوائياً. هناك العديد من المميزات في هذه الخرائط الغير موجودة في خرائط معاصرة لها. حينما تعمد رسامو الخرائط من حلف ناتو إخفاء مناطق حساسة مثل المطارات والموانئ من خرائطهم، السوفيتين لم يخفوها. لإنتاج هذه التفاصيل، اضطروا السوفيتيين للاعتماد على  مخابرات وجواسيس في الارض و الجو للحصول على ادق التفاصيل."
+                                     :notes " بينما نعلم أن هذه الخارطة إسقاطها سيستم كوردينت ٤٢ (المعروف أيضًا ببولكوفو) مع مسند براميتري زيميل او بي زي ٩٠، لم ننجح في معرفة معلومات كافية لتعديل الخارطة بهذه الطريقة فاضطرينا لتعديله يدويًا باستخدام نقاط التحكم الأرضي."}})
