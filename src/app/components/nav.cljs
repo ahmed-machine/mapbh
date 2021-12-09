@@ -9,7 +9,7 @@
    [:div.navbar-brand
     [:a.nav-logo.is-vcentered {:href (routes/url-for :home)}
      [:p.column.logo {:style {:color :black
-                              :z-index 2}} "MapBH"]]]
+                              :z-index 2}} "mapBH"]]]
    [:div.navbar-menu.is-active {:style {:font-size "0.8em"}}
     [:div.navbar-start.is-vcentered
      [:a.navbar-item {:href (routes/url-for :about)} "About"]
@@ -25,7 +25,7 @@
    [:div.navbar-brand
     [:a.nav-logo.is-vcentered {:href (routes/url-for :home)}
      [:p.column.logo {:style {:color :black
-                              :z-index 2}} "MapBH"]]]
+                              :z-index 2}} "mapBH"]]]
    [:div.navbar-menu.is-active {:style {:font-size "1.1em"}}
     [:div.navbar-end
      [:a.navbar-item {:style {:font-family "Roboto, Helvetica, san serif" :font-size "0.8em" :display :flex :align-items :center}

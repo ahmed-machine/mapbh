@@ -80,3 +80,5 @@ p.logo:hover { color: #DA291C !important;}
                    border-bottom: 2px lightgray solid !important;
                    padding-bottom: 2px !important;
                    overflow-y: scroll;}
+
+.panel-block {display: inline-block !important;}
