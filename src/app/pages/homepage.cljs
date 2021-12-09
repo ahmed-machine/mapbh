@@ -15,7 +15,7 @@
                                     :z-index 2
                                     :margin-top "9%"
                                     :margin-bottom "1%"
-                                    :text-align :center}} "MapBH"]
+                                    :text-align :center}} "mapBH"]
    [:p.column.is-full {:style {:z-index 2
                                :margin-bottom "1%"
                                :text-align :center}} tagline]
@@ -45,7 +45,7 @@
                                     :z-index 2
                                     :margin-top "9%"
                                     :margin-bottom "1%"
-                                    :text-align :center}} "MapBH"]
+                                    :text-align :center}} "mapBH"]
    [:div {:dir "rtl" :lang "ar" :style {:font-size "1.25em"}}
     [:p.column.is-full {:style {:z-index 2
                                 :margin-bottom "1%"

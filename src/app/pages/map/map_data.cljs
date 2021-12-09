@@ -27,9 +27,9 @@
                              :url "https://api.maptiler.com/tiles/4bd59a4a-2364-45a5-8407-b91db1341af7/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                              :description nil
                              :notes "Gets less accurate in the south."
-                             :issuer-link "/maps/1914 - Bahrain Harbour.png"
+                             :issuer-link "/maps/1914-Harbour.png"
                              :source "Marine Survey of India - Officers of R.I.M.S Investigator"
-                             :source-link "/maps/1914 - Bahrain Harbour.tif"
+                             :source-link "/maps/1914-Harbour.tif"
                              :submitted-by "Ali Karimi"
                              :scale "1:73,000"
                              :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
@@ -53,7 +53,7 @@
                      :title "BAHRAIN ISLAND - 1937"
                      :url "https://api.maptiler.com/tiles/1c3695ec-61ea-4e60-be6e-87bf60ceca38/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "Plan of Bahrain. The plan indicates hydrology, settlements and  as well as providing some indication of relief. Included is a table of reference of symbols used. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
-                     :notes "Original scan of document was distorted and outlines begin to diverge greatly further and further south."
+                     :notes "Original scan of document was distorted and outlines begin to diverge greatly further and further south.  This is one of my favorite maps because it shows the borders of shallow waters around Bahrain. Those borders now correspond almost exactly to the borders of reclaimed land around the island. It costs less to reclaim shallow water. "
                      :issuer-link "https://www.qdl.qa/en/archive/8955/vdc_90043097172.0x000077"
                      :source "British Library: India Office Records and Private Papers"
                      :source-link "/maps/1937-Bahrain.tif"
@@ -155,7 +155,7 @@
                      :url "https://api.maptiler.com/tiles/851841d7-a3b4-4c31-9aff-832dad0373c4/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
                      :description "National Detail Land Use map 2030 is the second version of the National Plan and Development Strategy updated Map illustrating detailed Land Use. Data and Relevant Information produced by GIS in GDUP. Issue Date: 11/1/2016."
                      :notes "No scale or boundaries provided, hand matched."
-                     :source-link "/maps/2030 - Bahrain.tif"
+                     :source-link "/maps/2030-Bahrain.tif"
                      :submitted-by "Maitham Almubarak"
                      :source "National Plan and Development"
                      :scale "N/A, probably 1:50,000"
@@ -171,8 +171,8 @@
                              :submitted-by "علي كريمي"
                              :notes "أقل دقة في الجنوب."}
    "1937 - Bahrain" {:title "جزيرة البحرين - ١٩٣٧ "
-                     :description nil
-                     :notes "الوثيقة الاصلية لم تنسخ و ترقم بشكل جيد. الخارطة تنحرف من الساحل الاصلي بشكل متزايد في جنوب الجزيرة"}
+                     :description "تشير الخطة إلى الهيدرولوجيا والأماكن السكنية و ميزات جغرافية كمستويات الارتفاع."
+                     :notes "الوثيقة الاصلية لم تنسخ و ترقم بشكل جيد. الخارطة تنحرف من الساحل الاصلي بشكل متزايد في جنوب الجزيرة. هذه الخارطة احد خرائطي المفضله لأنه توحي لنا حدود المياه الضحلة حول الجزيرة. هذه الحدود اليوم هي أيضآ حدود الأراضي المدفونه. دفان المياه الضحلة أسهل و اقل تكلفة فصارت هذه الملامح الجغرافية شبه حدود للدفان المستمر."}
    "1969 - Manama & AlJufayr" {:title "المنامة و الجفير - ١٩٦٩"
                                :description nil
                                :submitted-by "علي كريمي"

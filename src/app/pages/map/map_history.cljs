@@ -26,11 +26,14 @@
        (if arabic? "ملاحظات" "Notes") ": "
        (or (when arabic? (:notes ar-details)) (:notes details))]
       [:a {:href (:source-link details) :style {:color "#DA291C"}}
-       [:div.panel-block {:style {:color "#DA291C"}} (if arabic? "المصدر" "Source") ": " (:source details)]]
+       [:div.panel-block {:style {:color "#DA291C"}} (if arabic? "المصدر" "Source") ": " (:source details) " - "
+        [:span.icon.home [:i.fas.fa-download]] "(georectified)"]]
       (when (:issuer details)
         [:a {:href (:issuer-link details)}
-         [:div.panel-block {:style {:color "#DA291C" :padding-bottom "10px"}} (if arabic? "الناشر" "Issuer") ": "
-          (str " " (:issuer details))]])
+         [:div.panel-block {:style {:color "#DA291C" :padding-bottom "10px"}}
+          (if arabic? "الناشر" "Issuer") ": "
+          (str " " (:issuer details)) " - "
+          [:span.icon.home [:i.fas.fa-download]] "(original)"] ])
       (when (:submitted-by details)
         [:div.panel-block {:style {:padding-bottom "10px"}} (if arabic? " مساهمة" "Submitted by") ": "
          (if (:submitted-by-url details)
