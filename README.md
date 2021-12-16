@@ -16,9 +16,9 @@ https://www.mapbh.org
 
 ### Stack
 
-Simple clojurescript, shadow-cljs static site stack. Bulma for CSS, npm packages, and leaflet.js for maps. Hosted on a Linode server. Served by an nginx reverse proxy. Cloudflare nameserver for caching/DDoS protection.
+Simple clojurescript, shadow-cljs static site stack. Bulma for CSS, npm packages, and leaflet.js for maps. Hosted on a Linode server. Served by an nginx reverse proxy. Cloudflare nameserver for caching/DDoS protection. Tileserver-GL for our hosted maps.
 
-Map processing tools, documentation, and tile server hosted in separate repo.
+Map processing steps primarily with GDAL tools.
 
 ### Deployment
 
@@ -31,3 +31,11 @@ Converts GeoTIFF to MBTiles for use on tile server. Handy for converting rectifi
 Translate and warp a map in a UTM Zone 39 map
 `scripts/utm-zone39-translate.sh <input-path-without-extension-type> <top-left-coordinates/bottom-right-coordinates>`
 e.g. `./scripts/utm-zone39-translate.sh "1969.5000.Manama & AlJufayr.1-5" "453000 2901300 456600 2898900"`
+
+### Tileserver
+
+We use `tileserver-gl` from MapTiler to host our processed tiles. To see maps locally, you need to download the mbtiles and run it locally.
+
+#### Usage
+
+`tileserver-gl -c tile-config.json`
