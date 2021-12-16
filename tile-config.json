@@ -1,0 +1,30 @@
+{
+  "maxScaleFactor": 9,
+  "domains": [
+    "localhost:8080",
+    "127.0.0.1:8080"],
+  "options": {
+    "paths": {
+      "root": "",
+      "mbtiles": "."
+    },
+    "formatEncoding": {
+      "png": 6,
+      "jpeg": 80,
+      "webp": 90
+    }
+  },
+  "data": {
+    "1914-Harbour" :  {"mbtiles": "public/maps/1914-Harbour.mbtiles"},
+    "1931-Muharraq": {"mbtiles": "public/maps/1931-Muharraq.mbtiles"},
+    "1937-Bahrain" :  {"mbtiles": "public/maps/1937-Bahrain.mbtiles"},
+    "1937-Manama"  :   {"mbtiles": "public/maps/1937-Manama.mbtiles"},
+    "1937-Muharraq": {"mbtiles": "public/maps/1937-Muharraq.mbtiles"},
+    "1943-Bahrain" :  {"mbtiles": "public/maps/1943-Bahrain.mbtiles"},
+    "1969-Manama"  :   {"mbtiles": "public/maps/1969-Manama.mbtiles"},
+    "1973-Bahrain" :   {"mbtiles": "public/maps/1973-Bahrain.mbtiles"},
+    "1977-Bahrain" :  {"mbtiles": "public/maps/1977-Bahrain.mbtiles"},
+    "1977-USSR-Bahrain": {"mbtiles": "public/maps/1977_USSR.mbtiles"},
+    "2030-Bahrain" :  {"mbtiles": "public/maps/2030-bahrain.mbtiles"}
+  }
+}
