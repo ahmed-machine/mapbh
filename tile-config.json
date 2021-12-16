@@ -1,18 +1,10 @@
 {
-  "maxScaleFactor": 9,
-  "domains": [
-    "localhost:8080",
-    "127.0.0.1:8080"],
+  "maxSize": 20000,
+  "maxScaleFactor": 10,
   "options": {
     "paths": {
       "root": "",
-      "mbtiles": "."
-    },
-    "formatEncoding": {
-      "png": 6,
-      "jpeg": 80,
-      "webp": 90
-    }
+      "mbtiles": "."}
   },
   "data": {
     "1914-Harbour" :  {"mbtiles": "public/maps/1914-Harbour.mbtiles"},
