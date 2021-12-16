@@ -36,6 +36,8 @@
     "leaflet": "^1.7.1",
     "leaflet-geotiff": "^0.2.0",
     "react": "~16.8.0",
-    "react-dom": "~16.8.0"
+    "react-dom": "~16.8.0",
+    "sqlite3": "^5.0.2",
+    "tileserver-gl": "^3.1.1"
   }
 }
