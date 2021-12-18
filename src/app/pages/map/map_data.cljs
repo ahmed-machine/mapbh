@@ -24,7 +24,7 @@
 
 (def layers
   {"1914 - Bahrain Harbour" {:title "1914 - Bahrain Harbour"
-                             :url "https://api.maptiler.com/tiles/4bd59a4a-2364-45a5-8407-b91db1341af7/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                             :url "https://map.mapbh.org/data/1914-Harbor/{z}/{x}/{y}.png"
                              :description nil
                              :notes "Gets less accurate in the south."
                              :issuer-link "/maps/1914-Harbour.png"
@@ -37,7 +37,7 @@
                                                      :maxNativeZoom 14
                                                      :opacity 0.8})}
    "1931 - Muharraq" {:title "MOHARRAK TOWN - March 1931"
-                      :url "https://api.maptiler.com/tiles/a77144f2-7690-4c07-8852-3ac78dca0f35/{z}/{x}/{y}.png?key=cAEzKPncCfFpXo43gfxY"
+                      :url "https://map.mapbh.org/data/1931-Muharraq/{z}/{x}/{y}.png"
                       :description nil
                       :notes "Accurate in Old Muharraq. Drifts in the southern part of the map near Bu Maher."
                       :issuer-link "/maps/1931-Muharraq.jpg"
