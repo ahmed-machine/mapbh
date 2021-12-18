@@ -24,7 +24,7 @@
 
 (def layers
   {"1914 - Bahrain Harbour" {:title "1914 - Bahrain Harbour"
-                             :url "https://map.mapbh.org/data/1914-Harbor/{z}/{x}/{y}.png"
+                             :url "https://map.mapbh.org/data/1914-Harbour/{z}/{x}/{y}.png"
                              :description nil
                              :notes "Gets less accurate in the south."
                              :issuer-link "/maps/1914-Harbour.png"
