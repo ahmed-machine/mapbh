@@ -74,6 +74,24 @@
   (when (and zoom lat long) (.flyTo map (-> l (.latLng lat long)) zoom #js {:animate false})))
 
 
+(defn get-location
+  [map state* position]
+  (js/console.log "get-location" map state* position)
+  (let [{:keys [circle]} @state*
+        lat  (-> position .-coords .-latitude)
+        long  (-> position .-coords .-longitude)
+        accuracy (-> position .-coords .-accuracy)]
+    (when circle (.removeLayer map circle))
+    (let [circle  (-> l (.circleMarker (clj->js [lat long]) (clj->js {:radius 5})))]
+      (swap! state* assoc :circle circle)
+      (.addTo circle map))))
+
+(defn polling-request
+  [handler timeout]
+  ;; Will call the handler every timeout interval
+  (js/setInterval handler timeout))
+
+
 (defn base-layer-change
   [map state*]
   (when map (-> map
@@ -90,16 +108,16 @@
   [state*]
   (let [map (:map @state*)]
     (when map (do (.off map) (.remove map)
-        (-> js/document (.getElementById "mapid") (aset "innerHTML" "")))))
+                  (-> js/document (.getElementById "mapid") (aset "innerHTML" "")))))
   (let [base-layers (->> base-satellite
-                      (mapv (fn [[k selected-layer]]
-                              [k (-> l (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
-                      (into {}))
-        overlay-layers (->> layers
                          (mapv (fn [[k selected-layer]]
                                  [k (-> l (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
-                         (sort-by first)
-                         (into (sorted-map)))
+                         (into {}))
+        overlay-layers (->> layers
+                            (mapv (fn [[k selected-layer]]
+                                    [k (-> l (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
+                            (sort-by first)
+                            (into (sorted-map)))
         {:keys [zoom lat long]} @state*
         map (-> l (.map "mapid" (clj->js {:maxBounds (-> l (.latLngBounds (-> l (.latLng 25.5 50))
                                                                           (-> l (.latLng 26.5 51))))}))
@@ -107,9 +125,13 @@
                 (.setView #js [26.05 50.4849414] 10.3))
         base (-> base-layers (get (:base @state*)))
         selected (get overlay-layers (:selected @state*))]
-        (-> l .-control (.groupedLayers (clj->js base-layers) (clj->js {"Maps" overlay-layers}) (clj->js {"exclusiveGroups" ["Maps"] "groupCheckboxes" false})) (.addTo map))
+    (-> l .-control (.groupedLayers (clj->js base-layers) (clj->js {"Maps" overlay-layers}) (clj->js {"exclusiveGroups" ["Maps"] "groupCheckboxes" false})) (.addTo map))
     ;; Zoom to location
     (pan-map lat long zoom map)
+    ;; Show user's location
+    (polling-request
+     (-> js/navigator .-geolocation (.getCurrentPosition
+                                     (fn [position] (get-location map state* position)))) 5000)
     ;; Add Base
     (-> map (.addLayer base))
     ;; Add pre-selected default map
@@ -129,13 +151,13 @@
 
 (defn transparency-init-map
   [state*]
-  (let [{:keys [base-layers overlay-layers zoom lat long map base selected]} (init-map state*)]))
+  (init-map state*))
 
 
 (defn sbs-init-map
   [state*]
   (let [_  (swap! state* assoc :transparency 1.0)
-        {:keys [base-layers overlay-layers zoom lat long map base selected]} (init-map state*)]
+        {:keys [map base selected]} (init-map state*)]
     ;; Create side-by-side mode
     (-> l .-control (.sideBySide base selected) (.addTo map))
     (.setOpacity selected 1.0)))

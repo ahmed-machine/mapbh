@@ -1,6 +1,11 @@
 {
-  "maxSize": 20000,
-  "maxScaleFactor": 10,
+  "maxScaleFactor": 9,
+  "maxSize": 20480,
+  "pbfAlias": "pbf",
+  "serveAllFonts": false,
+  "serveAllStyles": false,
+  "serveStaticMaps": true,
+  "tileMargin": 0,
   "options": {
     "paths": {
       "root": "",
