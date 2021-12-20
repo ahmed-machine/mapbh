@@ -81,7 +81,7 @@
         long  (-> position .-coords .-longitude)
         accuracy (-> position .-coords .-accuracy)]
     (when circle (.removeLayer map circle))
-    (let [circle  (-> l (.circleMarker (clj->js [lat long]) (clj->js {:radius 2.5})))]
+    (let [circle  (-> l (.circleMarker (clj->js [lat long]) (clj->js {:radius 2})) (.setStyle (clj->js {:color "rgb(241, 70, 104, 0.7)" :weight 5})))]
       (swap! state* assoc :circle circle)
       (.addTo circle map))))
 
