@@ -9,6 +9,7 @@
                 :minZoom 9
                 :zoomOffset -1
                 :detectRetina true
+                :hq true
                 :id "Standard Style"
                 :tileSize 512})
 
