@@ -76,7 +76,6 @@
 
 (defn get-location
   [map state* position]
-  (js/console.log "get-location" map state* position)
   (let [{:keys [circle]} @state*
         lat  (-> position .-coords .-latitude)
         long  (-> position .-coords .-longitude)
