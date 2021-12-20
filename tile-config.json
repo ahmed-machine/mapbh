@@ -20,7 +20,7 @@
     "1943-Bahrain" :  {"mbtiles": "public/maps/1943-Bahrain.mbtiles"},
     "1969-Manama"  :   {"mbtiles": "public/maps/1969-Manama.mbtiles"},
     "1973-Bahrain" :   {"mbtiles": "public/maps/1973-Bahrain.mbtiles"},
-    "1977-Bahrain" :  {"mbtiles": "public/maps/1977-Bahrain-smaller.mbtiles"},
+    "1977-Bahrain" :  {"mbtiles": "public/maps/1977-Bahrain-v2.mbtiles"},
     "1977-USSR-Bahrain": {"mbtiles": "public/maps/1977_ManamaMuharraq_USSRMap.mbtiles"},
     "2030-Bahrain" :  {"mbtiles": "public/maps/2030-Bahrain.mbtiles"}
   }
