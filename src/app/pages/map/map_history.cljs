@@ -73,18 +73,6 @@
   [lat long zoom map]
   (when (and zoom lat long) (.flyTo map (-> l (.latLng lat long)) zoom #js {:animate false})))
 
-
-(defn get-location
-  [map state* position]
-  (let [{:keys [circle]} @state*
-        lat  (-> position .-coords .-latitude)
-        long  (-> position .-coords .-longitude)
-        accuracy (-> position .-coords .-accuracy)]
-    (when circle (.removeLayer map circle))
-    (let [circle  (-> l (.circleMarker (clj->js [lat long]) (clj->js {:radius 2})) (.setStyle (clj->js {:color "rgb(241, 70, 104, 0.7)" :weight 5})))]
-      (swap! state* assoc :circle circle)
-      (.addTo circle map))))
-
 (defn polling-request
   [handler timeout]
   ;; Will call the handler every timeout interval
@@ -127,10 +115,11 @@
     (-> l .-control (.groupedLayers (clj->js base-layers) (clj->js {"Maps" overlay-layers}) (clj->js {"exclusiveGroups" ["Maps"] "groupCheckboxes" false})) (.addTo map))
     ;; Zoom to location
     (pan-map lat long zoom map)
-    ;; Show user's location
-    (polling-request
-     (-> js/navigator .-geolocation (.getCurrentPosition
-                                     (fn [position] (get-location map state* position)))) 5000)
+    ;; Locate user
+    (-> l .-control (.locate (clj->js {:keepCurrentZoomLevel true
+                                       :locateOptions (clj->js {:enableHighAccuracy true})
+                                       :followMarkerStyle (clj->js {:radius 5 :fillColor "rgb(241, 70, 104, 0.7)" :weight 5})
+                                       :markerStyle (clj->js {:radius 5 :fillColor "rgb(241, 70, 104, 0.7)" :weight 5})})) (.addTo map));
     ;; Add Base
     (-> map (.addLayer base))
     ;; Add pre-selected default map
