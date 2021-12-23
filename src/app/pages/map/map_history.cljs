@@ -11,7 +11,7 @@
   (let [active-key (:selected @state*)
         details (get layers active-key)
         ar-details (merge details (get ar-layers active-key))]
-    [:nav.panel.is-collapsible {:lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr") :style (merge {:position :absolute :bottom 0 :z-index 1000 :width 225 :height :max-content :background "whitesmoke" :font-size 12} (if arabic? {:right "12px"} {:left "12px"}))}
+    [:nav.panel.is-collapsible {:lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr") :style (merge {:position :absolute :bottom 0 :z-index 1000 :width 200 :height :max-content :background "whitesmoke" :font-size 12} (if arabic? {:right "12px"} {:left "12px"}))}
      [:p.panel-heading {:on-click (fn [e] (swap! state* update :show-description? not)
                                     (-> js/document (.getElementById "description") .-classList (.toggle "is-hidden"))) :class " is-hidden-fullscreen" :aria-label "more options"}(if arabic? "تفاصيل" "Description")
       (if (:show-description? @state*) "   -" "   +")]
@@ -62,7 +62,7 @@
   (if-let [layer (get-layer state*)]
     (if-let [transparency (-> layer (aget "options") (aget "opacity"))]
       [:input {:title "Adjust Transparency" :style (merge {:position :absolute :background "transparent" :opacity 0.6 :bottom "35px"
-
+                                                           :width "120px"
                                                            :z-index 998}
                                                           (if arabic? {:left "12px"} {:right "12px"}))
                :on-change (fn [e v] (update-transparency layer (.. e -target -value)))
