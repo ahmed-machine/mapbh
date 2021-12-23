@@ -82,3 +82,10 @@ p.logo:hover { color: #DA291C !important;}
                    overflow-y: scroll;}
 
 .panel-block {display: inline-block !important;}
+
+.home .navbar .button {height: 3em;}
+.home .navbar .button:hover { color: #DA291C !important;}
+
+@media screen and (min-width: 400px){
+    .home .navbar .navbar-item{margin: 0 1.5rem;}
+}
