@@ -172,15 +172,14 @@
     [:button.button.is-danger.is-small.is-rounded
      {:style {:position :absolute :top "65px" :left "60px" :z-index 997 :font-size (when arabic? "105%")}
       :on-click (fn []
-                  (when map
-                    (let [zoom-level (when map (.getZoom map))
-                          {:keys [lat lng]} (when map (js->clj (.getCenter map) :keywordize-keys true))]
-                      (swap! state* assoc :zoom zoom-level :lat lat :long lng)
-                      (if (= mode "transparency")
-                        (do (swap! state* assoc :mode "side-by-side" :transparency 1.0)
-                            (sbs-init-map state*))
-                        (do (swap! state* assoc :mode "transparency")
-                            (transparency-init-map state*))))))}
+                  (let [zoom-level (.getZoom map)
+                        {:keys [lat lng]} (js->clj (.getCenter map) :keywordize-keys true)]
+                    (swap! state* assoc :zoom zoom-level :lat lat :long lng)
+                    (if (= mode "transparency")
+                      (do (swap! state* assoc :mode "side-by-side" :transparency 1.0)
+                          (sbs-init-map state*))
+                      (do (swap! state* assoc :mode "transparency")
+                          (transparency-init-map state*)))))}
      (if (= mode "transparency")
        (if arabic? "ابو قسمين" "Split Mode")
        (if arabic? "شفاف"  "Transparency Mode"))]))
