@@ -1,5 +1,5 @@
 {:builds
- {:app {:modules {:main {:init-fn app.core/main}}
+ {:app { :modules {:main {:init-fn app.core/main}}
         :output-dir "public/js"
         :asset-path "/js"
         :target :browser}
@@ -8,8 +8,7 @@
             :output-dir "public/js"
             :asset-path "/js"
             :release {:compiler-options  {:cross-chunk-method-motion false
-                                          :source-map true
-                                          :optimizations :none}}
+                                          :optimizations :advanced}}
             :main app.core/main}}
  :dependencies [[reagent "0.8.1"]
                 [re-frame "0.10.5"]
