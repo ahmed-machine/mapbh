@@ -153,7 +153,7 @@
                                     :scale "1:10,000"
                                     :issuer "USSR"
                                     :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
-                                    :opts (merge base-opts {:minNativeZoom 13
+                                    :opts (merge base-opts {:minNativeZoom 12
                                                             :maxNativeZoom 18
                                                             :opacity 0.8})}
    "2030 - Bahrain" {:title "Vision 2030"
