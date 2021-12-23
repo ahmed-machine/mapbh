@@ -10,7 +10,7 @@
 (def ar-tagline "رحلة في تاريخ البحرين عبر الخرائط")
 
 (defn en []
-  [:div.container.home
+  [:div.container
    [:p.column.is-full.logo {:style {:font-size "5em"
                                     :z-index 2
                                     :margin-top "9%"
@@ -19,10 +19,10 @@
    [:p.column.is-full {:style {:z-index 2
                                :margin-bottom "1%"
                                :text-align :center}} tagline]
-   [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
-    [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :about)} "About"]
-    [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "Contribute"]
-    [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "Map"]]
+   [:nav.navbar.columns.is-centered.is-gapless.is-vcentered {:role "navigation"}
+    [:a.navbar-item.column {:href (routes/url-for :about)} "About"]
+    [:a.navbar-item.column {:href (routes/url-for :contribute)} "Contribute"]
+    [:a.navbar-item.column {:href (routes/url-for :map)} "Map"]]
    [:div.content.has-text-centered
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
@@ -40,7 +40,7 @@
 
 
 (defn ar []
-  [:div.container.home
+  [:div.container
    [:p.column.is-full.logo {:style {:font-size "5em"
                                     :z-index 2
                                     :margin-top "9%"
@@ -50,10 +50,10 @@
     [:p.column.is-full {:style {:z-index 2
                                 :margin-bottom "1%"
                                 :text-align :center}} ar-tagline]
-    [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
-     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :about)} "نبذة"]
-     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "ساهم"]
-     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "الخارطة"] ]]
+    [:nav.navbar.columns.is-centered.is-gapless.is-vcentered {:role "navigation"}
+     [:a.navbar-item.column {:href (routes/url-for :about)} "نبذة"]
+     [:a.navbar-item.column {:href (routes/url-for :contribute)} "ساهم"]
+     [:a.navbar-item.column {:href (routes/url-for :map)} "الخارطة"] ]]
    [:div.content.has-text-centered {:style {:margin-top "1.1rem"}}
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
