@@ -72,19 +72,16 @@
 
 
 (defn base-layer-change
-  [state*]
-  (let [map (:map @state*)]
-    (when map
-      (.on map "overlayadd" (fn [layer]
-                              (let [lname (-> layer js->clj (get "name"))]
-                                (when (and (not= lname "Terrain") (not= lname "Satellite"))
-                                  (swap! state* assoc :selected (get (js->clj layer) "name")))))))
-    (when map
-      (.on map "baselayerchange" (fn [layer]
-                                   (let [lname (-> layer js->clj (get "name"))]
-                                     (when (or (= lname "Terrain") (= lname "Satellite"))
-                                       (swap! state* assoc :base (get (js->clj layer) "name")))))))
-    nil))
+  [map state*]
+  (.on map "overlayadd" (fn [layer]
+                          (let [lname (-> layer js->clj (get "name"))]
+                            (when (and (not= lname "Terrain") (not= lname "Satellite"))
+                              (swap! state* assoc :selected (get (js->clj layer) "name"))))))
+  (.on map "baselayerchange" (fn [layer]
+                               (let [lname (-> layer js->clj (get "name"))]
+                                 (when (or (= lname "Terrain") (= lname "Satellite"))
+                                   (swap! state* assoc :base (get (js->clj layer) "name"))))))
+  nil)
 
 (defn download-map
   [selected]
@@ -134,7 +131,10 @@
                                           :followMarkerStyle (clj->js {:radius 5 :fillColor "rgb(241, 70, 104, 0.7)" :weight 5})
                                           :markerStyle (clj->js {:radius 5 :fillColor "rgb(241, 70, 104, 0.7)" :weight 5})})) (.addTo map));
 
+     ;; Register handlers to update state with new layer so other components can pull the data
+    (when map (base-layer-change map state*))
     ;; Zoom to location
+
     (pan-map lat long zoom map)
 
     ;; Add Base
@@ -203,8 +203,6 @@
         (let [arabic? (= "ar" @language*)]
           [:div#map-history {:style {:overflow-y :none}}
            [map-container]
-            ;; Register handlers to update state with new layer so other components can pull the data
-           #_(when (:map @state*) (base-layer-change state*))
            [map-description state* arabic?]
            [switch-mode state* arabic?]
            (when (= "transparency" (:mode @state*)) [transparency-slider state* arabic?])]))})))
