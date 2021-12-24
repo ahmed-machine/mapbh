@@ -9,7 +9,7 @@
             :asset-path "/js"
             :release {:compiler-options  {:cross-chunk-method-motion false
                                           :source-map true
-                                          :optimizations :none}}
+                                          :optimizations :simple}}
             :main app.core/main}}
  :dependencies [[reagent "0.8.1"]
                 [re-frame "0.10.5"]
