@@ -41,7 +41,7 @@
 
 (defn map-container
   []
-  [:div#mapid.leaflet-browser-print-content {:style {:height (str "calc(" js/window.screen.availHeight "px - 10rem)")}}])
+  [:div#mapid {:style {:height (str "calc(" js/window.screen.availHeight "px - 10rem)")}}])
 
 (defn get-layer
   [state*]
@@ -83,17 +83,15 @@
                                    (swap! state* assoc :base (get (js->clj layer) "name"))))))
   nil)
 
-(defn download-map
-  [selected]
-  #_(-> js/L .-Control .-BrowserPrint .-Utils (.registerRenderer js/L.Canvas "L.Canvas"))
-  (set! js/window.print
-        (fn []
-          (-> js/domtoimage (.toPng js/document.body)
-              (.then (fn [dataUrl]
-                       (let [link (-> js/document (.createElement "a"))]
-                         (set! (.-download link) (str selected ".png"))
-                         (set! (.-href link) dataUrl)
-                         (.click link))))))))
+
+(defn download-button
+  [state*]
+  (let [map (:map @state*)]
+  ;; Add option to save map
+    [:button.button.is-success.is-small.is-light.is-outlined {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "180px" :left "12px" :z-index 997}
+                                                    :on-click (fn [] (-> (new js/LeafletExporter. map 1.0) .Export))}
+     [:i.fas.fa-download]]))
+
 
 (defn init-map
   [state*]
@@ -119,12 +117,6 @@
     ;; Add all layers in control
     (-> js/L .-control (.groupedLayers (clj->js base-layers) (clj->js {"Maps" overlay-layers}) (clj->js {"exclusiveGroups" ["Maps"] "groupCheckboxes" false})) (.addTo map))
 
-    ;; Add option to save map
-    #_(-> js/L .-control (.browserPrint (clj->js {:manualMode true
-                                                  :printModes ["Auto"]
-                                                  :contentSelector ["leaflet-browser-print-content" "leaflet-sbs"]})) (.addTo map))
-    #_(download-map (:selected @state*))
-
     ;; Add option to locate user
     (-> js/L .-control (.locate (clj->js {:keepCurrentZoomLevel true
                                           :locateOptions (clj->js {:enableHighAccuracy true})
@@ -133,8 +125,8 @@
 
      ;; Register handlers to update state with new layer so other components can pull the data
     (when map (base-layer-change map state*))
-    ;; Zoom to location
 
+    ;; Zoom to location
     (pan-map lat long zoom map)
 
     ;; Add Base
@@ -205,4 +197,5 @@
            [map-container]
            [map-description state* arabic?]
            [switch-mode state* arabic?]
+           (when (= "transparency" (:mode @state*)) [download-button state*])
            (when (= "transparency" (:mode @state*)) [transparency-slider state* arabic?])]))})))
