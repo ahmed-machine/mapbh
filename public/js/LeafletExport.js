@@ -19,6 +19,7 @@
  *     imageHeight
  * }
  */
+
 class LeafletExporter {
     constructor(map, crop) {
         this.#map = map
@@ -94,7 +95,6 @@ class LeafletExporter {
     async _FetchLayers() {
         let promises = []
         this.#map.eachLayer(layer => {
-            console.log(layer)
             let promise
             try {
                 if (layer instanceof L.Marker && layer._icon && layer._icon.src) {
