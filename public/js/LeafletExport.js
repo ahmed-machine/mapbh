@@ -22,43 +22,43 @@
 
 class LeafletExporter {
     constructor(map, crop) {
-        this.#map = map
-        this.#crop = crop
-        this.#tileLayers = []
-        this.#markers = {}
-        this.#path = {}
-        this.#circles = {}
+        this.map = map
+        this.crop = crop
+        this.tileLayers = []
+        this.markers = {}
+        this.path = {}
+        this.circles = {}
 
         let dimensions = map.getSize()
-        this.#canvas = document.createElement("canvas")
-        this.#canvas.width = dimensions.x
-        this.#canvas.height = dimensions.y
-        this.#ctx = this.#canvas.getContext("2d")
-        this.#zoom = map.getZoom()
-        this.#bounds = map.getPixelBounds()
+        this.canvas = document.createElement("canvas")
+        this.canvas.width = dimensions.x
+        this.canvas.height = dimensions.y
+        this.ctx = this.canvas.getContext("2d")
+        this.zoom = map.getZoom()
+        this.bounds = map.getPixelBounds()
 
         this._SetCrop(crop)
     }
 
     async Export() {
         await this._FetchLayers()
-        for (let tileLayer of this.#tileLayers) {
+        for (let tileLayer of this.tileLayers) {
             for (let tile of Object.values(tileLayer.tileImages)) {
-                this.#ctx.globalAlpha = tile.opacity;
-                this.#ctx.drawImage(tile.img, tile.x, tile.y,
+                this.ctx.globalAlpha = tile.opacity;
+                this.ctx.drawImage(tile.img, tile.x, tile.y,
                                     tileLayer.tileSize, tileLayer.tileSize)
             }
         }
-        for (let path of Object.values(this.#path)) {
+        for (let path of Object.values(this.path)) {
             this._DrawPath(path)
         }
-        for (let marker of Object.values(this.#markers)) {
-            this.#ctx.drawImage(marker.img, marker.x, marker.y)
+        for (let marker of Object.values(this.markers)) {
+            this.ctx.drawImage(marker.img, marker.x, marker.y)
         }
-        for (let circle of Object.values(this.#circles)) {
+        for (let circle of Object.values(this.circles)) {
             this._DrawCircle(circle)
         }
-        return this.#canvas.toBlob(function(blob) {
+        return this.canvas.toBlob(function(blob) {
             var newImg = document.createElement('img'),
                 url = URL.createObjectURL(blob),
                 a = document.createElement("a");
@@ -80,21 +80,21 @@ class LeafletExporter {
             return
         }
 
-        let addX = (this.#bounds.max.x - this.#bounds.min.x) / 2 * (crop - 1)
-        let addY = (this.#bounds.max.y - this.#bounds.min.y) / 2 * (crop - 1)
+        let addX = (this.bounds.max.x - this.bounds.min.x) / 2 * (crop - 1)
+        let addY = (this.bounds.max.y - this.bounds.min.y) / 2 * (crop - 1)
 
-        this.#bounds.min.x -= addX
-        this.#bounds.min.y -= addY
-        this.#bounds.max.x += addX
-        this.#bounds.max.y += addY
+        this.bounds.min.x -= addX
+        this.bounds.min.y -= addY
+        this.bounds.max.x += addX
+        this.bounds.max.y += addY
 
-        this.#canvas.width *= crop
-        this.#canvas.height *= crop
+        this.canvas.width *= crop
+        this.canvas.height *= crop
     }
 
     async _FetchLayers() {
         let promises = []
-        this.#map.eachLayer(layer => {
+        this.map.eachLayer(layer => {
             let promise
             try {
                 if (layer instanceof L.Marker && layer._icon && layer._icon.src) {
@@ -104,8 +104,8 @@ class LeafletExporter {
                     promise = this._FetchTileLayer(layer)
 
                 } else if (layer instanceof L.CircleMarker) {
-                    if (!this.#circles[layer._leaflet_id]) {
-                        this.#circles[layer._leaflet_id] = layer
+                    if (!this.circles[layer._leaflet_id]) {
+                        this.circles[layer._leaflet_id] = layer
                     }
                     promise = Promise.resolve()
 
@@ -126,12 +126,12 @@ class LeafletExporter {
     }
 
     async _FetchMarkerLayer(layer) {
-        if (this.#markers[layer._leaflet_id]) {
+        if (this.markers[layer._leaflet_id]) {
             return
         }
 
-        let pixelPoint = this.#map.project(layer._latlng)
-        pixelPoint = pixelPoint.subtract(new L.Point(this.#bounds.min.x, this.#bounds.min.y))
+        let pixelPoint = this.map.project(layer._latlng)
+        pixelPoint = pixelPoint.subtract(new L.Point(this.bounds.min.x, this.bounds.min.y))
 
         if (layer.options.icon && layer.options.icon.options &&
             layer.options.icon.options.iconAnchor) {
@@ -146,7 +146,7 @@ class LeafletExporter {
             let url = layer._icon.src
             let promise = new Promise(resolve => {
                 image.onload = () => {
-                    this.#markers[layer._leaflet_id] = {
+                    this.markers[layer._leaflet_id] = {
                         img: image,
                         x: pixelPoint.x,
                         y: pixelPoint.y
@@ -168,11 +168,11 @@ class LeafletExporter {
         const tileLayer = {
             tiles: [],
             tileSize,
-            tileBounds: L.bounds(this.#bounds.min.divideBy(tileSize)._floor(),
-                                 this.#bounds.max.divideBy(tileSize)._floor()),
+            tileBounds: L.bounds(this.bounds.min.divideBy(tileSize)._floor(),
+                                 this.bounds.max.divideBy(tileSize)._floor()),
             tileImages: []
         }
-        this.#tileLayers.push(tileLayer)
+        this.tileLayers.push(tileLayer)
 
         for (let j = tileLayer.tileBounds.min.y; j <= tileLayer.tileBounds.max.y; j++) {
             for (let i = tileLayer.tileBounds.min.x; i <= tileLayer.tileBounds.max.x; i++) {
@@ -188,7 +188,7 @@ class LeafletExporter {
             }
 
             let tilePos = originalTilePoint.scaleBy(
-                new L.Point(tileLayer.tileSize, tileLayer.tileSize)).subtract(this.#bounds.min)
+                new L.Point(tileLayer.tileSize, tileLayer.tileSize)).subtract(this.bounds.min)
 
             if (tilePoint.y < 0) {
                 return
@@ -210,16 +210,16 @@ class LeafletExporter {
 
         let latlngs = layer.options.fill ? layer._latlngs[0] : layer._latlngs
         latlngs.forEach((latLng) => {
-            let pixelPoint = this.#map.project(latLng)
-            pixelPoint = pixelPoint.subtract(new L.Point(this.#bounds.min.x, this.#bounds.min.y))
+            let pixelPoint = this.map.project(latLng)
+            pixelPoint = pixelPoint.subtract(new L.Point(this.bounds.min.x, this.bounds.min.y))
             parts.push(pixelPoint)
-            if (pixelPoint.x < this.#canvas.width && pixelPoint.y < this.#canvas.height) {
+            if (pixelPoint.x < this.canvas.width && pixelPoint.y < this.canvas.height) {
                 correct = true
             }
         })
 
         if (correct) {
-            this.#path[layer._leaflet_id] = {
+            this.path[layer._leaflet_id] = {
                 parts: parts,
                 closed: layer.options.fill,
                 options: layer.options
@@ -267,17 +267,17 @@ class LeafletExporter {
 
     _IsPointInViewport(point) {
         return (point.x >= 0 && point.y >= 0 &&
-            point.x < this.#canvas.width && point.y <= this.#canvas.height)
+            point.x < this.canvas.width && point.y <= this.canvas.height)
     }
 
     _DrawPath(path) {
-        this.#ctx.beginPath()
+        this.ctx.beginPath()
         let count = 0
         path.parts.forEach(point => {
-            this.#ctx[count++ ? "lineTo" : "moveTo"](point.x, point.y)
+            this.ctx[count++ ? "lineTo" : "moveTo"](point.x, point.y)
         })
         if (path.closed) {
-            this.#ctx.closePath()
+            this.ctx.closePath()
         }
         this._FeelPath(path.options)
     }
@@ -287,8 +287,8 @@ class LeafletExporter {
             return
         }
 
-        let point = this.#map.project(layer._latlng)
-        point = point.subtract(new L.Point(this.#bounds.min.x, this.#bounds.min.y))
+        let point = this.map.project(layer._latlng)
+        point = point.subtract(new L.Point(this.bounds.min.x, this.bounds.min.y))
 
         let r, s
 
@@ -301,15 +301,15 @@ class LeafletExporter {
         }
 
         if (s !== 1) {
-            this.#ctx.save()
-            this.#ctx.scale(1, s)
+            this.ctx.save()
+            this.ctx.scale(1, s)
         }
 
-        this.#ctx.beginPath()
-        this.#ctx.arc(point.x, point.y / s, r, 0, Math.PI * 2, false)
+        this.ctx.beginPath()
+        this.ctx.arc(point.x, point.y / s, r, 0, Math.PI * 2, false)
 
         if (s !== 1) {
-            this.#ctx.restore()
+            this.ctx.restore()
         }
 
         this._FeelPath(layer.options)
@@ -317,39 +317,20 @@ class LeafletExporter {
 
     _FeelPath(options) {
         if (options.fill) {
-            this.#ctx.globalAlpha = options.fillOpacity
-            this.#ctx.fillStyle = options.fillColor || options.color
-            this.#ctx.fill(options.fillRule || "evenodd")
+            this.ctx.globalAlpha = options.fillOpacity
+            this.ctx.fillStyle = options.fillColor || options.color
+            this.ctx.fill(options.fillRule || "evenodd")
         }
         if (options.stroke && options.weight !== 0) {
-            if (this.#ctx.setLineDash) {
-                this.#ctx.setLineDash(options && options._dashArray || [])
+            if (this.ctx.setLineDash) {
+                this.ctx.setLineDash(options && options._dashArray || [])
             }
-            this.#ctx.globalAlpha = options.opacity
-            this.#ctx.lineWidth = options.weight
-            this.#ctx.strokeStyle = options.color
-            this.#ctx.lineCap = options.lineCap
-            this.#ctx.lineJoin = options.lineJoin
-            this.#ctx.stroke()
+            this.ctx.globalAlpha = options.opacity
+            this.ctx.lineWidth = options.weight
+            this.ctx.strokeStyle = options.color
+            this.ctx.lineCap = options.lineCap
+            this.ctx.lineJoin = options.lineJoin
+            this.ctx.stroke()
         }
-    }
-
-    #map
-    #crop
-    /** List of layers. Layer:
-     * {
-     *     tileSize: ...,
-     *     tileBounds: ...,
-     *     tiles: [tilePoint, ...],
-     *     tileImages: [{img, x, y}, ...]
-     * }
-     */
-    #tileLayers
-    #markers
-    #path
-    #circles
-    #canvas
-    #ctx
-    #zoom
-    #bounds
+        }
 }
