@@ -30,41 +30,6 @@
                    :description  "تفاصيل"}}} (if arabic? :ar :en)))
 
 
-(defn map-description
-  [state* arabic?]
-  (let [active-key (:selected @state*)
-        details (get layers active-key)
-        ar-details (merge details (get ar-layers active-key))
-        txt (:description (text details ar-details arabic?))]
-    [:nav.panel.is-collapsible {:lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr") :style (merge {:position :absolute :bottom 0 :z-index 1000 :width 200 :height :max-content :background "whitesmoke" :font-size 12} (if arabic? {:right "12px"} {:left "12px"}))}
-     [:p.panel-heading {:on-click (fn [e] (swap! state* update :show-description? not)
-                                    (-> js/document (.getElementById "description") .-classList (.toggle "is-hidden"))) :class " is-hidden-fullscreen" :aria-label "more options"} (:panel txt)
-      (if (:show-description? @state*) "   -" "   +")]
-     [:div {:id "description" :class "is-hidden"}
-      [:p.panel-block (:title-header txt) ": "
-       (:title txt)]
-      [:div.panel-block (:scale-header txt) ": " (:scale txt)]
-      (when (:description txt)
-        [:p.panel-block.description-text
-         (:description txt)])
-      [:p.panel-block.description-text
-       (:notes-header txt) ": " (:notes txt)]
-      [:a {:href (:source-link details) :style {:color "#DA291C"}}
-       [:div.panel-block {:style {:color "#DA291C"}} (:source-header txt) ": " (:source txt) " - "
-        [:span.icon.home [:i.fas.fa-download]] "(georectified)"]]
-      (when (:issuer txt)
-        [:a {:href (:issuer-link txt)}
-         [:div.panel-block {:style {:color "#DA291C" :padding-bottom "10px"}}
-          (:issuer-header txt) ": " (str " " (:issuer txt)) " - "
-          [:span.icon.home [:i.fas.fa-download]] "(original)"]])
-      (when (:submitted-by txt)
-        [:div.panel-block {:style {:padding-bottom "10px"}} (:submitter-header txt) ": "
-         (if (:submitted-by-url details)
-           [:a {:href (:submitted-by-url txt)}
-            (str " " (:submitted-by txt))]
-            (str " " (:submitted-by txt)))])]]))
-
-
 (defn modal-description
   [state* arabic?]
   (let [active-key (:selected @state*)
