@@ -89,3 +89,21 @@ p.logo:hover { color: #DA291C !important;}
 @media screen and (min-width: 400px){
     .home .navbar .navbar-item{margin: 0 1.5rem;}
 }
+
+/* Description Modal */
+.modal-close {
+    position: absolute !important;
+    top: 0 !important; left: unset; right:unset;
+    background: rgb(218, 41, 28) !important;
+}
+
+
+#modal-description {z-index: 1000;
+                    background: whitesmoke;
+                    font-size: 12;
+                    width: fit-content;
+                    margin: auto auto;
+                    height: fit-content;
+                    border-radius: 20px;
+                    padding: 1rem;
+                    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);}
