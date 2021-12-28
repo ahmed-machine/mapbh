@@ -36,7 +36,7 @@
         details (get layers active-key)
         ar-details (merge details (get ar-layers active-key))
         txt (:description (text details ar-details arabic?))]
-    [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr") :style (if arabic? {:right "12px"} {:left "12px"})}
+    [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr")}
      [:div.modal-content
       [:p.panel-block (:title-header txt) ": "
        (:title txt)]
