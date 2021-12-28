@@ -4,6 +4,7 @@
             [app.model :as model]
             [app.pages.map.map-data :refer [layers ar-layers base-satellite]]))
 
+
 (defn text
   [details ar-details arabic?]
   (get
@@ -27,6 +28,7 @@
          :buttons {:switch-mode {:transparency "شفاف"
                                  :split "ابو قسمين"}
                    :description  "تفاصيل"}}} (if arabic? :ar :en)))
+
 
 (defn map-description
   [state* arabic?]
@@ -62,6 +64,41 @@
             (str " " (:submitted-by txt))]
             (str " " (:submitted-by txt)))])]]))
 
+
+(defn modal-description
+  [state* arabic?]
+  (let [active-key (:selected @state*)
+        details (get layers active-key)
+        ar-details (merge details (get ar-layers active-key))
+        txt (:description (text details ar-details arabic?))]
+    [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr") :style (if arabic? {:right "12px"} {:left "12px"})}
+     [:div.modal-content
+      [:p.panel-block (:title-header txt) ": "
+       (:title txt)]
+      [:div.panel-block (:scale-header txt) ": " (:scale txt)]
+      (when (:description txt)
+        [:p.panel-block.description-text
+         (:description txt)])
+      [:p.panel-block.description-text
+       (:notes-header txt) ": " (:notes txt)]
+      [:a {:href (:source-link details) :style {:color "#DA291C"}}
+       [:div.panel-block {:style {:color "#DA291C"}} (:source-header txt) ": " (:source txt) " - "
+        [:span.icon.home [:i.fas.fa-download]] "(georectified)"]]
+      (when (:issuer txt)
+        [:a {:href (:issuer-link txt)}
+         [:div.panel-block {:style {:color "#DA291C" :padding-bottom "10px"}}
+          (:issuer-header txt) ": " (str " " (:issuer txt)) " - "
+          [:span.icon.home [:i.fas.fa-download]] "(original)"]])
+      (when (:submitted-by txt)
+        [:div.panel-block {:style {:padding-bottom "10px"}} (:submitter-header txt) ": "
+         (if (:submitted-by-url details)
+           [:a {:href (:submitted-by-url txt)}
+            (str " " (:submitted-by txt))]
+           (str " " (:submitted-by txt)))])
+      [:button.modal-close.is-large.is-danger {:aria-label "close"
+                                               :style (merge {} (if arabic? {:left "0"} {:right "0"}))
+                                               :on-click (fn [e] (swap! state* update :show-description? not)
+                                                           (-> js/document (.getElementById "modal-description") .-classList (.toggle "is-active")))}]]]))
 
 (defn map-container
   []
@@ -199,12 +236,14 @@
                           (transparency-init-map state*)))))}
      (if (= mode "transparency") (:split txt) (:transparency txt))]))
 
-(defn modal-map-description-button
+(defn modal-button
   [state* arabic?]
-  [:button.button.is-danger.is-small.is-rounded
-   {:style {:position :absolute :bottom "65px" :left "20px" :z-index 997 :font-size (when arabic? "105%")}
+  [:button.button.is-light
+   {:style (merge (if arabic? {:right "12px"} {:left "12px"}) {:position :absolute :bottom "35px"  :z-index 997 :font-size (when arabic? "105%")})
     :on-click (fn [e] (swap! state* update :show-description? not)
                 (-> js/document (.getElementById "modal-description") .-classList (.toggle "is-active")))}
+
+   [:i.fa.fa-list {:style {:margin-right "1rem"}}]
    (get-in (text nil nil arabic?) [:buttons :description])])
 
 
@@ -226,8 +265,8 @@
         (let [arabic? (= "ar" @language*)]
           [:div#map-history {:style {:overflow-y :none}}
            [map-container]
-           #_[modal-map-description-button state* arabic?]
-           [map-description state* arabic?]
+           [modal-button state* arabic?]
+           [modal-description state* arabic?]
            [switch-mode state* arabic?]
            (when (= "transparency" (:mode @state*)) [download-button state*])
            (when (= "transparency" (:mode @state*)) [transparency-slider state* arabic?])]))})))
