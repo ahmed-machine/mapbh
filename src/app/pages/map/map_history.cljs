@@ -239,7 +239,7 @@
 (defn modal-button
   [state* arabic?]
   [:button.button.is-light
-   {:style (merge (if arabic? {:right "12px"} {:left "12px"}) {:position :absolute :bottom "35px"  :z-index 997 :font-size (when arabic? "105%")})
+   {:style (merge (if arabic? {:right "12px"} {:left "12px"}) {:position :absolute :bottom "23px"  :z-index 997 :font-size (when arabic? "105%")})
     :on-click (fn [e] (swap! state* update :show-description? not)
                 (-> js/document (.getElementById "modal-description") .-classList (.toggle "is-active")))}
 
