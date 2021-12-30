@@ -213,7 +213,7 @@
 
 
 (defn historical-map []
-  (let [state* (reagent/atom {:selected "1977 - USSR - Manama/Muharraq"
+  (let [state* (reagent/atom {:selected "1956 - Bahrain"
                               :mode "transparency"
                               :base "Satellite"
                               :show-description? false
