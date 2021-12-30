@@ -107,6 +107,19 @@
                      :opts (merge base-opts {:minNativeZoom 10
                                              :maxNativeZoom 15
                                              :opacity 0.7})}
+   "1956 - Bahrain" {:title "BAHRAIN ISLAND - 1956"
+                     :url (form-tile-url "1956-Bahrain")
+                     :description "Series GSGS 4035 Edition 4. Compiled, drawn, reproduced by Huntings Aerosurveys Ltd., from Air Photographs dated 1952, 1953. Reproduced and Printed by 42 Survey Engineer Regiment May 1956. Published by D. Survey War Office and Air Ministry, 1956."
+                     :notes "Well-preserved, undistorted scan. There are some inaccuracies particularly with tiny islands, but relatively precise."
+                     :issuer-link "/maps/1956-Bahrain.jpg"
+                     :source "Huntings Aerosurveys Ltd."
+                     :source-link "/maps/1956-Bahrain.tif"
+                     :submitted-by "Ali Karimi"
+                     :issuer "D. Survey War Office and Air Ministry, 1956"
+                     :scale "1:63,360"
+                     :opts (merge base-opts {:minNativeZoom 9
+                                             :maxNativeZoom 15
+                                             :opacity 0.7})}
    "1969 - Manama & AlJufayr" {:title "AL MANAMAH & AL JUFAYR - 1969"
                                :url (form-tile-url "1969-Manama")
                                :description "Mosaic prepared by SPC RE in 1969 from air photography dated October 1968 and trig control. Names taken from K962 sheet Manama dated 1963. Names and cultural details raised from various sources 1969. This plan supersedes series K962 edit on 3.GSGS sheet Manama."
@@ -192,6 +205,9 @@
                      :description "الخارطة تُظهر الميزات الجغرافية والأماكن السكنية والأراضي الزراعية والمباني والأهوار والطرق الرئيسية. موضحة بالخارطة الطبوغرافية. تم جمعها من صور جوية في A.H.Q. مكتب الرسم ، هنيدي، ١٩٣٧. رسم وطبع بالهليوغراف بواسطة O.S. 1939
 "
                      :notes "خارطة دقيقة بأخطاء بسيطة"}
+   "1956 - Bahrain" {:title "جزيرة البحرين - ١٩٥٦"
+                     :description "سلسلة  جي اس جي اس ٤٠٣٥ النسخة الرابعة. جُمعت ورُسمت وأُنتجت من قبل شركة هانتنجز ايروسورفيز من صور جوية أخذت في عاميّ ١٩٥٢ و١٩٥٣. أعاد انتاجها وطباعتها فوج ٤٢ للجهاز الهندسي لمساحة الأراضي البريطانية في مايو ١٩٥٦ ونُشرت من قبل مديرية جهاز المساحة لمكتب الحرب ووزارة الملاحة الجوية البريطانية."
+                     :notes "خارطة انتجت رقمياً بجودة عالية. توجد اخطاء بسيطة بالخارطة خاصة بما يتعلق بالجزر الصغيرة."}
    "1937 - Muharraq" {:title "جزيرة المحرق - ١٩٣٧"
                       :description nil
                       :notes "خارطة دقيقة من دون اي اشكاليات"}
