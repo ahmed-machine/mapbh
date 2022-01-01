@@ -161,11 +161,11 @@
                            :url (form-tile-url "1977-Bahrain.50k")
                            :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
                            :notes "This is a 3 map series produced for the State of Bahrain. One of 3 series, the other two being the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                           :source-link "/maps/1977-Bahrain-v2.tif"
+                           :source-link "/maps/1977-Bahrain-50k.compressed.tif"
                            :source "Fairey Surveys Ltd"
                            :scale "1:50,000"
                            :issuer "Unknown"
-                           :issuer-link "/maps/1977-Bahrain-50k.compressed.tif"
+                           :issuer-link "/maps/1977.50k.zip"
                            :opts (merge base-opts {:minNativeZoom 12
                                                    :maxNativeZoom 17
                                                    :opacity 0.8})}
