@@ -96,7 +96,7 @@
                                             :opacity 0.7})}
    "1943 - Bahrain" {:title "BAHRAIN ISLAND - 1943"
                      :url (form-tile-url "1943-Bahrain")
-                     :description "Shows physical features, residential places, cultivated land, selected buildings, marsh land, and major roads.
+                     :description "Series GSGS 4035 Edition 2. Shows physical features, residential places, cultivated land, selected buildings, marsh land, and major roads.
   Relief shown by landform drawings, contours, and spot heights. Compiled from Air photographs in A.H.Q. Drawing Office, Hinaidi, 1937. Drawn and Heliographed by O.S. 1939."
                      :notes "Well-preserved, undistorted scan. Map has relatively few inaccuracies."
                      :issuer-link "https://legacy.lib.utexas.edu/maps/ams/bahrein_island/txu-pclmaps-oclc-6559195-bahrein-island.jpg"
@@ -117,7 +117,7 @@
                      :submitted-by "Ali Karimi"
                      :issuer "D. Survey War Office and Air Ministry, 1956"
                      :scale "1:63,360"
-                     :opts (merge base-opts {:minNativeZoom 9
+                     :opts (merge base-opts {:minNativeZoom 12
                                              :maxNativeZoom 15
                                              :opacity 0.7})}
    "1969 - Manama & AlJufayr" {:title "AL MANAMAH & AL JUFAYR - 1969"
@@ -145,18 +145,30 @@
                      :opts (merge base-opts {:minNativeZoom 11
                                              :maxNativeZoom 16
                                              :opacity 0.8})}
-   "1977 - Bahrain" {:title "State of Bahrain - 1977"
-                     :url (form-tile-url "1977-Bahrain")
-                     :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                     :notes "This is a 7 map series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                     :source-link "/maps/1977-Bahrain-v2.tif"
-                     :source "Fairey Surveys Ltd"
-                     :scale "1:25,000"
-                     :issuer "Unknown"
-                     :issuer-link "/maps/1977-Bahrain.zip"
-                     :opts (merge base-opts {:minNativeZoom 11
-                                             :maxNativeZoom 16
-                                             :opacity 0.8})}
+   "1977 - Bahrain (25k)" {:title "State of Bahrain - 1977"
+                           :url (form-tile-url "1977-Bahrain")
+                           :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                           :notes "This is a 7 map series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :source-link "/maps/1977-Bahrain-v2.tif"
+                           :source "Fairey Surveys Ltd"
+                           :scale "1:25,000"
+                           :issuer "Unknown"
+                           :issuer-link "/maps/1977-Bahrain.zip"
+                           :opts (merge base-opts {:minNativeZoom 11
+                                                   :maxNativeZoom 16
+                                                   :opacity 0.8})}
+   "1977 - Bahrain (50k)" {:title "State of Bahrain - 1977"
+                           :url (form-tile-url "1977-Bahrain.50k")
+                           :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                           :notes "This is a 3 map series produced for the State of Bahrain. One of 3 series, the other two being the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :source-link "/maps/1977-Bahrain-v2.tif"
+                           :source "Fairey Surveys Ltd"
+                           :scale "1:50,000"
+                           :issuer "Unknown"
+                           :issuer-link "/maps/1977-Bahrain-50k.compressed.tif"
+                           :opts (merge base-opts {:minNativeZoom 11
+                                                   :maxNativeZoom 17
+                                                   :opacity 0.8})}
    "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
                                     :url (form-tile-url "1977-USSR-Bahrain")
                                     :description "Description in Russian can be found in the bottom-right corner of the map. Produced in 1977 and 1980, in a factory in Sverdlovsk (now Ekaterinburg). There are many exciting features in these maps that are sorely missing in other contemporary maps. NATO mappers intentionally obfuscated sensitive areas like airports and navy yards from their maps but the Soviets include these on theirs. To produce these details, the Soviets had to rely on ground intelligence to obtain both aerial and ground measurements. Discovered in second-hand thrift stores following the collapse of the Soviet Union."
@@ -195,9 +207,12 @@
                                :description nil
                                :submitted-by "علي كريمي"
                                :notes "سلسلة خرائط فيها ٥ أجزاء. تطلبت تصحيحات لالألوان، تصحيحات تشكيلية، ولم تطابق الإسقاط المحدد"}
-   "1977 - Bahrain" {:title "البحرين - ١٩٧٧"
-                     :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
-                     :notes " هذه الخارطة سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
+   "1977 - Bahrain (25k)" {:title "البحرين - ١٩٧٧"
+                           :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
+                           :notes " هذه الخارطة سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
+   "1977 - Bahrain (50k)" {:title "البحرين - ١٩٧٧"
+                           :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
+                           :notes " هذه الخارطة سلسلة فيها ٣ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
    "1973 - Bahrain" {:title "البحرين - ١٩٧٣"
                      :description nil
                      :notes "خرائط عالية الجودة فيها مشاكل بسيطة في دقة المحاذة. الإسقاط الاصلي يعتمد على حسابات كلارك ١٨٨٠ و موقع مرجعي في نهروان. تم محاذة اضافية بعد الترجمة و التحوير بسبب اخطاء في البيانات المدونة في الخارطة"}
