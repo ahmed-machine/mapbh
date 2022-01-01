@@ -166,7 +166,7 @@
                            :scale "1:50,000"
                            :issuer "Unknown"
                            :issuer-link "/maps/1977-Bahrain-50k.compressed.tif"
-                           :opts (merge base-opts {:minNativeZoom 11
+                           :opts (merge base-opts {:minNativeZoom 12
                                                    :maxNativeZoom 17
                                                    :opacity 0.8})}
    "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
