@@ -17,10 +17,10 @@
 (defn- dispatch-route [matched-route]
   (let [panel-name (keyword (str (name (:handler matched-route))))
         language (-> matched-route :route-params :language)]
-    (rf/dispatch [::events/set-active-panel panel-name])
-    (rf/dispatch [::events/set-language language])))
+    (rf/dispatch [::events/set-language language])
+    (rf/dispatch [::events/set-active-panel panel-name])))
 
 (defn app-routes[]
   (pushy/start! (pushy/pushy dispatch-route parse-url)))
 
-(def url-for (fn [route] (bidi/path-for routes route :language (or @(rf/subscribe [::model/language]) "en"))))
+(def url-for (fn [route] (bidi/path-for routes route :language (or @(rf/subscribe [::model/language]) "ar"))))
