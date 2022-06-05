@@ -46,8 +46,7 @@
      [:span.icon [:a {:style {:color :black}
                       :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
      [:span.icon [:a {:style {:color :black}
-                      :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
-   [:div.content.has-text-centered "Developed by Ahmed AlMutawa."]])
+                      :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]])
 
 (defn footer-ar
   []
@@ -60,5 +59,4 @@
      [:span.icon [:a {:style {:color :black}
                       :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
      [:span.icon [:a {:style {:color :black}
-                      :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
-   [:div.content.has-text-centered "من تصميم أحمد المطوع "]])
+                      :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]])
