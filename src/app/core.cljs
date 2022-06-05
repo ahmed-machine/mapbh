@@ -36,7 +36,7 @@
 
 
 (defn ui []
-  (let [language (or @(rf/subscribe [::model/language]) "en")
+  (let [language (or @(rf/subscribe [::model/language]) "ar")
         ap       (or @(rf/subscribe [::model/active-panel]) :home)]
     [:<>
      (when (and (not= ap nil) (not= ap :home))
