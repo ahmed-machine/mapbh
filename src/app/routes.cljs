@@ -5,11 +5,13 @@
             [app.events :as events]
             [app.model :as model]))
 
-(def routes [["/" :language "/"] {""           :home
-                                  "about"      :about
-                                  "dialects"   :dialects
-                                  "map"        :map
-                                  "contribute" :contribute}])
+(def routes ["/" {"wadi" {"" :wadi
+                          ["/" :language] :wadi}
+                  [:language "/"] {""           :home
+                                   "about"      :about
+                                   "dialects"   :dialects
+                                   "map"        :map
+                                   "contribute" :contribute}}])
 
 (defn- parse-url [url]
   (bidi/match-route routes url))
