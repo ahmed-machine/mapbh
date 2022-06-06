@@ -4,6 +4,7 @@
             [app.pages.about :as about]
             [app.pages.contribute :as contribute]
             [app.pages.homepage :as homepage]
+            [app.pages.wadi :as wadi]
             [app.pages.map.map-history :refer [historical-map]]
             [app.components.nav :as nav]
             [app.routes :as routes]
@@ -12,18 +13,20 @@
 
 (defn- panels [panel-name]
   (condp = @(rf/subscribe [::model/language])
-    "ar" (case panel-name
-           :home [homepage/ar]
-           :map [historical-map]
-           :about [about/ar]
-           :contribute [contribute/ar]
-           [homepage/ar])
-    (case panel-name
+    "en"  (case panel-name
       :home [homepage/en]
       :map [historical-map]
       :about [about/en]
       :contribute [contribute/en]
-      [homepage/en])))
+      :wadi [wadi/en]
+      [homepage/en])
+    (case panel-name
+      :home [homepage/ar]
+      :map [historical-map]
+      :about [about/ar]
+      :contribute [contribute/ar]
+      :wadi [wadi/ar]
+      [homepage/ar])))
 
 
 (defn show-panel [panel-name]
