@@ -1,5 +1,6 @@
 (ns app.events
-  (:require [re-frame.core :as re-frame]))
+  (:require [re-frame.core :as re-frame]
+            [pushy.core :as pushy]))
 
 (re-frame/reg-event-db
  ::set-active-panel
