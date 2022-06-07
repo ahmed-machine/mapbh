@@ -21,14 +21,14 @@
     {:style {:margin-left "4.5rem"}
      :on-click #(rf/dispatch [::events/set-language "ar"])} "اقرأ باللغة العربية"]
    [:p "There is a persistent idea in our society that pits our environment against business interests. It supposes our advancement as a nation can only come at the destruction of our nature. Whether it's the sea to be reclaimed, valleys to be buried, or green belt to be bulldozed, nature has repeatedly lost this fight in Bahrain."]
+   [image "/img/buhair/ONE-MF.jpeg" "Wadi AlBuhair. Credit: Mohammed Al Farsi" "Credit: Mohammed Al Farsi"]
    [:p "One such case is Wadi AlBuhair. The long-neglected area, a forty-five million year old natural valley, holds immense value as a unique geological site in Bahrain. For decades, it was misused in various forms as a trash dump, drainage for sewage run-off, and even as a short-lived farming project. Despite negligence, it has still managed to provide a site of natural beauty for residents, a safe harbor for rare migratory birds, and an astonishing range of natural biodiversity. With AlLawzi lake mostly reclaimed, Sakhir largely developed for oil infrastructure, and Wadi AlSail’s real estate development, Wadi AlBuhair’s geologic value as one of the last remaining valleys still standing is incalculable with its dolomitic limestone, chalk, marls, shale, and fossils providing a unique glimpse into Bahrain’s natural geological qualities. This is the story of a resilient valley that "
     [:a {:target "_blank" :href "https://albiladpress.com/news/2022/4953/bahrain/756704.html"} "awaits a small victory"] " with its " [:a {:target "_blank" :href "http://www.alwasatnews.com/news/415700.html"} "many supporters."]]
    [:span.level
     [image "/img/buhair/geology1.jpg"]
     [image "/img/buhair/geology2.jpg"]]
    [:span.level
-    [image "/img/buhair/2.jpg"]
-    [image "/img/buhair/12.jpg"]]
+    [image "/img/buhair/FOUR-MF.jpeg" "Credit: Mohammed Al Farsi" "Credit: Mohammed Al Farsi"]]
    [:p "In December 2020, " [:a {:target "_blank" :href "https://alwatannews.net/Bahrain/article/915655/%D8%A8%D9%84%D8%AF%D9%8A-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8%D9%8A%D8%A9-%D8%A5%D9%86%D8%B4%D8%A7%D8%A1-%D9%85%D9%86%D8%AA%D8%B2%D9%87-%D9%81%D9%8A-%D9%88%D8%A7%D8%AF%D9%8A-%D8%A7%D9%84%D8%A8%D8%AD%D9%8A%D8%B1"} "municipal plans were approved"] " to rehabilitate Wadi AlBuhair into a protected natural public park, finally signaling an end to the neglect of this area. Unfortunately, this soon turned out to not be the case. In March 2021, " [:a {:target "_blank" :href "https://www.gdnonline.com/Details/940595/Buhair-plan-withdrawn"} "the municipal plans were withdrawn"] " after rehabilitation was deemed “too expensive” and vetoed. A new plan was later approved for commercial space and housing projects. Construction has already begun and has quickly enveloped large portions of the valley."]
    [image "/img/buhair/overview-flipped.png" "Satellite imagery of Wadi AlBuhair. Left - June 2010, Middle - October 2021, Right - March 2022" "Satellite imagery of Wadi AlBuhair. Left - June 2010, Middle - October 2021, Right - March 2022"]
    [:p "Ecological destruction cannot be quantified and Wadi AlBuhair cannot be later substituted with a green manicured park. This site plays a role in maintaining the health of our broader ecosystem, and without it there could be far-reaching unintended consequences cascading across the greater ecosystem. As a flood-prone valley where seasonal rainwater naturally gathers, it serves a vital role as a habitat for rare migrating birds and natural fauna and flora. Disruptions to these ecosystems often reveal serious health and quality of life costs on residents over the ensuing decades, as well as high infrastructure costs. Recent floods in the housing projects near AlLawzi provide a small glimpse that nature can fight back. Beyond ecological concerns, "
@@ -49,7 +49,8 @@
     [image "/img/buhair/8.jpg" "" ""]]
    [:span.level
     [image "/img/buhair/9.jpg" "" ""]
-    [image "/img/buhair/7.jpg" "" ""]]])
+    [image "/img/buhair/7.jpg" "" ""]]
+   [image "/img/buhair/THREE-MF.jpeg" "Credit: Mohammed Al Farsi" "Credit: Mohammed Al Farsi"]])
 
 (defn ar
   []
@@ -59,6 +60,7 @@
     {:style {:margin-right "4.5rem"}
      :on-click #(rf/dispatch [::events/set-language "en"])} "Read in English"]
    [:p "هنالك عقلية متفشية في البحرين تُظهر البيئة كأنها عدوة وعائق أمام المصالح التجارية. هذه العقلية تعتقد أن تقدم المجتمع لا يمكن أن يأتي إلا على حساب الطبيعة والحياة الفطرية سواءً كان ذلك عبر ردم البحر أو دفن الوديان أو اقتلاع ما تبقى من الحزام الأخضر. وفي نهاية المطاف تكون الطبيعة البحرينية الطرف الخاسر مراراً وتكراراً في هذه المعركة."]
+   [image "/img/buhair/ONE-MF.jpeg" "وادي البحير.المصدر: محمد الفارسي" "وادي البحير. المصدر: محمد الفارسي"]
    [:p "إحدى هذه الأمثلة هو وادي البحير الذي يمتاز بتفرده الجيولوجي كونه وادي طبيعي لا يقل عمره عن ٤٥ مليون سنة. ومع ذلك، لطالما عانى هذا الوادي على مر العقود من الإهمال  وسوء الاستخدام. فقد استخدم مكباً للنفايات ومصباً لمياه المجاري وحتى كمزرعة لفترة قصيرة جداً. ورغم هذا الإهمال الكبير لإحدى أهم المواقع الجيولوجية في بحريننا الحبيبة، إلا أن هذا الوادي الصامد لا يزال يحتفظ بجماله الطبيعي ودوره كملجأ آمن للطيور المهاجرة النادرة وتجمع مذهل للتنوع البيولوجي الطبيعي. قلوبنا جميعاً لا زالت تتحسر على ما خسرناه من تراث طبيعي بعد ردم بحيرة اللوزي، وتشييد المشاريع النفطية في بر الصخير واستخدام وادي السيل كذلك لإقامة عدد من المشاريع العقارية - فلم يتبقى لنا من مواقع جيولوجية طبيعية نوعية سوى وادي البحير.
 وادي البحير الذي يعد الوادي الوحيد المتبقي من وديان البحرين لا يزال شامخاً بحجارته الجيرية الدولوميتية والأحافير والمارل وصخوره الطينية وطبقات الطباشير وغيرها التي تقدم لنا نافذة  إلى عالم الجيولوجيا الطبيعية الرائعة في البحرين. هذه قصة وادي البحير الذي "
     [:a {:target "_blank" :href "https://albiladpress.com/news/2022/4953/bahrain/756704.html"} "ينتظر ل'ينتصر'"] " رغم " [:a {:target "_blank" :href "http://www.alwasatnews.com/news/415700.html"} "كثرة أنصاره."]]
@@ -66,8 +68,7 @@
     [image "/img/buhair/geology1.jpg"]
     [image "/img/buhair/geology2.jpg"]]
    [:span.level
-    [image "/img/buhair/2.jpg"]
-    [image "/img/buhair/12.jpg"]]
+    [image "/img/buhair/FOUR-MF.jpeg"  "المصدر: محمد الفارسي" "المصدر: محمد الفارسي"]]
    [:p "في ديسمبر ٢.٢٠ تمت "
     [:a {:target "_blank" :href "https://alwatannews.net/Bahrain/article/915655/%D8%A8%D9%84%D8%AF%D9%8A-%D8%A7%D9%84%D8%AC%D9%86%D9%88%D8%A8%D9%8A%D8%A9-%D8%A5%D9%86%D8%B4%D8%A7%D8%A1-%D9%85%D9%86%D8%AA%D8%B2%D9%87-%D9%81%D9%8A-%D9%88%D8%A7%D8%AF%D9%8A-%D8%A7%D9%84%D8%A8%D8%AD%D9%8A%D8%B1"} "الموافقة على مقترح إعادة تأهيل وادي البحير إلى محمية طبيعية"]
     " وإنشاء منتزه للعامة من قبل مجلس بلدي المحافظة الجنوبية، والذي اعتبر مؤشراً إيجابياً لإنهاء كابوس البحير المتواصل ولكن سرعان ما تغيرت مشاعر الفرحة والاطمئنان إلى خوف على مستقبل الوادي بعد رفض الجهات المختصة في مارس ٢٠٢١ مقترح المجلس البلدي بحجة التكلفة المرتفعة، وترتب على ذلك "
@@ -97,4 +98,5 @@
     [image "/img/buhair/8.jpg" "" ""]]
    [:span.level
     [image "/img/buhair/9.jpg" "" ""]
-    [image "/img/buhair/7.jpg" "" ""]]])
+    [image "/img/buhair/7.jpg" "" ""]]
+   [image "/img/buhair/THREE-MF.jpeg" "المصدر: محمد الفارسي" "المصدر: محمد الفارسي"]])
