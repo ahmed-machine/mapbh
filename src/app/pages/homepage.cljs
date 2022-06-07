@@ -23,15 +23,17 @@
     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :about)} "About"]
     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "Contribute"]
     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "Map"]]
+   [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
+    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :wadi) "/en")} "Wadi AlBuhair"]]
    [:div.content.has-text-centered
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
     [:span.icon.home [:a {:style {:color :black}
-                     :href "https://github.com/AHAAAAAAA/mapbh"} [:i.fab.fa-github]]]
+                          :href "https://github.com/AHAAAAAAA/mapbh"} [:i.fab.fa-github]]]
     [:span.icon.home [:a {:style {:color :black}
-                      :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
+                          :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
     [:span.icon.home [:a {:style {:color :black}
-                     :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
+                          :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
    [:a.column.is-full {:role "navigation"
                        :lang "ar"
                        :style {:text-align :center}
@@ -53,16 +55,18 @@
     [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
      [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :about)} "نبذة"]
      [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "ساهم"]
-     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "الخارطة"] ]]
+     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "الخارطة"]]]
+   [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
+    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :wadi) "/ar")} "وادي البحير"]]
    [:div.content.has-text-centered {:style {:margin-top "1.1rem"}}
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
     [:span.icon.home [:a {:style {:color :black}
-                     :href "https://github.com/AHAAAAAAA/mapbh"} [:i.fab.fa-github]]]
+                          :href "https://github.com/AHAAAAAAA/mapbh"} [:i.fab.fa-github]]]
     [:span.icon.home [:a {:style {:color :black}
-                      :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
+                          :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
     [:span.icon.home [:a {:style {:color :black}
-                     :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
+                          :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]
    [:a.column.is-full {:role "navigation"
                        :style {:text-align :center}
                        :on-click #(rf/dispatch [::events/set-language "en"])}

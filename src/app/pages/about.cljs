@@ -29,7 +29,9 @@
    [image "/img/Streets of Muharraq.png"
     "Split view of a terrain map of Muharraq in 2020 and a map of the streets of Muharraq in 1931."
     "Muharraq in 2020 (left) versus Muharraq in 1931 (right)"]
-   [:p "This project came out of discussions of Bahrain's fading agricultural and maritime cultures. It's become impossible for newer residents and generations to imagine the radically-changed geographic features that shaped the traditions, culture, cuisine, language, and genetics of the people of Bahrain. The marshes, plantations, dunes, canals, and springs of Bahrain now only live on in the memories of a rapidly aging generation and the cusp of being forgotten. It is our hope for this project to become part of a series of tools and resources that visualize and explore Bahrain's history and culture. By knowing the past lives of Bahrain, we can strive to build a more sustainable future in Bahrain's own mold."]])
+   [:p "This project came out of discussions of Bahrain's fading agricultural and maritime cultures. It's become impossible for newer residents and generations to imagine the radically-changed geographic features that shaped the traditions, culture, cuisine, language, and genetics of the people of Bahrain. The marshes, plantations, dunes, canals, and springs of Bahrain now only live on in the memories of a rapidly aging generation and the cusp of being forgotten. It is our hope for this project to become part of a series of tools and resources that visualize and explore Bahrain's history and culture. By knowing the past lives of Bahrain, we can strive to build a more sustainable future in Bahrain's own mold."]
+
+   [:p "— Ahmed AlMutawa"]])
 
 
 (defn ar []
@@ -51,4 +53,5 @@
    [image "/img/Streets of Muharraq.png"
     "Split view of a terrain map of Muharraq in 2020 and a map of the streets of Muharraq in 1931."
     "المحرق في ١٩٣١ (يمين) و ٢٠٢٠ (يسار)"]
-   [:p "برزت معالم هذا المشروع من نقاشات حول تلاشي ثقافتي البحرين الزراعية والبحرية، فإنّه يستحيل على حديثي العهد في البحرين تخيّل المعالم الجغرافية التي شهدت تغييراتٍ جذرية والتي كوّنت أهل البحرين فشكّلت عاداتهم وتقاليدهم ومطبخهم ولغتهم وجيناتهم. كم من هور ومزرعة وقناة وعيون في البحرين لم يعد له أثر الا في ذاكرة المشايخ فأصبح على مشارف النسيان. أملنا في هذا المشروع أن يكون حلقةً في سلسلة موارد وأدواتٍ تساعد على تصوير واستكشاف تاريخ البحرين وثقافتها، لأن بمعرفة ماضي البحرين يتأتّى لنا صناعة مستقبلٍ له على نهج تاريخه أكثر ثباتًا ودواما."]])
+   [:p "برزت معالم هذا المشروع من نقاشات حول تلاشي ثقافتي البحرين الزراعية والبحرية، فإنّه يستحيل على حديثي العهد في البحرين تخيّل المعالم الجغرافية التي شهدت تغييراتٍ جذرية والتي كوّنت أهل البحرين فشكّلت عاداتهم وتقاليدهم ومطبخهم ولغتهم وجيناتهم. كم من هور ومزرعة وقناة وعيون في البحرين لم يعد له أثر الا في ذاكرة المشايخ فأصبح على مشارف النسيان. أملنا في هذا المشروع أن يكون حلقةً في سلسلة موارد وأدواتٍ تس>اعد على تصوير واستكشاف تاريخ البحرين وثقافتها، لأن بمعرفة ماضي البحرين يتأتّى لنا صناعة مستقبلٍ له على نهج تاريخه أكثر ثباتًا ودواما."]
+   [:p  "— أحمد المطوع"]])
