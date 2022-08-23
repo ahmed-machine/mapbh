@@ -13,7 +13,7 @@
                 :id "Standard Style"
                 :tileSize 512})
 
-(def tileserver-url #_"http://localhost:8080" "https://map.mapbh.org")
+(def tileserver-url "http://localhost:8080" #_"https://map.mapbh.org")
 (defn form-tile-url [tile-name] (str tileserver-url "/data/" tile-name "/{z}/{x}/{y}.png"))
 
 (def access-tokens ["pk.eyJ1IjoiYWhtZWRhbG11dGF3YSIsImEiOiJja2s1a3JqdWMwbHJiMnVzM2U5bHZleGNwIn0.icIlmsN_TY4zztxqC__e8Q"
@@ -133,6 +133,18 @@
                      :opts (merge base-opts {:minNativeZoom 9
                                              :maxNativeZoom 15
                                              :opacity 0.7})}
+   "1968 - Al Jufayr" {:title "Al Jufayr"
+                       :url (form-tile-url "1968-AlJufayr")
+                       :description "Produced by SPC RE in 1968 from existing mapping and other sources with full revision from RAF Air Photography dated 1966."
+                       :notes "Well-preserved."
+                       :issuer-link "/maps/1968.Al Jufayr.5000.zip"
+                       :source "SPC RE"
+                       :source-link "/maps/1968.Al Jufayr.5000.tiff"
+                       :issuer "D Survey, Ministry of Defence, United Kingdom, 1968"
+                       :scale "1:63,360"
+                       :opts (merge base-opts {:minNativeZoom 12
+                                               :maxNativeZoom 19
+                                               :opacity 0.7})}
    "1969 - Manama & AlJufayr" {:title "AL MANAMAH & AL JUFAYR - 1969"
                                :url (form-tile-url "1969-Manama")
                                :description "Mosaic prepared by SPC RE in 1969 from air photography dated October 1968 and trig control. Names taken from K962 sheet Manama dated 1963. Names and cultural details raised from various sources 1969. This plan supersedes series K962 edit on 3.GSGS sheet Manama."
