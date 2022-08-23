@@ -122,7 +122,7 @@
                                              :opacity 0.7})}
    "1968 - Bahrain" {:title "BAHRAIN ISLANDS - 1968"
                      :url (form-tile-url "1968-Bahrain")
-                     :description "Series GSGS 4035 Edition 4. Compiled, drawn, reproduced from Air Photographs dated 1952-1953. Revised by 42 Survey Engineer Regiment from Air Photographu dated 1962. Revised and Printed by FAIREY SURVEYS LTD., Reform Road, Maidenhead, Berkshire, England, 1968. Published by PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
+                     :description "Compiled, drawn, reproduced from Air Photographs dated 1952-1953. Revised by 42 Survey Engineer Regiment from Air Photography dated 1962. Revised and Printed by FAIREY SURVEYS LTD., Reform Road, Maidenhead, Berkshire, England, 1968. Published by PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
                      :notes "Well-preserved."
                      :issuer-link "/maps/1968.63360.Bahrain.tif"
                      :source "Fairey Surveys"
