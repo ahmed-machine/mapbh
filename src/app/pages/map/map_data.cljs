@@ -120,6 +120,19 @@
                      :opts (merge base-opts {:minNativeZoom 12
                                              :maxNativeZoom 15
                                              :opacity 0.7})}
+   "1968 - Bahrain" {:title "BAHRAIN ISLANDS - 1968"
+                     :url (form-tile-url "1968-Bahrain")
+                     :description "Series GSGS 4035 Edition 4. Compiled, drawn, reproduced from Air Photographs dated 1952-1953. Revised by 42 Survey Engineer Regiment from Air Photographu dated 1962. Revised and Printed by FAIREY SURVEYS LTD., Reform Road, Maidenhead, Berkshire, England, 1968. Published by PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
+                     :notes "Well-preserved."
+                     :issuer-link "/maps/1968.63360.Bahrain.tif"
+                     :source "Fairey Surveys"
+                     :source-link "/maps/1968.63360.Bahrain.warped2.tiff"
+
+                     :issuer "PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
+                     :scale "1:63,360"
+                     :opts (merge base-opts {:minNativeZoom 9
+                                             :maxNativeZoom 15
+                                             :opacity 0.7})}
    "1969 - Manama & AlJufayr" {:title "AL MANAMAH & AL JUFAYR - 1969"
                                :url (form-tile-url "1969-Manama")
                                :description "Mosaic prepared by SPC RE in 1969 from air photography dated October 1968 and trig control. Names taken from K962 sheet Manama dated 1963. Names and cultural details raised from various sources 1969. This plan supersedes series K962 edit on 3.GSGS sheet Manama."
