@@ -142,7 +142,7 @@
                        :source-link "/maps/1968.Al Jufayr.5000.tiff"
                        :issuer "D Survey, Ministry of Defence, United Kingdom, 1968"
                        :scale "1:63,360"
-                       :opts (merge base-opts {:minNativeZoom 12
+                       :opts (merge base-opts {:minNativeZoom 13
                                                :maxNativeZoom 19
                                                :opacity 0.7})}
    "1969 - Manama & AlJufayr" {:title "AL MANAMAH & AL JUFAYR - 1969"
