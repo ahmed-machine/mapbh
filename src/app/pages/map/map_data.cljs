@@ -13,7 +13,7 @@
                 :id "Standard Style"
                 :tileSize 512})
 
-(def tileserver-url "http://localhost:8080" #_"https://map.mapbh.org")
+(def tileserver-url #_"http://localhost:8080" "https://map.mapbh.org")
 (defn form-tile-url [tile-name] (str tileserver-url "/data/" tile-name "/{z}/{x}/{y}.png"))
 
 (def access-tokens ["pk.eyJ1IjoiYWhtZWRhbG11dGF3YSIsImEiOiJja2s1a3JqdWMwbHJiMnVzM2U5bHZleGNwIn0.icIlmsN_TY4zztxqC__e8Q"
