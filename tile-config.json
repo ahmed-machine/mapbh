@@ -19,6 +19,7 @@
     "1937-Muharraq": {"mbtiles": "public/maps/1937-Muharraq.mbtiles"},
     "1943-Bahrain" :  {"mbtiles": "public/maps/1943-Bahrain.mbtiles"},
     "1956-Bahrain" :  {"mbtiles": "public/maps/1956-Bahrain.mbtiles"},
+    "1957-Manama"  :  {"mbtiles": "public/maps/1957-Manama.mbtiles"},
     "1968-Bahrain" :  {"mbtiles": "public/maps/1968-Bahrain.mbtiles"},
     "1968-AlJufayr":   {"mbtiles": "public/maps/1968-AlJufayr.mbtiles"},
     "1969-Manama"  :   {"mbtiles": "public/maps/1969-Manama.mbtiles"},
