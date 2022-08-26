@@ -120,6 +120,18 @@
                      :opts (merge base-opts {:minNativeZoom 12
                                              :maxNativeZoom 15
                                              :opacity 0.7})}
+   "1957 - Manama" {:title "Manama"
+                    :url (form-tile-url "1957-Manama")
+                    :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Series GSGS 4880 Edition 1 GSGS 1957. Published by D. Survey, War Office and Air Ministry, 1957."
+                    :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformed based on estimated coordinates and datums, hand-referenced after. Likely some errors."
+                    :issuer-link "/maps/1957.5000.Manama.tif"
+                    :source "42 Survey Engineer Regiment"
+                    :source-link "/maps/1957.Manama.warped.tif"
+                    :issuer "D. Survey War Office and Air Ministry, 1957"
+                    :scale "1:5,000"
+                    :opts (merge base-opts {:minNativeZoom 13
+                                            :maxNativeZoom 19
+                                            :opacity 0.7})}
    "1968 - Bahrain" {:title "BAHRAIN ISLANDS - 1968"
                      :url (form-tile-url "1968-Bahrain")
                      :description "Compiled, drawn, reproduced from Air Photographs dated 1952-1953. Revised by 42 Survey Engineer Regiment from Air Photography dated 1962. Revised and Printed by FAIREY SURVEYS LTD., Reform Road, Maidenhead, Berkshire, England, 1968. Published by PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
@@ -141,7 +153,7 @@
                        :source "SPC RE"
                        :source-link "/maps/1968.Al Jufayr.5000.tiff"
                        :issuer "D Survey, Ministry of Defence, United Kingdom, 1968"
-                       :scale "1:63,360"
+                       :scale "1:5,000"
                        :opts (merge base-opts {:minNativeZoom 13
                                                :maxNativeZoom 19
                                                :opacity 0.7})}
