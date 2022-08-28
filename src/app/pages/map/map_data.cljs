@@ -144,6 +144,18 @@
                       :opts (merge base-opts {:minNativeZoom 13
                                               :maxNativeZoom 19
                                               :opacity 0.7})}
+   "1963 - Awali" {:title "Awali"
+                   :url (form-tile-url "1963-Awali")
+                   :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Edition 2 revised from by 42 Survey Engineer Regiment and additional street names supplied by 19 Topographic Squadron RE. Edition 2 GSGS 1963. Published by D. Survey, War Office and Air Ministry, 1963."
+                   :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformation is based on estimated coordinates and datums, hand-referenced after. Likely some errors."
+                   :issuer-link "/maps/1963.5000.Awali.tif"
+                   :source "42 Survey Engineer Regiment"
+                   :source-link "/maps/1963.5000.Awali.warped.tif"
+                   :issuer "Army Map Service, Corps of Engineers"
+                   :scale "1:5,000"
+                   :opts (merge base-opts {:minNativeZoom 13
+                                           :maxNativeZoom 19
+                                           :opacity 0.7})}
    "1968 - Bahrain" {:title "BAHRAIN ISLANDS - 1968"
                      :url (form-tile-url "1968-Bahrain")
                      :description "Compiled, drawn, reproduced from Air Photographs dated 1952-1953. Revised by 42 Survey Engineer Regiment from Air Photography dated 1962. Revised and Printed by FAIREY SURVEYS LTD., Reform Road, Maidenhead, Berkshire, England, 1968. Published by PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
