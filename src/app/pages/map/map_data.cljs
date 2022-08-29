@@ -251,8 +251,8 @@
                            :scale "1:50,000"
                            :issuer "Ministry of Defence, UK"
                            :issuer-link "/maps/1986-Bahrain.zip"
-                           :opts (merge base-opts {:minNativeZoom 12
-                                                   :maxNativeZoom 17
+                           :opts (merge base-opts {:minNativeZoom 8
+                                                   :maxNativeZoom 16
                                                    :opacity 0.8})}
    "2030 - Bahrain" {:title "Vision 2030"
                      :url (form-tile-url "2030-Bahrain")
