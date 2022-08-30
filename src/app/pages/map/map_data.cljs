@@ -220,8 +220,8 @@
                                                    :opacity 0.8})}
    "1977 - Bahrain (50k)" {:title "State of Bahrain - 1977"
                            :url (form-tile-url "1977-Bahrain.50k")
-                           :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                           :notes "This is a 3 map series produced for the State of Bahrain. One of 3 series, the other two being the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain. Edition 1."
+                           :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                            :source-link "/maps/1977-Bahrain-50k.compressed.tif"
                            :source "Fairey Surveys Ltd"
                            :scale "1:50,000"
@@ -244,13 +244,25 @@
                                                             :opacity 0.8})}
    "1986 - Bahrain (50k)" {:title "State of Bahrain - 1986"
                            :url (form-tile-url "1986-Bahrain.50k")
-                           :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1986. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain."
-                           :notes "This is a 3 map series produced for the State of Bahrain. One of 3 series, the other two being the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1986. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain. Edition 2."
+                           :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                            :source-link "/maps/1986-Bahrain(50k).tif"
                            :source "Ministry of Defence, UK"
                            :scale "1:50,000"
                            :issuer "Ministry of Defence, UK"
                            :issuer-link "/maps/1986-Bahrain.zip"
+                           :opts (merge base-opts {:minNativeZoom 8
+                                                   :maxNativeZoom 16
+                                                   :opacity 0.8})}
+   "1990 - Bahrain (50k)" {:title "State of Bahrain - 1990"
+                           :url (form-tile-url "1990-Bahrain.50k")
+                           :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1990. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain. Major Revision 1989 by Survey Directorate, Ministry of Housing from air photography and field surveys 1987-1989. Partial revision by MCE RE in 1990. Edition 4."
+                           :notes "Note: The Hawar sheet is actually from 1986 since a 1990 edition wasn't produced. This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :source-link "/maps/1990-Bahrain(50k).tif"
+                           :source "Ministry of Defence, UK"
+                           :scale "1:50,000"
+                           :issuer "Ministry of Defence, UK"
+                           :issuer-link "/maps/1990-Bahrain.zip"
                            :opts (merge base-opts {:minNativeZoom 8
                                                    :maxNativeZoom 16
                                                    :opacity 0.8})}
