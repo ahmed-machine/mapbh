@@ -32,6 +32,7 @@
     "1986-Bahrain.50k": {"mbtiles": "public/maps/1986-Bahrain.50k.mbtiles"},
     "1990-Bahrain.50k": {"mbtiles": "public/maps/1990-Bahrain.50k.mbtiles"},
     "1997-Bahrain.50k": {"mbtiles": "public/maps/1997-Bahrain.50k.mbtiles"},
+    "2004-Bahrain.50k": {"mbtiles": "public/maps/2004-Bahrain.50k.mbtiles"},
     "2030-Bahrain" :  {"mbtiles": "public/maps/2030-Bahrain.mbtiles"}
   }
 }
