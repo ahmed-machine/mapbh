@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 After=tileserver-gl.service
-ExecStart=tileserver-gl -c /root/openmapsbh/tile-config.json
+ExecStart=tileserver-gl -c /mnt/maps/mapbh/tile-config.json
 User=root
 Restart=on-failure
 
