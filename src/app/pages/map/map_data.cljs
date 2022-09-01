@@ -227,7 +227,7 @@
                            :scale "1:50,000"
                            :issuer "Unknown"
                            :issuer-link "/maps/1977.50k.zip"
-                           :opts (merge base-opts {:minNativeZoom 12
+                           :opts (merge base-opts {:minNativeZoom 8
                                                    :maxNativeZoom 17
                                                    :opacity 0.8})}
    "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
@@ -263,18 +263,29 @@
                            :scale "1:50,000"
                            :issuer "Ministry of Defence, UK"
                            :issuer-link "/maps/1990-Bahrain.zip"
-                           :opts (merge base-opts {:minNativeZoom 8
+                           :opts (merge base-opts {:minNativeZoom 9
                                                    :maxNativeZoom 16
                                                    :opacity 0.8})}
    "1997 - Bahrain (50k)" {:title "State of Bahrain - 1997"
                            :url (form-tile-url "1997-Bahrain.50k")
-                           :description "Produced in 1977 under the direction of the  Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, and 1998 by Survey Directorate, Ministry of Housing, State of Bahrain, from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Partial revision by MCE RE in 1997. Edition 5."
+                           :description "Produced in 1977 under the direction of the  Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, and 1998 by Survey Directorate, Ministry of Housing, State of Bahrain, from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Edition 5."
                            :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                            :source-link "/maps/1997-Bahrain(50k).tif"
                            :source "Ministry of Housing"
                            :scale "1:50,000"
                            :issuer "Ministry of Housing"
                            :issuer-link "/maps/1997-Bahrain.zip"
+                           :opts (merge base-opts {:minNativeZoom 8
+                                                   :maxNativeZoom 16})}
+   "2004 - Bahrain (50k)" {:title "State of Bahrain - 2004"
+                           :url (form-tile-url "2004-Bahrain.50k")
+                           :description "Produced in 1977 under the direction of the Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, 1993, 1996, and 2002 by Survey Directorate from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Edition 6."
+                           :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. North sheet was published 2003."
+                           :source-link "/maps/2004-Bahrain(50k).tif"
+                           :source "Ministry of Housing"
+                           :scale "1:50,000"
+                           :issuer "Dar Akbar Al Khaleej"
+                           :issuer-link "/maps/2004-Bahrain.zip"
                            :opts (merge base-opts {:minNativeZoom 8
                                                    :maxNativeZoom 16})}
    "2030 - Bahrain" {:title "Vision 2030"
