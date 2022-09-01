@@ -266,6 +266,17 @@
                            :opts (merge base-opts {:minNativeZoom 8
                                                    :maxNativeZoom 16
                                                    :opacity 0.8})}
+   "1997 - Bahrain (50k)" {:title "State of Bahrain - 1997"
+                           :url (form-tile-url "1997-Bahrain.50k")
+                           :description "Produced in 1977 under the direction of the  Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, and 1998 by Survey Directorate, Ministry of Housing, State of Bahrain, from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Partial revision by MCE RE in 1997. Edition 5."
+                           :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :source-link "/maps/1997-Bahrain(50k).tif"
+                           :source "Ministry of Housing"
+                           :scale "1:50,000"
+                           :issuer "Ministry of Housing"
+                           :issuer-link "/maps/1997-Bahrain.zip"
+                           :opts (merge base-opts {:minNativeZoom 8
+                                                   :maxNativeZoom 16})}
    "2030 - Bahrain" {:title "Vision 2030"
                      :url (form-tile-url "2030-Bahrain")
                      :description "National Detail Land Use map 2030 is the second version of the National Plan and Development Strategy updated Map illustrating detailed Land Use. Data and Relevant Information produced by GIS in GDUP. Issue Date: 11/1/2016."
