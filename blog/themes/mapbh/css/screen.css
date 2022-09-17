@@ -1,0 +1,111 @@
+
+pre {
+    overflow-x: auto;
+}
+pre code {
+    display: block;
+    padding: 0.5em;
+    overflow-wrap: normal;
+    white-space: pre;
+}
+
+code {
+    color: #428bca;
+}
+
+pre, code, .hljs {
+    background-color: #f7f9fd;
+}
+
+
+body {
+    padding: 0;
+    margin: 0;
+}
+#mapid {
+    height: 100%;
+    width:  100vw;
+}
+#map-history {overflow-y: hidden;}
+
+:lang(ar) 	{
+    font-family: "Amiri", "Scheherazade", serif;
+}
+
+.navbar-brand {
+  font-family: Comfortaa, Roboto;
+}
+
+.navbar-default {
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+.navbar-item {text-align: center;},
+a.navbar-item:hover {color: green!important;}
+
+.leaflet-control-layers-toggle {
+    background-image: url(../img/control-icon.png) !important;
+    background-repeat: no-repeat !important;
+    width: 36px;
+    height: 36px;
+}
+
+p.logo:hover { color: #DA291C !important;}
+
+.logo {font-family: 'Comfortaa', Roboto; font-size: 1.25em;}
+.navbar-item {
+    display: flex;
+}
+
+.navbar,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+    align-items: stretch;
+    display: flex;
+    padding: 0;
+    overflow: hidden !important;
+    box-shadow: none !important;
+}
+
+.navbar-menu{
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+.navbar-start{
+    justify-content: flex-start;
+    margin-right: auto;
+}
+.navbar-end{
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+
+.home.icon {padding: 0% 5%;}
+
+@media screen and (min-width: 1024px){
+    .image {margin: 2rem 8rem !important;
+            text-align: center;}
+    .about p, .contribute p {margin: 1rem 4.5rem;
+                             text-indent: 1.5em;
+                             line-height: 1.75em;}
+    .about h1, .contribute h1 {margin: 2rem 4.5rem;}
+}
+
+@media screen and (max-width: 1024px){
+    .image {margin: 2rem 0.5rem !important;
+            text-align: center;}
+    .about p, .contribute p {margin: 1rem 1.5rem;
+                             text-indent: 1.5em;
+                             line-height: 1.75em;}
+    .about h1, .contribute h1 {margin: 2rem 1.5rem;}
+}
+
+.home .navbar .button {height: 3em;}
+.home .navbar .button:hover { color: #DA291C !important;}
+
+@media screen and (min-width: 400px){
+    .home .navbar .navbar-item{margin: 0 1.5rem;}
+}
