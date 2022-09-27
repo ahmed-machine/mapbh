@@ -33,8 +33,8 @@
 (defn modal-description
   [state* arabic?]
   (let [active-key (:selected @state*)
-        details (get layers active-key)
-        ar-details (merge details (get ar-layers active-key))
+        details (get-in layers active-key)
+        ar-details (merge details (get-in ar-layers active-key))
         txt (:description (text details ar-details arabic?))]
     [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr")}
      [:div.modal-content
@@ -72,7 +72,7 @@
 (defn get-layer
   [state*]
   (if-let [layers (:layers @state*)]
-    (get layers (:selected  @state*))))
+    (get-in layers (:selected  @state*))))
 
 
 (defn update-transparency
@@ -100,9 +100,10 @@
 (defn base-layer-change
   [map state*]
   (.on map "overlayadd" (fn [layer]
-                          (let [lname (-> layer js->clj (get "name"))]
+                          (let [gname (-> layer js->clj (get "group") (get "name"))
+                                lname (-> layer js->clj (get "name"))]
                             (when (and (not= lname "Terrain") (not= lname "Satellite"))
-                              (swap! state* assoc :selected (get (js->clj layer) "name"))))))
+                              (swap! state* assoc :selected [gname lname])))))
   (.on map "baselayerchange" (fn [layer]
                                (let [lname (-> layer js->clj (get "name"))]
                                  (when (or (= lname "Terrain") (= lname "Satellite"))
@@ -128,20 +129,25 @@
                          (mapv (fn [[k selected-layer]]
                                  [k (-> js/L (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
                          (into {}))
-        overlay-layers (->> layers
-                            (mapv (fn [[k selected-layer]]
-                                    [k (-> js/L (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
-                            (sort-by first)
-                            (into (sorted-map)))
+        process-layers (fn [layers] (->> layers (mapv (fn [[k selected-layer]] [k (-> js/L (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
+                                         (sort-by first)
+                                         (into (sorted-map))))
+        overlay-layers (->> layers (map (fn [[k v]] [k (process-layers v)])) (into (sorted-map)))
         {:keys [zoom lat long]} @state*
         map (-> js/L (.map "mapid" (clj->js {:maxBounds (-> js/L (.latLngBounds (-> js/L (.latLng 25.5 50))
                                                                                 (-> js/L (.latLng 26.5 51))))}))
 
                 (.setView #js [26.05 50.4849414] 10.3))
         base (-> base-layers (get (:base @state*)))
-        selected (get overlay-layers (:selected @state*))]
+        selected (get-in overlay-layers (:selected @state*))]
     ;; Add all layers in control
-    (-> js/L .-control (.groupedLayers (clj->js base-layers) (clj->js {"Maps" overlay-layers}) (clj->js {"exclusiveGroups" ["Maps"] "groupCheckboxes" false})) (.addTo map))
+    (-> js/L .-control (.groupedLayers (clj->js base-layers)
+                                       (clj->js overlay-layers)
+                                       (clj->js {"exclusiveGroups" (keys overlay-layers)
+                                                 "allExclusive" true
+                                                 "groupCheckboxes" false
+                                                 "groupsCollapsible" true}))
+        (.addTo map))
 
     ;; Add option to locate user
     (-> js/L .-control (.locate (clj->js {:keepCurrentZoomLevel true
@@ -213,7 +219,7 @@
 
 
 (defn historical-map []
-  (let [state* (reagent/atom {:selected "1956 - Bahrain"
+  (let [state* (reagent/atom {:selected ["Bahrain" "1956 - Bahrain"]
                               :mode "transparency"
                               :base "Satellite"
                               :show-description? false
