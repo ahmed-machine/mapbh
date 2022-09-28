@@ -5,7 +5,7 @@ import os
 
 ## Inputs:
 ## * Expects a CSV named 'coords.csv' consisting of:
-##    sheet #, top right easting, top right northing, bottom right easting, bottom right northing
+##    sheet #, top left easting, top left northing, bottom right easting, bottom right northing
 
 ## * File path expected: <sheet number>.tif
 
