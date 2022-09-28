@@ -40,6 +40,8 @@
     "2007-Budaiya.5": {"mbtiles": "public/maps/2007-Budaiya.5.mbtiles"},
     "1977-Riffa.1": {"mbtiles": "public/maps/1977-Riffa.1.mbtiles"},
     "1987-Riffa.2": {"mbtiles": "public/maps/1987-Riffa.2.mbtiles"},
+    "1997-Riffa.4": {"mbtiles": "public/maps/1997-Riffa.4.mbtiles"},
+    "2005-Riffa.5": {"mbtiles": "public/maps/2005-Riffa.5.mbtiles"},
     "1986-Bahrain.50k": {"mbtiles": "public/maps/1986-Bahrain.50k.mbtiles"},
     "1990-Bahrain.50k": {"mbtiles": "public/maps/1990-Bahrain.50k.mbtiles"},
     "1997-Bahrain.50k": {"mbtiles": "public/maps/1997-Bahrain.50k.mbtiles"},
