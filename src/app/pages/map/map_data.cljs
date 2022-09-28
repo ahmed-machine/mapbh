@@ -101,7 +101,55 @@
                                     :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
                                     :opts (merge base-opts {:minNativeZoom 12
                                                             :maxNativeZoom 18
-                                                            :opacity 0.8})}})
+                                                            :opacity 0.8})}
+   "1977 - Manama" {:title "Manama - State of Bahrain - 1977 (Edition 1)"
+                    :url (form-tile-url "1977-Manama.1")
+                    :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                    :source-link "/maps/1977-Manama.1.tif"
+                    :source "Fairey Surveys Ltd"
+                    :scale "1:25,000"
+                    :issuer "Unknown"
+                    :issuer-link "/maps/1977.Manama.1.original.tif"
+                    :opts (merge base-opts {:minNativeZoom 11
+                                            :maxNativeZoom 17
+                                            :opacity 0.8})}
+   "1992 - Manama" {:title "Manama - State of Bahrain - 1992 (Edition 4)"
+                    :url (form-tile-url "1992-Manama.4")
+                    :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983, and Oct. 1986. Field surveys from 1986 to 1991."
+                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                    :source-link "/maps/1992-Manama.4.tif"
+                    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+                    :scale "1:25,000"
+                    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+                    :issuer-link "/maps/1992.Manama.4.original.tif"
+                    :opts (merge base-opts {:minNativeZoom 11
+                                            :maxNativeZoom 17
+                                            :opacity 0.8})}
+   "1998 - Manama" {:title "Manama - State of Bahrain - 1998 (Edition 5)"
+                    :url (form-tile-url "1998-Manama.5")
+                    :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, and 1992 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                    :source-link "/maps/1998-Manama.5.tif"
+                    :source "Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                    :scale "1:25,000"
+                    :issuer "Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                    :issuer-link "/maps/1998.Manama.5.original.tif"
+                    :opts (merge base-opts {:minNativeZoom 11
+                                            :maxNativeZoom 17
+                                            :opacity 0.8})}
+   "2006 - Manama" {:title "Manama - State of Bahrain - 2006 (Edition 6)"
+                    :url (form-tile-url "2006-Manama.6")
+                    :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, 1992, 1998 and 2006 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                    :source-link "/maps/2006-Manama.6.tif"
+                    :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                    :scale "1:25,000"
+                    :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                    :issuer-link "/maps/2006.Manama.6.original.tif"
+                    :opts (merge base-opts {:minNativeZoom 11
+                                            :maxNativeZoom 17
+                                            :opacity 0.8})}})
 (def muharraq-layers
   {"1931 - Muharraq" {:title "MOHARRAK TOWN - March 1931"
                       :url (form-tile-url "1931-Muharraq")
@@ -116,7 +164,7 @@
                       :opts (merge base-opts {:minNativeZoom 13
                                               :maxNativeZoom 19
                                               :opacity 0.7})}
-  "1937 - Muharraq" {:title "MUHARRAQ ISLAND - Jan 1937"
+   "1937 - Muharraq" {:title "MUHARRAQ ISLAND - Jan 1937"
                       :url (form-tile-url "1937-Muharraq")
                       :description "The map shows Muhurraq Island, and the causeway linking Muharraq to Manama. Also shown are principal roads, tracks, buildings (including the Political Agency in Manana), islands, and the location of several underwater freshwater springs. A rectangle on Muharraq Island indicates the area specified for the landing ground."
                       :notes "Well-preserved and decently accurate."
@@ -130,7 +178,7 @@
                                               :minNativeZoom 13
                                               :maxNativeZoom 16
                                               :opacity 0.7})}
-  "1957 - Muharraq" {:title "Muharraq"
+   "1957 - Muharraq" {:title "Muharraq"
                       :url (form-tile-url "1957-Muharraq")
                       :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Series GSGS 4880 Edition 1 GSGS 1957. Published by D. Survey, War Office and Air Ministry, 1957."
                       :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformation is based on estimated coordinates and datums, hand-referenced after. Likely some errors."
@@ -142,7 +190,7 @@
                       :opts (merge base-opts {:minNativeZoom 13
                                               :maxNativeZoom 19
                                               :opacity 0.7})}
-  "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
+   "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
                                     :url (form-tile-url "1977-USSR-Bahrain")
                                     :description "Description in Russian can be found in the bottom-right corner of the map. Produced in 1977 and 1980, in a factory in Sverdlovsk (now Ekaterinburg). There are many exciting features in these maps that are sorely missing in other contemporary maps. NATO mappers intentionally obfuscated sensitive areas like airports and navy yards from their maps but the Soviets include these on theirs. To produce these details, the Soviets had to rely on ground intelligence to obtain both aerial and ground measurements. Discovered in second-hand thrift stores following the collapse of the Soviet Union."
                                     :notes "While we know this is a SK-42 projection (also known as Pulkovo) with a PZ-90 datum, tracking down the exact datum was difficult as few maps of this sort have been translated for our part of the world. In the end, we had to adjust it by hand using ground control points. Special shoutout to Tristan Bobin for his contributions in rectifying this map."
@@ -153,7 +201,55 @@
                                     :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
                                     :opts (merge base-opts {:minNativeZoom 12
                                                             :maxNativeZoom 18
-                                                            :opacity 0.8})}})
+                                                            :opacity 0.8})}
+   "1977 - Manama" {:title "Manama - State of Bahrain - 1977 (Edition 1)"
+                    :url (form-tile-url "1977-Manama.1")
+                    :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                    :source-link "/maps/1977-Manama.1.tif"
+                    :source "Fairey Surveys Ltd"
+                    :scale "1:25,000"
+                    :issuer "Unknown"
+                    :issuer-link "/maps/1977.Manama.1.original.tif"
+                    :opts (merge base-opts {:minNativeZoom 11
+                                            :maxNativeZoom 17
+                                            :opacity 0.8})}
+   "1992 - Manama" {:title "Manama - State of Bahrain - 1992 (Edition 4)"
+                    :url (form-tile-url "1992-Manama.4")
+                    :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983, and Oct. 1986. Field surveys from 1986 to 1991."
+                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                    :source-link "/maps/1992-Manama.4.tif"
+                    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+                    :scale "1:25,000"
+                    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+                    :issuer-link "/maps/1992.Manama.4.original.tif"
+                    :opts (merge base-opts {:minNativeZoom 11
+                                            :maxNativeZoom 17
+                                            :opacity 0.8})}
+   "1998 - Manama" {:title "Manama - State of Bahrain - 1998 (Edition 5)"
+                    :url (form-tile-url "1998-Manama.5")
+                    :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, and 1992 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                    :source-link "/maps/1998-Manama.5.tif"
+                    :source "Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                    :scale "1:25,000"
+                    :issuer "Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                    :issuer-link "/maps/1998.Manama.5.original.tif"
+                    :opts (merge base-opts {:minNativeZoom 11
+                                            :maxNativeZoom 17
+                                            :opacity 0.8})}
+   "2006 - Manama" {:title "Manama - State of Bahrain - 2006 (Edition 6)"
+                    :url (form-tile-url "2006-Manama.6")
+                    :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, 1992, 1998 and 2006 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                    :source-link "/maps/2006-Manama.6.tif"
+                    :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                    :scale "1:25,000"
+                    :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                    :issuer-link "/maps/2006.Manama.6.original.tif"
+                    :opts (merge base-opts {:minNativeZoom 11
+                                            :maxNativeZoom 17
+                                            :opacity 0.8})}})
 (def bahrain-layers
   {"1914 - Bahrain Harbour" {:title "1914 - Bahrain Harbour"
                              :url (form-tile-url "1914-Harbour")
@@ -317,9 +413,60 @@
                      :opts (merge base-opts {:minNativeZoom 10
                                              :maxNativeZoom 15
                                              :opacity 0.8})}})
+
+(def fairey {"1977 - Manama" {:title "Manama - State of Bahrain - 1977 (Edition 1)"
+                              :url (form-tile-url "1977-Manama.1")
+                              :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                              :source-link "/maps/1977-Manama.1.tif"
+                              :source "Fairey Surveys Ltd"
+                              :scale "1:25,000"
+                              :issuer "Unknown"
+                              :issuer-link "/maps/1977.Manama.1.original.tif"
+                              :opts (merge base-opts {:minNativeZoom 11
+                                                      :maxNativeZoom 17
+                                                      :opacity 0.8})}
+             "1992 - Manama" {:title "Manama - State of Bahrain - 1992 (Edition 4)"
+                              :url (form-tile-url "1992-Manama.4")
+                              :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983, and Oct. 1986. Field surveys from 1986 to 1991."
+                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                              :source-link "/maps/1992-Manama.4.tif"
+                              :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+                              :scale "1:25,000"
+                              :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+                              :issuer-link "/maps/1992.Manama.4.original.tif"
+                              :opts (merge base-opts {:minNativeZoom 11
+                                                      :maxNativeZoom 17
+                                                      :opacity 0.8})}
+             "1998 - Manama" {:title "Manama - State of Bahrain - 1998 (Edition 5)"
+                              :url (form-tile-url "1998-Manama.5")
+                              :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, and 1992 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                              :source-link "/maps/1998-Manama.5.tif"
+                              :source "Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                              :scale "1:25,000"
+                              :issuer "Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                              :issuer-link "/maps/1998.Manama.5.original.tif"
+                              :opts (merge base-opts {:minNativeZoom 11
+                                                      :maxNativeZoom 17
+                                                      :opacity 0.8})}
+             "2006 - Manama" {:title "Manama - State of Bahrain - 2006 (Edition 6)"
+                              :url (form-tile-url "2006-Manama.6")
+                              :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, 1992, 1998 and 2006 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 3 series, the other two being the 1:50,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                              :source-link "/maps/2006-Manama.6.tif"
+                              :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                              :scale "1:25,000"
+                              :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                              :issuer-link "/maps/2006.Manama.6.original.tif"
+                              :opts (merge base-opts {:minNativeZoom 11
+                                                      :maxNativeZoom 17
+                                                      :opacity 0.8})}})
+
 (def layers {"Bahrain" bahrain-layers
              "Manama" manama-layers
              "Muharraq" muharraq-layers
+             "Fairey Surveys 1:25k (1977-2007)" fairey
              "Other" other-layers})
 
 (def ar-layers
