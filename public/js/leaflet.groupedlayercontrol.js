@@ -337,7 +337,7 @@ L.Control.GroupedLayers = L.Control.extend({
         L.DomEvent.preventDefault(event);
         if (this.classList.contains("group-collapsible") && this.classList.contains("collapsed")){
             this.classList.remove("collapsed");
-        }else if (this.classList.contains("group-collapsible") && !this.classList.contains("collapsed")){
+        } else if (this.classList.contains("group-collapsible") && !this.classList.contains("collapsed")){
             this.classList.add("collapsed");
         }
     },
@@ -421,13 +421,9 @@ L.Control.GroupedLayers = L.Control.extend({
     _expand: function () {
         L.DomUtil.addClass(this._container, 'leaflet-control-layers-expanded');
         this._form.style.height = null;
-        var acceptableHeight = this._map.getSize().y - (this._container.offsetTop + 50);
-        if (acceptableHeight < this._form.clientHeight) {
-            L.DomUtil.addClass(this._form, 'leaflet-control-layers-scrollbar');
-            this._form.style.height = acceptableHeight + 'px';
-        } else {
-            L.DomUtil.removeClass(this._form, 'leaflet-control-layers-scrollbar');
-        }
+        var acceptableHeight = this._map.getSize().y - (this._container.offsetTop + 150);
+        L.DomUtil.addClass(this._form, 'leaflet-control-layers-scrollbar');
+        this._form.style.maxHeight = acceptableHeight + 'px';
         // this._checkDisabledLayers();
         return this;
     },
