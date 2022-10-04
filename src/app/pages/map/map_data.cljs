@@ -521,6 +521,56 @@
                                :issuer-link "/maps/2007.Budaiya.5.original.tif"
                                :opts (merge base-opts {:minNativeZoom 11
                                                        :maxNativeZoom 17
+                                                       :opacity 0.8})}
+
+
+             "1977 - Riffa" {:title "Riffa - State of Bahrain - 1977 (Edition 1)"
+                               :url (form-tile-url "1977-Riffa.1")
+                               :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                               :source-link "/maps/1977-Riffa.1.tif"
+                               :source "Fairey Surveys Ltd"
+                               :scale "1:25,000"
+                               :issuer "Unknown"
+                               :issuer-link "/maps/1977.Riffa.1.original.tif"
+                               :opts (merge base-opts {:minNativeZoom 11
+                                                       :maxNativeZoom 17
+                                                       :opacity 0.8})}
+             "1987 - Riffa" {:title "Riffa - State of Bahrain - 1987 (Edition 2)"
+                               :url (form-tile-url "1987-Riffa.2")
+                               :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from Air Photography taken in Jan. 1983 by B.K.S. Surveys LTD. And field surveys Revisions 1986"
+                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                               :source-link "/maps/1987-Riffa.2.tif"
+                               :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+                               :scale "1:25,000"
+                               :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+                               :issuer-link "/maps/1987.Riffa.2.original.tif"
+                               :opts (merge base-opts {:minNativeZoom 11
+                                                       :maxNativeZoom 17
+                                                       :opacity 0.8})}
+             "1997 - Riffa" {:title "Riffa - State of Bahrain - 1997 (Edition 4)"
+                               :url (form-tile-url "1997-Riffa.4")
+                               :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987 and 1991 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1997 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                               :source-link "/maps/1997-Riffa.4.tif"
+                               :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+                               :scale "1:25,000"
+                               :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+                               :issuer-link "/maps/1997.Riffa.4.original.tif"
+                               :opts (merge base-opts {:minNativeZoom 11
+                                                       :maxNativeZoom 17
+                                                       :opacity 0.8})}
+             "2005 - Riffa" {:title "Riffa - State of Bahrain - 2005 (Edition 5)"
+                               :url (form-tile-url "2005-Riffa.5")
+                               :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1986, 1991,  and 2004 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                               :source-link "/maps/2005-Riffa.5.tif"
+                               :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                               :scale "1:25,000"
+                               :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                               :issuer-link "/maps/2005.Riffa.5.original.tif"
+                               :opts (merge base-opts {:minNativeZoom 11
+                                                       :maxNativeZoom 17
                                                        :opacity 0.8})}})
 
 
