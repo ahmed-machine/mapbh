@@ -393,7 +393,7 @@
                            :url (form-tile-url "2004-Bahrain.50k")
                            :description "Produced in 1977 under the direction of the Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, 1993, 1996, and 2002 by Survey Directorate from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Edition 6."
                            :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. North sheet was published 2003."
-                           :source-link "/maps/2004-Bahrain(50k).tif"
+                           :source-link "/maps/2004-Bahrain(50k).tiff"
                            :source "Ministry of Housing"
                            :scale "1:50,000"
                            :issuer "Dar Akbar Al Khaleej"
