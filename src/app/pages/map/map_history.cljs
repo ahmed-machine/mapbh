@@ -32,9 +32,8 @@
 
 (defn modal-description
   [state* arabic?]
-  (let [active-key (:selected @state*)
-        details (get-in layers active-key)
-        ar-details (merge details (get-in ar-layers active-key))
+  (let [details (get-in layers (:selected @state*))
+        ar-details (merge details (get-in ar-layers (:selected @state*)))
         txt (:description (text details ar-details arabic?))]
     [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr")}
      [:div.modal-content

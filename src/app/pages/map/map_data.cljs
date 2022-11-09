@@ -659,11 +659,11 @@
                                 :url (form-tile-url "1991-Rumaytha.2")
                                 :description "Original photogrammetric compilation by Fairey Surveys Ltd in 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983 and Oct. 1986. Field surveys from 1986 to 1991"
                                 :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                                :source-link "/maps/1990-Rumaytha.2.tif"
+                                :source-link "/maps/1991-Rumaytha.2.tif"
                                 :source "Fairey Surveys Ltd"
                                 :scale "1:25,000"
                                 :issuer "Unknown"
-                                :issuer-link "/maps/1990.Rumaytha.2.original.tif"
+                                :issuer-link "/maps/1991.Rumaytha.2.original.tif"
                                 :opts (merge base-opts {:minNativeZoom 11
                                                         :maxNativeZoom 17
                                                         :opacity 0.8})}
