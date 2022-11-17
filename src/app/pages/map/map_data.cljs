@@ -702,7 +702,19 @@
                                    :issuer-link "/maps/2000.Ras Al Barr.2.original.tif"
                                    :opts (merge base-opts {:minNativeZoom 11
                                                            :maxNativeZoom 17
-                                                           :opacity 0.8})}})
+                                                           :opacity 0.8})}
+             "1993 - Hawar" {:title "Hawar - State of Bahrain - 1993 (Edition 1)"
+                             :url (form-tile-url "1993-Hawar.1")
+                             :description "Compiled from 1:10,000 maps published in 1981. Additional information from 1991 air photography and field surveys 1993. Produced by the Survey Directorate, Ministry of Housing, Bahrain"
+                             :notes "This is a 2-part addendum to the 7 sheet series (1:25,000 scale) produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. Originally commissioned along with the original set in 1977, the first edition would only appear in 1993."
+                             :source-link "/maps/1993-Hawar.1.tif"
+                             :source "Fairey Surveys Ltd"
+                             :scale "1:25,000"
+                             :issuer "Unknown"
+                             :issuer-link "/maps/1993.Hawar.1.zip"
+                             :opts (merge base-opts {:minNativeZoom 11
+                                                     :maxNativeZoom 17
+                                                     :opacity 0.8})}})
 
 
 (def layers {"Bahrain" bahrain-layers
