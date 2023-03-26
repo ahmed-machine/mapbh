@@ -301,7 +301,7 @@
                      :submitted-by "Ali Karimi"
                      :issuer "D. Survey War Office and Air Ministry, 1956"
                      :scale "1:63,360"
-                     :opts (merge base-opts {:minNativeZoom 12
+                     :opts (merge base-opts {:minNativeZoom 9
                                              :maxNativeZoom 15
                                              :opacity 0.7})}
    "1968 - Bahrain" {:title "BAHRAIN ISLANDS - 1968"
