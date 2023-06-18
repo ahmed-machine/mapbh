@@ -86,6 +86,8 @@ p.logo:hover { color: #DA291C !important;}
 .home .navbar .button {height: 3em;}
 .home .navbar .button:hover { color: #DA291C !important;}
 
+.blog h1 {font-size: 120%; font-weight: bold;}
+
 @media screen and (min-width: 400px){
     .home .navbar .navbar-item{margin: 0 1.5rem;}
 }

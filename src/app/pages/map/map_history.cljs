@@ -115,7 +115,7 @@
   (let [map (:map @state*)]
   ;; Add option to save map
     [:button.button.is-success.is-small.is-light.is-outlined {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "180px" :left "12px" :z-index 997}
-                                                    :on-click (fn [] (-> (new js/LeafletExporter. map 2.0) .Export))}
+                                                    :on-click (fn [] (-> (new js/LeafletExporter. map 4.0) .Export))}
      [:i.fas.fa-download]]))
 
 
