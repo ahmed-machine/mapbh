@@ -32,6 +32,19 @@ Translate and warp a map in a UTM Zone 39 map
 `scripts/utm-zone39-translate.sh <input-path-without-extension-type> <top-left-coordinates/bottom-right-coordinates>`
 e.g. `./scripts/utm-zone39-translate.sh "1969.5000.Manama & AlJufayr.1-5" "453000 2901300 456600 2898900"`
 
+## Blog
+
+Lazy blog. I write in Markdown then convert it into hiccup syntax using `markdown-to-hiccup` (included in deps.edn). I then copy paste this into a name space and do a bunch of cleanup.
+
+```
+bash => clj
+Clojure 1.10.3
+user=> (require '[markdown-to-hiccup.core :as m])
+nil
+user=> (m/file->hiccup "file-path")
+[:html {} [:head {}] [:body {} [:h1 {} "...."]
+```
+
 ### Tileserver
 
 We use `tileserver-gl` from MapTiler to host our processed tiles. To see maps locally, you need to download the mbtiles and run it locally.

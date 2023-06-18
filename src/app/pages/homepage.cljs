@@ -24,7 +24,8 @@
     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "Contribute"]
     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "Map"]]
    [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
-    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :wadi) "/en")} "Wadi AlBuhair"]]
+    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :blog-index))} "Blog"]
+    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :catalogue))} "Catalogue"]]
    [:div.content.has-text-centered
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
@@ -57,7 +58,8 @@
      [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "ساهم"]
      [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "الخارطة"]]]
    [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
-    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :wadi) "/ar")} "وادي البحير"]]
+    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :blog-index))} "مدونة"]
+    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :catalogue))} "Catalogue"]]
    [:div.content.has-text-centered {:style {:margin-top "1.1rem"}}
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]

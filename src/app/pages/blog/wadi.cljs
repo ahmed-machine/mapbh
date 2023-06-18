@@ -1,16 +1,9 @@
-(ns app.pages.wadi
+(ns app.pages.blog.wadi
   (:require [reagent.core :as r]
             [app.routes :as routes]
             [app.events :as events]
+            [app.pages.blog.util :refer [image]]
             [re-frame.core :as rf]))
-
-
-(defn image
-  [src alt caption]
-  [:figure.image
-   {:style {:text-align :center}}
-   [:a {:href src} [:img {:alt alt :src src}]]
-   [:figcaption caption]])
 
 
 (defn en

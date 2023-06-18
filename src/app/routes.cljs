@@ -5,13 +5,17 @@
             [app.events :as events]
             [app.model :as model]))
 
-(def routes ["/" {"wadi" {"" :wadi
-                          ["/" :language] :wadi}
+(def routes ["/" {"wadi" {"" :blog-wadi ;; To be deprecated
+                          ["/" :language] :blog-wadi}
                   [:language "/"] {""           :home
                                    "about"      :about
                                    "dialects"   :dialects
                                    "map"        :map
-                                   "contribute" :contribute}}])
+                                   "contribute" :contribute
+                                   "catalogue"  :catalogue}
+                  ["blog/" :language] {"" :blog-index
+                                       "/" {"wadi" :blog-wadi
+                                            "fairey" :blog-fairey}}}])
 
 (defn- parse-url [url]
   (bidi/match-route routes url))
@@ -22,7 +26,7 @@
     (rf/dispatch [::events/set-language language])
     (rf/dispatch [::events/set-active-panel panel-name])))
 
-(defn app-routes[]
+(defn app-routes []
   (pushy/start! (pushy/pushy dispatch-route parse-url)))
 
 (def url-for (fn [route] (bidi/path-for routes route :language (or @(rf/subscribe [::model/language]) "ar"))))
