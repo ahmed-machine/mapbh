@@ -1,0 +1,2 @@
+{:deps
+ {markdown-to-hiccup/markdown-to-hiccup {:mvn/version "0.6.2"}}}
