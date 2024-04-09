@@ -354,12 +354,24 @@
                            :opts (merge base-opts {:minNativeZoom 8
                                                    :maxNativeZoom 17
                                                    :opacity 0.8})}
-   "1986 - Bahrain (50k)" {:title "State of Bahrain - 1986"
+   "1985 - Bahrain (10k)" {:title "State of Bahrain - 1985"
+                           :url (form-tile-url "1985-Bahrain.10k")
+                           :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from air photography taken in 1983 by B.K.S. Surveys LTD. and field survey revisions 1984."
+                           :notes "This is a 28-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:50,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. Please note that sheet 73 and 94 are from 1977. Sheet 73 is missing and sheet 94 is available but lower quality. This is the holy grail of Bahrain maps."
+                           :source-link "/maps/1985-Bahrain(10k).tif"
+                           :source "Fairey Surveys Ltd."
+                           :scale "1:10,000"
+                           :issuer "Ministry of Information, Bahrain"
+                           :issuer-link "/maps/1985-Bahrain.10k.zip"
+                           :opts (merge base-opts {:minNativeZoom 8
+                                                   :maxNativeZoom 16
+                                                   :opacity 0.8})}
+  "1986 - Bahrain (50k)" {:title "State of Bahrain - 1986"
                            :url (form-tile-url "1986-Bahrain.50k")
                            :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1986. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain. Edition 2."
                            :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                            :source-link "/maps/1986-Bahrain(50k).tif"
-                           :source "Ministry of Defence, UK"
+                           :source "Fairey Surveys Ltd"
                            :scale "1:50,000"
                            :issuer "Ministry of Defence, UK"
                            :issuer-link "/maps/1986-Bahrain.zip"
@@ -738,6 +750,11 @@
     "1977 - Bahrain (50k)" {:title "البحرين - ١٩٧٧"
                             :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
                             :notes " هذه الخارطة سلسلة فيها ٣ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
+
+    "1985 - Bahrain (10k)" {:title "البحرين - ١٩٨٥"
+                            :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD. اضافت مديرية المساحةتحت وزارة الاسكان معلومات من صور جوية التقت في عام ١٩٨٣ بواسطة B.K.S. Surveys LTD و تعديلات ميدانية في ١٩٨٤."
+                            :notes " هذه الخارطة سلسلة فيها ٢٨ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة. يرجى ملاحظة أن الورقة ٧٣ و ٩٤ من ضمن خرائط عام ١٩٧٧ وليس ١٩٨٥. الورقة ٧٣ مفقودة والورقة ٩٤ متوفرة ولكن بجودة ضعيفة.  هذه الخرائط عبارة عن كنز ثمين اي انها تعطي نظرة لمنتصف الثمانينات والتحولات الجذرية للدولة في فترة قلت فيها الوثائق"}
+
     "1973 - Bahrain" {:title "البحرين - ١٩٧٣"
                       :description nil
                       :notes "خرائط عالية الجودة فيها مشاكل بسيطة في دقة المحاذة. الإسقاط الاصلي يعتمد على حسابات كلارك ١٨٨٠ و موقع مرجعي في نهروان. تم محاذة اضافية بعد الترجمة و التحوير بسبب اخطاء في البيانات المدونة في الخارطة"}
@@ -749,7 +766,7 @@
                       :description "سلسلة  جي اس جي اس ٤٠٣٥ النسخة الرابعة. جُمعت ورُسمت وأُنتجت من قبل شركة هانتنجز ايروسورفيز من صور جوية أخذت في عاميّ ١٩٥٢ و١٩٥٣. أعاد انتاجها وطباعتها فوج ٤٢ للجهاز الهندسي لمساحة الأراضي البريطانية في مايو ١٩٥٦ ونُشرت من قبل مديرية جهاز المساحة لمكتب الحرب ووزارة الملاحة الجوية البريطانية."
                       :notes "خارطة انتجت رقمياً بجودة عالية. توجد اخطاء بسيطة بالخارطة خاصة بما يتعلق بالجزر الصغيرة."}
     "2030 - Bahrain"  {:title "رؤية البحرين ‫-‬ ٢٠٣٠"
-                       :description "ﺧﺎرﻃﺔ اﻟﻤﺨﻄﻂ اﻟﮭﯿﻜﻠﻲ اﻻﺳﺘﺮاﺗﯿﺠﻲ ﻟﻤﻤﻠﻜﺔ اﻟﺒﺤﺮﯾﻦ لاستخدام الأراضي ٢٠٣٠، النسخة الثانية. الخطة الوطنية توضح استخدامات الأراضي بالتفصيل. البيانات والمعلومات ذات انتجت بـ GIS في GDUP. تاريخ الإصدار: ١١/١/٢٠١٦"
+                       :description "ﺧﺎرﻃﺔ اﻟﻤﺨﻄﻂ اﻟﮭﯿﻜﻠﻲ اﻻﺳﺘﺮاﺗﯿﺠﻲ ﻟﻤﻤﻠﻜﺔ اﻟﺒﺤﺮﯾﻦـ لاستخدام الأراضي ٢٠٣٠، النسخة الثانية. الخطة الوطنية توضح استخدامات الأراضي بالتفصيل. البيانات والمعلومات ذات انتجت بـ GIS في GDUP. تاريخ الإصدار: ١١/١/٢٠١٦"
                        :notes "تم التنسيق باليد لعدم وجود البيانات الجيوغرافية"}}
    "Manama" {"1937 - Manama"  {:title "المنامة - ١٩٣٧"
                                :description nil
