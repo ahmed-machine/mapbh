@@ -113,3 +113,7 @@ p.logo:hover { color: #DA291C !important;}
                     padding: 1rem;
                     box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);}
 iframe {display:block; margin: 0 auto; text-align: center;}
+
+.quote {margin: 3rem;}
+.quote blockquote {margin: 1rem; padding: 1rem; background-color: #efefef}
+.quote em {display: block; text-align: right; margin-right: 1rem;}
