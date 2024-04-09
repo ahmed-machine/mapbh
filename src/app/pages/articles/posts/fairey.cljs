@@ -136,6 +136,38 @@
     {} "DISCLAIMER: "
     [:em
      {}
-     "I do not work for any official state bodies. Given that there exists little information available to the public, I can only speculate and make an informed guesses to extrapolate based off known information."]]])
+     "I do not work for any official state bodies. Given that there exists little information available to the public, I can only speculate and make an informed guesses to extrapolate based off known information."]]
+   [:p {:style {:margin :auto :text-align :center}}
+    [:h3 [:strong "Missing Maps"]]
+    [:table.table {:style {:margin :auto}}
+     [:thead
+      [:th "Scale"]
+      [:th "Sheet"]
+      [:th "Edition"]]
+     [:tbody
+      [:tr
+       [:td "1:10,000"]
+       [:td "All except sheets (73, 94)"]
+       [:td "1 (1977)"]]
+      [:tr
+       [:td ""]
+       [:td "All"]
+       [:td "3 (likely mid-nineties)"]]
+      [:tr
+       [:td "1:25,000"]
+       [:td "Manama"]
+       [:td "2 (likely published in early 80s)"]]
+      [:tr
+       [:td ""]
+       [:td ""]
+       [:td "3 (likely published in ‘86/’87)"]]
+      [:tr
+       [:td ""]
+       [:td "Zallaq/Madinat Hamad"]
+       [:td "2 (likely published in ‘86/’87)"]]
+      [:tr
+       [:td ""]
+       [:td "Riffa"]
+       [:td "3 (likely published in early 1990s, 92/93)"]]]]]])
 
 (defn ar [] (en))
