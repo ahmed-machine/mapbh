@@ -333,7 +333,7 @@
    "1977 - Bahrain (25k)" {:title "State of Bahrain - 1977"
                            :url (form-tile-url "1977-Bahrain")
                            :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                           :notes "This is a 7 map series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :notes "This is a 7-sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                            :source-link "/maps/1977-Bahrain-v2.tif"
                            :source "Fairey Surveys Ltd"
                            :scale "1:25,000"
@@ -345,7 +345,7 @@
    "1977 - Bahrain (50k)" {:title "State of Bahrain - 1977"
                            :url (form-tile-url "1977-Bahrain.50k")
                            :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain. Edition 1."
-                           :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :notes "This is a 3-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                            :source-link "/maps/1977-Bahrain-50k.compressed.tif"
                            :source "Fairey Surveys Ltd"
                            :scale "1:50,000"
@@ -369,7 +369,7 @@
    "1990 - Bahrain (50k)" {:title "State of Bahrain - 1990"
                            :url (form-tile-url "1990-Bahrain.50k")
                            :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1990. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain. Major Revision 1989 by Survey Directorate, Ministry of Housing from air photography and field surveys 1987-1989. Partial revision by MCE RE in 1990. Edition 4."
-                           :notes "Note: The Hawar sheet is actually from 1986 since a 1990 edition wasn't produced. This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :notes "Note: The Hawar sheet is actually from 1986 since a 1990 edition wasn't produced. This is a 3 sheet-series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                            :source-link "/maps/1990-Bahrain(50k).tif"
                            :source "Ministry of Defence, UK"
                            :scale "1:50,000"
@@ -381,7 +381,7 @@
    "1997 - Bahrain (50k)" {:title "State of Bahrain - 1997"
                            :url (form-tile-url "1997-Bahrain.50k")
                            :description "Produced in 1977 under the direction of the  Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, and 1998 by Survey Directorate, Ministry of Housing, State of Bahrain, from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Edition 5."
-                           :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                           :notes "This is a 3-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
                            :source-link "/maps/1997-Bahrain(50k).tif"
                            :source "Ministry of Housing"
                            :scale "1:50,000"
