@@ -3,8 +3,9 @@
 
 ;; Slugs for URLs
 (def article-routes
-  {""      :article-index
-   "wadi"  :article-wadi})
+  {""       :article-index
+   "wadi"   :article-wadi
+   "fairey" :article-fairey})
 
 (def routes ["/" {"wadi"  {"" :article-wadi ;; To be deprecated once traffic drops
                            ["/" :language] :article-wadi}
