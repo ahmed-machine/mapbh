@@ -9,9 +9,10 @@
   [:div.container.about
    {}
    [:h1.title {} "Fairey Surveys - history of modern map-making in Bahrain"]
+   [:p {:style {:text-align :center}} "Manama's a city of contrasts."]
    [:p
     {}
-    "Manama's a city of contrasts. As one walks through its streets, you can easily fall into its spell of inevitability. Emerging from one alley, thorough-way right back into another alley, alley-turns tuck-in between bakery ovens and modest tailoring shops, effortlessly guiding you towards a seafront that’s no longer there. A few times a year, these sleepy alleys fill to the brim in a crescendo of mourners and rejoicers of the many ethnicities and beliefs that make their home here. The annual marches lead you on well-trodden loops along curved streets. The city gently breathes in and out this constant flow of pedestrians as if its every step was carefully and painstakingly constructed to accommodate life in its quietest nights and its loudest days. This is the natural ebb and flow of the once port-city now engulfed in concrete. Manama is a sleepy city, built-up over centuries, to accommodate many lifestyles as they bustled to and from the port and from the rest of the island on foot or donkey. As Manama gently carries you through its arteries, it’s hard not to hear the disharmony of its roads and alleys slam against the monstrous motorway today. Manama's old city pleads against the car honks; this was only the most natural way it could've organically developed for centuries."]
+    "As one walks through its streets, you can easily fall into its spell of inevitability. Emerging from one alley, thorough-way right back into another alley, alley-turns tuck-in between bakery ovens and modest tailoring shops, effortlessly guiding you towards a seafront that’s no longer there. A few times a year, these sleepy alleys fill to the brim in a crescendo of mourners and rejoicers of the many ethnicities and beliefs that make their home here. The annual marches lead you on well-trodden loops along curved streets. The city gently breathes in and out this constant flow of pedestrians as if its every step was carefully and painstakingly constructed to accommodate life in its quietest nights and its loudest days. This is the natural ebb and flow of the once port-city now engulfed in concrete. Manama is a sleepy city, built-up over centuries, to accommodate many lifestyles as they bustled to and from the port and from the rest of the island on foot or donkey. As Manama gently carries you through its arteries, it’s hard not to hear the disharmony of its roads and alleys slam against the monstrous motorway today. Manama's old city pleads against the car honks; this was only the most natural way it could've organically developed for centuries."]
    [:iframe {:width "711" :height "400" :src "https://www.youtube-nocookie.com/embed/kcEjewNdHyo?si=_uk_7nYsGVJo8wpL" :title "YouTube video player" :frameborder "0" :allow "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" :referrerpolicy "strict-origin-when-cross-origin" :allowfullscreen true}]
    [:p
     {}
@@ -63,15 +64,11 @@
    [:p
     {}
     "While it’s unclear when contact between the Bahraini state and Fairey Surveys began, it’s safe to assume that, much like other British protectorates and colonies, it would’ve been facilitated by the British Political Agency in Bahrain as the state transitioned into an independent state. One can extrapolate off the process that led to the hiring of a town planner in 1968:"]
-   [:blockquote
-    {}
-    [:p
-     {}
-     " There was no government agency for Master Planning or Structural Planning. There was no qualified Town Planner in the Government or indeed in the country. The Government requested the services of a qualified Town Planner from the British Government and the British Ministry of Overseas Development sent Mr. A.M. Munro as Physical Planning Advisor to the Government of Bahrain in 1968. Mr. Munro was a qualified and well experienced Town planner. Before coming to Bahrain he worked in Malaysia and several other foreign countries as an Advisor of British Ministry of Overseas Development. "]
-    [:p {}]]
-   [:p
-    {}
-    "(The History of Land Use and Development in Bahrain, Mohammed Noor Al-Nabi, 2012)"]
+   [:p.quote
+    [:blockquote.content
+        {:style {:margin "1rem" :padding "1rem" :background-color "#efefef"}}
+        " There was no government agency for Master Planning or Structural Planning. There was no qualified Town Planner in the Government or indeed in the country. The Government requested the services of a qualified Town Planner from the British Government and the British Ministry of Overseas Development sent Mr. A.M. Munro as Physical Planning Advisor to the Government of Bahrain in 1968. Mr. Munro was a qualified and well experienced Town planner. Before coming to Bahrain he worked in Malaysia and several other foreign countries as an Advisor of British Ministry of Overseas Development. "]
+    [:em {:style {:display :block :text-align :right :margin-right "1rem"}} "(The History of Land Use and Development in Bahrain, Mohammed Noor Al-Nabi, 2012)"]]
    [:p
     {}
     "Prior to Fairey Surveys 1977 maps, the most recent maps of Bahrain had last been issued by the British Ministry of Defence in 1973 and various British governmental apparatus. It serves as no surprise that the transition into post-independence would continue to involve many of the same British figures, norms, and bodies that existed pre-independence."]
@@ -136,7 +133,7 @@
     {} "DISCLAIMER: "
     [:em
      {}
-     "I do not work for any official state bodies. Given that there exists little information available to the public, I can only speculate and make an informed guesses to extrapolate based off known information."]]
+     "I do not work for any official state bodies. Given that there exists little information available to the public, I can only speculate and make informed guesses to extrapolate based off known information."]]
    [:p {:style {:margin :auto :text-align :center}}
     [:h3 [:strong "Missing Maps"]]
     [:table.table {:style {:margin :auto}}
@@ -149,6 +146,10 @@
        [:td "1:10,000"]
        [:td "All except sheets (73, 94)"]
        [:td "1 (1977)"]]
+      [:tr
+       [:td ""]
+       [:td "73 and all of Hawar"]
+       [:td "2 (1985)"]]
       [:tr
        [:td ""]
        [:td "All"]
