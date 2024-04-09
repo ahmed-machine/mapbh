@@ -1,12 +1,18 @@
 (ns app.pages.articles.index
-  (:require [app.pages.articles.posts.wadi :as wadi]))
+  (:require [app.pages.articles.posts.wadi :as wadi]
+            [app.pages.articles.posts.fairey :as fairey]))
 
 (def entries
   [{:en-title "Wadi AlBuhair"
     :ar-title "وادي البحير"
     :date #inst "2022-06-06T17:53:59.000Z"
     :route "wadi"
-    :ns app.pages.articles.posts.wadi}])
+    :ns app.pages.articles.posts.wadi}
+   {:en-title "Fairey Surveys - history of modern map-making in Bahrain"
+    :ar-title "فايري سورڤيز - صناع خرائط البحرين الحديثة"
+    :date #inst "2024-04-09T20:53:59.000Z"
+    :route "fairey"
+    :ns app.pages.articles.posts.fairey}])
 
 (defn en []
   [:div.container.articles
