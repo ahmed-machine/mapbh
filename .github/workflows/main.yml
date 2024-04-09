@@ -16,6 +16,7 @@ jobs:
           username: ${{ secrets.LINODE_USERNAME }}
           key: ${{ secrets.LINODE_SSHKEY }}
           port: ${{ secrets.LINODE_PORT }}
+          password: ""
           script: |
             cd /mnt/maps/mapbh; git stash; git pull; git lfs fetch --all; git lfs pull; npm install; shadow-cljs release release; cp -TR public/ /var/www/openmaps/; systemctl restart tileserver-gl;
       - name: Purge cache
