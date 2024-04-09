@@ -32,9 +32,9 @@ Translate and warp a map in a UTM Zone 39 map
 `scripts/utm-zone39-translate.sh <input-path-without-extension-type> <top-left-coordinates/bottom-right-coordinates>`
 e.g. `./scripts/utm-zone39-translate.sh "1969.5000.Manama & AlJufayr.1-5" "453000 2901300 456600 2898900"`
 
-## Blog
+## Articles
 
-Lazy blog. I write in Markdown then convert it into hiccup syntax using `markdown-to-hiccup` (included in deps.edn). I then copy paste this into a name space and do a bunch of cleanup.
+Lazy blog. I write in Markdown then convert it into hiccup syntax using `markdown-to-hiccup` (included in deps.edn). I then copy paste this into a name space and do a bunch of cleanup. See `src/app/pages/articles/`.
 
 ```
 bash => clj

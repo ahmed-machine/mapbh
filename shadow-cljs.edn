@@ -14,7 +14,8 @@
  :dependencies [[reagent "0.8.1"]
                 [re-frame "0.10.5"]
                 [bidi "2.1.3"]
-                [kibu/pushy "0.3.8"]]
+                [kibu/pushy "0.3.8"]
+                [markdown-to-hiccup "0.6.2"]]
  :dev-http {1212 "public"}
  :nrepl {:port 3333}
  :source-paths ["src"]}

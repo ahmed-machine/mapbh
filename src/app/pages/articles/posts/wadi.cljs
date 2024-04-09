@@ -1,10 +1,9 @@
-(ns app.pages.blog.wadi
+(ns app.pages.articles.posts.wadi
   (:require [reagent.core :as r]
             [app.routes :as routes]
             [app.events :as events]
-            [app.pages.blog.util :refer [image]]
+            [app.pages.articles.util :refer [image]]
             [re-frame.core :as rf]))
-
 
 (defn en
   []

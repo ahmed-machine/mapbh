@@ -21,11 +21,10 @@
                                :text-align :center}} tagline]
    [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :about)} "About"]
-    [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "Contribute"]
-    [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "Map"]]
+    [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "Contribute"]]
    [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
-    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :blog-index))} "Blog"]
-    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :catalogue))} "Catalogue"]]
+    [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "Map"]
+    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (routes/url-for :article-index)} "Articles"]]
    [:div.content.has-text-centered
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]
@@ -55,11 +54,10 @@
                                 :text-align :center}} ar-tagline]
     [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
      [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :about)} "نبذة"]
-     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "ساهم"]
-     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "الخارطة"]]]
+     [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :contribute)} "ساهم"]]]
    [:nav.navbar.columns.is-centered.is-vcentered {:role "navigation" :style {:padding "1rem"}}
-    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :blog-index))} "مدونة"]
-    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (str (routes/url-for :catalogue))} "Catalogue"]]
+    [:a.navbar-item.column.is-rounded.is-2.is-centered.is-vcentered.button {:href (routes/url-for :article-index)} "مقالات"]
+    [:a.navbar-item.column.button.is-rounded.is-2.is-centered.is-vcentered {:href (routes/url-for :map)} "الخارطة"]]
    [:div.content.has-text-centered {:style {:margin-top "1.1rem"}}
     [:span.icon.home [:a {:style {:color :black}
                           :href "https://twitter.com/map_bh"} [:i.fab.fa-twitter]]]

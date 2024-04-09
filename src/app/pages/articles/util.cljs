@@ -1,4 +1,4 @@
-(ns app.pages.blog.util)
+(ns app.pages.articles.util)
 
 (defn image
   [src alt caption]

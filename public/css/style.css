@@ -1,10 +1,9 @@
-
 body {
     padding: 0;
     margin: 0;
 }
 #mapid {
-    height: 100%;
+    height: 100vh;
     width:  100vw;
 }
 #map-history {overflow-y: hidden;}
@@ -36,7 +35,6 @@ p.logo:hover { color: #DA291C !important;}
 .navbar-end {
     align-items: stretch;
     display: flex;
-    padding: 0;
     overflow: hidden !important;
     box-shadow: none !important;
 }
@@ -60,19 +58,21 @@ p.logo:hover { color: #DA291C !important;}
 @media screen and (min-width: 1024px){
     .image {margin: 2rem 8rem !important;
             text-align: center;}
-    .about p, .contribute p {margin: 1rem 4.5rem;
-                             text-indent: 1.5em;
-                             line-height: 1.75em;}
-    .about h1, .contribute h1 {margin: 2rem 4.5rem;}
+    .about p, .contribute p, .articles ul {margin: 1rem 4.5rem;
+                                           text-indent: 1.5em;
+                                           line-height: 1.75em;}
+    .articles ul {margin: 1rem 6.5rem;}
+    .about h1, .contribute h1, .articles h1 {margin: 2rem 4.5rem;}
 }
 
 @media screen and (max-width: 1024px){
     .image {margin: 2rem 0.5rem !important;
             text-align: center;}
-    .about p, .contribute p {margin: 1rem 1.5rem;
-                             text-indent: 1.5em;
-                             line-height: 1.75em;}
-    .about h1, .contribute h1 {margin: 2rem 1.5rem;}
+    .about p, .contribute p, .articles ul {margin: 1rem .5rem;
+                                           text-indent: 1.5em;
+                                           line-height: 1.75em;}
+    .articles ul {margin: 1rem .5rem;}
+    .about h1, .contribute h1, .articles h1 {margin: 2rem 1.5rem;}
 }
 
 .description-text {max-height: 10rem;
@@ -86,7 +86,10 @@ p.logo:hover { color: #DA291C !important;}
 .home .navbar .button {height: 3em;}
 .home .navbar .button:hover { color: #DA291C !important;}
 
-.blog h1 {font-size: 120%; font-weight: bold;}
+/* article styles */
+
+.articles ul {list-style:disclosure-closed;}
+.articles {padding-bottom: 3rem;}
 
 @media screen and (min-width: 400px){
     .home .navbar .navbar-item{margin: 0 1.5rem;}
