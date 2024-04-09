@@ -5,20 +5,7 @@
             [app.events :as events]
             [app.model :as model]))
 
-(def routes ["/" {"wadi" {"" :blog-wadi ;; To be deprecated
-                          ["/" :language] :blog-wadi}
-                  [:language "/"] {""           :home
-                                   "about"      :about
-                                   "dialects"   :dialects
-                                   "map"        :map
-                                   "contribute" :contribute
-                                   "catalogue"  :catalogue}
-                  ["blog/" :language] {"" :blog-index
-                                       "/" {"wadi" :blog-wadi
-                                            "fairey" :blog-fairey}}}])
-
-(defn- parse-url [url]
-  (bidi/match-route routes url))
+(def url-for (fn [route] (bidi/path-for model/routes route :language @(rf/subscribe [::model/language]))))
 
 (defn- dispatch-route [matched-route]
   (let [panel-name (keyword (str (name (:handler matched-route))))
@@ -26,7 +13,8 @@
     (rf/dispatch [::events/set-language language])
     (rf/dispatch [::events/set-active-panel panel-name])))
 
-(defn app-routes []
-  (pushy/start! (pushy/pushy dispatch-route parse-url)))
+(def history
+  (pushy/pushy dispatch-route (partial bidi/match-route model/routes)))
 
-(def url-for (fn [route] (bidi/path-for routes route :language (or @(rf/subscribe [::model/language]) "ar"))))
+(defn app-routes []
+  (pushy/start! history))

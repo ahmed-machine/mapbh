@@ -232,7 +232,7 @@
           (sbs-init-map state*)))
       :render
       (fn []
-        (let [arabic? (= "ar" @language*)]
+        (let [arabic? (= :ar @language*)]
           [:div#map-history {:style {:overflow-y :none}}
            [map-container]
            [modal-button state* arabic?]

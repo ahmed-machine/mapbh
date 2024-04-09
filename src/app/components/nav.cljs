@@ -13,6 +13,7 @@
    [:div.navbar-menu.is-active {:style {:font-size "0.8em"}}
     [:div.navbar-start.is-vcentered
      [:a.navbar-item {:href (routes/url-for :about)} "About"]
+     [:a.navbar-item {:href (routes/url-for :article-index)} "Articles"]
      [:a.navbar-item {:href (routes/url-for :contribute)} "Contribute"]
      [:a.navbar-item {:href (routes/url-for :map)} "Map"]
      [:a.navbar-item {:style {:font-family "Amiri, Scheherazade, serif" :display :flex :align-items :center}
@@ -31,9 +32,16 @@
      [:a.navbar-item {:style {:font-family "Roboto, Helvetica, san serif" :font-size "0.8em" :display :flex :align-items :center}
                       :on-click #(rf/dispatch [::events/set-language "en"])} "English"]
      [:a.navbar-item {:href (routes/url-for :about)} "نبذة"]
+     [:a.navbar-item {:href (routes/url-for :article-index)} "مقالات"]
      [:a.navbar-item {:href (routes/url-for :contribute)} "ساهم"]
      [:a.navbar-item {:href (routes/url-for :map)} "الخارطة"]]]])
 
+(defn top
+  [language]
+  (condp = language
+    :ar [top-ar]
+    :en [top-en]
+    [top-ar]))
 
 (defn footer-en
   []
@@ -60,3 +68,10 @@
                       :href "mailto:mapbh.org@gmail.com"} [:i.fas.fa-envelope]]]
      [:span.icon [:a {:style {:color :black}
                       :href "https://instagram.com/map_bh"} [:i.fab.fa-instagram]]]]])
+
+(defn footer
+  [language]
+  (condp = language
+    :ar [footer-ar]
+    :en [footer-en]
+    [footer-ar]))
