@@ -37,24 +37,24 @@
         txt (:description (text details ar-details arabic?))]
     [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr")}
      [:div.modal-content
-      [:p.panel-block (:title-header txt) ": "
+      [:p.panel-block [:strong (:title-header txt)] ": "
        (:title txt)]
-      [:div.panel-block (:scale-header txt) ": " (:scale txt)]
+      [:div.panel-block [:strong (:scale-header txt)] ": " (:scale txt)]
       (when (:description txt)
         [:p.panel-block.description-text
          (:description txt)])
       [:p.panel-block.description-text
-       (:notes-header txt) ": " (:notes txt)]
+       [:strong (:notes-header txt)] ": " (:notes txt)]
       [:a {:href (:source-link details) :style {:color "#DA291C"}}
-       [:div.panel-block {:style {:color "#DA291C"}} (:source-header txt) ": " (:source txt) " - "
+       [:div.panel-block {:style {:color "#DA291C"}} [:strong (:source-header txt)] ": " (:source txt) " - "
         [:span.icon.home [:i.fas.fa-download]] "(georectified)"]]
       (when (:issuer txt)
         [:a {:href (:issuer-link txt)}
          [:div.panel-block {:style {:color "#DA291C" :padding-bottom "10px"}}
-          (:issuer-header txt) ": " (str " " (:issuer txt)) " - "
+          [:strong (:issuer-header txt)] ": " (str " " (:issuer txt)) " - "
           [:span.icon.home [:i.fas.fa-download]] "(original)"]])
       (when (:submitted-by txt)
-        [:div.panel-block {:style {:padding-bottom "10px"}} (:submitter-header txt) ": "
+        [:div.panel-block {:style {:padding-bottom "10px"}} [:strong (:submitter-header txt)] ": "
          (if (:submitted-by-url details)
            [:a {:href (:submitted-by-url txt)}
             (str " " (:submitted-by txt))]
@@ -66,7 +66,7 @@
 
 (defn map-container
   []
-  [:div#mapid {:style {:height (str "calc(" js/window.screen.availHeight "px - 10rem)")}}])
+  [:div#mapid {:style {:height (str "calc(" js/window.screen.availHeight "px - 10.75rem)")}}])
 
 (defn get-layer
   [state*]

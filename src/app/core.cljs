@@ -40,9 +40,9 @@
         ap       (rf/subscribe [::model/active-panel])]
     (fn []
       [:<>
-       (if (= @ap :home) nil [nav/top @language])
+       (if (some #{@ap} `(:home)) nil [nav/top @language])
        [panels  @ap @language]
-       (if (= @ap :home) nil [nav/footer @language])])))
+       (if (some #{@ap} `(:map :home)) nil [nav/footer @language])])))
 
 
 (defn ^:dev/after-load render
