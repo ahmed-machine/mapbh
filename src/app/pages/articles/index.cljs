@@ -15,4 +15,9 @@
                  [:li [:a {:href (str (:route entry))} (:en-title entry)]
                   " — " (.toLocaleDateString (:date entry))]))])
 
-(defn ar [] (en))
+(defn ar []
+  [:div.container.articles {:dir "rtl" :lang "ar" :style {:font-size "125%"}}
+   [:h1.title "مقالات"]
+   (into [:ul] (for [entry entries]
+                 [:li [:a {:href (str (:route entry))} (:ar-title entry)]
+                  " — " (.toLocaleDateString (:date entry))]))])
