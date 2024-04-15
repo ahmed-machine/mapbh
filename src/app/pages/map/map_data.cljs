@@ -351,7 +351,7 @@
                            :scale "1:50,000"
                            :issuer "Unknown"
                            :issuer-link "/maps/1977.50k.zip"
-                           :opts (merge base-opts {:minNativeZoom 8
+                           :opts (merge base-opts {:minNativeZoom 11
                                                    :maxNativeZoom 17
                                                    :opacity 0.8})}
    "1985 - Bahrain (10k)" {:title "State of Bahrain - 1985"
@@ -363,8 +363,8 @@
                            :scale "1:10,000"
                            :issuer "Ministry of Information, Bahrain"
                            :issuer-link "/maps/1985-Bahrain.10k.zip"
-                           :opts (merge base-opts {:minNativeZoom 8
-                                                   :maxNativeZoom 16
+                           :opts (merge base-opts {:minNativeZoom 13
+                                                   :maxNativeZoom 19
                                                    :opacity 0.8})}
   "1986 - Bahrain (50k)" {:title "State of Bahrain - 1986"
                            :url (form-tile-url "1986-Bahrain.50k")
