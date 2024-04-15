@@ -8,7 +8,7 @@
     :date #inst "2022-06-06T17:53:59.000Z"
     :route "wadi"
     :ns app.pages.articles.posts.wadi}
-   {:en-title "Fairey Surveys - history of modern map-making in Bahrain"
+   {:en-title "Fairey Surveys — history of modern map-making in Bahrain"
     :ar-title "فايري سورڤيز - صناع خرائط البحرين الحديثة"
     :date #inst "2024-04-09T20:53:59.000Z"
     :route "fairey"
