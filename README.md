@@ -52,3 +52,8 @@ We use `tileserver-gl` from MapTiler to host our processed tiles. To see maps lo
 #### Usage
 
 `tileserver-gl -c tile-config.json`
+
+
+### The really big maps
+
+Uploading 60gb and storing it somewhere costs money and github caps out at 2gb files. Those files are transferred directly to the server with `scp -r ~/bigmaps/ user@hostname:bigmaps/` then symlinked `ln -s ./* /mnt/maps/mapbh/public/maps/`

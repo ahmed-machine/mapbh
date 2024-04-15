@@ -52,10 +52,16 @@ p.logo:hover { color: #DA291C !important;}
     margin-left: auto;
 }
 
-
 .home.icon {padding: 0% 5%;}
 
+iframe.video {
+    aspect-ratio: 16 / 9;
+    width: 100% !important;
+}
+
 @media screen and (min-width: 1024px){
+    .container {padding: 0 4rem;}
+    iframe.video {padding:0 10rem;}
     .image {margin: 2rem 8rem !important;
             text-align: center;}
     .about p, .contribute p, .articles ul {margin: 1rem 4.5rem;
@@ -66,6 +72,7 @@ p.logo:hover { color: #DA291C !important;}
 }
 
 @media screen and (max-width: 1024px){
+    .container {padding: 0 1rem;}
     .image {margin: 2rem 0.5rem !important;
             text-align: center;}
     .about p, .contribute p, .articles ul {margin: 1rem .5rem;
