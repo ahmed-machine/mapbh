@@ -66,7 +66,7 @@
 
 (defn map-container
   []
-  [:div#mapid {:style {:height (str "calc(" js/window.screen.availHeight "px - 10.75rem)")}}])
+  [:div#mapid {:style {:height (str "calc(" js/window.screen.availHeight "px - 10rem)")}}])
 
 (defn get-layer
   [state*]
