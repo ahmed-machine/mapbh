@@ -1,4 +1,4 @@
-# MapBH ![Deploy](https://github.com/AHAAAAAAA/mapbh/workflows/Deploy/badge.svg)
+# mapBH ![Deploy](https://github.com/AHAAAAAAA/mapbh/workflows/Deploy/badge.svg)
 
 Minimal frontend with set of tools to explore old maps of Bahrain and interface with warped/rectified maps hosted on our tile server.
 
