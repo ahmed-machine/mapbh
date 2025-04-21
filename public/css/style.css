@@ -8,10 +8,6 @@ body {
 }
 #map-history {overflow-y: hidden;}
 
-:lang(ar) 	{
-    font-family: "Amiri", "Scheherazade", serif;
-}
-
 .navbar-item {text-align: center;},
 a.navbar-item:hover {color: green!important;}
 
@@ -95,8 +91,22 @@ iframe.video {
 
 /* article styles */
 
-.articles ul {list-style:disclosure-closed;}
+.articles ul {list-style: disclosure-closed;}
 .articles {padding-bottom: 3rem;}
+
+.about .title {text-align: center;}
+.about h1.title {font-size: 3rem;}
+.about h4.title {font-size: 2rem;}
+
+/* about */
+.about h1.title:lang(ar), .about h4.title:lang(ar) {font-family: "Amiri", "Scheherazade", serif;}
+
+.about h1.title:lang(en), .about h4.title:lang(en) {font-family: "Crimson Text", serif;
+                                                    font-weight: 400;
+                                                    font-style: normal;}
+
+:lang(ar) {font-family: "Amiri", "Scheherazade", serif;}
+
 
 @media screen and (min-width: 400px){
     .home .navbar .navbar-item{margin: 0 1.5rem;}
