@@ -17,7 +17,7 @@
 
 
 (defn ar []
-  [:div.container.contribute {:dir "rtl" :lang "ar" :style {:font-size "125%"}}
+  [:div.container.contribute {:dir "rtl" :lang "ar" :style {:font-size "1.4rem"}}
    [:h1.title "المساهمة في المشروع"]
    [:p "نرحب بجميع المساهمات! الموقع ومجموعة البيانات " [:a {:href "https://github.com/AHAAAAAAA/mapbh"} "مفتوح المصدر و مجاني."] " الاحتياجات الحالية تتمحور حول إضافة أكبر عدد ممكن من الخرائط، وهذا يتضمن العمل التالي:"]
    [:ul {:style {:margin "2% 12%"}}

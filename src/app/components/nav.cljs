@@ -26,6 +26,7 @@
    [:div.navbar-brand
     [:a.nav-logo.is-vcentered {:href (routes/url-for :home)}
      [:p.column.logo {:style {:color :black
+                              :font-family "Comfortaa"
                               :z-index 2}} "mapBH"]]]
    [:div.navbar-menu.is-active {:style {:font-size "1.1em"}}
     [:div.navbar-end
