@@ -8,7 +8,8 @@
 (defn en
   []
   [:div.container.about
-   [:h1.title "Wadi AlBuhair - a valley awaits a small victory"]
+   [:h1.title "Wadi AlBuhair:"]
+   [:h4.title "A valley awaits a small victory"]
    [:button.button.is-clickable.is-rounded.is-info.is-light
     {:style {:margin-left "4.5rem"}
      :on-click #(rf/dispatch [::events/set-language "ar"])} "اقرأ باللغة العربية"]
@@ -46,7 +47,7 @@
 
 (defn ar
   []
-  [:div.container.about  {:dir "rtl" :lang "ar" :style {:font-size "115%"}}
+  [:div.container.about  {:dir "rtl" :lang "ar" :style {:font-size "1.4rem"}}
    [:h1.title "وادي البحير — ينتظر انتصار رغم كثرة أنصاره"]
    [:button.button.is-clickable.is-rounded.is-info.is-light
     {:style {:margin-right "4.5rem"}
