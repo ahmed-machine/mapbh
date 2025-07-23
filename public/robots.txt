@@ -1,3 +1,52 @@
-User-agent: googlebot
+# Robots.txt for mapBH - Historical Maps of Bahrain
+# Website: https://mapbh.org
+
+# Allow all crawlers by default
+User-agent: *
+
+# Disallow large map tile files to prevent bandwidth abuse
 Disallow: /maps/
-Sitemap: http://example.com/sitemap.xml
+Disallow: /public/maps/
+
+# Disallow temporary or cache directories if they exist
+Disallow: /tmp/
+Disallow: /cache/
+
+# Allow access to important content
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /img/
+
+# Block access to development and configuration files
+Disallow: /.git
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /*.edn$
+Disallow: /*.json$
+Disallow: /shadow-cljs.edn
+
+# Specific rules for different crawlers
+User-agent: Googlebot
+# Allow Google to crawl everything except maps
+Disallow: /maps/
+
+User-agent: Bingbot
+# Allow Bing to crawl everything except maps
+Disallow: /maps/
+
+# Block aggressive crawlers and scrapers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Crawl delay to prevent server overload
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://mapbh.org/sitemap.xml
