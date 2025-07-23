@@ -22,47 +22,71 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "703452750a5d4facb9914c1fbbe5fc46"}'></script>
-    <!-- Styles -->
-    <link rel="stylesheet" href="/css/slider.css" type="text/css">
-    <link rel="stylesheet" href="/css/leaflet.groupedlayercontrol.css" type="text/css">
-    <link rel="stylesheet" href="/css/leaflet.css" />
-    <link rel="stylesheet" href="/css/Control.Geocoder.css" />
-    <link rel="stylesheet" href="/css/L.Control.Locate.min.css" />
+    <!-- Critical CSS first -->
     <link rel="stylesheet" href="/css/bulma.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <!-- Fonts-->
-    <script src="/js/669ffff4fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Preload critical fonts with font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400&display=swap" rel="stylesheet">
+    
+    <!-- Preload main JS -->
+    <link rel="modulepreload" href="/js/main.js">
+    
+    <!-- Load CSS synchronously to avoid styling issues -->
+    <link rel="stylesheet" href="/css/leaflet.css" type="text/css">
+    <link rel="stylesheet" href="/css/slider.css" type="text/css">
+    <link rel="stylesheet" href="/css/leaflet.groupedlayercontrol.css" type="text/css">
+    <link rel="stylesheet" href="/css/Control.Geocoder.css" type="text/css">
+    <link rel="stylesheet" href="/css/L.Control.Locate.min.css" type="text/css">
+    
+    <!-- Load all fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome - load asynchronously -->
+    <script async src="/js/669ffff4fe.js" crossorigin="anonymous"></script>
 
     <title>mapBH</title>
 
   </head>
   <body class="has-navbar-fixed-top">
     <div id="app"></div>
-    <!-- Leaflet library -->
+    <!-- Preload critical Leaflet library -->
+    <link rel="preload" href="/js/leaflet.js" as="script">
     <script src="/js/leaflet.js" type="text/javascript"></script>
-    <!-- Side by Side mode, modified -->
+    
+    <!-- Load scripts that depend on Leaflet synchronously but after Leaflet -->
     <script src="/js/leaflet-side-by-side.js" type="text/javascript"></script>
-    <!-- Download Button, LeafletExport modified-->
-    <script src="/js/dom-to-image.min.js" type="text/javascript"></script>
-    <script src="/js/LeafletExport.js" type="text/javascript"></script>
-    <!-- Map switcher -->
     <script src="/js/leaflet.groupedlayercontrol.js" type="text/javascript"></script>
-    <!-- Locate button -->
     <script src="/js/Control.Geocoder.js" type="text/javascript"></script>
     <script src="/js/L.Control.Locate.min.js" charset="utf-8" type="text/javascript"></script>
+    
+    <!-- Load independent scripts asynchronously -->
+    <script async src="/js/dom-to-image.min.js" type="text/javascript"></script>
+    <script async src="/js/LeafletExport.js" type="text/javascript"></script>
+    
+    <!-- Load main JS after page loads -->
     <script>
-      window.onload = function(){
-        var scriptElement=document.createElement('script');
+      window.addEventListener('load', function(){
+        var scriptElement = document.createElement('script');
         scriptElement.type = 'text/javascript';
         scriptElement.src = "/js/main.js";
         document.head.appendChild(scriptElement);
-      }
+      });
     </script>
+    
+    <!-- Noscript fallback for CSS -->
+    <noscript>
+      <link rel="stylesheet" href="/css/leaflet.css">
+      <link rel="stylesheet" href="/css/slider.css">
+      <link rel="stylesheet" href="/css/leaflet.groupedlayercontrol.css">
+      <link rel="stylesheet" href="/css/Control.Geocoder.css">
+      <link rel="stylesheet" href="/css/L.Control.Locate.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
+    </noscript>
     <noscript>You need to enable JavaScript to run this app.</noscript>
   </body>
 </html>
