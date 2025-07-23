@@ -1,18 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <!-- Social Media OpenGraph -->
-    <meta property="og:title" content="mapBH">
-    <meta property="og:description" content="A visualization of Bahrain through historic maps.">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>mapBH - Historical Maps of Bahrain | Interactive Map Archive</title>
+    <meta name="title" content="mapBH - Historical Maps of Bahrain | Interactive Map Archive">
+    <meta name="description" content="Explore Bahrain's history through interactive historical maps from the 19th century onwards. Discover urban development, land reclamation, green belt, and geographical changes over time.">
+    <meta name="keywords" content="Bahrain historical maps, historical cartography, Bahrain geography, land reclamation, urban development, Middle East history, interactive maps, GIS Bahrain, historical research, Arabian Gulf maps">
+    <meta name="author" content="mapBH">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://mapbh.org/">
+
+    <!-- Language and Geo Meta Tags -->
+    <meta name="language" content="English">
+    <meta name="geo.region" content="BH">
+    <meta name="geo.placename" content="Bahrain">
+    <meta name="geo.position" content="26.0667;50.5577">
+    <meta name="ICBM" content="26.0667, 50.5577">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="mapBH - Historical Maps of Bahrain | Interactive Map Archive">
+    <meta property="og:description" content="Explore Bahrain's history through interactive historical maps from the 19th century onwards. Discover urban development, land reclamation, green belt, and geographical changes over time.">
     <meta property="og:url" content="https://mapbh.org/">
-    <meta property="og:image" content="https://www.mapbh.org/img/ogbrand.png">
-    <meta name="description" content="Visualization of historic maps of Bahrain.">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://www.mapbh.org/img/ogbrand.png"/>
-    <meta name="twitter:site" content="@map_bh" />
-    <meta name="twitter:creator" content="@waishda"/>
+    <meta property="og:image" content="https://mapbh.org/img/ogbrand.png">
+    <meta property="og:image:alt" content="mapBH - Historical Maps of Bahrain showing urban development over time">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="mapBH">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="mapBH - Historical Maps of Bahrain | Interactive Map Archive">
+    <meta name="twitter:description" content="Explore Bahrain's history through interactive historical maps from the 19th century onwards. Discover urban development, land reclamation, green belt, and geographical changes over time.">
+    <meta name="twitter:image" content="https://mapbh.org/img/ogbrand.png">
+    <meta name="twitter:image:alt" content="mapBH - Historical Maps of Bahrain">
+    <meta name="twitter:site" content="@map_bh">
+    <meta name="twitter:creator" content="@waishda">
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -20,53 +47,206 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "mapBH - Historical Maps of Bahrain",
+      "alternateName": "mapBH",
+      "url": "https://mapbh.org",
+      "description": "Interactive historical maps archive showcasing Bahrain's urban development and geographical changes from the 19th century onwards.",
+      "author": {
+        "@type": "Organization",
+        "name": "mapBH",
+        "url": "https://mapbh.org"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "mapBH",
+        "url": "https://mapbh.org",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mapbh.org/img/ogbrand.png"
+        }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mapbh.org/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "about": [
+        {
+          "@type": "Place",
+          "name": "Bahrain",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 26.0667,
+            "longitude": 50.5577
+          }
+        }
+      ],
+      "keywords": "historical maps, Bahrain, cartography, urban development, land reclamation, GIS, interactive maps, Middle East history",
+      "inLanguage": "en",
+      "copyrightYear": "2025",
+      "dateModified": "2025-07-23"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Dataset",
+      "name": "Historical Maps of Bahrain Collection",
+      "description": "Explore Bahrain's history through interactive historical maps from the 19th century onwards. Discover urban development, land reclamation, green belt, and geographical changes over time.",
+      "url": "https://mapbh.org",
+      "keywords": [
+        "Bahrain historical maps",
+        "land reclamation",
+        "urban development",
+        "Middle East cartography",
+        "GIS data",
+        "historical geography"
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "mapBH"
+      },
+      "spatialCoverage": {
+        "@type": "Place",
+        "name": "Kingdom of Bahrain",
+        "geo": {
+          "@type": "GeoShape",
+          "box": "25.5 50.0 26.5 51.0"
+        }
+      },
+      "temporalCoverage": "1914/2030",
+      "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "application/geo+json",
+        "contentUrl": "https://mapbh.org"
+      },
+      "license": "https://creativecommons.org/licenses/by-nc/4.0/"
+    }
+    </script>
+
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "703452750a5d4facb9914c1fbbe5fc46"}'></script>
     <!-- Critical CSS first -->
     <link rel="stylesheet" href="/css/bulma.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
-    
+
     <!-- Preload critical fonts with font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400&display=swap" rel="stylesheet">
-    
+
     <!-- Preload main JS -->
     <link rel="modulepreload" href="/js/main.js">
-    
+
     <!-- Load CSS synchronously to avoid styling issues -->
     <link rel="stylesheet" href="/css/leaflet.css" type="text/css">
     <link rel="stylesheet" href="/css/slider.css" type="text/css">
     <link rel="stylesheet" href="/css/leaflet.groupedlayercontrol.css" type="text/css">
     <link rel="stylesheet" href="/css/Control.Geocoder.css" type="text/css">
     <link rel="stylesheet" href="/css/L.Control.Locate.min.css" type="text/css">
-    
+
     <!-- Load all fonts with display=swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome - load asynchronously -->
     <script async src="/js/669ffff4fe.js" crossorigin="anonymous"></script>
 
-    <title>mapBH</title>
+    <!-- Additional SEO and Performance Meta Tags -->
+    <meta name="theme-color" content="#3273dc">
+    <meta name="msapplication-TileColor" content="#3273dc">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/css/bulma.min.css" as="style">
+    <link rel="preload" href="/css/style.css" as="style">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <!-- Accessibility CSS -->
+    <style>
+      .sr-only {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+      .sr-only-focusable:focus {
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        padding: 0.25rem 0.5rem !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        clip: auto !important;
+        white-space: normal !important;
+        background-color: #3273dc !important;
+        color: white !important;
+        text-decoration: none !important;
+        z-index: 10000 !important;
+      }
+    </style>
 
   </head>
   <body class="has-navbar-fixed-top">
-    <div id="app"></div>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+    <!-- Main application container with semantic structure -->
+    <header role="banner">
+      <!-- Navigation will be inserted here by React/ClojureScript -->
+    </header>
+
+    <main id="main-content" role="main" aria-label="Historical maps of Bahrain interactive application">
+      <div id="app">
+        <!-- Loading message for SEO and accessibility -->
+        <noscript>
+          <div class="container">
+            <h1>mapBH - Historical Maps of Bahrain</h1>
+            <p>This interactive map application showcases the historical development of Bahrain from 1914 to 2030.
+               Please enable JavaScript to view the interactive maps and explore Bahrain's fascinating geographical evolution.</p>
+            <p>Features include:</p>
+            <ul>
+              <li>Interactive historical maps from 1914-2030</li>
+              <li>Land reclamation visualization</li>
+              <li>Urban development tracking</li>
+              <li>Side-by-side map comparison</li>
+              <li>Transparency controls for overlay analysis</li>
+            </ul>
+          </div>
+        </noscript>
+      </div>
+    </main>
+
+    <footer role="contentinfo">
+      <!-- Footer content will be inserted here by React/ClojureScript -->
+    </footer>
     <!-- Preload critical Leaflet library -->
     <link rel="preload" href="/js/leaflet.js" as="script">
     <script src="/js/leaflet.js" type="text/javascript"></script>
-    
+
     <!-- Load scripts that depend on Leaflet synchronously but after Leaflet -->
     <script src="/js/leaflet-side-by-side.js" type="text/javascript"></script>
     <script src="/js/leaflet.groupedlayercontrol.js" type="text/javascript"></script>
     <script src="/js/Control.Geocoder.js" type="text/javascript"></script>
     <script src="/js/L.Control.Locate.min.js" charset="utf-8" type="text/javascript"></script>
-    
+
     <!-- Load independent scripts asynchronously -->
     <script async src="/js/dom-to-image.min.js" type="text/javascript"></script>
     <script async src="/js/LeafletExport.js" type="text/javascript"></script>
-    
+
     <!-- Load main JS after page loads -->
     <script>
       window.addEventListener('load', function(){
@@ -76,7 +256,7 @@
         document.head.appendChild(scriptElement);
       });
     </script>
-    
+
     <!-- Noscript fallback for CSS -->
     <noscript>
       <link rel="stylesheet" href="/css/leaflet.css">
