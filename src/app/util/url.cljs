@@ -68,27 +68,19 @@
   (parse-float-with-bounds transparency-str 0 1))
 
 (defn url-decode-map-id
-  "URL decode and validate map ID"
+  "URL decode and validate map ID, handling double-encoding from mobile browsers"
   [map-id-str]
   (when map-id-str
     (try
-      ;; Handle double-encoded URLs (like from Android browsers)
-      ;; "1985%2520-%2520Bahrain%2520(10k)" should become "1985 - Bahrain (10k)"
       (let [decoded-once (js/decodeURIComponent map-id-str)]
-        (.log js/console "Map ID decoding - original:" map-id-str "first decode:" decoded-once)
-        ;; Check if it's still encoded (contains %)
+        ;; Check if it's still encoded (contains %) and decode again
         (if (and decoded-once (.includes decoded-once "%"))
           (try
-            (let [decoded-twice (js/decodeURIComponent decoded-once)]
-              (.log js/console "Map ID decoding - second decode:" decoded-twice)
-              decoded-twice)
+            (js/decodeURIComponent decoded-once)
             (catch js/Error _
-              (.log js/console "Map ID decoding - second decode failed, using first")
               decoded-once))
           decoded-once))
-      (catch js/Error e
-        (.warn js/console "Map ID decoding failed:" e "original:" map-id-str)
-        ;; If all else fails, return the original string
+      (catch js/Error _
         map-id-str))))
 
 (defn url-encode-map-id
@@ -115,7 +107,7 @@
   (try
     (let [params (get-query-params)]
       (if (empty? params)
-        {} ; Return empty map if no URL params, let component use its defaults
+        {}
         (let [coords (parse-coords (:coords params))
               [lat lng] (or coords [(:lat default-map-state) (:lng default-map-state)])
               zoom (or (parse-zoom (:zoom params)) (:zoom default-map-state))
