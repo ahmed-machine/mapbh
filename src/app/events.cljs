@@ -18,6 +18,24 @@
     (catch js/Error _
       :home)))
 
+(defn ^:private filter-relevant-params
+  "Filter query parameters to only include map-related ones"
+  [search-string]
+  (when (and search-string (not (empty? search-string)))
+    (let [params-str (if (.startsWith search-string "?")
+                       (.substring search-string 1)
+                       search-string)
+          relevant-params #{"map" "coords" "zoom" "mode" "base" "transparency"}]
+      (when (not (empty? params-str))
+        (let [filtered-pairs (->> (.split params-str "&")
+                                  (map #(.split % "="))
+                                  (filter #(= 2 (count %)))
+                                  (filter #(contains? relevant-params (first %))))]
+          (when (seq filtered-pairs)
+            (str "?" (->> filtered-pairs
+                          (map #(.join % "="))
+                          (.join "&")))))))))
+
 (re-frame/reg-event-fx
  ::set-language
  (fn [{:keys [db]} [_ language]]
@@ -27,8 +45,9 @@
          new-db (assoc db :language (keyword language))]
      (try
        (let [current-search (-> js/window .-location .-search)
+             filtered-search (filter-relevant-params current-search)
              new-url (str (bidi/path-for model/routes current-panel :language (keyword language))
-                         current-search)]
+                         (or filtered-search ""))]
          {:db new-db
           :history-push new-url})
        (catch js/Error e
