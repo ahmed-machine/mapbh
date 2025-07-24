@@ -7,6 +7,17 @@
 (def ^:private side-by-side-mode "side-by-side")
 
 
+(defn ^:private decode-form-param
+  "Decode parameter that uses form encoding (+ for spaces) and URL encoding"
+  [param-value]
+  (try
+    ;; Handle form encoding: replace + with spaces, then URL decode
+    (let [plus-decoded (.replaceAll param-value "+" " ")
+          url-decoded (js/decodeURIComponent plus-decoded)]
+      url-decoded)
+    (catch js/Error _
+      param-value)))
+
 (defn get-query-params
   "Parse URL query parameters into a map"
   []
@@ -20,7 +31,7 @@
            (map #(.split % "="))
            (filter #(= 2 (count %)))
            (map (fn [[k v]]
-                  [(keyword k) (js/decodeURIComponent v)]))
+                  [(keyword k) (decode-form-param v)]))
            (into {})))))
 
 (defn set-query-params!
@@ -68,20 +79,10 @@
   (parse-float-with-bounds transparency-str 0 1))
 
 (defn url-decode-map-id
-  "URL decode and validate map ID, handling double-encoding from mobile browsers"
+  "URL decode and validate map ID, handling form encoding"
   [map-id-str]
   (when map-id-str
-    (try
-      (let [decoded-once (js/decodeURIComponent map-id-str)]
-        ;; Check if it's still encoded (contains %) and decode again
-        (if (and decoded-once (.includes decoded-once "%"))
-          (try
-            (js/decodeURIComponent decoded-once)
-            (catch js/Error _
-              decoded-once))
-          decoded-once))
-      (catch js/Error _
-        map-id-str))))
+    (decode-form-param map-id-str)))
 
 (defn url-encode-map-id
   "URL encode map ID for safe inclusion in URL"
