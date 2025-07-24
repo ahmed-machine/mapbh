@@ -26,6 +26,17 @@
                      "Satellite" {:url (str "https://api.mapbox.com/styles/v1/mapbox/" map-id "/tiles/{z}/{x}/{y}?access_token=" (rand-nth access-tokens))
                                   :opts (assoc base-opts :zoomOffset -1)}})
 
+;; Default values for map state used in URL parameters and initialization
+(def default-map-state
+  {:map-id "1956 - Bahrain"
+   :group "Bahrain"
+   :lat 26.05
+   :lng 50.4849414
+   :zoom 10.3
+   :mode "transparency"
+   :base "Satellite"
+   :transparency 0.65})
+
 (def other-layers
   {"1963 - Awali" {:title "Awali"
                    :url (form-tile-url "1963-Awali")
