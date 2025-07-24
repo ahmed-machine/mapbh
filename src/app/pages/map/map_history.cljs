@@ -83,6 +83,19 @@
   [layer v]
   (-> layer (.setOpacity (/ v 100))))
 
+(defn update-url-from-current-state!
+  "Update URL with current map state including position"
+  [map state*]
+  (when map
+    (try
+      (let [center (.getCenter map)
+            zoom (.getZoom map)
+            lat (.-lat center)
+            lng (.-lng center)
+            current-state (merge @state* {:lat lat :lng lng :zoom zoom})]
+        (url/update-url-from-map-state! current-state))
+      (catch js/Error e
+        (.warn js/console "Failed to update URL from map state:" e)))))
 
 (defn transparency-slider
   [state* arabic?]
@@ -105,20 +118,6 @@
   [lat long zoom map]
   (when (and zoom lat long) (.flyTo map (-> js/L (.latLng lat long)) zoom #js {:animate false})))
 
-
-(defn update-url-from-current-state!
-  "Update URL with current map state including position"
-  [map state*]
-  (when map
-    (try
-      (let [center (.getCenter map)
-            zoom (.getZoom map)
-            lat (.-lat center)
-            lng (.-lng center)
-            current-state (merge @state* {:lat lat :lng lng :zoom zoom})]
-        (url/update-url-from-map-state! current-state))
-      (catch js/Error e
-        (.warn js/console "Failed to update URL from map state:" e)))))
 
 (defn base-layer-change
   [map state*]
