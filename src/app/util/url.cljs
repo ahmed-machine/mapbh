@@ -72,9 +72,24 @@
   [map-id-str]
   (when map-id-str
     (try
-      (js/decodeURIComponent map-id-str)
+      ;; Handle double-encoded URLs (like from Android browsers)
+      ;; "1985%2520-%2520Bahrain%2520(10k)" should become "1985 - Bahrain (10k)"
+      (let [decoded-once (js/decodeURIComponent map-id-str)]
+        (.log js/console "Map ID decoding - original:" map-id-str "first decode:" decoded-once)
+        ;; Check if it's still encoded (contains %)
+        (if (and decoded-once (.includes decoded-once "%"))
+          (try
+            (let [decoded-twice (js/decodeURIComponent decoded-once)]
+              (.log js/console "Map ID decoding - second decode:" decoded-twice)
+              decoded-twice)
+            (catch js/Error _
+              (.log js/console "Map ID decoding - second decode failed, using first")
+              decoded-once))
+          decoded-once))
       (catch js/Error e
-        nil))))
+        (.warn js/console "Map ID decoding failed:" e "original:" map-id-str)
+        ;; If all else fails, return the original string
+        map-id-str))))
 
 (defn url-encode-map-id
   "URL encode map ID for safe inclusion in URL"
