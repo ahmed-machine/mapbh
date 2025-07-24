@@ -2,7 +2,8 @@
   (:require [re-frame.core :as rf]
             [reagent.core :as reagent]
             [app.model :as model]
-            [app.pages.map.map-data :refer [layers ar-layers base-satellite]]))
+            [app.pages.map.map-data :refer [layers ar-layers base-satellite default-map-state]]
+            [app.util.url :as url]))
 
 
 (defn text
@@ -87,7 +88,12 @@
                                                            :width "120px"
                                                            :z-index 998}
                                                           (if arabic? {:left "12px"} {:right "12px"}))
-               :on-change (fn [e v] (update-transparency layer (.. e -target -value)))
+               :on-change (fn [e v]
+                            (let [new-transparency (/ (.. e -target -value) 100)]
+                              (update-transparency layer (.. e -target -value))
+                              (swap! state* assoc :transparency new-transparency)
+                              ;; Update URL when transparency changes
+                              (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 100)))
                :class (str "slider " (:selected @state*)) :step 1 :min 0 :max 100 :default-value (* transparency 100) :type "range"}])))
 
 
@@ -96,17 +102,37 @@
   (when (and zoom lat long) (.flyTo map (-> js/L (.latLng lat long)) zoom #js {:animate false})))
 
 
+(defn update-url-from-current-state!
+  "Update URL with current map state including position"
+  [map state*]
+  (when map
+    (try
+      (let [center (.getCenter map)
+            zoom (.getZoom map)
+            lat (.-lat center)
+            lng (.-lng center)
+            current-state (merge @state* {:lat lat :lng lng :zoom zoom})]
+        (url/update-url-from-map-state! current-state))
+      (catch js/Error e
+        (.warn js/console "Failed to update URL from map state:" e)))))
+
 (defn base-layer-change
   [map state*]
   (.on map "overlayadd" (fn [layer]
                           (let [gname (-> layer js->clj (get "group") (get "name"))
                                 lname (-> layer js->clj (get "name"))]
                             (when (and (not= lname "Terrain") (not= lname "Satellite"))
-                              (swap! state* assoc :selected [gname lname])))))
+                              (swap! state* assoc :selected [gname lname])
+                              ;; Update URL when layer changes
+                              (js/setTimeout #(when map (update-url-from-current-state! map state*)) 100)))))
   (.on map "baselayerchange" (fn [layer]
                                (let [lname (-> layer js->clj (get "name"))]
                                  (when (or (= lname "Terrain") (= lname "Satellite"))
-                                   (swap! state* assoc :base (get (js->clj layer) "name"))))))
+                                   (swap! state* assoc :base (get (js->clj layer) "name"))
+                                   ;; Update URL when base layer changes
+                                   (js/setTimeout #(when map (update-url-from-current-state! map state*)) 100)))))
+  ;; Update URL when map is moved or zoomed
+  (.on map "moveend" (fn [] (when map (update-url-from-current-state! map state*))))
   nil)
 
 
@@ -132,13 +158,22 @@
                                          (sort-by first)
                                          (into (sorted-map))))
         overlay-layers (->> layers (map (fn [[k v]] [k (process-layers v)])) (into (sorted-map)))
-        {:keys [zoom lat long]} @state*
+        {:keys [zoom lat lng]} @state*
+        ;; Use coordinates from state (which may come from URL params) or defaults
+        init-lat (or lat (:lat default-map-state))
+        init-lng (or lng (:lng default-map-state))
+        init-zoom (or zoom (:zoom default-map-state))
         map (-> js/L (.map "mapid" (clj->js {:maxBounds (-> js/L (.latLngBounds (-> js/L (.latLng 25.5 50))
                                                                                 (-> js/L (.latLng 26.5 51))))}))
 
-                (.setView #js [26.05 50.4849414] 10.3))
-        base (-> base-layers (get (:base @state*)))
-        selected (get-in overlay-layers (:selected @state*))]
+                (.setView #js [init-lat init-lng] init-zoom))
+        base (or (-> base-layers (get (:base @state*)))
+                 (-> base-layers (get (:base default-map-state)))  ; fallback to default
+                 (first (vals base-layers)))        ; ultimate fallback
+        selected (or (get-in overlay-layers (:selected @state*))
+                    (get-in overlay-layers [(:group default-map-state) (:map-id default-map-state)])  ; fallback
+                    (first (vals (first (vals overlay-layers)))))        ; ultimate fallback
+        ]
     ;; Add all layers in control
     (-> js/L .-control (.groupedLayers (clj->js base-layers)
                                        (clj->js overlay-layers)
@@ -157,13 +192,21 @@
      ;; Register handlers to update state with new layer so other components can pull the data
     (when map (base-layer-change map state*))
 
-    ;; Zoom to location
-    (pan-map lat long zoom map)
+    ;; Zoom to location (pan-map expects lat lng zoom map)
+    (pan-map init-lat init-lng init-zoom map)
 
     ;; Add Base
-    (when map (-> map (.addLayer base)))
+    (when (and map base)
+      (try
+        (-> map (.addLayer base))
+        (catch js/Error e
+          (.error js/console "Failed to add base layer:" e base))))
     ;; Add pre-selected default map
-    (when map (-> map (.addLayer selected)))
+    (when (and map selected)
+      (try
+        (-> map (.addLayer selected))
+        (catch js/Error e
+          (.error js/console "Failed to add selected layer:" e selected))))
     ;; Store state
     (swap! state* assoc :layers overlay-layers :map map)
 
@@ -198,12 +241,16 @@
       :on-click (fn []
                   (let [zoom-level (.getZoom map)
                         {:keys [lat lng]} (js->clj (.getCenter map) :keywordize-keys true)]
-                    (swap! state* assoc :zoom zoom-level :lat lat :long lng)
+                    (swap! state* assoc :zoom zoom-level :lat lat :lng lng)
                     (if (= mode "transparency")
                       (do (swap! state* assoc :mode "side-by-side" :transparency 1.0)
-                          (sbs-init-map state*))
+                          (sbs-init-map state*)
+                          ;; Update URL after mode change
+                          (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200))
                       (do (swap! state* assoc :mode "transparency")
-                          (transparency-init-map state*)))))}
+                          (transparency-init-map state*)
+                          ;; Update URL after mode change
+                          (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200)))))}
      (if (= mode "transparency") (:split txt) (:transparency txt))]))
 
 (defn modal-button
@@ -218,15 +265,24 @@
 
 
 (defn historical-map []
-  (let [state* (reagent/atom {:selected ["Bahrain" "1956 - Bahrain"]
-                              :mode "transparency"
-                              :base "Satellite"
-                              :show-description? false
-                              :transparency 0.65})
+  (let [;; Start with safe defaults, URL parsing will happen in component-did-mount
+        initial-state (merge {:show-description? false
+                             :selected [(:group default-map-state) (:map-id default-map-state)]}
+                            (dissoc default-map-state :group :map-id))
+        state* (reagent/atom initial-state)
         language* (rf/subscribe [::model/language])]
     (reagent/create-class
      {:component-did-mount
       (fn [] ;; Setup Map
+        ;; Parse URL parameters and update state safely after component mount
+        (try
+          (let [url-state (url/parse-url-params layers)]
+            (when (seq url-state)
+              (swap! state* merge url-state)))
+          (catch js/Error e
+            (.warn js/console "Failed to parse URL parameters:" e)))
+
+        ;; Initialize map with current state
         (if (= "transparency" (:mode @state*))
           (transparency-init-map state*)
           (sbs-init-map state*)))
