@@ -1,7 +1,8 @@
 (ns app.events
   (:require [re-frame.core :as re-frame]
              [app.model :as model]
-             [bidi.bidi :as bidi]))
+             [bidi.bidi :as bidi]
+             [clojure.string :as str]))
 
 (re-frame/reg-event-db
  ::set-active-panel
@@ -33,8 +34,8 @@
                                   (filter #(contains? relevant-params (first %))))]
           (when (seq filtered-pairs)
             (str "?" (->> filtered-pairs
-                          (map #(.join % "="))
-                          (.join "&")))))))))
+                          (map #(str/join "=" %))
+                          (str/join "&")))))))))
 
 (re-frame/reg-event-fx
  ::set-language
