@@ -5,6 +5,10 @@
             [app.pages.map.map-data :refer [layers ar-layers base-satellite default-map-state]]
             [app.util.url :as url]))
 
+;; Constants
+(def ^:private transparency-mode "transparency")
+(def ^:private side-by-side-mode "side-by-side")
+
 
 (defn text
   [details ar-details arabic?]
@@ -205,6 +209,9 @@
     (when (and map selected)
       (try
         (-> map (.addLayer selected))
+        ;; Apply transparency from state if it exists
+        (when-let [transparency (:transparency @state*)]
+          (.setOpacity selected transparency))
         (catch js/Error e
           (.error js/console "Failed to add selected layer:" e selected))))
     ;; Store state
@@ -212,7 +219,7 @@
 
     {:base-layers base-layers
      :overlay-layers overlay-layers
-     :zoom zoom :lat lat :long long
+     :zoom zoom :lat lat :lng lng
      :map map
      :base base
      :selected selected}))
@@ -242,16 +249,16 @@
                   (let [zoom-level (.getZoom map)
                         {:keys [lat lng]} (js->clj (.getCenter map) :keywordize-keys true)]
                     (swap! state* assoc :zoom zoom-level :lat lat :lng lng)
-                    (if (= mode "transparency")
-                      (do (swap! state* assoc :mode "side-by-side" :transparency 1.0)
+                    (if (= mode transparency-mode)
+                      (do (swap! state* assoc :mode side-by-side-mode :transparency 1.0)
                           (sbs-init-map state*)
                           ;; Update URL after mode change
                           (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200))
-                      (do (swap! state* assoc :mode "transparency")
+                      (do (swap! state* assoc :mode transparency-mode :transparency 0.65)
                           (transparency-init-map state*)
                           ;; Update URL after mode change
                           (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200)))))}
-     (if (= mode "transparency") (:split txt) (:transparency txt))]))
+     (if (= mode transparency-mode) (:split txt) (:transparency txt))]))
 
 (defn modal-button
   [state* arabic?]
@@ -283,7 +290,7 @@
             (.warn js/console "Failed to parse URL parameters:" e)))
 
         ;; Initialize map with current state
-        (if (= "transparency" (:mode @state*))
+        (if (= transparency-mode (:mode @state*))
           (transparency-init-map state*)
           (sbs-init-map state*)))
       :render
@@ -294,5 +301,5 @@
            [modal-button state* arabic?]
            [modal-description state* arabic?]
            [switch-mode state* arabic?]
-           (when (= "transparency" (:mode @state*)) [download-button state*])
-           (when (= "transparency" (:mode @state*)) [transparency-slider state* arabic?])]))})))
+           (when (= transparency-mode (:mode @state*)) [download-button state*])
+           (when (= transparency-mode (:mode @state*)) [transparency-slider state* arabic?])]))})))
