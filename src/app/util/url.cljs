@@ -2,6 +2,10 @@
   "URL parameter utilities for shareable map links"
   (:require [app.pages.map.map-data :refer [default-map-state]]))
 
+;; Constants
+(def ^:private coordinate-precision 5)
+(def ^:private side-by-side-mode "side-by-side")
+
 
 (defn get-query-params
   "Parse URL query parameters into a map"
@@ -22,8 +26,7 @@
 (defn set-query-params!
   "Update URL query parameters without page reload"
   [params]
-  (let [search-params (js/URLSearchParams.)
-        current-url (-> js/window .-location .-href)]
+  (let [search-params (js/URLSearchParams.)]
     (doseq [[k v] params]
       (when (some? v)
         (.set search-params (name k) (str v))))
@@ -43,27 +46,26 @@
       (catch js/Error e
         nil))))
 
+(defn ^:private parse-float-with-bounds
+  "Parse a string to float with bounds checking"
+  [s min-val max-val]
+  (when s
+    (try
+      (let [val (js/parseFloat s)]
+        (when (and (not (js/isNaN val)) (>= val min-val) (<= val max-val))
+          val))
+      (catch js/Error e
+        nil))))
+
 (defn parse-zoom
   "Parse zoom level string to number"
   [zoom-str]
-  (when zoom-str
-    (try
-      (let [zoom (js/parseFloat zoom-str)]
-        (when (and (not (js/isNaN zoom)) (>= zoom 0) (<= zoom 20))
-          zoom))
-      (catch js/Error e
-        nil))))
+  (parse-float-with-bounds zoom-str 0 20))
 
 (defn parse-transparency
   "Parse transparency value string to number between 0 and 1"
   [transparency-str]
-  (when transparency-str
-    (try
-      (let [transparency (js/parseFloat transparency-str)]
-        (when (and (not (js/isNaN transparency)) (>= transparency 0) (<= transparency 1))
-          transparency))
-      (catch js/Error e
-        nil))))
+  (parse-float-with-bounds transparency-str 0 1))
 
 (defn url-decode-map-id
   "URL decode and validate map ID"
@@ -133,19 +135,20 @@
   [state]
   (let [{:keys [selected lat lng zoom mode base transparency]} state
         [group map-id] selected
-        ;; Truncate lat/lng to 6 decimal places for cleaner URLs
-        truncated-lat (truncate-decimal lat 5)
-        truncated-lng (truncate-decimal lng 5)]
+        ;; Truncate lat/lng for cleaner URLs
+        truncated-lat (truncate-decimal lat coordinate-precision)
+        truncated-lng (truncate-decimal lng coordinate-precision)]
     (cond-> {}
       map-id (assoc :map (url-encode-map-id map-id))
       (and truncated-lat truncated-lng) (assoc :coords (str truncated-lat "," truncated-lng))
       zoom (assoc :zoom zoom)
       (not= mode (:mode default-map-state)) (assoc :mode mode)
       base (assoc :base base)
-      (not= transparency (:transparency default-map-state)) (assoc :transparency transparency))))
+      (and transparency (not= mode side-by-side-mode)) (assoc :transparency transparency))))
 
 (defn update-url-from-map-state!
   "Update browser URL with current map state"
   [state]
   (let [params (serialize-map-state state)]
     (set-query-params! params)))
+
