@@ -145,6 +145,10 @@
     <!-- Preload critical fonts with font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical logo font to prevent flash -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/comfortaa/v45/1Pt_g8LJRfWJmhDAuUsSQamb1W0lwk4S4WjMDrMfIA.woff2" as="font" type="font/woff2" crossorigin>
+    
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400&display=swap" rel="stylesheet">
 
     <!-- Preload main JS -->
@@ -158,7 +162,7 @@
     <link rel="stylesheet" href="/css/L.Control.Locate.min.css" type="text/css">
 
     <!-- Load all fonts with display=swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=fallback" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400&display=swap" rel="stylesheet">
 
     <!-- Font Awesome - load asynchronously -->
@@ -176,8 +180,16 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
-    <!-- Accessibility CSS -->
+    <!-- Critical CSS for logo to prevent font flash -->
     <style>
+      /* Preload critical logo styles to prevent flash */
+      .logo {
+        font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 1.25em;
+        font-display: fallback;
+      }
+      
+      /* Accessibility CSS */
       .sr-only {
         position: absolute !important;
         width: 1px !important;
