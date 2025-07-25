@@ -20,8 +20,8 @@
       [:div.primary-button-container
        [:a.navbar-item.button.is-primary {:href (routes/url-for :map)} "Explore Maps"]]
       [:div.secondary-buttons-container
-       [:a.navbar-item.button {:href (routes/url-for :article-index)} "Articles"]
        [:a.navbar-item.button {:href (routes/url-for :about)} "About"]
+       [:a.navbar-item.button {:href (routes/url-for :article-index)} "Articles"]
        [:a.navbar-item.button {:href (routes/url-for :contribute)} "Contribute"]]]]]
    [:div.footer-content
     [:div.content.has-text-centered {:style {:margin-top "var(--spacing-md)"}}
@@ -57,8 +57,8 @@
       [:div.primary-button-container
        [:a.navbar-item.button.is-primary {:href (routes/url-for :map)} "استكشف الخرائط"]]
       [:div.secondary-buttons-container
-       [:a.navbar-item.button {:href (routes/url-for :article-index)} "مقالات"]
        [:a.navbar-item.button {:href (routes/url-for :about)} "نبذة عن المشروع"]
+       [:a.navbar-item.button {:href (routes/url-for :article-index)} "مقالات"]
        [:a.navbar-item.button {:href (routes/url-for :contribute)} "ساهم"]]]]]
    [:div.footer-content
     [:div.content.has-text-centered {:style {:margin-top "var(--spacing-md)"}}
