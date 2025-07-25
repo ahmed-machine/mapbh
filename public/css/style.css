@@ -84,7 +84,10 @@ a.navbar-item:hover {color: green!important;}
     margin-left: auto;
 }
 
-.home.icon {padding: 0% 5%;}
+.home .icon.home {
+    display: inline-block;
+    padding: 0% 2%;
+}
 
 iframe.video {
     aspect-ratio: 16 / 9;
@@ -207,14 +210,14 @@ iframe.video {
         justify-content: space-between;
     }
 
-    /* Center the main content with 15% offset */
+    /* Center the main content with 10% offset */
     .home .main-content {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         flex: 1;
-        margin-top: 15vh;
+        margin-top: 10vh;
     }
 
     /* Keep footer content at bottom */
@@ -236,54 +239,49 @@ iframe.video {
     gap: var(--spacing-lg);
 }
 
-/* Homepage header section */
+/* Homepage content layout */
+.home .has-text-centered,
+.home .navbar .navbar-menu,
+.home .primary-button-container,
+.home .secondary-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .home .has-text-centered {
-    display: block;
+    flex-direction: column;
     text-align: center;
     margin-bottom: var(--spacing-lg);
 }
 
-.home .has-text-centered .logo {
-    display: block;
-    margin: 0 auto var(--spacing-xs);
-}
-
-.home .has-text-centered p {
-    display: block;
-    margin: 0 auto;
-}
+.footer-content .content {flex-direction: row;}
 
 .home .navbar .navbar-menu {
-    display: flex;
     flex-direction: column;
-    align-items: center;
     gap: var(--spacing-md);
     max-width: 600px;
     margin: 0 auto;
 }
 
 .home .primary-button-container {
-    display: flex;
-    justify-content: center;
     width: 100%;
 }
 
 .home .secondary-buttons-container {
-    display: flex;
     flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+/* Enhanced social icons */
+.home .content.has-text-centered {
+    display: flex;
     justify-content: center;
     align-items: center;
     gap: var(--spacing-sm);
 }
 
-.home .navbar .navbar-item {
-    margin: 0;
-    flex: 0 0 auto;
-}
-
-/* Enhanced social icons */
-.home .icon {
-    padding: var(--spacing-xs);
+.home .icon.home {
     transition: var(--transition-smooth);
     border-radius: 50%;
     border: 2px solid transparent;
@@ -331,13 +329,8 @@ iframe.video {
 }
 
 @media screen and (min-width: 551px) and (max-width: 1024px) {
-    .home .secondary-buttons-container {
-        max-width: 500px;
-    }
-
-    .home .navbar .button {
-        min-width: 120px;
-    }
+    .home .secondary-buttons-container { max-width: 500px; }
+    .home .navbar .button { min-width: 120px; }
 }
 
 /* Description Modal */
