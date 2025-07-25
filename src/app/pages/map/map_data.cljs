@@ -30,8 +30,8 @@
 (def default-map-state
   {:map-id "1956 - Bahrain"
    :group "Bahrain"
-   :lat 26.05
-   :lng 50.4849414
+   :lat 26.045
+   :lng 50.54603
    :zoom 10.3
    :mode "transparency"
    :base "Satellite"
