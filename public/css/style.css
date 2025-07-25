@@ -200,7 +200,7 @@ iframe.video {
 }
 
 /* Ensure centering on wide screens */
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 551px) {
     .home .container {
         max-width: 1000px;
         margin: 0 auto;
@@ -304,7 +304,7 @@ iframe.video {
 }
 
 /* Responsive Design Improvements */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 550px) {
     .home .secondary-buttons-container {
         flex-direction: column;
         gap: var(--spacing-sm);
@@ -330,7 +330,7 @@ iframe.video {
     }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+@media screen and (min-width: 551px) and (max-width: 1024px) {
     .home .secondary-buttons-container {
         max-width: 500px;
     }
