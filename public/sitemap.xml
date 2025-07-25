@@ -1,16 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-
+<!-- Homepage - English and Arabic -->
 <url>
   <loc>https://mapbh.org/</loc>
-  <lastmod>2021-01-17T00:45:03+00:00</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
 </url>
 
+<url>
+  <loc>https://mapbh.org/ar/</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
+</url>
+
+<!-- Map page - Primary feature -->
+<url>
+  <loc>https://mapbh.org/map</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/map" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/map" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://mapbh.org/ar/map</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/map" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/map" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
+</url>
+
+<!-- About page -->
+<url>
+  <loc>https://mapbh.org/about</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/about" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/about" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<url>
+  <loc>https://mapbh.org/ar/about</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/about" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/about" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>
+
+<!-- Articles index -->
+<url>
+  <loc>https://mapbh.org/articles/</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/articles/" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/articles/" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://mapbh.org/ar/articles/</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/articles/" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/articles/" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<!-- Wadi AlBuhair Article -->
+<url>
+  <loc>https://mapbh.org/articles/wadi</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/articles/wadi" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/articles/wadi" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<url>
+  <loc>https://mapbh.org/ar/articles/wadi</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/articles/wadi" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/articles/wadi" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<!-- Fairey Surveys Article -->
+<url>
+  <loc>https://mapbh.org/articles/fairey</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/articles/fairey" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/articles/fairey" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<url>
+  <loc>https://mapbh.org/ar/articles/fairey</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/articles/fairey" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/articles/fairey" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.6</priority>
+</url>
+
+<!-- Contribute page -->
+<url>
+  <loc>https://mapbh.org/contribute</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/contribute" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/contribute" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://mapbh.org/ar/contribute</loc>
+  <xhtml:link rel="alternate" hreflang="en" href="https://mapbh.org/contribute" />
+  <xhtml:link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/contribute" />
+  <lastmod>2025-07-25T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.5</priority>
+</url>
 
 </urlset>
