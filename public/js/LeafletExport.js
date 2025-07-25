@@ -45,8 +45,9 @@ class LeafletExporter {
         for (let tileLayer of this.tileLayers) {
             for (let tile of Object.values(tileLayer.tileImages)) {
                 this.ctx.globalAlpha = tile.opacity;
-                this.ctx.drawImage(tile.img, tile.x, tile.y,
-                                    tileLayer.tileSize, tileLayer.tileSize)
+                // Scale tiles up if they're from a lower zoom level
+                const drawSize = tileLayer.tileSize * tileLayer.scaleFactor;
+                this.ctx.drawImage(tile.img, tile.x, tile.y, drawSize, drawSize);
             }
         }
         for (let path of Object.values(this.path)) {
@@ -94,6 +95,7 @@ class LeafletExporter {
 
     async _FetchLayers() {
         let promises = []
+        
         this.map.eachLayer(layer => {
             let promise
             try {
@@ -122,6 +124,7 @@ class LeafletExporter {
             }
             promises.push(promise)
         });
+        
         return await Promise.all(promises)
     }
 
@@ -154,7 +157,6 @@ class LeafletExporter {
                     resolve()
                 }
                 image.onerror = () => {
-                    console.warn(`Marker image loading failed: ${url}`)
                     resolve()
                 }
             })
@@ -165,12 +167,30 @@ class LeafletExporter {
 
     async _FetchTileLayer(layer) {
         const tileSize = layer._tileSize.x
+        
+        // Use appropriate zoom level - respect layer's min/maxNativeZoom
+        const minNativeZoom = layer.options?.minNativeZoom || 0;
+        const maxNativeZoom = layer.options?.maxNativeZoom || 20;
+        const effectiveZoom = Math.max(minNativeZoom, Math.min(this.zoom, maxNativeZoom));
+        
+        // Calculate bounds at the effective zoom level
+        const zoomDifference = this.zoom - effectiveZoom;
+        const scaleFactor = Math.pow(2, zoomDifference);
+        
+        // Calculate bounds at the effective zoom level
+        const effectiveBounds = zoomDifference !== 0 
+            ? this._calculateScaledBounds(scaleFactor)
+            : this.bounds;
+        
         const tileLayer = {
             tiles: [],
             tileSize,
-            tileBounds: L.bounds(this.bounds.min.divideBy(tileSize)._floor(),
-                                 this.bounds.max.divideBy(tileSize)._floor()),
-            tileImages: []
+            tileBounds: L.bounds(effectiveBounds.min.divideBy(tileSize)._floor(),
+                                 effectiveBounds.max.divideBy(tileSize)._floor()),
+            tileImages: [],
+            layerUrl: layer._url,
+            effectiveZoom: effectiveZoom,
+            scaleFactor: scaleFactor
         }
         this.tileLayers.push(tileLayer)
 
@@ -180,6 +200,7 @@ class LeafletExporter {
             }
         }
 
+        
         let promises = []
         tileLayer.tiles.forEach(tilePoint => {
             let originalTilePoint = tilePoint.clone()
@@ -187,17 +208,33 @@ class LeafletExporter {
                 layer._adjustTilePoint(tilePoint)
             }
 
-            let tilePos = originalTilePoint.scaleBy(
-                new L.Point(tileLayer.tileSize, tileLayer.tileSize)).subtract(this.bounds.min)
+            // Calculate tile position accounting for zoom difference
+            const basePos = originalTilePoint.scaleBy(new L.Point(tileLayer.tileSize, tileLayer.tileSize));
+            const tilePos = tileLayer.scaleFactor !== 1
+                ? basePos.scaleBy(new L.Point(tileLayer.scaleFactor, tileLayer.scaleFactor)).subtract(this.bounds.min)
+                : basePos.subtract(this.bounds.min);
 
             if (tilePoint.y < 0) {
                 return
             }
 
-            promises.push(this._FetchTile(tilePoint, tilePos, layer, tileLayer))
+            promises.push(this._FetchTile(tilePoint, tilePos, layer, tileLayer, effectiveZoom))
         })
 
-        return await Promise.all(promises)
+        return await Promise.all(promises);
+    }
+
+    _calculateScaledBounds(scaleFactor) {
+        // Calculate bounds that cover the same geographic area when scaled
+        const centerX = (this.bounds.min.x + this.bounds.max.x) / 2;
+        const centerY = (this.bounds.min.y + this.bounds.max.y) / 2;
+        const halfWidth = (this.bounds.max.x - this.bounds.min.x) / 2 / scaleFactor;
+        const halfHeight = (this.bounds.max.y - this.bounds.min.y) / 2 / scaleFactor;
+        
+        return L.bounds(
+            new L.Point(centerX / scaleFactor - halfWidth, centerY / scaleFactor - halfHeight),
+            new L.Point(centerX / scaleFactor + halfWidth, centerY / scaleFactor + halfHeight)
+        );
     }
 
     _FetchPathLayer(layer) {
@@ -227,18 +264,36 @@ class LeafletExporter {
         }
     }
 
-    async _FetchTile(tilePoint, tilePos, layer, tileLayer) {
+    async _FetchTile(tilePoint, tilePos, layer, tileLayer, effectiveZoom) {
         let image = new Image()
         image.crossOrigin = "Anonymous"
         let url
-        /* I have this non-documented method in a custom tile layer implementation. */
+        // Get tile URL using effective zoom if different from current zoom
         if (layer.getTileUrlAsync) {
-            url = await layer.getTileUrlAsync(tilePoint)
+            url = await layer.getTileUrlAsync(tilePoint);
+        } else if (effectiveZoom !== this.zoom) {
+            url = layer._url.replace('{z}', effectiveZoom)
+                           .replace('{x}', tilePoint.x)
+                           .replace('{y}', tilePoint.y);
         } else {
-            url = layer.getTileUrl(tilePoint)
+            url = layer.getTileUrl(tilePoint);
         }
         let promise = new Promise(resolve => {
+            let loaded = false;
+            
+            // Add timeout for tile loading (10 seconds)
+            const timeout = setTimeout(() => {
+                if (!loaded) {
+                    loaded = true;
+                    resolve()
+                }
+            }, 10000);
+            
             image.onload = () => {
+                if (loaded) return;
+                loaded = true;
+                clearTimeout(timeout);
+                
                 let promise
                 if (layer.transformTileImage) {
                     promise = layer.transformTileImage(image)
@@ -247,19 +302,26 @@ class LeafletExporter {
                 }
                 promise.then(() => {
 
+                    // Get opacity with fallbacks for different Leaflet versions
+                    const currentOpacity = layer.options.opacity ?? layer._opacity ?? 1.0;
+                    
                     tileLayer.tileImages.push({
                         img: image,
                         x: tilePos.x,
                         y: tilePos.y,
-                        opacity: layer.options.opacity.toString()})
+                        opacity: currentOpacity})
                     resolve()
 
                 }).catch(error => {
-                    console.warn("Tile image transformation failed: " + error)
                     resolve()
                 })
             }
-            image.onerror = () => {resolve()}
+            image.onerror = () => {
+                if (loaded) return;
+                loaded = true;
+                clearTimeout(timeout);
+                resolve()
+            }
         })
         image.src = url
         await promise
