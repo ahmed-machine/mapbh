@@ -1,6 +1,31 @@
+/* CSS Custom Properties for Design System */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #DA291C;
+    --background-light: #fafafa;
+    --text-color: #2c3e50;
+    --text-muted: #7f8c8d;
+    --border-radius: 8px;
+    --border-radius-large: 12px;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+    --transition-fast: all 0.2s ease;
+    --transition-smooth: all 0.3s ease;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
+
 body {
     padding: 0;
     margin: 0;
+    background-color: white;
+    color: var(--text-color);
+    line-height: 1.6;
 }
 #mapid {
     height: 100vh;
@@ -18,9 +43,20 @@ a.navbar-item:hover {color: green!important;}
     height: 36px;
 }
 
-p.logo:hover { color: #DA291C !important;}
+/* Enhanced Logo Styling */
+.logo {
+    font-family: 'Crimson Text', 'Comfortaa', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    transition: var(--transition-smooth);
+    color: var(--primary-color);
+}
 
-.logo {font-family: 'Comfortaa', Roboto; font-size: 1.25em;}
+.logo:hover, p.logo:hover, h1.logo:hover {
+    color: var(--accent-color) !important;
+    transform: translateY(-1px);
+}
 .navbar-item {
     display: flex;
 }
@@ -48,7 +84,10 @@ p.logo:hover { color: #DA291C !important;}
     margin-left: auto;
 }
 
-.home.icon {padding: 0% 5%;}
+.home .icon.home {
+    display: inline-block;
+    padding: 0% 2%;
+}
 
 iframe.video {
     aspect-ratio: 16 / 9;
@@ -86,8 +125,53 @@ iframe.video {
 
 .panel-block {display: inline-block !important;}
 
-.home .navbar .button {height: 3em;}
-.home .navbar .button:hover { color: #DA291C !important;}
+/* Enhanced Homepage Button Styling */
+.home .navbar .button {
+    height: 3.5rem;
+    min-width: 9rem;
+    border-radius: var(--border-radius);
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+    font-weight: 500;
+    font-size: 1rem;
+    background: white;
+    color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.home .navbar .button:hover {
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.home .navbar .button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Primary button variant for key actions */
+.home .navbar .button.is-primary {
+    background: #2d5016;
+    color: white;
+    border-color: #2d5016;
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-width: 12rem;
+    height: 4rem;
+    box-shadow: var(--shadow-md);
+}
+
+.home .navbar .button.is-primary:hover {
+    background: #1e3510;
+    border-color: #1e3510;
+    color: white !important;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+}
 
 /* article styles */
 
@@ -108,8 +192,145 @@ iframe.video {
 :lang(ar) {font-family: "Amiri", "Scheherazade", serif;}
 
 
-@media screen and (min-width: 400px){
-    .home .navbar .navbar-item{margin: 0 1.5rem;}
+/* Homepage Layout Improvements */
+.home .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+}
+
+/* Ensure centering on wide screens */
+@media screen and (min-width: 551px) {
+    .home .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+
+    /* Center the main content with 10% offset */
+    .home .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        margin-top: 10vh;
+    }
+
+    /* Keep footer content at bottom */
+    .home .footer-content {
+        margin-top: auto;
+    }
+}
+
+.home .logo {
+    font-size: clamp(3.5rem, 10vw, 6rem) !important;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.home .navbar {
+    background: transparent !important;
+    box-shadow: none !important;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Homepage content layout */
+.home .has-text-centered,
+.home .navbar .navbar-menu,
+.home .primary-button-container,
+.home .secondary-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home .has-text-centered {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-content .content {flex-direction: row;}
+
+.home .navbar .navbar-menu {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.home .primary-button-container {
+    width: 100%;
+}
+
+.home .secondary-buttons-container {
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+/* Enhanced social icons */
+.home .content.has-text-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.home .icon.home {
+    transition: var(--transition-smooth);
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.home .icon:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color) !important;
+    transform: scale(1.1);
+}
+
+/* Language switch button styling */
+.home .button.language-switch {
+    font-size: 1rem !important;
+    padding: 0.75rem 1.5rem !important;
+    min-width: 8rem;
+    height: 3rem;
+}
+
+/* Responsive Design Improvements */
+@media screen and (max-width: 550px) {
+    .home .secondary-buttons-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        width: 100%;
+    }
+
+    .home .navbar .button {
+        width: 100%;
+        min-width: 150px;
+        height: 3rem;
+        font-size: 0.9rem;
+    }
+
+    .home .navbar .button.is-primary {
+        width: 80%;
+        max-width: 250px;
+        height: 3.5rem;
+        font-size: 1rem;
+    }
+
+    .home .logo {
+        font-size: 4rem !important;
+    }
+}
+
+@media screen and (min-width: 551px) and (max-width: 1024px) {
+    .home .secondary-buttons-container { max-width: 500px; }
+    .home .navbar .button { min-width: 120px; }
 }
 
 /* Description Modal */
