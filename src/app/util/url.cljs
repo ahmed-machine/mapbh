@@ -114,11 +114,15 @@
               zoom (or (parse-zoom (:zoom params)) (:zoom default-map-state))
               map-id (url-decode-map-id (:map params))
               selected-layer (or (find-layer-by-map-id map-data map-id)
-                                [(:group default-map-state) (:map-id default-map-state)])
+                                 [(:group default-map-state) (:map-id default-map-state)])
               mode (get params :mode (:mode default-map-state))
-              base (get params :base (:base default-map-state))
+              base-raw (get params :base (:base default-map-state))
+              base (if (and base-raw (string? base-raw) (.startsWith base-raw "pinned-"))
+                     ;; URL decode the base parameter if it's a pinned layer
+                     (js/decodeURIComponent base-raw)
+                     base-raw)
               transparency (or (parse-transparency (:transparency params))
-                              (:transparency default-map-state))]
+                               (:transparency default-map-state))]
           (cond-> {}
             selected-layer (assoc :selected selected-layer)
             lat (assoc :lat lat)
@@ -159,4 +163,3 @@
   [state]
   (let [params (serialize-map-state state)]
     (set-query-params! params)))
-
