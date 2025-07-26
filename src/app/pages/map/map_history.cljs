@@ -190,23 +190,31 @@
                                                                                 (-> js/L (.latLng 26.5 51))))}))
 
                 (.setView #js [init-lat init-lng] init-zoom))
-        base (if-let [pinned-layer (get-pinned-layer state* overlay-layers)]
+        pinned-layer (get-pinned-layer state* overlay-layers)
+        base (if pinned-layer
                pinned-layer  ; Use pinned layer as base
                (or (-> base-layers (get (:base @state*)))
                    (-> base-layers (get (:base default-map-state)))  ; fallback to default
-                   (first (vals base-layers))))        ; ultimate fallback
-        selected (or (get-in overlay-layers (:selected @state*))
-                    (get-in overlay-layers [(:group default-map-state) (:map-id default-map-state)])  ; fallback
-                    (first (vals (first (vals overlay-layers)))))        ; ultimate fallback
+                   (first (vals base-layers))))
+        selected-layer-data (or (get-in overlay-layers (:selected @state*))
+                               (get-in overlay-layers [(:group default-map-state) (:map-id default-map-state)])  ; fallback
+                               (first (vals (first (vals overlay-layers)))))        ; ultimate fallback
+        ;; Create separate layer instance if selected is same as pinned base
+        selected (if (and pinned-layer selected-layer-data (= pinned-layer selected-layer-data))
+                   ;; Create new instance of the same layer for overlay
+                   (let [layer-config (get-in layers (:selected @state*))]
+                     (-> js/L (.tileLayer (:url layer-config) (-> layer-config :opts clj->js))))
+                   selected-layer-data)
         ]
     ;; Add all layers in control
-    (-> js/L .-control (.groupedLayers (clj->js base-layers)
-                                       (clj->js overlay-layers)
-                                       (clj->js {"exclusiveGroups" (keys overlay-layers)
-                                                 "allExclusive" true
-                                                 "groupCheckboxes" false
-                                                 "groupsCollapsible" true}))
-        (.addTo map))
+    (let [all-exclusive (not (boolean pinned-layer))]
+      (-> js/L .-control (.groupedLayers (clj->js base-layers)
+                                         (clj->js overlay-layers)
+                                         (clj->js {"exclusiveGroups" (keys overlay-layers)
+                                                   "allExclusive" all-exclusive
+                                                   "groupCheckboxes" false
+                                                   "groupsCollapsible" true}))
+          (.addTo map)))
 
     ;; Add option to locate user
     (-> js/L .-control (.locate (clj->js {:keepCurrentZoomLevel true
@@ -224,7 +232,7 @@
     (when (and map base)
       (try
         (-> map (.addLayer base))
-        (when (get-pinned-layer state*)
+        (when pinned-layer
           ;; If base is a pinned layer, set opacity to 1.0
           (.setOpacity base 1.0))
         (catch js/Error e
@@ -302,11 +310,11 @@
           current-center (when map (.getCenter map))]
       ;; Store current position in state before reinitializing
       (when (and current-zoom current-center)
-        (swap! state* assoc 
-               :zoom current-zoom 
-               :lat (.-lat current-center) 
+        (swap! state* assoc
+               :zoom current-zoom
+               :lat (.-lat current-center)
                :lng (.-lng current-center)))
-      ;; Store the pinned layer info in base parameter
+      ;; Store the pinned layer info in base parameter and keep selected for overlay
       (swap! state* assoc :base pinned-base-str)
       ;; Reinitialize map to apply pinned base
       (if (= (:mode @state*) transparency-mode)
@@ -321,9 +329,9 @@
         current-center (when map (.getCenter map))]
     ;; Store current position in state before reinitializing
     (when (and current-zoom current-center)
-      (swap! state* assoc 
-             :zoom current-zoom 
-             :lat (.-lat current-center) 
+      (swap! state* assoc
+             :zoom current-zoom
+             :lat (.-lat current-center)
              :lng (.-lng current-center)))
     ;; Revert to default base layer
     (swap! state* assoc :base (:base default-map-state))
