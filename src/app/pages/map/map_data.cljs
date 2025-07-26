@@ -35,7 +35,8 @@
    :zoom 10.3
    :mode "transparency"
    :base "Satellite"
-   :transparency 0.65})
+   :transparency 0.65
+})
 
 (def other-layers
   {"1963 - Awali" {:title "Awali"
