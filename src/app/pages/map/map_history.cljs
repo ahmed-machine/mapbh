@@ -78,6 +78,20 @@
   (if-let [layers (:layers @state*)]
     (get-in layers (:selected  @state*))))
 
+(defn get-pinned-layer
+  "Get the pinned base layer if base is a pinned layer"
+  ([state*] (get-pinned-layer state* nil))
+  ([state* overlay-layers]
+    (let [base (:base @state*)
+          layers (or overlay-layers (:layers @state*))]
+      (when (and base (string? base) (.startsWith base "pinned-"))
+        ;; Extract group and map-id from base string using __ delimiter
+        (let [without-prefix (.substring base 7)  ; Remove "pinned-" prefix
+              delimiter-index (.indexOf without-prefix "__")
+              group (.substring without-prefix 0 delimiter-index)
+              map-id (.substring without-prefix (+ delimiter-index 2))]  ; +2 for __
+          (when layers
+            (get-in layers [group map-id])))))))
 
 (defn update-transparency
   [layer v]
@@ -114,6 +128,7 @@
                :class (str "slider " (:selected @state*)) :step 1 :min 0 :max 100 :default-value (* transparency 100) :type "range"}])))
 
 
+
 (defn pan-map
   [lat long zoom map]
   (when (and zoom lat long) (.flyTo map (-> js/L (.latLng lat long)) zoom #js {:animate false})))
@@ -123,9 +138,13 @@
   [map state*]
   (.on map "overlayadd" (fn [layer]
                           (let [gname (-> layer js->clj (get "group") (get "name"))
-                                lname (-> layer js->clj (get "name"))]
+                                lname (-> layer js->clj (get "name"))
+                                layer-obj (get (js->clj layer) "layer")]
                             (when (and (not= lname "Terrain") (not= lname "Satellite"))
                               (swap! state* assoc :selected [gname lname])
+                              ;; If we have a pinned base, ensure the new overlay appears on top
+                              (when (get-pinned-layer state*)
+                                (.bringToFront layer-obj))
                               ;; Update URL when layer changes
                               (js/setTimeout #(when map (update-url-from-current-state! map state*)) 100)))))
   (.on map "baselayerchange" (fn [layer]
@@ -137,6 +156,7 @@
   ;; Update URL when map is moved or zoomed
   (.on map "moveend" (fn [] (when map (update-url-from-current-state! map state*))))
   nil)
+
 
 
 (defn download-button
@@ -170,21 +190,31 @@
                                                                                 (-> js/L (.latLng 26.5 51))))}))
 
                 (.setView #js [init-lat init-lng] init-zoom))
-        base (or (-> base-layers (get (:base @state*)))
-                 (-> base-layers (get (:base default-map-state)))  ; fallback to default
-                 (first (vals base-layers)))        ; ultimate fallback
-        selected (or (get-in overlay-layers (:selected @state*))
-                    (get-in overlay-layers [(:group default-map-state) (:map-id default-map-state)])  ; fallback
-                    (first (vals (first (vals overlay-layers)))))        ; ultimate fallback
+        pinned-layer (get-pinned-layer state* overlay-layers)
+        base (if pinned-layer
+               pinned-layer  ; Use pinned layer as base
+               (or (-> base-layers (get (:base @state*)))
+                   (-> base-layers (get (:base default-map-state)))  ; fallback to default
+                   (first (vals base-layers))))
+        selected-layer-data (or (get-in overlay-layers (:selected @state*))
+                               (get-in overlay-layers [(:group default-map-state) (:map-id default-map-state)])  ; fallback
+                               (first (vals (first (vals overlay-layers)))))        ; ultimate fallback
+        ;; Create separate layer instance if selected is same as pinned base
+        selected (if (and pinned-layer selected-layer-data (= pinned-layer selected-layer-data))
+                   ;; Create new instance of the same layer for overlay
+                   (let [layer-config (get-in layers (:selected @state*))]
+                     (-> js/L (.tileLayer (:url layer-config) (-> layer-config :opts clj->js))))
+                   selected-layer-data)
         ]
     ;; Add all layers in control
-    (-> js/L .-control (.groupedLayers (clj->js base-layers)
-                                       (clj->js overlay-layers)
-                                       (clj->js {"exclusiveGroups" (keys overlay-layers)
-                                                 "allExclusive" true
-                                                 "groupCheckboxes" false
-                                                 "groupsCollapsible" true}))
-        (.addTo map))
+    (let [all-exclusive (not (boolean pinned-layer))]
+      (-> js/L .-control (.groupedLayers (clj->js base-layers)
+                                         (clj->js overlay-layers)
+                                         (clj->js {"exclusiveGroups" (keys overlay-layers)
+                                                   "allExclusive" all-exclusive
+                                                   "groupCheckboxes" false
+                                                   "groupsCollapsible" true}))
+          (.addTo map)))
 
     ;; Add option to locate user
     (-> js/L .-control (.locate (clj->js {:keepCurrentZoomLevel true
@@ -198,14 +228,19 @@
     ;; Zoom to location (pan-map expects lat lng zoom map)
     (pan-map init-lat init-lng init-zoom map)
 
-    ;; Add Base
+    ;; Add base layer first (which could be standard base or pinned layer)
     (when (and map base)
       (try
         (-> map (.addLayer base))
+        (when pinned-layer
+          ;; If base is a pinned layer, set opacity to 1.0
+          (.setOpacity base 1.0))
         (catch js/Error e
           (.error js/console "Failed to add base layer:" e base))))
-    ;; Add pre-selected default map
-    (when (and map selected)
+
+    ;; Add pre-selected overlay AFTER base layer (only if different from base)
+    ;; This ensures overlay appears on top since Leaflet renders last-added layer on top
+    (when (and map selected (not= selected base))
       (try
         (-> map (.addLayer selected))
         ;; Apply transparency from state if it exists
@@ -224,18 +259,112 @@
      :selected selected}))
 
 
-(defn transparency-init-map
-  [state*]
-  (init-map state*))
-
-
 (defn sbs-init-map
   [state*]
   (let [_  (swap! state* assoc :transparency 1.0)
-        {:keys [map base selected]} (init-map state*)]
+        {:keys [map base selected base-layers]} (init-map state*)
+        is-pinned-base (get-pinned-layer state*)
+        standard-base (or (-> base-layers (get (:base default-map-state)))
+                         (first (vals base-layers)))]
     ;; Create side-by-side mode
-    (-> js/L .-control (.sideBySide base selected) (.addTo map))
-    (.setOpacity selected 1.0)))
+    (cond
+      ;; Case 1: Pinned base + different overlay selected
+      (and is-pinned-base selected (not= selected base))
+      (do
+        (-> js/L .-control (.sideBySide base selected) (.addTo map))
+        (.setOpacity base 1.0)
+        (.setOpacity selected 1.0)
+        ;; Ensure transparency state is set to 1.0
+        (swap! state* assoc :transparency 1.0))
+
+      ;; Case 2: Pinned base but same as selected (or no different overlay)
+      is-pinned-base
+      (do
+        (-> js/L .-control (.sideBySide standard-base base) (.addTo map))
+        (.setOpacity standard-base 1.0)
+        (.setOpacity base 1.0)
+        ;; Ensure transparency state is set to 1.0
+        (swap! state* assoc :transparency 1.0))
+
+      ;; Case 3: No pinned base, standard mode
+      selected
+      (do
+        (-> js/L .-control (.sideBySide base selected) (.addTo map))
+        (.setOpacity base 1.0)
+        (.setOpacity selected 1.0)
+        ;; Ensure transparency state is set to 1.0
+        (swap! state* assoc :transparency 1.0))
+
+      ;; Case 4: Nothing to show
+      :else
+      nil)))
+
+(defn pin-current-as-base
+  "Pin the currently selected overlay as base layer"
+  [state*]
+  (when-let [selected (:selected @state*)]
+    (let [[group map-id] selected
+          pinned-base-str (str "pinned-" group "__" map-id)  ; Use __ as delimiter
+          map (:map @state*)
+          current-zoom (when map (.getZoom map))
+          current-center (when map (.getCenter map))]
+      ;; Store current position in state before reinitializing
+      (when (and current-zoom current-center)
+        (swap! state* assoc
+               :zoom current-zoom
+               :lat (.-lat current-center)
+               :lng (.-lng current-center)))
+      ;; Store the pinned layer info in base parameter and keep selected for overlay
+      (swap! state* assoc :base pinned-base-str)
+      ;; Reinitialize map to apply pinned base
+      (if (= (:mode @state*) transparency-mode)
+        (init-map state*)
+        (sbs-init-map state*)))))
+
+(defn unpin-base
+  "Remove pinned base layer and revert to standard base"
+  [state*]
+  (let [map (:map @state*)
+        current-zoom (when map (.getZoom map))
+        current-center (when map (.getCenter map))]
+    ;; Store current position in state before reinitializing
+    (when (and current-zoom current-center)
+      (swap! state* assoc
+             :zoom current-zoom
+             :lat (.-lat current-center)
+             :lng (.-lng current-center)))
+    ;; Revert to default base layer
+    (swap! state* assoc :base (:base default-map-state))
+    ;; Reinitialize map to remove pinned base
+    (if (= (:mode @state*) transparency-mode)
+      (init-map state*)
+      (sbs-init-map state*))))
+
+
+(defn pin-button
+  "Button to pin/unpin current overlay as base layer"
+  [state* arabic?]
+  (let [base (:base @state*)
+        is-pinned (and base (string? base) (.startsWith base "pinned-"))
+        selected (:selected @state*)]
+    (if (or is-pinned selected)  ; Return button if there's something to show
+      (if is-pinned
+        ;; Show unpin button if there's a pinned base
+        [:button.button.is-warning.is-small.is-light.is-outlined
+         {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "220px" :left "12px" :z-index 997}
+          :on-click #(do (unpin-base state*)
+                        (js/setTimeout (fn [] (when (:map @state*)
+                                               (update-url-from-current-state! (:map @state*) state*))) 100))}
+         [:i.fas.fa-unlink]]
+        ;; Show pin button if no pinned base and there's a selected layer
+        [:button.button.is-success.is-small.is-light.is-outlined
+         {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "220px" :left "12px" :z-index 997}
+          :on-click #(do (pin-current-as-base state*)
+                        (js/setTimeout (fn [] (when (:map @state*)
+                                               (update-url-from-current-state! (:map @state*) state*))) 100))}
+         [:i.fas.fa-thumbtack]])
+      ;; Return empty div if nothing to show (valid Hiccup)
+      [:div])))
 
 (defn switch-mode
   [state* arabic?]
@@ -249,14 +378,16 @@
                         {:keys [lat lng]} (js->clj (.getCenter map) :keywordize-keys true)]
                     (swap! state* assoc :zoom zoom-level :lat lat :lng lng)
                     (if (= mode transparency-mode)
-                      (do (swap! state* assoc :mode side-by-side-mode :transparency 1.0)
-                          (sbs-init-map state*)
-                          ;; Update URL after mode change
-                          (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200))
-                      (do (swap! state* assoc :mode transparency-mode :transparency 0.65)
-                          (transparency-init-map state*)
-                          ;; Update URL after mode change
-                          (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200)))))}
+                      (do
+                        (swap! state* assoc :mode side-by-side-mode :transparency 1.0)
+                        (sbs-init-map state*)
+                        ;; Update URL after mode change
+                        (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200))
+                      (do
+                        (swap! state* assoc :mode transparency-mode :transparency 0.65)
+                        (init-map state*)
+                        ;; Update URL after mode change
+                        (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200)))))}
      (if (= mode transparency-mode) (:split txt) (:transparency txt))]))
 
 (defn modal-button
@@ -290,7 +421,7 @@
 
         ;; Initialize map with current state
         (if (= transparency-mode (:mode @state*))
-          (transparency-init-map state*)
+          (init-map state*)
           (sbs-init-map state*)))
       :render
       (fn []
@@ -300,5 +431,6 @@
            [modal-button state* arabic?]
            [modal-description state* arabic?]
            [switch-mode state* arabic?]
+           [pin-button state* arabic?]
            (when (= transparency-mode (:mode @state*)) [download-button state*])
            (when (= transparency-mode (:mode @state*)) [transparency-slider state* arabic?])]))})))
