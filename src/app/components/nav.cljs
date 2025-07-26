@@ -32,9 +32,9 @@
     [:div.navbar-end
      [:a.navbar-item {:style {:font-family "Roboto, Helvetica, san serif" :font-size "0.8em" :display :flex :align-items :center}
                       :on-click #(rf/dispatch [::events/set-language "en"])} "English"]
-     [:a.navbar-item {:href (routes/url-for :about)} "نبذة"]
-     [:a.navbar-item {:href (routes/url-for :article-index)} "مقالات"]
      [:a.navbar-item {:href (routes/url-for :contribute)} "ساهم"]
+     [:a.navbar-item {:href (routes/url-for :article-index)} "مقالات"]
+     [:a.navbar-item {:href (routes/url-for :about)} "نبذة"]
      [:a.navbar-item {:href (routes/url-for :map)} "الخارطة"]]]])
 
 (defn top
