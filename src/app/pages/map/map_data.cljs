@@ -741,10 +741,73 @@
                                                      :opacity 0.8})}})
 
 
+(def geological-survey-layers
+  {"1975 - Agriculture Capability" {:title "Agriculture Capability - 1975"
+                                    :url (form-tile-url "1975-Agriculture-Capability")
+                                    :description "50k scale map showing agricultural capability classification of Bahrain soils."
+                                    :notes "Georeferenced from original survey data."
+                                    :source-link "/maps/1975.50k.Agriculture Capability-georeferenced.tif"
+                                    :source "Geological Survey"
+                                    :scale "1:50,000"
+                                    :issuer "Geological Survey Department"
+                                    :issuer-link "/maps/1975.50k.Agriculture Capability-source-scan.tif"
+                                    :opts (merge base-opts {:minNativeZoom 10
+                                                            :maxNativeZoom 16
+                                                            :opacity 0.8})}
+   "1975 - Soils" {:title "Soils - 1975"
+                   :url (form-tile-url "1975-Soils")
+                   :description "50k scale soil classification map of Bahrain."
+                   :notes "Georeferenced from original survey data."
+                   :source-link "/maps/1975.50k.Soils-georeferenced.tif"
+                   :source "Geological Survey"
+                   :scale "1:50,000"
+                   :issuer "Geological Survey Department"
+                   :issuer-link "/maps/1975.50k.Soils-source-scan.tif"
+                   :opts (merge base-opts {:minNativeZoom 10
+                                           :maxNativeZoom 16
+                                           :opacity 0.8})}
+   "1976 - Bahrain Geology" {:title "Bahrain Geology - 1976"
+                             :url (form-tile-url "1976-Bahrain-Geology")
+                             :description "50k scale geological map of Bahrain showing rock formations and geological structures."
+                             :notes "Georeferenced from original survey data."
+                             :source-link "/maps/1976.50k.Bahrain Geology-georeferenced.tif"
+                             :source "Geological Survey"
+                             :scale "1:50,000"
+                             :issuer "Geological Survey Department"
+                             :issuer-link "/maps/1976.50k.Bahrain Geology-source-scan.tif"
+                             :opts (merge base-opts {:minNativeZoom 10
+                                                     :maxNativeZoom 16
+                                                     :opacity 0.8})}
+   "1976 - Bahrain Geomorphology" {:title "Bahrain Geomorphology and Superficial Materials - 1976"
+                                   :url (form-tile-url "1976-Bahrain-Geomorphology")
+                                   :description "50k scale map showing geomorphological features and superficial materials of Bahrain."
+                                   :notes "Georeferenced from original survey data."
+                                   :source-link "/maps/1976.50k.Bahrain Geomorphology and superficial materials-georeferenced.tif"
+                                   :source "Geological Survey"
+                                   :scale "1:50,000"
+                                   :issuer "Geological Survey Department"
+                                   :issuer-link "/maps/1976.50k.Bahrain Geomorphology and superficial materials-source-scan.tif"
+                                   :opts (merge base-opts {:minNativeZoom 10
+                                                           :maxNativeZoom 16
+                                                           :opacity 0.8})}
+   "1976 - Drainage" {:title "Drainage - 1976"
+                      :url (form-tile-url "1976-Drainage")
+                      :description "50k scale drainage map of Bahrain showing water flow patterns and drainage systems."
+                      :notes "Georeferenced from original survey data."
+                      :source-link "/maps/1976.50k.Drainage-georeferenced.tif"
+                      :source "Geological Survey"
+                      :scale "1:50,000"
+                      :issuer "Geological Survey Department"
+                      :issuer-link "/maps/1976.50k.Drainage-source-scan.tif"
+                      :opts (merge base-opts {:minNativeZoom 10
+                                              :maxNativeZoom 16
+                                              :opacity 0.8})}})
+
 (def layers {"Bahrain" bahrain-layers
              "Manama" manama-layers
              "Muharraq" muharraq-layers
              "Fairey Surveys 1:25k (1977-2007)" fairey
+             "Geological Survey (1975-76)" geological-survey-layers
              "Other" other-layers})
 
 (def ar-layers

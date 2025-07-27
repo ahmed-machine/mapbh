@@ -54,11 +54,16 @@
     "1977-Ras Al Barr.1": {"mbtiles": "public/maps/1977-Ras Al Barr.1.mbtiles"},
     "2000-Ras Al Barr.2": {"mbtiles": "public/maps/2000-Ras Al Barr.2.mbtiles"},
     "1993-Hawar.1": {"mbtiles": "public/maps/1993-Hawar.1.mbtiles"},
-    "1985-Bahrain.10k": {"mbtiles": "public/maps/1985-Bahrain.10k.mbtiles"},
+    "1985-Bahrain.10k": {"mbtiles": "https://mapbh.org/public/maps/1985-Bahrain.10k.mbtiles"},
     "1986-Bahrain.50k": {"mbtiles": "public/maps/1986-Bahrain.50k.mbtiles"},
     "1990-Bahrain.50k": {"mbtiles": "public/maps/1990-Bahrain.50k.mbtiles"},
     "1997-Bahrain.50k": {"mbtiles": "public/maps/1997-Bahrain.50k.mbtiles"},
     "2004-Bahrain.50k": {"mbtiles": "public/maps/2004-Bahrain.50k.mbtiles"},
-    "2030-Bahrain" :  {"mbtiles": "public/maps/2030-Bahrain.mbtiles"}
+    "2030-Bahrain" :  {"mbtiles": "public/maps/2030-Bahrain.mbtiles"},
+    "1975-Agriculture-Capability": {"mbtiles": "public/maps/1975-Agriculture-Capability.mbtiles"},
+    "1975-Soils": {"mbtiles": "public/maps/1975-Soils.mbtiles"},
+    "1976-Bahrain-Geology": {"mbtiles": "public/maps/1976-Bahrain-Geology.mbtiles"},
+    "1976-Bahrain-Geomorphology": {"mbtiles": "public/maps/1976-Bahrain-Geomorphology.mbtiles"},
+    "1976-Drainage": {"mbtiles": "public/maps/1976-Drainage.mbtiles"}
   }
 }
