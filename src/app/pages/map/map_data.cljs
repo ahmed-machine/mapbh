@@ -744,60 +744,60 @@
 (def geological-survey-layers
   {"1975 - Agriculture Capability" {:title "Agriculture Capability - 1975"
                                     :url (form-tile-url "1975-Agriculture-Capability")
-                                    :description "50k scale map showing agricultural capability classification of Bahrain soils."
+                                    :description "Agriculture capability map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
                                     :notes "Georeferenced from original survey data."
                                     :source-link "/maps/1975.50k.Agriculture Capability-georeferenced.tif"
-                                    :source "Geological Survey"
+                                    :source "Doornkamp, Brunsden, and Jones"
                                     :scale "1:50,000"
-                                    :issuer "Geological Survey Department"
+                                    :issuer "Ministry of Works, Power and Water"
                                     :issuer-link "/maps/1975.50k.Agriculture Capability-source-scan.tif"
                                     :opts (merge base-opts {:minNativeZoom 10
                                                             :maxNativeZoom 16
                                                             :opacity 0.8})}
    "1975 - Soils" {:title "Soils - 1975"
                    :url (form-tile-url "1975-Soils")
-                   :description "50k scale soil classification map of Bahrain."
+                   :description "Soil classification map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
                    :notes "Georeferenced from original survey data."
                    :source-link "/maps/1975.50k.Soils-georeferenced.tif"
-                   :source "Geological Survey"
+                   :source "Doornkamp, Brunsden, and Jones"
                    :scale "1:50,000"
-                   :issuer "Geological Survey Department"
+                   :issuer "Ministry of Works, Power and Water"
                    :issuer-link "/maps/1975.50k.Soils-source-scan.tif"
                    :opts (merge base-opts {:minNativeZoom 10
                                            :maxNativeZoom 16
                                            :opacity 0.8})}
    "1976 - Bahrain Geology" {:title "Bahrain Geology - 1976"
                              :url (form-tile-url "1976-Bahrain-Geology")
-                             :description "50k scale geological map of Bahrain showing rock formations and geological structures."
+                             :description "Geological map showing rock formations and structures, based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
                              :notes "Georeferenced from original survey data."
                              :source-link "/maps/1976.50k.Bahrain Geology-georeferenced.tif"
-                             :source "Geological Survey"
+                             :source "Doornkamp, Brunsden, and Jones"
                              :scale "1:50,000"
-                             :issuer "Geological Survey Department"
+                             :issuer "Ministry of Works, Power and Water"
                              :issuer-link "/maps/1976.50k.Bahrain Geology-source-scan.tif"
                              :opts (merge base-opts {:minNativeZoom 10
                                                      :maxNativeZoom 16
                                                      :opacity 0.8})}
    "1976 - Bahrain Geomorphology" {:title "Bahrain Geomorphology and Superficial Materials - 1976"
                                    :url (form-tile-url "1976-Bahrain-Geomorphology")
-                                   :description "50k scale map showing geomorphological features and superficial materials of Bahrain."
+                                   :description "Geomorphological features and superficial materials map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
                                    :notes "Georeferenced from original survey data."
                                    :source-link "/maps/1976.50k.Bahrain Geomorphology and superficial materials-georeferenced.tif"
-                                   :source "Geological Survey"
+                                   :source "Doornkamp, Brunsden, and Jones"
                                    :scale "1:50,000"
-                                   :issuer "Geological Survey Department"
+                                   :issuer "Ministry of Works, Power and Water"
                                    :issuer-link "/maps/1976.50k.Bahrain Geomorphology and superficial materials-source-scan.tif"
                                    :opts (merge base-opts {:minNativeZoom 10
                                                            :maxNativeZoom 16
                                                            :opacity 0.8})}
    "1976 - Drainage" {:title "Drainage - 1976"
                       :url (form-tile-url "1976-Drainage")
-                      :description "50k scale drainage map of Bahrain showing water flow patterns and drainage systems."
+                      :description "Drainage patterns and water flow systems map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
                       :notes "Georeferenced from original survey data."
                       :source-link "/maps/1976.50k.Drainage-georeferenced.tif"
-                      :source "Geological Survey"
+                      :source "Doornkamp, Brunsden, and Jones"
                       :scale "1:50,000"
-                      :issuer "Geological Survey Department"
+                      :issuer "Ministry of Works, Power and Water"
                       :issuer-link "/maps/1976.50k.Drainage-source-scan.tif"
                       :opts (merge base-opts {:minNativeZoom 10
                                               :maxNativeZoom 16
