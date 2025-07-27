@@ -169,9 +169,11 @@ class LeafletExporter {
         const tileSize = layer._tileSize.x
         
         // Use appropriate zoom level - respect layer's min/maxNativeZoom
+        // Always fetch tiles from 3 zoom levels higher for best quality, or maxNativeZoom
         const minNativeZoom = layer.options?.minNativeZoom || 0;
         const maxNativeZoom = layer.options?.maxNativeZoom || 20;
-        const effectiveZoom = Math.max(minNativeZoom, Math.min(this.zoom, maxNativeZoom));
+        const targetZoom = Math.min(this.zoom + 3, maxNativeZoom);
+        const effectiveZoom = Math.max(minNativeZoom, targetZoom);
         
         // Calculate bounds at the effective zoom level
         const zoomDifference = this.zoom - effectiveZoom;
