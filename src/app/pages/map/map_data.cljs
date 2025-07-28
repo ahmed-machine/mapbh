@@ -105,7 +105,7 @@
    "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
                                     :url (form-tile-url "1977-USSR-Bahrain")
                                     :description "Description in Russian can be found in the bottom-right corner of the map. Produced in 1977 and 1980, in a factory in Sverdlovsk (now Ekaterinburg). There are many exciting features in these maps that are sorely missing in other contemporary maps. NATO mappers intentionally obfuscated sensitive areas like airports and navy yards from their maps but the Soviets include these on theirs. To produce these details, the Soviets had to rely on ground intelligence to obtain both aerial and ground measurements. Discovered in second-hand thrift stores following the collapse of the Soviet Union."
-                                    :notes "While we know this is a SK-42 projection (also known as Pulkovo) with a PZ-90 datum, tracking down the exact datum was difficult as few maps of this sort have been translated for our part of the world. In the end, we had to adjust it by hand using ground control points. Special shoutout to Tristan Bobin for his contributions in rectifying this map."
+                                    :notes "More art than science tracking this projection down. EPSG:28409 (Pulkovo 1942 / Gauss-Kruger zone 9). Special shoutout to Tristan Bobin for his contributions in rectifying this map."
                                     :source-link "/maps/1977_ManamaMuharraq_USSRMap.tif"
                                     :source "USSR"
                                     :scale "1:10,000"
@@ -205,7 +205,7 @@
    "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
                                     :url (form-tile-url "1977-USSR-Bahrain")
                                     :description "Description in Russian can be found in the bottom-right corner of the map. Produced in 1977 and 1980, in a factory in Sverdlovsk (now Ekaterinburg). There are many exciting features in these maps that are sorely missing in other contemporary maps. NATO mappers intentionally obfuscated sensitive areas like airports and navy yards from their maps but the Soviets include these on theirs. To produce these details, the Soviets had to rely on ground intelligence to obtain both aerial and ground measurements. Discovered in second-hand thrift stores following the collapse of the Soviet Union."
-                                    :notes "While we know this is a SK-42 projection (also known as Pulkovo) with a PZ-90 datum, tracking down the exact datum was difficult as few maps of this sort have been translated for our part of the world. In the end, we had to adjust it by hand using ground control points. Special shoutout to Tristan Bobin for his contributions in rectifying this map."
+                                    :notes "More art than science tracking this projection down. EPSG:28409 (Pulkovo 1942 / Gauss-Kruger zone 9). Special shoutout to Tristan Bobin for his contributions in rectifying this map."
                                     :source-link "/maps/1977_ManamaMuharraq_USSRMap.tif"
                                     :source "USSR"
                                     :scale "1:10,000"
@@ -852,7 +852,7 @@
                                          :notes "سلسلة خرائط فيها ٥ أجزاء. تطلبت تصحيحات لالألوان، تصحيحات تشكيلية، ولم تطابق الإسقاط المحدد"}
              "1977 - USSR - Manama/Muharraq"  {:title "المنامة و المحرق ١٩٧٧"
                                                :description "يوجد الوصف باللغة الروسية في الركن الأيمن السفلي من الخريطة.  تم إنتاج هذه الخريطة بين عامي   ١٩٧٧ و ١٩٨٠ في مصنع في سفيردلوفسك (إيكاترينبرج اليوم). تم اكتشاف هذه الخرائط في متاجر سيكوند هاند في الفترة ما بعد انهيار الاتحاد السوفيتي وتم جمعها عشوائياً. هناك العديد من المميزات في هذه الخرائط الغير موجودة في خرائط معاصرة لها. حينما تعمد رسامو الخرائط من حلف ناتو إخفاء مناطق حساسة مثل المطارات والموانئ من خرائطهم، السوفيتين لم يخفوها. لإنتاج هذه التفاصيل، اضطروا السوفيتيين للاعتماد على  مخابرات وجواسيس في الارض و الجو للحصول على ادق التفاصيل."
-                                               :notes " بينما نعلم أن هذه الخارطة إسقاطها سيستم كوردينت ٤٢ (المعروف أيضًا ببولكوفو) مع مسند براميتري زيميل او بي زي ٩٠، لم ننجح في معرفة معلومات كافية لتعديل الخارطة بهذه الطريقة فاضطرينا لتعديله يدويًا باستخدام نقاط التحكم الأرضي."}}
+                                               :notes  "صعب المنال. EPSG:28409 ‏(Pulkovo 1942 / Gauss-Kruger zone 9). شكر خاص لـ Tristan Bobin على مساهماته في تصحيح هذه الخريطة."}}
    "Muharraq" {"1937 - Muharraq" {:title "جزيرة المحرق - ١٩٣٧"
                                   :description nil
                                   :notes "خارطة دقيقة من دون اي اشكاليات"}
@@ -863,5 +863,5 @@
 
                "1977 - USSR - Manama/Muharraq"  {:title "المنامة و المحرق ١٩٧٧"
                                                  :description "يوجد الوصف باللغة الروسية في الركن الأيمن السفلي من الخريطة.  تم إنتاج هذه الخريطة بين عامي   ١٩٧٧ و ١٩٨٠ في مصنع في سفيردلوفسك (إيكاترينبرج اليوم). تم اكتشاف هذه الخرائط في متاجر سيكوند هاند في الفترة ما بعد انهيار الاتحاد السوفيتي وتم جمعها عشوائياً. هناك العديد من المميزات في هذه الخرائط الغير موجودة في خرائط معاصرة لها. حينما تعمد رسامو الخرائط من حلف ناتو إخفاء مناطق حساسة مثل المطارات والموانئ من خرائطهم، السوفيتين لم يخفوها. لإنتاج هذه التفاصيل، اضطروا السوفيتيين للاعتماد على  مخابرات وجواسيس في الارض و الجو للحصول على ادق التفاصيل."
-                                                 :notes " بينما نعلم أن هذه الخارطة إسقاطها سيستم كوردينت ٤٢ (المعروف أيضًا ببولكوفو) مع مسند براميتري زيميل او بي زي ٩٠، لم ننجح في معرفة معلومات كافية لتعديل الخارطة بهذه الطريقة فاضطرينا لتعديله يدويًا باستخدام نقاط التحكم الأرضي."}}
+                                                 :notes "صعب المنال. EPSG:28409 ‏(Pulkovo 1942 / Gauss-Kruger zone 9). شكر خاص لـ Tristan Bobin على مساهماته في تصحيح هذه الخريطة."}}
    "Other" {}})
