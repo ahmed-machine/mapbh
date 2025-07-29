@@ -12,7 +12,7 @@
    [:h4.title "A valley awaits a small victory"]
    [:button.button.is-clickable.is-rounded.is-info.is-light
     {:style {:margin-left "4.5rem"}
-     :on-click #(rf/dispatch [::events/set-language "ar"])} "اقرأ باللغة العربية"]
+     :on-click #(rf/dispatch [::events/set-route-params {:language "ar"}])} "اقرأ باللغة العربية"]
    [:p "There is a persistent idea in our society that pits our environment against business interests. It supposes our advancement as a nation can only come at the destruction of our nature. Whether it's the sea to be reclaimed, valleys to be buried, or green belt to be bulldozed, nature has repeatedly lost this fight in Bahrain."]
    [image "/img/posts/buhair/ONE-MF.jpeg" "Wadi AlBuhair. Credit: Mohammed Al Farsi" "Credit: Mohammed Al Farsi"]
    [:p "One such case is Wadi AlBuhair. The long-neglected area, a forty-five million year old natural valley, holds immense value as a unique geological site in Bahrain. For decades, it was misused in various forms as a trash dump, drainage for sewage run-off, and even as a short-lived farming project. Despite negligence, it has still managed to provide a site of natural beauty for residents, a safe harbor for rare migratory birds, and an astonishing range of natural biodiversity. With AlLawzi lake mostly reclaimed, Sakhir largely developed for oil infrastructure, and Wadi AlSail’s real estate development, Wadi AlBuhair’s geologic value as one of the last remaining valleys still standing is incalculable with its dolomitic limestone, chalk, marls, shale, and fossils providing a unique glimpse into Bahrain’s natural geological qualities. This is the story of a resilient valley that "
@@ -51,7 +51,7 @@
    [:h1.title "وادي البحير — ينتظر انتصار رغم كثرة أنصاره"]
    [:button.button.is-clickable.is-rounded.is-info.is-light
     {:style {:margin-right "4.5rem"}
-     :on-click #(rf/dispatch [::events/set-language "en"])} "Read in English"]
+     :on-click #(rf/dispatch [::events/set-route-params {:language "en"}])} "Read in English"]
    [:p "هنالك عقلية متفشية في البحرين تُظهر البيئة كأنها عدوة وعائق أمام المصالح التجارية. هذه العقلية تعتقد أن تقدم المجتمع لا يمكن أن يأتي إلا على حساب الطبيعة والحياة الفطرية سواءً كان ذلك عبر ردم البحر أو دفن الوديان أو اقتلاع ما تبقى من الحزام الأخضر. وفي نهاية المطاف تكون الطبيعة البحرينية الطرف الخاسر مراراً وتكراراً في هذه المعركة."]
    [image "/img/posts/buhair/ONE-MF.jpeg" "وادي البحير.المصدر: محمد الفارسي" "وادي البحير. المصدر: محمد الفارسي"]
    [:p "إحدى هذه الأمثلة هو وادي البحير الذي يمتاز بتفرده الجيولوجي كونه وادي طبيعي لا يقل عمره عن ٤٥ مليون سنة. ومع ذلك، لطالما عانى هذا الوادي على مر العقود من الإهمال  وسوء الاستخدام. فقد استخدم مكباً للنفايات ومصباً لمياه المجاري وحتى كمزرعة لفترة قصيرة جداً. ورغم هذا الإهمال الكبير لإحدى أهم المواقع الجيولوجية في بحريننا الحبيبة، إلا أن هذا الوادي الصامد لا يزال يحتفظ بجماله الطبيعي ودوره كملجأ آمن للطيور المهاجرة النادرة وتجمع مذهل للتنوع البيولوجي الطبيعي. قلوبنا جميعاً لا زالت تتحسر على ما خسرناه من تراث طبيعي بعد ردم بحيرة اللوزي، وتشييد المشاريع النفطية في بر الصخير واستخدام وادي السيل كذلك لإقامة عدد من المشاريع العقارية - فلم يتبقى لنا من مواقع جيولوجية طبيعية نوعية سوى وادي البحير.
