@@ -370,7 +370,7 @@
           [:div.field
            [:div.control
             [:label.checkbox {:style {:direction "rtl"}}
-             [:span {:style {:margin-right "0.5rem"}} "تضمين خرائط قائمة الانتظار"]
+             [:span {:style {:margin-right "0.5rem"} "خرائط لم تنشر"]
              [:input {:type "checkbox"
                       :checked @include-backlog
                       :on-change #(reset! include-backlog (-> % .-target .-checked))}]]]]
