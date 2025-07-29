@@ -1043,10 +1043,6 @@
                               :year 1976
                               :source-file "1976.50000.Northern Bahrain"
                               :status "needs-processing"}
-   "1977 - USSR (10k)" {:title "USSR Topographic Map - Bahrain - 1977"
-                        :year 1977
-                        :source-file "1977.10000.USSR"
-                        :status "needs-processing"}
    "1979 - Oil & Gas" {:title "Oil & Gas Infrastructure - 1979-1997 (9 maps)"
                        :year 1979
                        :source-file "1979-1997.Oil&Gas collection"
