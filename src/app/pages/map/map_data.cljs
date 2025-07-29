@@ -943,3 +943,182 @@
                                                  :description "يوجد الوصف باللغة الروسية في الركن الأيمن السفلي من الخريطة.  تم إنتاج هذه الخريطة بين عامي   ١٩٧٧ و ١٩٨٠ في مصنع في سفيردلوفسك (إيكاترينبرج اليوم). تم اكتشاف هذه الخرائط في متاجر سيكوند هاند في الفترة ما بعد انهيار الاتحاد السوفيتي وتم جمعها عشوائياً. هناك العديد من المميزات في هذه الخرائط الغير موجودة في خرائط معاصرة لها. حينما تعمد رسامو الخرائط من حلف ناتو إخفاء مناطق حساسة مثل المطارات والموانئ من خرائطهم، السوفيتين لم يخفوها. لإنتاج هذه التفاصيل، اضطروا السوفيتيين للاعتماد على  مخابرات وجواسيس في الارض و الجو للحصول على ادق التفاصيل."
                                                  :notes "صعب المنال. EPSG:28409 ‏(Pulkovo 1942 / Gauss-Kruger zone 9). شكر خاص لـ Tristan Bobin على مساهماته في تصحيح هذه الخريطة."}}
    "Other" {}})
+
+(def backlog
+  {"1862 - Bahrain Harbour" {:title "Bahrain Harbour - 1862"
+                             :year 1862
+                             :source-file "1862.73000.Bahrain Harbour"
+                             :status "needs-processing"}
+   "1903 - Bahrain Harbour" {:title "Bahrain Harbour - 1903"
+                             :year 1903
+                             :source-file "1903.73000.Bahrain Harbour"
+                             :status "needs-processing"}
+   "1904 - Bahrain" {:title "Bahrain - 1904"
+                     :year 1904
+                     :source-file "1904.63360.Bahrain"
+                     :status "needs-processing"}
+   "1926 - Manama" {:title "Manama - 1926"
+                    :year 1926
+                    :source-file "1926.2400.Manama"
+                    :status "needs-processing"}
+   "1933 - Manama" {:title "Manama - 1933"
+                    :year 1933
+                    :source-file "1933.3639.Manama"
+                    :status "needs-processing"}
+   "1933 - Bahrain" {:title "Bahrain - 1933"
+                     :year 1933
+                     :source-file "1933.40000.Bahrain"
+                     :status "needs-processing"}
+   "1933 - Bahrain (63k)" {:title "Bahrain - 1933"
+                           :year 1933
+                           :source-file "1933.63360.Bahrain"
+                           :status "needs-processing"}
+   "1934 - Bahrain Facility Map" {:title "Bahrain Facility Map - 1934"
+                                  :year 1934
+                                  :source-file "1934.63360.Bahrain Facility Map"
+                                  :status "needs-processing"}
+   "1937 - Muharraq Island" {:title "Muharraq Island - 1937"
+                             :year 1937
+                             :source-file "1937.20000.Muharraq Island"
+                             :status "needs-processing"}
+   "1939 - Pearl Banks" {:title "Pearl Banks - 1939"
+                         :year 1939
+                         :source-file "1939.Pearl Banks"
+                         :status "needs-processing"}
+   "1940 - Pearl Banks" {:title "Pearl Banks - 1940"
+                         :year 1940
+                         :source-file "1940.Pearl Banks"
+                         :status "needs-processing"}
+   "1951 - Manama" {:title "Manama - 1951 (9 maps)"
+                    :year 1951
+                    :source-file "1951.2400.Manama collection"
+                    :status "needs-processing"
+                    :notes "Multi-sheet map collection with 9 maps"}
+   "1951 - Aerial Manama" {:title "Aerial View - Manama - 1951"
+                           :year 1951
+                           :source-file "1951.5000.Aerial Manama"
+                           :status "needs-processing"}
+   "1952 - Bahrain" {:title "Bahrain - 1952"
+                     :year 1952
+                     :source-file "1952.63360.Bahrain"
+                     :status "needs-processing"}
+   "1953 - Welcome to Bahrain" {:title "Welcome to Bahrain - Manama - 1953"
+                                :year 1953
+                                :source-file "1953.NA.Welcome to Bahrain - Manama"
+                                :status "needs-processing"}
+   "1960 - Bahrain" {:title "Bahrain - 1960"
+                     :year 1960
+                     :source-file "1960.97500.Bahrain-front"
+                     :status "needs-processing"}
+   "1961 - Manama" {:title "Manama - 1961"
+                    :year 1961
+                    :source-file "1961.5000.Manama"
+                    :status "needs-processing"}
+   "1962 - Bahrain Island" {:title "Bahrain Island - 1962"
+                            :year 1962
+                            :source-file "1962.63360.Bahrain Island.5-1"
+                            :status "needs-processing"}
+   "1963 - Manama" {:title "Manama - 1963"
+                    :year 1963
+                    :source-file "1963.5000.Manama"
+                    :status "needs-processing"}
+   "1965 - Welcome to Bahrain" {:title "Welcome to Bahrain - 1965 (4 maps)"
+                                :year 1965
+                                :source-file "1965.Welcome to Bahrain collection"
+                                :status "needs-processing"
+                                :notes "Multi-file collection with 4 maps"}
+   "1966 - Jufayr West" {:title "Jufayr West - 1966"
+                         :year 1966
+                         :source-file "1966.5000.Jufayr West"
+                         :status "needs-processing"}
+   "1967 - Manama Traffic" {:title "Manama Traffic - 1967"
+                            :year 1967
+                            :source-file "1967.Manama traffic"
+                            :status "needs-processing"}
+   "1969 - Bahrain" {:title "Bahrain - 1969"
+                     :year 1969
+                     :source-file "1969.63360.Bahrain"
+                     :status "needs-processing"}
+   "1976 - Northern Bahrain" {:title "Northern Bahrain - 1976"
+                              :year 1976
+                              :source-file "1976.50000.Northern Bahrain"
+                              :status "needs-processing"}
+   "1977 - USSR (10k)" {:title "USSR Topographic Map - Bahrain - 1977"
+                        :year 1977
+                        :source-file "1977.10000.USSR"
+                        :status "needs-processing"}
+   "1979 - Oil & Gas" {:title "Oil & Gas Infrastructure - 1979-1997 (9 maps)"
+                       :year 1979
+                       :source-file "1979-1997.Oil&Gas collection"
+                       :status "needs-processing"
+                       :notes "Multi-year series with 9 maps from 1979-1997"}
+   "1979 - Bahrain Power" {:title "Bahrain Power Infrastructure - 1979"
+                           :year 1979
+                           :source-file "1979.50k.Bahrain Power"
+                           :status "needs-processing"}
+   "1980 - Manama (10k)" {:title "Manama - 1980"
+                          :year 1980
+                          :source-file "1980.10000.Manama"
+                          :status "needs-processing"}
+   "1980 - Bahrain (100k)" {:title "Bahrain - 1980"
+                            :year 1980
+                            :source-file "1980.100000.Bahrain"
+                            :status "needs-processing"}
+   "1981 - National Addressing Project" {:title "National Addressing Project Maps - 1981 (10 maps)"
+                                         :year 1981
+                                         :source-file "1981 NAP collection"
+                                         :status "needs-processing"
+                                         :notes "Multi-sheet collection with 10 maps"}
+   "1987 - Bahrain (100k)" {:title "Bahrain - 1987"
+                            :year 1987
+                            :source-file "1987.100000.Bahrain"
+                            :status "needs-processing"}
+   "1991 - Life in Bahrain" {:title "Life in Bahrain - 1991"
+                             :year 1991
+                             :source-file "1991 - Life In Bahrain"
+                             :status "needs-processing"}
+   "1997 - Bahrain NRSC" {:title "Bahrain NRSC - 1997"
+                          :year 1997
+                          :source-file "1997.143k.Bahrain NRSC"
+                          :status "needs-processing"}
+   "1998 - Bahrain (100k)" {:title "Bahrain - 1998"
+                            :year 1998
+                            :source-file "1998.100k.Bahrain"
+                            :status "needs-processing"}
+   "2003 - Pearl Banks and Shoal" {:title "Pearl Banks and Shoal - 2003"
+                                   :year 2003
+                                   :source-file "2003.350k.Pearl Banks and Shoal"
+                                   :status "needs-processing"}
+   "2007 - Bahrain (100k)" {:title "Bahrain - 2007"
+                            :year 2007
+                            :source-file "2007.100000.Bahrain"
+                            :status "needs-processing"}
+   "2007 - Bahrain (200k)" {:title "Bahrain - 2007"
+                            :year 2007
+                            :source-file "2007.200000.Bahrain"
+                            :status "needs-processing"}
+   "2010 - Andrew Duggan" {:title "Andrew Duggan Collection - 2010"
+                           :year 2010
+                           :source-file "2010.Andrew Duggan"
+                           :status "needs-processing"}
+   "2010 - Muharraq Pearling Trail" {:title "Muharraq Pearling Trail - 2010"
+                                     :year 2010
+                                     :source-file "2010.Muharraq Pearling Trail"
+                                     :status "needs-processing"}
+   "2011 - Bab AlBahrain" {:title "Bab AlBahrain - 2011"
+                           :year 2011
+                           :source-file "2011.Bab AlBahrain-front"
+                           :status "needs-processing"}
+   "1975 - National Housing Policy" {:title "National Housing Policy Maps - 1975 (5 maps)"
+                                     :year 1975
+                                     :source-file "1975 National Housing Policy collection"
+                                     :status "needs-processing"
+                                     :notes "Multi-sheet collection with 5 thematic maps"}
+   "Bahrain Landmarks" {:title "Bahrain Landmarks"
+                        :year nil
+                        :source-file "Bahrain Landmarks - Front"
+                        :status "needs-processing"}
+   "Bahrain Yesterday and Today" {:title "Bahrain Yesterday and Today"
+                                  :year nil
+                                  :source-file "Bahrain Yesterday and Today"
+                                  :status "needs-processing"}})

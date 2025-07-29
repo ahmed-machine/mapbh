@@ -1,6 +1,6 @@
 (ns app.pages.catalogue
   (:require [reagent.core :as r]
-            [app.pages.map.map-data :as map-data :refer [ar-layers]]
+            [app.pages.map.map-data :as map-data :refer [ar-layers backlog]]
             [app.routes :as routes]
             [clojure.string :as str]))
 
@@ -62,7 +62,7 @@
 
 (defn flatten-map-data
   "Convert nested map data structure to flat list for table display"
-  [language]
+  [language include-backlog?]
   (let [;; First collect all map entries with their groups
         all-entries (for [[group-name group-maps] map-data/layers
                          [map-id map-info] group-maps]
@@ -93,8 +93,29 @@
                                  :has-description (not (str/blank? (:description display-data)))
                                  :has-notes (not (str/blank? (:notes display-data)))
                                  :has-english true  ; All items in the main layers have English
-                                 :has-arabic (boolean has-arabic-translation)}))))]
-    unique-maps))
+                                 :has-arabic (boolean has-arabic-translation)
+                                 :is-backlog false}))))
+
+        ;; Add backlog entries
+        backlog-entries (for [[map-id map-info] backlog]
+                         (merge map-info
+                                {:map-id map-id
+                                 :group "Backlog"
+                                 :all-groups ["Backlog"]
+                                 :year (:year map-info)
+                                 :has-description false
+                                 :has-notes (not (str/blank? (:notes map-info)))
+                                 :has-english true
+                                 :has-arabic false
+                                 :is-backlog true
+                                 :scale nil
+                                 :source (:source-file map-info)
+                                 :issuer "Pending Processing"}))]
+
+    ;; Combine regular maps with backlog entries (conditionally)
+    (if include-backlog?
+      (concat unique-maps backlog-entries)
+      unique-maps)))
 
 (defn parse-scale-ratio
   "Parse scale ratio string to numerical value for sorting (e.g., '1:25,000' -> 25000)"
@@ -176,32 +197,40 @@
       [:tbody
        (doall
         (for [item sorted-data]
-          [:tr {:key (:map-id item)}
+          [:tr {:key (:map-id item)
+                :style (when (:is-backlog item)
+                         {:background-color "#f5f5f5"})}
            ;; Actions column moved to first position
            [:td
-            (let [primary-group (if (:all-groups item)
-                                  (first (:all-groups item))
-                                  (:group item))
-                  bounds (get-layer-bounds primary-group (:map-id item) (:title item))]
-              [:div.buttons.are-small {:style (when (= language :ar) {:justify-content "flex-end"})}
-               [:a.button.is-light.is-small
-                {:href (str "/" (if (= language :ar) "ar" "en")
-                            "/map-info"
-                            "?group=" (js/encodeURIComponent primary-group)
-                            "&map-id=" (js/encodeURIComponent (:map-id item)))}
-                [:i.fas.fa-info-circle {:style (if (= language :ar)
-                                                        {:margin-left "0.5rem" :padding "0.2rem"}
-                                                        {:margin-right "0.5rem" :padding "0.2rem"})}]
-                (if (= language :ar) "تفاصيل" "Info")]
-               [:a.button.is-light.is-small
-                {:href (str (routes/url-for :map)
-                            "?map=" (js/encodeURIComponent (:map-id item))
-                            "&coords=" (:lat bounds) "," (:lng bounds)
-                            "&zoom=" (:zoom bounds))}
-                [:i.fas.fa-map {:style (if (= language :ar)
-                                               {:margin-left "0.5rem" :padding "0.2rem"}
-                                               {:margin-right "0.5rem" :padding "0.2rem"})}]
-                (if (= language :ar) "عرض" "View")]])]
+            (if (:is-backlog item)
+              ;; Show status message for backlog items instead of buttons
+              [:span.tag.is-light.is-small
+               {:style {:color "#666"}}
+               (if (= language :ar) "قيد المعالجة" "Needs Processing")]
+              ;; Regular action buttons for non-backlog items
+              (let [primary-group (if (:all-groups item)
+                                    (first (:all-groups item))
+                                    (:group item))
+                    bounds (get-layer-bounds primary-group (:map-id item) (:title item))]
+                [:div.buttons.are-small {:style (when (= language :ar) {:justify-content "flex-end"})}
+                 [:a.button.is-light.is-small
+                  {:href (str "/" (if (= language :ar) "ar" "en")
+                              "/map-info"
+                              "?group=" (js/encodeURIComponent primary-group)
+                              "&map-id=" (js/encodeURIComponent (:map-id item)))}
+                  [:i.fas.fa-info-circle {:style (if (= language :ar)
+                                                          {:margin-left "0.5rem" :padding "0.2rem"}
+                                                          {:margin-right "0.5rem" :padding "0.2rem"})}]
+                  (if (= language :ar) "تفاصيل" "Info")]
+                 [:a.button.is-light.is-small
+                  {:href (str (routes/url-for :map)
+                              "?map=" (js/encodeURIComponent (:map-id item))
+                              "&coords=" (:lat bounds) "," (:lng bounds)
+                              "&zoom=" (:zoom bounds))}
+                  [:i.fas.fa-map {:style (if (= language :ar)
+                                                 {:margin-left "0.5rem" :padding "0.2rem"}
+                                                 {:margin-right "0.5rem" :padding "0.2rem"})}]
+                  (if (= language :ar) "عرض" "View")]]))]
            [:td [:strong (:title item)]]
            [:td (when (:year item) (:year item))]
            [:td
@@ -251,10 +280,11 @@
   (let [search-term (r/atom "")
         selected-group-filter (r/atom "")
         sort-state (r/atom {:sort-key :year :sort-dir :desc})
-        all-data (flatten-map-data :en)]
+        include-backlog (r/atom true)]
 
     (fn []
-      (let [group-filtered-data (group-filter @selected-group-filter all-data)
+      (let [all-data (flatten-map-data :en @include-backlog)
+            group-filtered-data (group-filter @selected-group-filter all-data)
             filtered-data (search-filter @search-term group-filtered-data)]
         [:div.container {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}}
          [:div.content
@@ -271,6 +301,15 @@
               :on-change #(reset! search-term (-> % .-target .-value))}]
             [:span.icon.is-left
              [:i.fas.fa-search]]]]
+
+          ;; Include Backlog checkbox
+          [:div.field
+           [:div.control
+            [:label.checkbox
+             [:input {:type "checkbox"
+                      :checked @include-backlog
+                      :on-change #(reset! include-backlog (-> % .-target .-checked))}]
+             [:span {:style {:margin-left "0.5rem"}} "Include Backlog Maps"]]]]
 
           ;; Group filter button (mobile-friendly)
           (when (not (str/blank? @selected-group-filter))
@@ -304,10 +343,11 @@
   (let [search-term (r/atom "")
         selected-group-filter (r/atom "")
         sort-state (r/atom {:sort-key :year :sort-dir :desc})
-        all-data (flatten-map-data :ar)]
+        include-backlog (r/atom true)]
 
     (fn []
-      (let [group-filtered-data (group-filter @selected-group-filter all-data)
+      (let [all-data (flatten-map-data :ar @include-backlog)
+            group-filtered-data (group-filter @selected-group-filter all-data)
             filtered-data (search-filter @search-term group-filtered-data)]
         [:div.container {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}
                          :lang "ar" :dir "rtl"}
@@ -325,6 +365,15 @@
               :on-change #(reset! search-term (-> % .-target .-value))}]
             [:span.icon.is-right
              [:i.fas.fa-search]]]]
+
+          ;; Include Backlog checkbox (RTL)
+          [:div.field
+           [:div.control
+            [:label.checkbox {:style {:direction "rtl"}}
+             [:span {:style {:margin-right "0.5rem"}} "تضمين خرائط قائمة الانتظار"]
+             [:input {:type "checkbox"
+                      :checked @include-backlog
+                      :on-change #(reset! include-backlog (-> % .-target .-checked))}]]]]
 
           ;; Group filter button (mobile-friendly, RTL)
           (when (not (str/blank? @selected-group-filter))
