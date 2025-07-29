@@ -7,26 +7,26 @@
 
 (def url-for (fn [route] (bidi/path-for model/routes route :language @(rf/subscribe [::model/language]))))
 
+(defn- parse-query-params
+  "Parse query parameters into a map for any route that needs them"
+  []
+  (try
+    (when-let [search (.-search js/window.location)]
+      (when (and (> (.-length search) 0) (.startsWith search "?"))
+        (let [url-params (js/URLSearchParams. search)
+              params (js/Object.fromEntries url-params)]
+          (js->clj params :keywordize-keys true))))
+    (catch js/Error e
+      nil)))
+
 (defn- dispatch-route [matched-route]
   (if matched-route
     (let [panel-name (keyword (str (name (:handler matched-route))))
           route-params (:route-params matched-route)
-          ;; Extract query parameters specifically for map-info page
-          final-params (if (and (= (:handler matched-route) :map-info)
-                               (.-search js/window.location)
-                               (> (.-length (.-search js/window.location)) 0)
-                               (let [search (.-search js/window.location)]
-                                 (and (.includes search "group=")
-                                      (.includes search "map-id="))))
-                         (try
-                           (let [url-params (js/URLSearchParams. (.-search js/window.location))
-                                 group (.get url-params "group")
-                                 map-id (.get url-params "map-id")]
-                             (if (and group map-id)
-                               (assoc route-params :group group :map-id map-id)
-                               route-params))
-                           (catch js/Error e
-                             route-params))
+          ;; Parse query parameters for routes that need them
+          query-params (parse-query-params)
+          final-params (if query-params
+                         (merge route-params query-params)
                          route-params)]
       (rf/dispatch [::events/set-route-params final-params])
       (rf/dispatch [::events/set-active-panel panel-name]))

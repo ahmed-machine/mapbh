@@ -183,11 +183,11 @@
               [:div.field.is-grouped.is-grouped-multiline
                (for [group (:all-groups item)]
                  [:div.control {:key group}
-                  [:span.tag.is-light.is-clickable
+                  [:span.tag.is-info.is-light.is-clickable
                    {:style {:cursor "pointer"}
                     :on-click #(reset! selected-group-filter group)}
                    group]])]
-              [:span.tag.is-light.is-clickable
+              [:span.tag.is-info.is-light.is-clickable
                {:style {:cursor "pointer"}
                 :on-click #(reset! selected-group-filter (:group item))}
                (:group item)])]
