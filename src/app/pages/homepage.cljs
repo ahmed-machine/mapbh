@@ -22,6 +22,7 @@
       [:div.secondary-buttons-container
        [:a.navbar-item.button {:href (routes/url-for :about)} "About"]
        [:a.navbar-item.button {:href (routes/url-for :article-index)} "Articles"]
+       [:a.navbar-item.button {:href (routes/url-for :catalogue)} "Catalogue"]
        [:a.navbar-item.button {:href (routes/url-for :contribute)} "Contribute"]]]]]
    [:div.footer-content
     [:div.content.has-text-centered {:style {:margin-top "var(--spacing-md)"}}
@@ -42,7 +43,7 @@
       {:role "navigation"
        :lang "ar"
        :style {:font-family "Amiri, Scheherazade, serif"}
-       :on-click #(rf/dispatch [::events/set-language "ar"])}
+       :on-click #(rf/dispatch [::events/set-route-params {:language "ar"}])}
       "العربية"]]]])
 
 
@@ -59,6 +60,7 @@
       [:div.secondary-buttons-container
        [:a.navbar-item.button {:href (routes/url-for :about)} "نبذة عن المشروع"]
        [:a.navbar-item.button {:href (routes/url-for :article-index)} "مقالات"]
+       [:a.navbar-item.button {:href (routes/url-for :catalogue)} "فهرس الخرائط"]
        [:a.navbar-item.button {:href (routes/url-for :contribute)} "ساهم"]]]]]
    [:div.footer-content
     [:div.content.has-text-centered {:style {:margin-top "var(--spacing-md)"}}
@@ -78,5 +80,5 @@
      [:button.button.is-outlined.is-rounded.language-switch
       {:role "navigation"
        :style {:font-family "Roboto, Helvetica, sans-serif"}
-       :on-click #(rf/dispatch [::events/set-language "en"])}
+       :on-click #(rf/dispatch [::events/set-route-params {:language "en"}])}
       "English"]]]])
