@@ -33,8 +33,24 @@ body {
 }
 #map-history {overflow-y: hidden;}
 
-.navbar-item {text-align: center;},
-a.navbar-item:hover {color: green!important;}
+.navbar-item {
+    text-align: center;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+a.navbar-item:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Elegant underline for active navbar items */
+.navbar-item.is-active {
+    background-color: transparent !important;
+    color: #000 !important;
+    font-weight: 500 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 6px !important;
+}
 
 .leaflet-control-layers-toggle {
     background-image: url(../img/control-icon.png) !important;
@@ -322,6 +338,11 @@ iframe.video {
 
     .home .logo {
         font-size: 4rem !important;
+    }
+
+    /* Hide contribute button on mobile for all pages */
+    .contribute-button {
+        display: none !important;
     }
 }
 
