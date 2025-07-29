@@ -132,6 +132,7 @@
       (reverse sorted)
       sorted)))
 
+
 (defn catalogue-table
   "Render the catalogue table"
   [data sort-state language selected-group-filter]
@@ -149,10 +150,11 @@
                     (when (= sort-key key)
                       (if (= sort-dir :asc) "↑" "↓")))]
 
-    [:div.table-container
-     [:table.table.is-striped.is-hoverable.is-fullwidth
+    [:div.table-container {:style {:overflow-x "auto"}}
+     [:table.table.is-striped.is-hoverable.is-fullwidth.is-narrow-mobile
       [:thead
        [:tr
+        [:th {:style {:width "120px"}}] ;; Actions column - no text, fixed width
         [:th {:on-click #(header-click :title)
               :style {:cursor "pointer"}}
          (if (= language :ar) "العنوان " "Title ") [:span.has-text-grey-light (sort-icon :title)]]
@@ -170,30 +172,12 @@
          (if (= language :ar) "المصدر " "Source ") [:span.has-text-grey-light (sort-icon :source)]]
         [:th {:on-click #(header-click :issuer)
               :style {:cursor "pointer"}}
-         (if (= language :ar) "الناشر " "Issuer ") [:span.has-text-grey-light (sort-icon :issuer)]]
-        [:th (if (= language :ar) "الإجراءات" "Actions")]]]
+         (if (= language :ar) "الناشر " "Issuer ") [:span.has-text-grey-light (sort-icon :issuer)]]]]
       [:tbody
        (doall
         (for [item sorted-data]
           [:tr {:key (:map-id item)}
-           [:td [:strong (:title item)]]
-           [:td (when (:year item) (:year item))]
-           [:td
-            (if (:all-groups item)
-              [:div.field.is-grouped.is-grouped-multiline
-               (for [group (:all-groups item)]
-                 [:div.control {:key group}
-                  [:span.tag.is-info.is-light.is-clickable
-                   {:style {:cursor "pointer"}
-                    :on-click #(reset! selected-group-filter group)}
-                   group]])]
-              [:span.tag.is-info.is-light.is-clickable
-               {:style {:cursor "pointer"}
-                :on-click #(reset! selected-group-filter (:group item))}
-               (:group item)])]
-           [:td (:scale item)]
-           [:td (:source item)]
-           [:td (:issuer item)]
+           ;; Actions column moved to first position
            [:td
             (let [primary-group (if (:all-groups item)
                                   (first (:all-groups item))
@@ -217,7 +201,25 @@
                 [:i.fas.fa-map {:style (if (= language :ar)
                                                {:margin-left "0.5rem" :padding "0.2rem"}
                                                {:margin-right "0.5rem" :padding "0.2rem"})}]
-                (if (= language :ar) "عرض" "View")]])]]))]]]))
+                (if (= language :ar) "عرض" "View")]])]
+           [:td [:strong (:title item)]]
+           [:td (when (:year item) (:year item))]
+           [:td
+            (if (:all-groups item)
+              [:div.field.is-grouped.is-grouped-multiline
+               (for [group (:all-groups item)]
+                 [:div.control {:key group}
+                  [:span.tag.is-info.is-light.is-clickable
+                   {:style {:cursor "pointer"}
+                    :on-click #(reset! selected-group-filter group)}
+                   group]])]
+              [:span.tag.is-info.is-light.is-clickable
+               {:style {:cursor "pointer"}
+                :on-click #(reset! selected-group-filter (:group item))}
+               (:group item)])]
+           [:td (:scale item)]
+           [:td (:source item)]
+           [:td (:issuer item)]]))]]]))
 
 (defn search-filter
     "Filter data based on search term"
@@ -254,21 +256,23 @@
     (fn []
       (let [group-filtered-data (group-filter @selected-group-filter all-data)
             filtered-data (search-filter @search-term group-filtered-data)]
-        [:div.container {:style {:margin-top "6rem" :margin-bottom "3rem"}}
+        [:div.container {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}}
          [:div.content
-          [:h1.title.is-2 "Catalogue"]
-          [:p.subtitle "Browse and search through all maps on the site"]
+          [:h1.title.is-2.has-text-centered-mobile "Catalogue"]
+          [:p.subtitle.has-text-centered-mobile "Browse and search through all maps on the site"]
 
+          ;; Mobile-first search field
           [:div.field
            [:div.control.has-icons-left
-            [:input.input.is-medium
+            [:input.input
              {:type "text"
-              :placeholder "Search maps by title, group, source, issuer, or description..."
+              :placeholder "Search maps..."
               :value @search-term
               :on-change #(reset! search-term (-> % .-target .-value))}]
             [:span.icon.is-left
              [:i.fas.fa-search]]]]
 
+          ;; Group filter button (mobile-friendly)
           (when (not (str/blank? @selected-group-filter))
             [:div.field
              [:div.control
@@ -277,17 +281,20 @@
                [:span @selected-group-filter]
                [:span.icon.is-small [:i.fas.fa-times {:style {:margin-left "0.3rem"}}]]]]])
 
-          [:div.level
+          ;; Mobile-responsive level
+          [:div.level.is-mobile
            [:div.level-left
             [:div.level-item
-             [:p.has-text-grey (str "Showing " (count filtered-data) " of " (count all-data) " maps")]]]
-           [:div.level-right
+             [:p.has-text-grey.is-size-7-mobile
+              (str "Showing " (count filtered-data) " of " (count all-data) " maps")]]]
+           ;; Sort controls - hidden on mobile, shown on tablet+
+           [:div.level-right.is-hidden-mobile
             [:div.level-item
              [:div.field.is-grouped
               [:div.control
                [:div.tags.has-addons
-                [:span.tag "Sort by:"]
-                [:span.tag.is-info (name (:sort-key @sort-state))]]]]]]]
+                [:span.tag.is-small "Sort by:"]
+                [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
 
           [catalogue-table filtered-data sort-state :en selected-group-filter]]]))))
 
@@ -302,21 +309,24 @@
     (fn []
       (let [group-filtered-data (group-filter @selected-group-filter all-data)
             filtered-data (search-filter @search-term group-filtered-data)]
-        [:div.container {:style {:margin-top "6rem" :margin-bottom "3rem"}
+        [:div.container {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}
                          :lang "ar" :dir "rtl"}
          [:div.content
-          [:h1.title.is-2 "فهرس الخرائط"]
-          [:p.subtitle "تصفح وابحث جميع الخرائط "]
+          [:h1.title.is-2.has-text-centered-mobile "فهرس الخرائط"]
+          [:p.subtitle.has-text-centered-mobile "تصفح وابحث جميع الخرائط"]
+
+          ;; Mobile-first search field (RTL)
           [:div.field
            [:div.control.has-icons-right
-            [:input.input.is-medium
+            [:input.input
              {:type "text"
-              :placeholder "ابحث في الخرائط حسب العنوان أو المجموعة أو المصدر أو الناشر..."
+              :placeholder "ابحث في الخرائط..."
               :value @search-term
               :on-change #(reset! search-term (-> % .-target .-value))}]
             [:span.icon.is-right
              [:i.fas.fa-search]]]]
 
+          ;; Group filter button (mobile-friendly, RTL)
           (when (not (str/blank? @selected-group-filter))
             [:div.field
              [:div.control
@@ -325,17 +335,20 @@
                [:span.icon.is-small [:i.fas.fa-times {:style {:margin-right "0.3rem"}}]]
                [:span @selected-group-filter]]]])
 
-          [:div.level
+          ;; Mobile-responsive level (RTL)
+          [:div.level.is-mobile
            [:div.level-right
             [:div.level-item
-             [:p.has-text-grey (str "عرض " (count filtered-data) " من " (count all-data) " خريطة")]]]
-           [:div.level-left
+             [:p.has-text-grey.is-size-7-mobile
+              (str "عرض " (count filtered-data) " من " (count all-data) " خريطة")]]]
+           ;; Sort controls - hidden on mobile, shown on tablet+
+           [:div.level-left.is-hidden-mobile
             [:div.level-item
              [:div.field.is-grouped
               [:div.control
                [:div.tags.has-addons
-                [:span.tag "ترتيب حسب:"]
-                [:span.tag.is-info (name (:sort-key @sort-state))]]]]]]]
+                [:span.tag.is-small "ترتيب حسب:"]
+                [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
 
           [catalogue-table filtered-data sort-state :ar selected-group-filter]]]))))
 
