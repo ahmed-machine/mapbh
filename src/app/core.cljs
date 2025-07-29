@@ -5,6 +5,8 @@
             [app.pages.about :as about]
             [app.pages.contribute :as contribute]
             [app.pages.homepage :as homepage]
+            [app.pages.catalogue :as catalogue]
+            [app.pages.map-info :as map-info]
             [app.pages.articles.index :as article-index]
             [app.pages.map.map-history :refer [historical-map]]
             [app.components.nav :as nav]
@@ -24,10 +26,15 @@
                    (into {})))
 
 
-(defn- panels [panel-name language]
+(defn- panels [panel-name language route-params]
   (-> {:home  {:en [homepage/en] :ar [homepage/ar]}
        :map   {:en [historical-map] :ar [historical-map]}
        :about {:en [about/en] :ar [about/ar]}
+       :catalogue {:en [catalogue/catalogue :en] :ar [catalogue/catalogue :ar]}
+       :map-info (let [group (get route-params :group)
+                       map-id (get route-params :map-id)]
+                   {:en [map-info/map-info :en group map-id]
+                    :ar [map-info/map-info :ar group map-id]})
        :contribute {:en [contribute/en] :ar [contribute/ar]}
        :article-index {:en [article-index/en] :ar [article-index/ar]}}
       (merge articles-map)
@@ -37,11 +44,12 @@
 
 (defn ui []
   (let [language (rf/subscribe [::model/language])
-        ap       (rf/subscribe [::model/active-panel])]
+        ap       (rf/subscribe [::model/active-panel])
+        rp       (rf/subscribe [::model/route-params])]
     (fn []
       [:<>
        (if (some #{@ap} `(:home)) nil [nav/top @language])
-       [panels  @ap @language]
+       [panels  @ap @language @rp]
        (if (some #{@ap} `(:map :home)) nil [nav/footer @language])])))
 
 
