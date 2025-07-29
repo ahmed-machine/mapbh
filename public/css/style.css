@@ -269,8 +269,10 @@ iframe.video {
 }
 
 .home .secondary-buttons-container {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: var(--spacing-sm);
+    width: 100%;
+    max-width: 600px;
 }
 
 /* Enhanced social icons */
@@ -302,7 +304,7 @@ iframe.video {
 }
 
 /* Responsive Design Improvements */
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 480px) {
     .home .secondary-buttons-container {
         flex-direction: column;
         gap: var(--spacing-sm);
@@ -328,9 +330,14 @@ iframe.video {
     }
 }
 
-@media screen and (min-width: 551px) and (max-width: 1024px) {
-    .home .secondary-buttons-container { max-width: 500px; }
-    .home .navbar .button { min-width: 120px; }
+@media screen and (min-width: 481px) and (max-width: 640px) {
+    .home .secondary-buttons-container { max-width: 480px; }
+    .home .navbar .button { min-width: 100px; font-size: 0.85rem; padding: 0.5rem 0.75rem; }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+    .home .secondary-buttons-container { max-width: 600px; }
+    .home .navbar .button { min-width: 110px; font-size: 0.9rem; }
 }
 
 /* Description Modal */

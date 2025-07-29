@@ -14,10 +14,11 @@
     [:div.navbar-start.is-vcentered
      [:a.navbar-item {:href (routes/url-for :about)} "About"]
      [:a.navbar-item {:href (routes/url-for :article-index)} "Articles"]
+     [:a.navbar-item {:href (routes/url-for :catalogue)} "Catalogue"]
      [:a.navbar-item {:href (routes/url-for :contribute)} "Contribute"]
      [:a.navbar-item {:href (routes/url-for :map)} "Map"]
      [:a.navbar-item {:style {:font-family "Amiri, Scheherazade, serif" :display :flex :align-items :center}
-                      :on-click #(rf/dispatch [::events/set-language "ar"])} "العربية"]]]])
+                      :on-click #(rf/dispatch [::events/set-route-params {:language "ar"}])} "العربية"]]]])
 
 
 (defn top-ar
@@ -31,8 +32,9 @@
    [:div.navbar-menu.is-active {:style {:font-size "1.1em"}}
     [:div.navbar-end
      [:a.navbar-item {:style {:font-family "Roboto, Helvetica, san serif" :font-size "0.8em" :display :flex :align-items :center}
-                      :on-click #(rf/dispatch [::events/set-language "en"])} "English"]
+                      :on-click #(rf/dispatch [::events/set-route-params {:language "en"}])} "English"]
      [:a.navbar-item {:href (routes/url-for :contribute)} "ساهم"]
+     [:a.navbar-item {:href (routes/url-for :catalogue)} "فهرس"]
      [:a.navbar-item {:href (routes/url-for :article-index)} "مقالات"]
      [:a.navbar-item {:href (routes/url-for :about)} "نبذة"]
      [:a.navbar-item {:href (routes/url-for :map)} "الخارطة"]]]])
