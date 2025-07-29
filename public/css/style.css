@@ -289,11 +289,6 @@ iframe.video {
     border: 2px solid transparent;
 }
 
-.home .icon:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color) !important;
-    transform: scale(1.1);
-}
 
 /* Language switch button styling */
 .home .button.language-switch {
