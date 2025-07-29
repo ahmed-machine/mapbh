@@ -13,6 +13,8 @@
                                    "about"      :about
                                    "dialects"   :dialects
                                    "map"        :map
+                                   "map-info"   :map-info
+                                   "catalogue"  :catalogue
                                    "contribute" :contribute
                                    "articles/"   article-routes}}])
 
@@ -25,3 +27,8 @@
  ::language
  (fn [db _]
    (or (:language db) :ar)))
+
+(rf/reg-sub
+ ::route-params
+ (fn [db _]
+   (:route-params db)))
