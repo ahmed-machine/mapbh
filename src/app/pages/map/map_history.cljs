@@ -145,15 +145,22 @@
                               (swap! state* assoc :selected [gname lname])
                               ;; In side-by-side mode, recreate the control with current layers
                               (when (and (get-pinned-layer state*) (= (:mode @state*) side-by-side-mode))
-                                ;; Remove existing control to prevent duplicates
-                                (when-let [existing-sbs (:sbs-control @state*)]
-                                  (try
-                                    (.remove existing-sbs)
-                                    (catch js/Error e))
-                                  (swap! state* dissoc :sbs-control))
-                                ;; Create new control with pinned base and new overlay
+                                ;; Use setTimeout to let the initial control creation finish first
                                 (js/setTimeout
                                   (fn []
+                                    ;; Remove any existing control
+                                    (when-let [existing-sbs (:sbs-control @state*)]
+                                      (try
+                                        (.remove existing-sbs)
+                                        (catch js/Error e))
+                                      (swap! state* dissoc :sbs-control))
+                                    
+                                    ;; Find and remove any orphaned side-by-side controls from DOM
+                                    (let [orphaned-controls (.querySelectorAll js/document ".leaflet-sbs")]
+                                      (doseq [control (array-seq orphaned-controls)]
+                                        (when (.-parentNode control)
+                                          (.removeChild (.-parentNode control) control))))
+                                    
                                     (let [layers (:layers @state*)
                                           base-string (:base @state*)]
                                       (when-let [[group map-id] (url/parse-pinned-base-string base-string)]
@@ -166,7 +173,7 @@
                                             (let [new-sbs (-> js/L .-control (.sideBySide pinned-base layer-obj) (.addTo map))]
                                               (swap! state* assoc :sbs-control new-sbs)
                                               (.setOpacity pinned-base 1.0)
-                                              (.setOpacity layer-obj 1.0))))))) 50))
+                                              (.setOpacity layer-obj 1.0))))))) 100))
                               ;; If we have a pinned base in transparency mode, ensure the new overlay appears on top
                               (when (and (get-pinned-layer state*) (= (:mode @state*) transparency-mode))
                                 (.bringToFront layer-obj))
