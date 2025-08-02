@@ -59,6 +59,13 @@ a.navbar-item:hover {
     height: 36px;
 }
 
+/* Style for pinned base layer in control menu */
+.leaflet-control-layers-base input[value*="📌"] + span {
+    font-style: italic !important;
+    font-weight: bold !important;
+    color: #2c3e50 !important;
+}
+
 /* Enhanced Logo Styling */
 .logo {
     font-family: 'Crimson Text', 'Comfortaa', serif;

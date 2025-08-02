@@ -133,6 +133,13 @@
   [lat long zoom map]
   (when (and zoom lat long) (.flyTo map (-> js/L (.latLng lat long)) zoom #js {:animate false})))
 
+(defn download-button
+  [state*]
+  (let [map (:map @state*)]
+  ;; Add option to save map
+    [:button.button.is-success.is-small.is-light.is-outlined {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "180px" :left "12px" :z-index 997}
+                                                    :on-click (fn [] (-> (new js/LeafletExporter. map 1.0) .Export))}
+     [:i.fas.fa-download]]))
 
 (defn base-layer-change
   [map state*]
@@ -142,8 +149,38 @@
                                 layer-obj (get (js->clj layer) "layer")]
                             (when (and (not= lname "Terrain") (not= lname "Satellite"))
                               (swap! state* assoc :selected [gname lname])
-                              ;; If we have a pinned base, ensure the new overlay appears on top
-                              (when (get-pinned-layer state*)
+                              ;; In side-by-side mode, recreate the control with current layers
+                              (when (and (get-pinned-layer state*) (= (:mode @state*) side-by-side-mode))
+                                ;; Remove existing control to prevent duplicates
+                                (when-let [existing-sbs (:sbs-control @state*)]
+                                  (try
+                                    (.remove existing-sbs)
+                                    (catch js/Error e
+                                      (.warn js/console "Error removing existing side-by-side control:" e)))
+                                  (swap! state* dissoc :sbs-control))
+                                ;; Create new control with pinned base and new overlay
+                                (js/setTimeout 
+                                  (fn []
+                                    (let [layers (:layers @state*)
+                                          base-string (:base @state*)]
+                                      (when (and base-string (string? base-string) (.startsWith base-string "pinned-"))
+                                        ;; Extract group and map-id from base string
+                                        (let [without-prefix (.substring base-string 7)
+                                              delimiter-index (.indexOf without-prefix "__")
+                                              group (.substring without-prefix 0 delimiter-index)
+                                              map-id (.substring without-prefix (+ delimiter-index 2))
+                                              pinned-base (get-in layers [group map-id])]
+                                          (when (and pinned-base layer-obj (.hasLayer map layer-obj))
+                                            ;; Ensure pinned base is on the map
+                                            (when (not (.hasLayer map pinned-base))
+                                              (.addLayer map pinned-base))
+                                            ;; Create side-by-side control
+                                            (let [new-sbs (-> js/L .-control (.sideBySide pinned-base layer-obj) (.addTo map))]
+                                              (swap! state* assoc :sbs-control new-sbs)
+                                              (.setOpacity pinned-base 1.0)
+                                              (.setOpacity layer-obj 1.0))))))) 50))
+                              ;; If we have a pinned base in transparency mode, ensure the new overlay appears on top
+                              (when (and (get-pinned-layer state*) (= (:mode @state*) transparency-mode))
                                 (.bringToFront layer-obj))
                               ;; Update URL when layer changes
                               (js/setTimeout #(when map (update-url-from-current-state! map state*)) 100)))))
@@ -157,30 +194,26 @@
   (.on map "moveend" (fn [] (when map (update-url-from-current-state! map state*))))
   nil)
 
-
-
-(defn download-button
-  [state*]
-  (let [map (:map @state*)]
-  ;; Add option to save map
-    [:button.button.is-success.is-small.is-light.is-outlined {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "180px" :left "12px" :z-index 997}
-                                                    :on-click (fn [] (-> (new js/LeafletExporter. map 1.0) .Export))}
-     [:i.fas.fa-download]]))
-
-
 (defn init-map
   [state*]
   (let [map (:map @state*)]
     (when map (do (.off map) (.remove map)
                   (-> js/document (.getElementById "mapid") (aset "innerHTML" "")))))
-  (let [base-layers (->> base-satellite
-                         (mapv (fn [[k selected-layer]]
-                                 [k (-> js/L (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
-                         (into {}))
+  (let [standard-base-layers (->> base-satellite
+                                      (mapv (fn [[k selected-layer]]
+                                              [k (-> js/L (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
+                                      (into {}))
         process-layers (fn [layers] (->> layers (mapv (fn [[k selected-layer]] [k (-> js/L (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
                                          (sort-by first)
                                          (into (sorted-map))))
         overlay-layers (->> layers (map (fn [[k v]] [k (process-layers v)])) (into (sorted-map)))
+        ;; Now create base-layers with potential pinned layer
+        base-layers (if-let [pinned (get-pinned-layer state* overlay-layers)]
+                      (let [[group map-id] (:selected @state*)
+                            layer-key (str group " - " map-id)
+                            pinned-name (str "📌 " layer-key " (Pinned)")]
+                        (assoc standard-base-layers pinned-name pinned))
+                      standard-base-layers)
         {:keys [zoom lat lng]} @state*
         ;; Use coordinates from state (which may come from URL params) or defaults
         init-lat (or lat (:lat default-map-state))
@@ -258,10 +291,16 @@
      :base base
      :selected selected}))
 
-
 (defn sbs-init-map
   [state*]
   (let [_  (swap! state* assoc :transparency 1.0)
+        ;; Clean up existing side-by-side control before initializing
+        _ (when-let [existing-sbs (:sbs-control @state*)]
+            (try
+              (.remove existing-sbs)
+              (catch js/Error e
+                (.warn js/console "Error removing existing side-by-side control:" e)))
+            (swap! state* dissoc :sbs-control))
         {:keys [map base selected base-layers]} (init-map state*)
         is-pinned-base (get-pinned-layer state*)
         standard-base (or (-> base-layers (get (:base default-map-state)))
@@ -271,7 +310,18 @@
       ;; Case 1: Pinned base + different overlay selected
       (and is-pinned-base selected (not= selected base))
       (do
-        (-> js/L .-control (.sideBySide base selected) (.addTo map))
+        ;; For side-by-side with pinned base, we need to ensure the selected layer
+        ;; is properly added to the map but not conflicting with the base
+        (when (and map selected)
+          ;; Remove the selected layer if it was already added by init-map
+          (when (.hasLayer map selected)
+            (.removeLayer map selected))
+          ;; Add it back to ensure proper layering
+          (.addLayer map selected))
+        
+        ;; Create side-by-side control with base on left, selected on right
+        (let [sbs-control (-> js/L .-control (.sideBySide base selected) (.addTo map))]
+          (swap! state* assoc :sbs-control sbs-control))
         (.setOpacity base 1.0)
         (.setOpacity selected 1.0)
         ;; Ensure transparency state is set to 1.0
@@ -280,7 +330,8 @@
       ;; Case 2: Pinned base but same as selected (or no different overlay)
       is-pinned-base
       (do
-        (-> js/L .-control (.sideBySide standard-base base) (.addTo map))
+        (let [sbs-control (-> js/L .-control (.sideBySide standard-base base) (.addTo map))]
+          (swap! state* assoc :sbs-control sbs-control))
         (.setOpacity standard-base 1.0)
         (.setOpacity base 1.0)
         ;; Ensure transparency state is set to 1.0
@@ -289,7 +340,8 @@
       ;; Case 3: No pinned base, standard mode
       selected
       (do
-        (-> js/L .-control (.sideBySide base selected) (.addTo map))
+        (let [sbs-control (-> js/L .-control (.sideBySide base selected) (.addTo map))]
+          (swap! state* assoc :sbs-control sbs-control))
         (.setOpacity base 1.0)
         (.setOpacity selected 1.0)
         ;; Ensure transparency state is set to 1.0
@@ -384,6 +436,13 @@
                         ;; Update URL after mode change
                         (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 200))
                       (do
+                        ;; Clean up side-by-side control when switching to transparency mode
+                        (when-let [existing-sbs (:sbs-control @state*)]
+                          (try
+                            (.remove existing-sbs)
+                            (catch js/Error e
+                              (.warn js/console "Error removing existing side-by-side control:" e)))
+                          (swap! state* dissoc :sbs-control))
                         (swap! state* assoc :mode transparency-mode :transparency 0.65)
                         (init-map state*)
                         ;; Update URL after mode change
