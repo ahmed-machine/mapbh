@@ -27,12 +27,57 @@ body {
     color: var(--text-color);
     line-height: 1.6;
 }
+
+/* Map History page */
 #mapid {
     height: 100vh;
     width:  100vw;
 }
 #map-history {overflow-y: hidden;}
+.download-button, .pin-button {position: absolute;
+                               height: 30px;
+                               width: 30px;
+                               border-radius: 2px;
+                               font-size: 0.6rem;
+                               left: 12px;
+                               z-index: 997}
+.download-button{top: 180px;}
+.pin-button{top: 220px;}
 
+.leaflet-control-layers-toggle {
+    background-image: url(../img/control-icon.png) !important;
+    background-repeat: no-repeat !important;
+    width: 36px;
+    height: 36px;
+}
+
+/* Style for pinned base layer in control menu */
+.leaflet-control-layers-base input[value*="📌"] + span {
+    font-style: italic !important;
+    font-weight: bold !important;
+    color: #2c3e50 !important;
+}
+
+/* Description Modal */
+.modal-close {
+    position: absolute !important;
+    top: 0 !important; left: unset; right:unset;
+    background: rgb(218, 41, 28) !important;
+}
+
+
+#modal-description {z-index: 1000;
+                    background: whitesmoke;
+                    font-size: 12;
+                    width: fit-content;
+                    margin: auto auto;
+                    height: fit-content;
+                    border-radius: 20px;
+                    padding: 1rem;
+                    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);}
+
+
+/* Navbar */
 .navbar-item {
     text-align: center;
     position: relative;
@@ -50,28 +95,6 @@ a.navbar-item:hover {
     font-weight: 500 !important;
     text-decoration: underline !important;
     text-underline-offset: 6px !important;
-}
-
-.leaflet-control-layers-toggle {
-    background-image: url(../img/control-icon.png) !important;
-    background-repeat: no-repeat !important;
-    width: 36px;
-    height: 36px;
-}
-
-/* Enhanced Logo Styling */
-.logo {
-    font-family: 'Crimson Text', 'Comfortaa', serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    transition: var(--transition-smooth);
-    color: var(--primary-color);
-}
-
-.logo:hover, p.logo:hover, h1.logo:hover {
-    color: var(--accent-color) !important;
-    transform: translateY(-1px);
 }
 .navbar-item {
     display: flex;
@@ -99,47 +122,6 @@ a.navbar-item:hover {
     justify-content: flex-end;
     margin-left: auto;
 }
-
-.home .icon.home {
-    display: inline-block;
-    padding: 0% 2%;
-}
-
-iframe.video {
-    aspect-ratio: 16 / 9;
-    width: 100% !important;
-}
-
-@media screen and (min-width: 1024px){
-    .container {padding: 0 4rem;}
-    iframe.video {padding:0 10rem;}
-    .image {margin: 2rem 8rem !important;
-            text-align: center;}
-    .about p, .contribute p, .articles ul {margin: 1rem 4.5rem;
-                                           text-indent: 1.5em;
-                                           line-height: 1.75em;}
-    .articles ul {margin: 1rem 6.5rem;}
-    .about h1, .contribute h1, .articles h1 {margin: 2rem 4.5rem;}
-}
-
-@media screen and (max-width: 1024px){
-    .container {padding: 0 1rem;}
-    .image {margin: 2rem 0.5rem !important;
-            text-align: center;}
-    .about p, .contribute p, .articles ul {margin: 1rem .5rem;
-                                           text-indent: 1.5em;
-                                           line-height: 1.75em;}
-    .articles ul {margin: 1rem .5rem;}
-    .about h1, .contribute h1, .articles h1 {margin: 2rem 1.5rem;}
-}
-
-.description-text {max-height: 10rem;
-                   align-items: start !important;
-                   border-bottom: 2px lightgray solid !important;
-                   padding-bottom: 2px !important;
-                   overflow-y: scroll;}
-
-.panel-block {display: inline-block !important;}
 
 /* Enhanced Homepage Button Styling */
 .home .navbar .button {
@@ -188,6 +170,64 @@ iframe.video {
     box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
 }
+
+
+/* Enhanced Logo Styling */
+.logo {
+    font-family: 'Crimson Text', 'Comfortaa', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    transition: var(--transition-smooth);
+    color: var(--primary-color);
+}
+
+.logo:hover, p.logo:hover, h1.logo:hover {
+    color: var(--accent-color) !important;
+    transform: translateY(-1px);
+}
+
+.home .icon.home {
+    display: inline-block;
+    padding: 0% 2%;
+}
+
+iframe.video {
+    aspect-ratio: 16 / 9;
+    width: 100% !important;
+}
+
+@media screen and (min-width: 1024px){
+    .container {padding: 0 4rem;}
+    iframe.video {padding:0 10rem;}
+    .image {margin: 2rem 8rem !important;
+            text-align: center;}
+    .about p, .contribute p, .articles ul {margin: 1rem 4.5rem;
+                                           text-indent: 1.5em;
+                                           line-height: 1.75em;}
+    .articles ul {margin: 1rem 6.5rem;}
+    .about h1, .contribute h1, .articles h1 {margin: 2rem 4.5rem;}
+}
+
+@media screen and (max-width: 1024px){
+    .container {padding: 0 1rem;}
+    .image {margin: 2rem 0.5rem !important;
+            text-align: center;}
+    .about p, .contribute p, .articles ul {margin: 1rem .5rem;
+                                           text-indent: 1.5em;
+                                           line-height: 1.75em;}
+    .articles ul {margin: 1rem .5rem;}
+    .about h1, .contribute h1, .articles h1 {margin: 2rem 1.5rem;}
+}
+
+.description-text {max-height: 10rem;
+                   align-items: start !important;
+                   border-bottom: 2px lightgray solid !important;
+                   padding-bottom: 2px !important;
+                   overflow-y: scroll;}
+
+.panel-block {display: inline-block !important;}
+
 
 /* article styles */
 
@@ -356,23 +396,6 @@ iframe.video {
     .home .navbar .button { min-width: 110px; font-size: 0.9rem; }
 }
 
-/* Description Modal */
-.modal-close {
-    position: absolute !important;
-    top: 0 !important; left: unset; right:unset;
-    background: rgb(218, 41, 28) !important;
-}
-
-
-#modal-description {z-index: 1000;
-                    background: whitesmoke;
-                    font-size: 12;
-                    width: fit-content;
-                    margin: auto auto;
-                    height: fit-content;
-                    border-radius: 20px;
-                    padding: 1rem;
-                    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);}
 iframe {display:block; margin: 0 auto; text-align: center;}
 
 .quote {margin: 3rem;}

@@ -91,6 +91,17 @@
     (js/encodeURIComponent map-id)))
 
 
+(defn parse-pinned-base-string
+  "Parse a pinned base string 'pinned-GROUP__MAP-ID' into [group map-id]"
+  [base-string]
+  (when (and base-string (string? base-string) (.startsWith base-string "pinned-"))
+    (let [without-prefix (.substring base-string 7)  ; Remove "pinned-" prefix
+          delimiter-index (.indexOf without-prefix "__")]
+      (when (>= delimiter-index 0)
+        (let [group (.substring without-prefix 0 delimiter-index)
+              map-id (.substring without-prefix (+ delimiter-index 2))]  ; +2 for __
+          [group map-id])))))
+
 (defn find-layer-by-map-id
   "Find layer group and map ID that matches the given map-id string"
   [map-data map-id]
