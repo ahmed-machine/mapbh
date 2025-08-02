@@ -84,14 +84,9 @@
   ([state* overlay-layers]
     (let [base (:base @state*)
           layers (or overlay-layers (:layers @state*))]
-      (when (and base (string? base) (.startsWith base "pinned-"))
-        ;; Extract group and map-id from base string using __ delimiter
-        (let [without-prefix (.substring base 7)  ; Remove "pinned-" prefix
-              delimiter-index (.indexOf without-prefix "__")
-              group (.substring without-prefix 0 delimiter-index)
-              map-id (.substring without-prefix (+ delimiter-index 2))]  ; +2 for __
-          (when layers
-            (get-in layers [group map-id])))))))
+      (when-let [[group map-id] (url/parse-pinned-base-string base)]
+        (when layers
+          (get-in layers [group map-id]))))))
 
 (defn update-transparency
   [layer v]
@@ -137,8 +132,7 @@
   [state*]
   (let [map (:map @state*)]
   ;; Add option to save map
-    [:button.button.is-success.is-small.is-light.is-outlined {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "180px" :left "12px" :z-index 997}
-                                                    :on-click (fn [] (-> (new js/LeafletExporter. map 1.0) .Export))}
+    [:button.download-button.button.is-success.is-small.is-light.is-outlined {:on-click (fn [] (-> (new js/LeafletExporter. map 1.0) .Export))}
      [:i.fas.fa-download]]))
 
 (defn base-layer-change
@@ -155,21 +149,15 @@
                                 (when-let [existing-sbs (:sbs-control @state*)]
                                   (try
                                     (.remove existing-sbs)
-                                    (catch js/Error e
-                                      (.warn js/console "Error removing existing side-by-side control:" e)))
+                                    (catch js/Error e))
                                   (swap! state* dissoc :sbs-control))
                                 ;; Create new control with pinned base and new overlay
-                                (js/setTimeout 
+                                (js/setTimeout
                                   (fn []
                                     (let [layers (:layers @state*)
                                           base-string (:base @state*)]
-                                      (when (and base-string (string? base-string) (.startsWith base-string "pinned-"))
-                                        ;; Extract group and map-id from base string
-                                        (let [without-prefix (.substring base-string 7)
-                                              delimiter-index (.indexOf without-prefix "__")
-                                              group (.substring without-prefix 0 delimiter-index)
-                                              map-id (.substring without-prefix (+ delimiter-index 2))
-                                              pinned-base (get-in layers [group map-id])]
+                                      (when-let [[group map-id] (url/parse-pinned-base-string base-string)]
+                                        (let [pinned-base (get-in layers [group map-id])]
                                           (when (and pinned-base layer-obj (.hasLayer map layer-obj))
                                             ;; Ensure pinned base is on the map
                                             (when (not (.hasLayer map pinned-base))
@@ -298,8 +286,7 @@
         _ (when-let [existing-sbs (:sbs-control @state*)]
             (try
               (.remove existing-sbs)
-              (catch js/Error e
-                (.warn js/console "Error removing existing side-by-side control:" e)))
+              (catch js/Error e))
             (swap! state* dissoc :sbs-control))
         {:keys [map base selected base-layers]} (init-map state*)
         is-pinned-base (get-pinned-layer state*)
@@ -318,7 +305,7 @@
             (.removeLayer map selected))
           ;; Add it back to ensure proper layering
           (.addLayer map selected))
-        
+
         ;; Create side-by-side control with base on left, selected on right
         (let [sbs-control (-> js/L .-control (.sideBySide base selected) (.addTo map))]
           (swap! state* assoc :sbs-control sbs-control))
@@ -402,16 +389,14 @@
     (if (or is-pinned selected)  ; Return button if there's something to show
       (if is-pinned
         ;; Show unpin button if there's a pinned base
-        [:button.button.is-warning.is-small.is-light.is-outlined
-         {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "220px" :left "12px" :z-index 997}
-          :on-click #(do (unpin-base state*)
+        [:button.pin-button.button.is-warning.is-small.is-light.is-outlined
+         {:on-click #(do (unpin-base state*)
                         (js/setTimeout (fn [] (when (:map @state*)
                                                (update-url-from-current-state! (:map @state*) state*))) 100))}
          [:i.fas.fa-unlink]]
         ;; Show pin button if no pinned base and there's a selected layer
-        [:button.button.is-success.is-small.is-light.is-outlined
-         {:style {:position :absolute :height "30px" :border-radius "2px" :font-size "0.6rem" :top "220px" :left "12px" :z-index 997}
-          :on-click #(do (pin-current-as-base state*)
+        [:button.pin-button.button.is-success.is-small.is-light.is-outlined
+         {:on-click #(do (pin-current-as-base state*)
                         (js/setTimeout (fn [] (when (:map @state*)
                                                (update-url-from-current-state! (:map @state*) state*))) 100))}
          [:i.fas.fa-thumbtack]])
@@ -440,8 +425,7 @@
                         (when-let [existing-sbs (:sbs-control @state*)]
                           (try
                             (.remove existing-sbs)
-                            (catch js/Error e
-                              (.warn js/console "Error removing existing side-by-side control:" e)))
+                            (catch js/Error e))
                           (swap! state* dissoc :sbs-control))
                         (swap! state* assoc :mode transparency-mode :transparency 0.65)
                         (init-map state*)

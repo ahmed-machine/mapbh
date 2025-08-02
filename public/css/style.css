@@ -27,11 +27,21 @@ body {
     color: var(--text-color);
     line-height: 1.6;
 }
+
 #mapid {
     height: 100vh;
     width:  100vw;
 }
 #map-history {overflow-y: hidden;}
+.download-button, .pin-button {position: absolute;
+                               height: 30px;
+                               width: 30px;
+                               border-radius: 2px;
+                               font-size: 0.6rem;
+                               left: 12px;
+                               z-index: 997}
+.download-button{top: 180px;}
+.pin-button{top: 220px;}
 
 .navbar-item {
     text-align: center;
