@@ -7,3 +7,7 @@ node_modules/*
 public/js/main.js
 public/js/manifest.edn
 public/js/cljs-runtime/*
+.claude/
+.cpcache/
+.nrepl-port
+package-lock.json
