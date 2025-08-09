@@ -947,38 +947,47 @@
 (def backlog
   {"1862 - Bahrain Harbour" {:title "Bahrain Harbour - 1862"
                              :year 1862
+                             :scale "1:73,000"
                              :source-file "1862.73000.Bahrain Harbour"
                              :status "needs-processing"}
    "1903 - Bahrain Harbour" {:title "Bahrain Harbour - 1903"
                              :year 1903
+                             :scale "1:73,000"
                              :source-file "1903.73000.Bahrain Harbour"
                              :status "needs-processing"}
    "1904 - Bahrain" {:title "Bahrain - 1904"
                      :year 1904
+                     :scale "1:63,360"
                      :source-file "1904.63360.Bahrain"
                      :status "needs-processing"}
    "1926 - Manama" {:title "Manama - 1926"
                     :year 1926
+                    :scale "1:2,400"
                     :source-file "1926.2400.Manama"
                     :status "needs-processing"}
    "1933 - Manama" {:title "Manama - 1933"
                     :year 1933
+                    :scale "1:3,639"
                     :source-file "1933.3639.Manama"
                     :status "needs-processing"}
    "1933 - Bahrain" {:title "Bahrain - 1933"
                      :year 1933
+                     :scale "1:40,000"
                      :source-file "1933.40000.Bahrain"
                      :status "needs-processing"}
    "1933 - Bahrain (63k)" {:title "Bahrain - 1933"
                            :year 1933
+                           :scale "1:63,360"
                            :source-file "1933.63360.Bahrain"
                            :status "needs-processing"}
    "1934 - Bahrain Facility Map" {:title "Bahrain Facility Map - 1934"
                                   :year 1934
+                                  :scale "1:63,360"
                                   :source-file "1934.63360.Bahrain Facility Map"
                                   :status "needs-processing"}
    "1937 - Muharraq Island" {:title "Muharraq Island - 1937"
                              :year 1937
+                             :scale "1:20,000"
                              :source-file "1937.20000.Muharraq Island"
                              :status "needs-processing"}
    "1939 - Pearl Banks" {:title "Pearl Banks - 1939"
@@ -991,15 +1000,18 @@
                          :status "needs-processing"}
    "1951 - Manama" {:title "Manama - 1951 (9 maps)"
                     :year 1951
+                    :scale "1:2,400"
                     :source-file "1951.2400.Manama collection"
                     :status "needs-processing"
                     :notes "Multi-sheet map collection with 9 maps"}
    "1951 - Aerial Manama" {:title "Aerial View - Manama - 1951"
                            :year 1951
+                           :scale "1:5,000"
                            :source-file "1951.5000.Aerial Manama"
                            :status "needs-processing"}
    "1952 - Bahrain" {:title "Bahrain - 1952"
                      :year 1952
+                     :scale "1:63,360"
                      :source-file "1952.63360.Bahrain"
                      :status "needs-processing"}
    "1953 - Welcome to Bahrain" {:title "Welcome to Bahrain - Manama - 1953"
@@ -1008,18 +1020,22 @@
                                 :status "needs-processing"}
    "1960 - Bahrain" {:title "Bahrain - 1960"
                      :year 1960
+                     :scale "1:97,500"
                      :source-file "1960.97500.Bahrain-front"
                      :status "needs-processing"}
    "1961 - Manama" {:title "Manama - 1961"
                     :year 1961
+                    :scale "1:5,000"
                     :source-file "1961.5000.Manama"
                     :status "needs-processing"}
    "1962 - Bahrain Island" {:title "Bahrain Island - 1962"
                             :year 1962
+                            :scale "1:63,360"
                             :source-file "1962.63360.Bahrain Island.5-1"
                             :status "needs-processing"}
    "1963 - Manama" {:title "Manama - 1963"
                     :year 1963
+                    :scale "1:5,000"
                     :source-file "1963.5000.Manama"
                     :status "needs-processing"}
    "1965 - Welcome to Bahrain" {:title "Welcome to Bahrain - 1965 (4 maps)"
@@ -1029,6 +1045,7 @@
                                 :notes "Multi-file collection with 4 maps"}
    "1966 - Jufayr West" {:title "Jufayr West - 1966"
                          :year 1966
+                         :scale "1:5,000"
                          :source-file "1966.5000.Jufayr West"
                          :status "needs-processing"}
    "1967 - Manama Traffic" {:title "Manama Traffic - 1967"
@@ -1037,10 +1054,12 @@
                             :status "needs-processing"}
    "1969 - Bahrain" {:title "Bahrain - 1969"
                      :year 1969
+                     :scale "1:63,360"
                      :source-file "1969.63360.Bahrain"
                      :status "needs-processing"}
    "1976 - Northern Bahrain" {:title "Northern Bahrain - 1976"
                               :year 1976
+                              :scale "1:50,000"
                               :source-file "1976.50000.Northern Bahrain"
                               :status "needs-processing"}
    "1979 - Oil & Gas" {:title "Oil & Gas Infrastructure - 1979-1997 (9 maps)"
@@ -1050,14 +1069,17 @@
                        :notes "Multi-year series with 9 maps from 1979-1997"}
    "1979 - Bahrain Power" {:title "Bahrain Power Infrastructure - 1979"
                            :year 1979
+                           :scale "1:50,000"
                            :source-file "1979.50k.Bahrain Power"
                            :status "needs-processing"}
    "1980 - Manama (10k)" {:title "Manama - 1980"
                           :year 1980
+                          :scale "1:10,000"
                           :source-file "1980.10000.Manama"
                           :status "needs-processing"}
    "1980 - Bahrain (100k)" {:title "Bahrain - 1980"
                             :year 1980
+                            :scale "1:100,000"
                             :source-file "1980.100000.Bahrain"
                             :status "needs-processing"}
    "1981 - National Addressing Project" {:title "National Addressing Project Maps - 1981 (10 maps)"
@@ -1067,6 +1089,7 @@
                                          :notes "Multi-sheet collection with 10 maps"}
    "1987 - Bahrain (100k)" {:title "Bahrain - 1987"
                             :year 1987
+                            :scale "1:100,000"
                             :source-file "1987.100000.Bahrain"
                             :status "needs-processing"}
    "1991 - Life in Bahrain" {:title "Life in Bahrain - 1991"
@@ -1075,22 +1098,27 @@
                              :status "needs-processing"}
    "1997 - Bahrain NRSC" {:title "Bahrain NRSC - 1997"
                           :year 1997
+                          :scale "1:143,000"
                           :source-file "1997.143k.Bahrain NRSC"
                           :status "needs-processing"}
    "1998 - Bahrain (100k)" {:title "Bahrain - 1998"
                             :year 1998
+                            :scale "1:100,000"
                             :source-file "1998.100k.Bahrain"
                             :status "needs-processing"}
    "2003 - Pearl Banks and Shoal" {:title "Pearl Banks and Shoal - 2003"
                                    :year 2003
+                                   :scale "1:350,000"
                                    :source-file "2003.350k.Pearl Banks and Shoal"
                                    :status "needs-processing"}
    "2007 - Bahrain (100k)" {:title "Bahrain - 2007"
                             :year 2007
+                            :scale "1:100,000"
                             :source-file "2007.100000.Bahrain"
                             :status "needs-processing"}
    "2007 - Bahrain (200k)" {:title "Bahrain - 2007"
                             :year 2007
+                            :scale "1:200,000"
                             :source-file "2007.200000.Bahrain"
                             :status "needs-processing"}
    "2010 - Andrew Duggan" {:title "Andrew Duggan Collection - 2010"
