@@ -103,12 +103,12 @@
                                  :group "Backlog"
                                  :all-groups ["Backlog"]
                                  :year (:year map-info)
+                                 :scale (:scale map-info)
                                  :has-description false
                                  :has-notes (not (str/blank? (:notes map-info)))
                                  :has-english true
                                  :has-arabic false
                                  :is-backlog true
-                                 :scale nil
                                  :source (:source-file map-info)
                                  :issuer "Pending Processing"}))]
 
