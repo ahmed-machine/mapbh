@@ -7,9 +7,7 @@
    "wadi"   :article-wadi
    "fairey" :article-fairey})
 
-(def routes ["/" {"wadi"  {"" :article-wadi ;; To be deprecated once traffic drops
-                           ["/" :language] :article-wadi}
-                  [:language "/"] {""           :home
+(def routes ["/" {[:language "/"] {""           :home
                                    "about"      :about
                                    "dialects"   :dialects
                                    "map"        :map
