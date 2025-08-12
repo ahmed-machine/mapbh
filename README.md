@@ -1,6 +1,6 @@
 # mapBH ![Deploy](https://github.com/AHAAAAAAA/mapbh/workflows/Deploy/badge.svg)
 
-An interactive web application for exploring historical maps of Bahrain from the 20th centuries. This project provides a comprehensive digital archive of Bahrain's cartographic history with tools for detailed exploration, comparison, and research.
+An interactive web application for exploring historical maps of Bahrain from the 20th centuries. This is a comprehensive digital archive of Bahrain's cartographic history with tools for detailed exploration, comparison, and research.
 
 **Live Site**: [https://www.mapbh.org](https://www.mapbh.org)
 
@@ -12,10 +12,10 @@ An interactive web application for exploring historical maps of Bahrain from the
 
 mapBH serves as a digital repository and visualization platform for historical maps of Bahrain, featuring:
 
-- **Interactive Map Viewer**: Explore over dozens of historical maps in two modes (transparency, side-by-side)
-- **Multilingual Support**: Arabic and English
+- **Interactive Map Viewer**: two modes (transparency, side-by-side)
+- **Multilingual**: Arabic and English
 - **Articles**
-- **Catalogue**: Database of available maps with metadata
+- **Catalogue**: all maps in archive with metadata
 ## Stack
 
 ### Frontend
@@ -25,12 +25,12 @@ mapBH serves as a digital repository and visualization platform for historical m
 - **Re-frame**: State management framework
 - **Bulma CSS**: Modern CSS framework for styling
 - **Leaflet.js**: Interactive mapping library
-	- Note: There's several modified Leaflet plugins included as well 
+	- Note: Includes several modified Leaflet plugins as well 
 ### Backend & Infrastructure
 - **Tileserver-GL**: Map tile server for hosting georeferenced maps
 - **Nginx**: Reverse proxy server
 - **Linode VPS**: Hosting platform
-- **Cloudflare**: CDN and DDoS protection
+- **Cloudflare**
 - **GitHub Actions**: Continuous deployment
 
 ## Project Structure
@@ -101,7 +101,7 @@ Historical maps are processed through a georeferencing pipeline:
 3. **Geometric Transformation**: Using GDAL for spatial rectification from source projection to target projection using GCPs, with additional cutlines and stitching for multi-sheet sets.
 4. **Tile Generation**: Converting to MBTiles format for web serving
 
-Where coordinates and projection information are unavailable, we get creative with with landmarks, research, and approximation. Due to this as well as historical inaccuracy in maps, not all maps align perfectly but we try our best.
+Where coordinates and projection information are unavailable, we get creative with landmarks, research, and approximation. Due to these reasons as well as historical inaccuracy in maps, not all maps align perfectly.
 
 ### Processing Scripts
 
@@ -120,7 +120,7 @@ Where coordinates and projection information are unavailable, we get creative wi
 
 ## Articles 
 Lazy blog:
-1. **Write in Markdown**: Standard markdown format for easy editing
+1. **Write in Markdown**
 2. **Convert to Hiccup**: Using the `markdown-to-hiccup` library
 3. **Integration**: Articles are compiled into ClojureScript namespaces
 
