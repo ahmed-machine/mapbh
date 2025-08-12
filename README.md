@@ -1,19 +1,21 @@
-# mapBH - Historical Maps of Bahrain ![Deploy](https://github.com/AHAAAAAAA/mapbh/workflows/Deploy/badge.svg)
+# mapBH ![Deploy](https://github.com/AHAAAAAAA/mapbh/workflows/Deploy/badge.svg)
 
 An interactive web application for exploring historical maps of Bahrain from the 20th centuries. This project provides a comprehensive digital archive of Bahrain's cartographic history with tools for detailed exploration, comparison, and research.
 
 **Live Site**: [https://www.mapbh.org](https://www.mapbh.org)
+
 **Tileserver**: [https://map.mapbh.org](https://map.mapbh.org)
-**Local Dev**: [localhost:1212](localhost:1212)
+
+**Local Dev**: [localhost:1212](http://localhost:1212)
 
 ## Overview
 
 mapBH serves as a digital repository and visualization platform for historical maps of Bahrain, featuring:
 
 - **Interactive Map Viewer**: Explore over dozens of historical maps in two modes (transparency, side-by-side)
-- **Multilingual Support**: Full Arabic and English language support
-- **Articles**: Articles with embedded historical context
-- **Map Catalogue**: Comprehensive database of available maps with metadata
+- **Multilingual Support**: Arabic and English
+- **Articles**
+- **Catalogue**: Database of available maps with metadata
 ## Stack
 
 ### Frontend
@@ -85,7 +87,7 @@ mapBH serves as a digital repository and visualization platform for historical m
    npx shadow-cljs watch app
    
    # Option 2: For Emacs/CIDER users
-   # M-x cider-jack-in-cljs, select shadow, then :app
+	M-x cider-jack-in-cljs, select shadow, then :app
    ```
    - Server: http://localhost:1212
 
@@ -99,14 +101,16 @@ Historical maps are processed through a georeferencing pipeline:
 3. **Geometric Transformation**: Using GDAL for spatial rectification from source projection to target projection using GCPs, with additional cutlines and stitching for multi-sheet sets.
 4. **Tile Generation**: Converting to MBTiles format for web serving
 
+Where coordinates and projection information are unavailable, we get creative with with landmarks, research, and approximation. Due to this as well as historical inaccuracy in maps, not all maps align perfectly but we try our best.
+
 ### Processing Scripts
 
-**Convert GeoTIFF to MBTiles**
+**Convert GeoTIFF to MBTiles (to server on tileserver)**
 ```bash
 ./scripts/tif2mbtiles.sh <input-path> <output-path>
 ```
 
-**UTM Zone 39 Projection (Bahrain standard)**
+**UTM Zone 39 Projection (most common Bahrain standard)**
 ```bash
 ./scripts/utm-zone39-translate.sh "map-name" "x1 y1 x2 y2"
 
@@ -169,9 +173,10 @@ npm install -g tileserver-gl
 # Start local tile server
 tileserver-gl -c tile-config.json
 
-# Access at http://localhost:8080
 # Comment out the remote url in map_data.cljs
 # Comment out the >2gb large maps in tile_config.json (1985)
+# Access at http://localhost:8080
+
 ```
 ---
 
