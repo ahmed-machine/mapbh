@@ -1,6 +1,6 @@
 # mapBH ![Deploy](https://github.com/AHAAAAAAA/mapbh/workflows/Deploy/badge.svg)
 
-An interactive web application for exploring historical maps of Bahrain from the 20th centuries. This is a comprehensive digital archive of Bahrain's cartographic history with tools for detailed exploration, comparison, and research.
+Interactive site to explore historical maps of Bahrain from the 20th century. This is a comprehensive digital archive of Bahrain's recent cartographic history with tools for detailed exploration, comparison, and research.
 
 **Live Site**: [https://www.mapbh.org](https://www.mapbh.org)
 
