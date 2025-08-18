@@ -36,6 +36,7 @@
     "latest-version": "^9.0.0",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet-geotiff": "^0.2.0",
+    "puppeteer": "^24.16.2",
     "react": "~16.8.0",
     "react-dom": "~16.8.0",
     "sqlite3": "^5.0.2",

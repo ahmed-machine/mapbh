@@ -136,7 +136,9 @@ a.navbar-item:hover {
     background: white;
     color: var(--text-color);
     position: relative;
-    overflow: hidden;
+    /* Remove overflow: hidden to allow border visibility */
+    margin: 0 3px; /* Increase margin to ensure border space */
+    box-sizing: border-box; /* Ensure consistent sizing */
 }
 
 .home .navbar .button:hover {
@@ -316,8 +318,9 @@ iframe.video {
 .home .navbar .navbar-menu {
     flex-direction: column;
     gap: var(--spacing-md);
-    max-width: 600px;
+    max-width: 680px; /* Further increase to accommodate button borders */
     margin: 0 auto;
+    overflow: visible; /* Ensure content is not clipped */
 }
 
 .home .primary-button-container {
@@ -328,7 +331,10 @@ iframe.video {
     flex-wrap: nowrap;
     gap: var(--spacing-sm);
     width: 100%;
-    max-width: 600px;
+    max-width: 650px; /* Further increase max-width to accommodate borders */
+    padding: 0 20px; /* Increase padding to prevent border clipping */
+    overflow: visible; /* Ensure borders are not clipped */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 /* Enhanced social icons */
