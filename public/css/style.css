@@ -352,12 +352,53 @@ iframe.video {
 }
 
 
-/* Language switch button styling */
+/* Language switch button styling - matches other buttons but smaller and grayish */
 .home .button.language-switch {
-    font-size: 1rem !important;
-    padding: 0.75rem 1.5rem !important;
-    min-width: 8rem;
-    height: 3rem;
+    height: 2.5rem; /* Shorter than other buttons (3.5rem) */
+    min-width: 6rem; /* Smaller than other buttons (9rem) */
+    border-radius: var(--border-radius);
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+    font-weight: 500;
+    font-size: 0.9rem; /* Slightly smaller font */
+    background: #f8f9fa; /* Light grayish background */
+    color: #6c757d; /* Grayish text color */
+    position: relative;
+    margin: 0 3px;
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+}
+
+.home .button.language-switch:hover {
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    background: #e9ecef; /* Slightly darker gray on hover */
+}
+
+/* Arabic text sizing for buttons - 125% larger */
+.home[lang="ar"] .navbar .button {
+    font-size: 1.25rem; /* 125% of 1rem */
+}
+
+.home[lang="ar"] .navbar .button.is-primary {
+    font-size: 1.375rem; /* 125% of 1.1rem */
+}
+
+.home[lang="ar"] .button.language-switch {
+    font-size: 1.125rem; /* 125% of 0.9rem */
+}
+
+/* Arabic tagline text sizing - 125% larger */
+.home[lang="ar"] p {
+    font-size: 1.25rem; /* 125% of 1rem (16px → 20px) */
+}
+
+/* Arabic text in language switch button on English page */
+.home .button.language-switch[lang="ar"] {
+    font-size: 1.125rem; /* 125% of 0.9rem for Arabic text */
 }
 
 /* Responsive Design Improvements */
