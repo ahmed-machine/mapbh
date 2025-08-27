@@ -134,6 +134,20 @@
                     :opts (merge base-opts {:minNativeZoom 11
                                             :maxNativeZoom 17
                                             :opacity 0.8})}
+   "1981 - Manama" {:title "Manama"
+                    :year 1981
+                    :url (form-tile-url "1981-NAP-Manama")
+                    :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual available (download)"
+                    :description-link "/documents/NAP-Manama-Manual.pdf"
+                    :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
+                    :source-link "/maps/1981.NAP.Manama.tif"
+                    :source "National Addressing Project"
+                    :scale "1:25,000"
+                    :issuer "Ministry of Information"
+                    :issuer-link "/maps/1981.NAP.Manama.zip"
+                    :opts (merge base-opts {:minNativeZoom 13
+                                            :maxNativeZoom 19
+                                            :opacity 0.8})}
    "1992 - Manama" {:title "Manama - State of Bahrain - 1992 (Edition 4)"
                     :year 1992
                     :url (form-tile-url "1992-Manama.4")
@@ -865,10 +879,26 @@
                       :opts (merge base-opts {:minNativeZoom 10
                                               :maxNativeZoom 16
                                               :opacity 0.8})}})
+(def nap
+  {"1981 - Manama" {:title "Manama"
+                    :year 1981
+                    :url (form-tile-url "1981-NAP-Manama")
+                    :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual available (download)"
+                    :description-link "/documents/NAP-Manama-Manual.pdf"
+                    :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
+                    :source-link "/maps/1981.NAP.Manama.tif"
+                    :source "National Addressing Project"
+                    :scale "1:25,000"
+                    :issuer "Ministry of Information"
+                    :issuer-link "/maps/1981.NAP.Manama.zip"
+                    :opts (merge base-opts {:minNativeZoom 13
+                                            :maxNativeZoom 19
+                                            :opacity 0.8})}})
 
 (def layers {"Bahrain" bahrain-layers
              "Manama" manama-layers
              "Muharraq" muharraq-layers
+             "National Addressing Project (1981)" nap
              "Fairey Surveys 1:25k (1977-2007)" fairey
              "Geological Survey (1975-76)" geological-survey-layers
              "Other" other-layers})

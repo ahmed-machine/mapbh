@@ -46,8 +46,12 @@
        (:title txt)]
       [:div.panel-block [:strong (:scale-header txt)] ": " (:scale txt)]
       (when (:description txt)
-        [:p.panel-block.description-text
-         (:description txt)])
+        (if (:description-link txt)
+          [:a {:href (:description-link txt)               }
+           [:p.panel-block.description-text {:style {:color "#DA291C"}}
+            (:description txt)]]
+          [:p.panel-block.description-text
+           (:description txt)]))
       [:p.panel-block.description-text
        [:strong (:notes-header txt)] ": " (:notes txt)]
       [:a {:href (:source-link details) :style {:color "#DA291C"}}
