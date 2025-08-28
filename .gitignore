@@ -8,6 +8,7 @@ public/js/main.js
 public/js/manifest.edn
 public/js/cljs-runtime/*
 .claude/
+CLAUDE.MD
 .cpcache/
 .nrepl-port
 package-lock.json
