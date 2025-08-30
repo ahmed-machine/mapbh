@@ -30,7 +30,7 @@
                            :href "https://twitter.com/map_bh"
                            :aria-label "Twitter"} [:i.fab.fa-twitter]]]
      [:span.icon.home [:a {:style {:color "var(--text-muted)"}
-                           :href "https://github.com/AHAAAAAAA/mapbh"
+                           :href "https://github.com/ahmed-machine/mapbh"
                            :aria-label "GitHub"} [:i.fab.fa-github]]]
      [:span.icon.home [:a {:style {:color "var(--text-muted)"}
                            :href "mailto:mapbh.org@gmail.com"
@@ -68,7 +68,7 @@
                            :href "https://twitter.com/map_bh"
                            :aria-label "تويتر"} [:i.fab.fa-twitter]]]
      [:span.icon.home [:a {:style {:color "var(--text-muted)"}
-                           :href "https://github.com/AHAAAAAAA/mapbh"
+                           :href "https://github.com/ahmed-machine/mapbh"
                            :aria-label "جيت هب"} [:i.fab.fa-github]]]
      [:span.icon.home [:a {:style {:color "var(--text-muted)"}
                            :href "mailto:mapbh.org@gmail.com"

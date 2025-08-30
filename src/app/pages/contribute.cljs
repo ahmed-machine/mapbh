@@ -4,7 +4,7 @@
   [:div.container.contribute
    [:h1.title "How to contribute"]
    [:p "All contributions are welcome! The code and dataset are "
-    [:a {:href "https://github.com/AHAAAAAAA/mapbh"} "open-sourced and freely available."] " The current needs revolve around adding as many interesting maps as possible. This involves:"]
+    [:a {:href "https://github.com/ahmed-machine/mapbh"} "open-sourced and freely available."] " The current needs revolve around adding as many interesting maps as possible. This involves:"]
    [:ul {:style {:margin "2% 12%"}}
     [:li "• Acquistion/digitization of historic maps."]
     [:li "• Translating old map projections to Web Mercator."]
@@ -19,7 +19,7 @@
 (defn ar []
   [:div.container.contribute {:dir "rtl" :lang "ar" :style {:font-size "1.4rem"}}
    [:h1.title "المساهمة في المشروع"]
-   [:p "نرحب بجميع المساهمات! الموقع ومجموعة البيانات " [:a {:href "https://github.com/AHAAAAAAA/mapbh"} "مفتوح المصدر و مجاني."] " الاحتياجات الحالية تتمحور حول إضافة أكبر عدد ممكن من الخرائط، وهذا يتضمن العمل التالي:"]
+   [:p "نرحب بجميع المساهمات! الموقع ومجموعة البيانات " [:a {:href "https://github.com/ahmed-machine/mapbh"} "مفتوح المصدر و مجاني."] " الاحتياجات الحالية تتمحور حول إضافة أكبر عدد ممكن من الخرائط، وهذا يتضمن العمل التالي:"]
    [:ul {:style {:margin "2% 12%"}}
     [:li "• اقتناء وترقيم خرائط تاريخية"]
     [:li "• ترجمة إسقاطات خرائطية قديمة إلى إسقاط «مركاتور» الشبكي"]
