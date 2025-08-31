@@ -51,12 +51,10 @@
       (when (:link-1 details)
         [:a {:href (:link-1 details)
              :target "_blank"}
-         [:button.button.is-primary.is-small.is-outlined
-          {:style {:margin "10px 0"}}
-          [:span.icon.is-small {:style (if arabic? {:margin-left "0.5rem"} {:margin-right "0.5rem"})} 
-           [:i.fas.fa-external-link-alt]]
-          [:span (or (:link-1-label details) 
-                     (if arabic? "رابط إضافي" "Additional Link"))]]])
+         [:div.panel-block {:style {:color "#DA291C"}}
+          [:span.icon.home [:i.fas.fa-external-link-alt]]
+          (or (:link-1-label details) 
+              (if arabic? "رابط إضافي" "Additional Link"))]])
       [:p.panel-block.description-text
        [:strong (:notes-header txt)] ": " (:notes txt)]
       [:a {:href (:source-link details) :style {:color "#DA291C"}}

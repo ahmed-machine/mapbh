@@ -230,7 +230,8 @@
                   [:i.fas.fa-map {:style (if (= language :ar)
                                                  {:margin-left "0.5rem" :padding "0.2rem"}
                                                  {:margin-right "0.5rem" :padding "0.2rem"})}]
-                  (if (= language :ar) "عرض" "View")]]))]
+                  (if (= language :ar) "عرض" "View")]
+]))]
            [:td [:strong (:title item)]]
            [:td (when (:year item) (:year item))]
            [:td
