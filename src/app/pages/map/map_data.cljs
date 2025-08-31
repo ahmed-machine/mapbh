@@ -137,8 +137,9 @@
    "1981 - Manama" {:title "Manama"
                     :year 1981
                     :url (form-tile-url "1981-NAP-Manama")
-                    :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual available (download)"
-                    :description-link "/documents/NAP-Manama-Manual.pdf"
+                    :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual provided"
+                    :link-1 "/documents/NAP-Manama-Manual.pdf"
+                    :link-1-label "Manama Manual"
                     :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
                     :source-link "/maps/1981.NAP.Manama.tif"
                     :source "National Addressing Project"
@@ -883,8 +884,9 @@
   {"1981 - Manama" {:title "Manama"
                     :year 1981
                     :url (form-tile-url "1981-NAP-Manama")
-                    :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual available (download)"
-                    :description-link "/documents/NAP-Manama-Manual.pdf"
+                    :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual provided"
+                    :link-1 "/documents/NAP-Manama-Manual.pdf"
+                    :link-1-label "Manama Manual"
                     :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
                     :source-link "/maps/1981.NAP.Manama.tif"
                     :source "National Addressing Project"
