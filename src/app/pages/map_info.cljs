@@ -95,7 +95,17 @@
         [:i.fas.fa-file-image {:style (if is-arabic
                                          {:margin-left "0.5rem" :padding "0.2rem"}
                                          {:margin-right "0.5rem" :padding "0.2rem"})}]
-        (if is-arabic "الملف الأصلي" "Original File")])]))
+        (if is-arabic "الملف الأصلي" "Original File")])
+
+     (when (:link-1 map-info)
+       [:a.button.is-light.is-small
+        {:href (:link-1 map-info)
+         :target "_blank"}
+        [:i.fas.fa-external-link-alt {:style (if is-arabic
+                                                {:margin-left "0.5rem" :padding "0.2rem"}
+                                                {:margin-right "0.5rem" :padding "0.2rem"})}]
+        (or (:link-1-label map-info)
+            (if is-arabic "رابط إضافي" "Additional Link"))])]))
 
 (defn breadcrumb-nav
   "Render breadcrumb navigation"
