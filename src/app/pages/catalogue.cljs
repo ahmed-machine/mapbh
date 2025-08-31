@@ -211,7 +211,8 @@
               (let [primary-group (if (:all-groups item)
                                     (first (:all-groups item))
                                     (:group item))
-                    bounds (get-layer-bounds primary-group (:map-id item) (:title item))]
+                    bounds (get-layer-bounds primary-group (:map-id item) (:title item))
+                    is-viewable (not= false (:viewable item))]
                 [:div.buttons.are-small {:style (when (= language :ar) {:justify-content "flex-end"})}
                  [:a.button.is-light.is-small
                   {:href (str "/" (if (= language :ar) "ar" "en")
@@ -222,15 +223,16 @@
                                                           {:margin-left "0.5rem" :padding "0.2rem"}
                                                           {:margin-right "0.5rem" :padding "0.2rem"})}]
                   (if (= language :ar) "تفاصيل" "Info")]
-                 [:a.button.is-light.is-small
-                  {:href (str (routes/url-for :map)
-                              "?map=" (js/encodeURIComponent (:map-id item))
-                              "&coords=" (:lat bounds) "," (:lng bounds)
-                              "&zoom=" (:zoom bounds))}
-                  [:i.fas.fa-map {:style (if (= language :ar)
-                                                 {:margin-left "0.5rem" :padding "0.2rem"}
-                                                 {:margin-right "0.5rem" :padding "0.2rem"})}]
-                  (if (= language :ar) "عرض" "View")]
+                 (when is-viewable
+                   [:a.button.is-light.is-small
+                    {:href (str (routes/url-for :map)
+                                "?map=" (js/encodeURIComponent (:map-id item))
+                                "&coords=" (:lat bounds) "," (:lng bounds)
+                                "&zoom=" (:zoom bounds))}
+                    [:i.fas.fa-map {:style (if (= language :ar)
+                                                   {:margin-left "0.5rem" :padding "0.2rem"}
+                                                   {:margin-right "0.5rem" :padding "0.2rem"})}]
+                    (if (= language :ar) "عرض" "View")])
 ]))]
            [:td [:strong (:title item)]]
            [:td (when (:year item) (:year item))]

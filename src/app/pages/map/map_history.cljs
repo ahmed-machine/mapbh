@@ -2,7 +2,7 @@
   (:require [re-frame.core :as rf]
             [reagent.core :as reagent]
             [app.model :as model]
-            [app.pages.map.map-data :refer [layers ar-layers base-satellite default-map-state]]
+            [app.pages.map.map-data :refer [viewable-layers ar-layers base-satellite default-map-state]]
             [app.util.url :as url]))
 
 ;; Constants
@@ -37,7 +37,7 @@
 
 (defn modal-description
   [state* arabic?]
-  (let [details (get-in layers (:selected @state*))
+  (let [details (get-in viewable-layers (:selected @state*))
         ar-details (merge details (get-in ar-layers (:selected @state*)))
         txt (:description (text details ar-details arabic?))]
     [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr")}
@@ -208,7 +208,7 @@
         process-layers (fn [layers] (->> layers (mapv (fn [[k selected-layer]] [k (-> js/L (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
                                          (sort-by first)
                                          (into (sorted-map))))
-        overlay-layers (->> layers (map (fn [[k v]] [k (process-layers v)])) (into (sorted-map)))
+        overlay-layers (->> viewable-layers (map (fn [[k v]] [k (process-layers v)])) (into (sorted-map)))
         ;; Now create base-layers with potential pinned layer
         base-layers (if-let [pinned (get-pinned-layer state* overlay-layers)]
                       (let [[group map-id] (:selected @state*)
@@ -237,7 +237,7 @@
         ;; Create separate layer instance if selected is same as pinned base
         selected (if (and pinned-layer selected-layer-data (= pinned-layer selected-layer-data))
                    ;; Create new instance of the same layer for overlay
-                   (let [layer-config (get-in layers (:selected @state*))]
+                   (let [layer-config (get-in viewable-layers (:selected @state*))]
                      (-> js/L (.tileLayer (:url layer-config) (-> layer-config :opts clj->js))))
                    selected-layer-data)
         ]
@@ -470,7 +470,7 @@
       (fn [] ;; Setup Map
         ;; Parse URL parameters and update state safely after component mount
         (try
-          (let [url-state (url/parse-url-params layers)]
+          (let [url-state (url/parse-url-params viewable-layers)]
             (when (seq url-state)
               (swap! state* merge url-state)))
           (catch js/Error e

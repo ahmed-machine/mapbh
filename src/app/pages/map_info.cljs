@@ -67,17 +67,19 @@
   "Render action buttons for viewing map and downloading files"
   [map-info language]
   (let [is-arabic (= language :ar)
-        bounds (catalogue/get-layer-bounds (:group map-info) (:map-id map-info) (:title map-info))]
+        bounds (catalogue/get-layer-bounds (:group map-info) (:map-id map-info) (:title map-info))
+        is-viewable (not= false (:viewable map-info))]
     [:div.buttons
-     [:a.button.is-light.is-small
-      {:href (str (routes/url-for :map)
-                 "?map=" (js/encodeURIComponent (:map-id map-info))
-                 "&coords=" (:lat bounds) "," (:lng bounds)
-                 "&zoom=" (:zoom bounds))}
-      [:i.fas.fa-map {:style (if is-arabic
-                                {:margin-left "0.5rem" :padding "0.2rem"}
-                                {:margin-right "0.5rem" :padding "0.2rem"})}]
-      (if is-arabic "عرض الخريطة" "View Map")]
+     (when is-viewable
+       [:a.button.is-light.is-small
+        {:href (str (routes/url-for :map)
+                   "?map=" (js/encodeURIComponent (:map-id map-info))
+                   "&coords=" (:lat bounds) "," (:lng bounds)
+                   "&zoom=" (:zoom bounds))}
+        [:i.fas.fa-map {:style (if is-arabic
+                                  {:margin-left "0.5rem" :padding "0.2rem"}
+                                  {:margin-right "0.5rem" :padding "0.2rem"})}]
+        (if is-arabic "عرض الخريطة" "View Map")])
 
      (when (:source-link map-info)
        [:a.button.is-light.is-small
