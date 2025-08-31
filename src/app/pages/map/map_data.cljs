@@ -905,6 +905,19 @@
              "Geological Survey (1975-76)" geological-survey-layers
              "Other" other-layers})
 
+(defn filter-viewable-maps
+  "Filter map layers to only include viewable maps (defaults to true if not specified)"
+  [layers-map]
+  (into {}
+    (for [[group-name group-maps] layers-map]
+      [group-name
+       (into {}
+         (for [[map-id map-data] group-maps]
+           (when (not= false (:viewable map-data))
+             [map-id map-data])))])))
+
+(def viewable-layers (filter-viewable-maps layers))
+
 (def ar-layers
   {"Bahrain"
    {"1914 - Bahrain Harbour" {:title "١٩١٤ - ميناء البحرين"
