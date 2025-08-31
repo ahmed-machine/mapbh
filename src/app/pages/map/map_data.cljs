@@ -481,7 +481,7 @@
                      :source "National Plan and Development"
                      :scale "N/A, probably 1:50,000"
                      :issuer "Urban Planning & Development Authority"
-                     :issuer-link "https://upda.gov.bh/Media/ZonningMappings/20190911081035456_n0adrtkg_vek.jpg"
+                     :issuer-link "/maps/2030-Bahrain.jpg"
                      :opts (merge base-opts {:minNativeZoom 10
                                              :maxNativeZoom 15
                                              :opacity 0.8})}})
