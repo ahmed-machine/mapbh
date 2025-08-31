@@ -46,12 +46,17 @@
        (:title txt)]
       [:div.panel-block [:strong (:scale-header txt)] ": " (:scale txt)]
       (when (:description txt)
-        (if (:description-link txt)
-          [:a {:href (:description-link txt)               }
-           [:p.panel-block.description-text {:style {:color "#DA291C"}}
-            (:description txt)]]
-          [:p.panel-block.description-text
-           (:description txt)]))
+        [:p.panel-block.description-text
+         (:description txt)])
+      (when (:link-1 details)
+        [:a {:href (:link-1 details)
+             :target "_blank"}
+         [:button.button.is-primary.is-small.is-outlined
+          {:style {:margin "10px 0"}}
+          [:span.icon.is-small {:style (if arabic? {:margin-left "0.5rem"} {:margin-right "0.5rem"})} 
+           [:i.fas.fa-external-link-alt]]
+          [:span (or (:link-1-label details) 
+                     (if arabic? "رابط إضافي" "Additional Link"))]]])
       [:p.panel-block.description-text
        [:strong (:notes-header txt)] ": " (:notes txt)]
       [:a {:href (:source-link details) :style {:color "#DA291C"}}
