@@ -146,9 +146,8 @@
             [action-buttons map-info :en]]]
 
           [:hr]
-
           [metadata-grid map-info :en]
-
+          [map-thumbnail map-info :en]
           [info-section "Description" (:description map-info) :en]
           [info-section "Notes" (:notes map-info) :en]
           [info-section "Submitted by" (:submitted-by map-info) :en]]])
@@ -186,8 +185,10 @@
 
           [:hr]
 
-          [metadata-grid map-info :ar]
 
+
+          [metadata-grid map-info :ar]
+          [map-thumbnail map-info :ar]
           [info-section "الوصف" (:description map-info) :ar]
           [info-section "ملاحظات" (:notes map-info) :ar]
           [info-section "مساهمة" (:submitted-by map-info) :ar]]])
