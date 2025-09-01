@@ -1161,11 +1161,11 @@
                             :scale "1:100,000"
                             :source-file "1980.100000.Bahrain"
                             :status "needs-processing"}
-   "1981 - National Addressing Project" {:title "National Addressing Project Maps - 1981 (10 maps)"
+   "1981 - National Addressing Project" {:title "National Addressing Project Maps - 1981 (8 maps)"
                                          :year 1981
                                          :source-file "1981 NAP collection"
                                          :status "needs-processing"
-                                         :notes "Multi-sheet collection with 10 maps"}
+                                         :notes "Multi-sheet collection with 8 maps"}
    "1987 - Bahrain (100k)" {:title "Bahrain - 1987"
                             :year 1987
                             :scale "1:100,000"
@@ -1218,10 +1218,10 @@
                                      :status "needs-processing"
                                      :notes "Multi-sheet collection with 5 thematic maps"}
    "Bahrain Landmarks" {:title "Bahrain Landmarks"
-                        :year nil
+                        :year 1995
                         :source-file "Bahrain Landmarks - Front"
                         :status "needs-processing"}
    "Bahrain Yesterday and Today" {:title "Bahrain Yesterday and Today"
-                                  :year nil
+                                  :year 1986
                                   :source-file "Bahrain Yesterday and Today"
                                   :status "needs-processing"}})
