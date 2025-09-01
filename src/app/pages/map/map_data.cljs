@@ -948,7 +948,8 @@
         source-link (:source-link map-data)]
     ;; Try source-link first if it's an image, then issuer-link as fallback
     (or (when (image-format? source-link) (path-to-thumbnail source-link))
-        (when (image-format? issuer-link) (path-to-thumbnail issuer-link)))))
+        (when (image-format? issuer-link) (path-to-thumbnail issuer-link))
+        (path-to-thumbnail source-link))))
 
 
 (def ar-layers
