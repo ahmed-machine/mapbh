@@ -64,7 +64,7 @@
                     :source "British Library: India Office Records and Private Papers"
                     :scale "1:3,639"
                     :issuer "Qatar Digital Library"
-                    :issuer-link "https://www.qdl.qa/en/archive/81055/vdc_100043097172.0x000079"
+                    :issuer-link "/maps/1937-Manama.jpg"
                     :opts (merge base-opts {:minNativeZoom 13
                                             :maxNativeZoom 19
                                             :opacity 0.7})}
@@ -317,7 +317,7 @@
                      :url (form-tile-url "1937-Bahrain")
                      :description "Plan of Bahrain. The plan indicates hydrology, settlements and  as well as providing some indication of relief. Included is a table of reference of symbols used. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
                      :notes "Original scan of document was distorted and outlines begin to diverge greatly further and further south.  This is one of my favorite maps because it shows the borders of shallow waters around Bahrain. Those borders now correspond almost exactly to the borders of reclaimed land around the island. It costs less to reclaim shallow water. "
-                     :issuer-link "https://www.qdl.qa/en/archive/8955/vdc_90043097172.0x000077"
+                     :issuer-link "/maps/1937-Bahrain.jpg"
                      :source "British Library: India Office Records and Private Papers"
                      :source-link "/maps/1937-Bahrain.tif"
                      :issuer "Qatar Digital Library"
@@ -332,7 +332,7 @@
                      :description "Series GSGS 4035 Edition 2. Shows physical features, residential places, cultivated land, selected buildings, marsh land, and major roads.
   Relief shown by landform drawings, contours, and spot heights. Compiled from Air photographs in A.H.Q. Drawing Office, Hinaidi, 1937. Drawn and Heliographed by O.S. 1939."
                      :notes "Well-preserved, undistorted scan. Map has relatively few inaccuracies."
-                     :issuer-link "https://legacy.lib.utexas.edu/maps/ams/bahrein_island/txu-pclmaps-oclc-6559195-bahrein-island.jpg"
+                     :issuer-link "/maps/1943-Bahrain.jpg"
                      :source "US Army Map Service"
                      :source-link "/maps/1943-Bahrain.tif"
                      :issuer "University of Texas Library"
@@ -917,6 +917,32 @@
              [map-id map-data])))])))
 
 (def viewable-layers (filter-viewable-maps layers))
+
+(defn- path-to-thumbnail
+  "Convert file path to thumbnail path"
+  [file-path]
+  (when file-path
+    (let [filename (if (.startsWith file-path "/maps/")
+                     (subs file-path 6)  ; Remove "/maps/" prefix
+                     (last (clojure.string/split file-path #"/")))
+          name-without-ext (clojure.string/replace filename #"\.[^.]+$" "")]
+      (str "/thumbnails/" name-without-ext ".png"))))
+
+(defn- image-format?
+  "Check if file path is an image format"
+  [file-path]
+  (and file-path
+       (re-find #"\.(jpg|jpeg|png|tif|tiff)$" (clojure.string/lower-case file-path))))
+
+(defn get-thumbnail-path
+  "Get thumbnail path for a map, with fallback from source-link to issuer-link"
+  [map-data]
+  (let [issuer-link (:issuer-link map-data)
+        source-link (:source-link map-data)]
+    ;; Try source-link first if it's an image, then issuer-link as fallback
+    (or (when (image-format? source-link) (path-to-thumbnail source-link))
+        (when (image-format? issuer-link) (path-to-thumbnail issuer-link)))))
+
 
 (def ar-layers
   {"Bahrain"

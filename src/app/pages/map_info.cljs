@@ -1,6 +1,6 @@
 (ns app.pages.map-info
   (:require [reagent.core :as r]
-            [app.pages.map.map-data :as map-data :refer [ar-layers]]
+            [app.pages.map.map-data :as map-data :refer [ar-layers get-thumbnail-path]]
             [app.pages.catalogue :as catalogue]
             [app.routes :as routes]
             [clojure.string :as str]
@@ -109,6 +109,22 @@
         (or (:link-1-label map-info)
             (if is-arabic "رابط إضافي" "Additional Link"))])]))
 
+(defn map-thumbnail
+  "Render map thumbnail if available"
+  [map-info language]
+  (let [thumbnail-path (get-thumbnail-path map-info)]
+    (when thumbnail-path
+      [:div.content {:style {:margin-bottom "2rem"}}
+       [:figure.image
+        [:img {:src thumbnail-path
+               :alt (:title map-info)
+               :style {:max-width "600px"
+                       :height "auto"
+                       :border "1px solid #ddd"
+                       :border-radius "4px"
+                       :box-shadow "0 2px 4px rgba(0,0,0,0.1)"}
+               :on-error "this.parentElement.parentElement.style.display='none'"}]]])))
+
 (defn breadcrumb-nav
   "Render breadcrumb navigation"
   [map-info language]
@@ -184,8 +200,6 @@
             [action-buttons map-info :ar]]]
 
           [:hr]
-
-
 
           [metadata-grid map-info :ar]
           [map-thumbnail map-info :ar]
