@@ -111,7 +111,7 @@
 
 (defn map-thumbnail
   "Render map thumbnail if available"
-  [map-info language]
+  [map-info]
   (let [thumbnail-path (get-thumbnail-path map-info)]
     (when thumbnail-path
       [:div.content {:style {:margin-bottom "2rem"}}
@@ -137,86 +137,44 @@
             (if is-arabic "فهرس الخرائط" "Catalogue")]]
       [:li.is-active [:a {:aria-current "page"} (:title map-info)]]]]))
 
-(defn map-info-en
-  "English version of map info page"
-  [group map-id]
-  (let [map-info (when (and group map-id) (find-map-by-group-and-id group map-id :en))]
-    (if map-info
-      (let [year (:year map-info)]
-        [:div.container {:style {:margin-top "6rem" :margin-bottom "3rem"}}
-         [breadcrumb-nav map-info :en]
-
-         [:div.content
-          [:div
-           [:h1.title.is-2 (:title map-info)]
-           [:h2.subtitle.is-4
-            (if (and (:all-groups map-info) (> (count (:all-groups map-info)) 1))
-              [:div.field.is-grouped.is-grouped-multiline
-               (for [group (:all-groups map-info)]
-                 [:div.control {:key group}
-                  [:span.tag.is-primary.is-medium group]])]
-              [:span.tag.is-primary.is-medium (:group map-info)])
-            (when year [:span.tag.is-info.is-medium {:style {:margin-left "0.5rem"}} year])]
-
-           [:div.content {:style {:margin-top "1rem"}}
-            [action-buttons map-info :en]]]
-
-          [:hr]
-          [metadata-grid map-info :en]
-          [map-thumbnail map-info :en]
-          [info-section "Description" (:description map-info) :en]
-          [info-section "Notes" (:notes map-info) :en]
-          [info-section "Submitted by" (:submitted-by map-info) :en]]])
-
-      [:div.container {:style {:margin-top "6rem"}}
-       [:div.content
-        [:h1.title.is-2 "Map Not Found"]
-        [:p "The requested map could not be found."]
-        [:a.button.is-primary {:href (routes/url-for :catalogue)} "Return to Catalogue"]]])))
-
-(defn map-info-ar
-  "Arabic version of map info page"
-  [group map-id]
-  (let [map-info (when (and group map-id) (find-map-by-group-and-id group map-id :ar))]
-    (if map-info
-      (let [year (:year map-info)]
-        [:div.container {:style {:margin-top "6rem" :margin-bottom "3rem"}
-                         :lang "ar" :dir "rtl"}
-         [breadcrumb-nav map-info :ar]
-
-         [:div.content
-          [:div
-           [:h1.title.is-2 (:title map-info)]
-           [:h2.subtitle.is-4
-            (if (and (:all-groups map-info) (> (count (:all-groups map-info)) 1))
-              [:div.field.is-grouped.is-grouped-multiline
-               (for [group (:all-groups map-info)]
-                 [:div.control {:key group}
-                  [:span.tag.is-primary.is-medium group]])]
-              [:span.tag.is-primary.is-medium (:group map-info)])
-            (when year [:span.tag.is-info.is-medium {:style {:margin-right "0.5rem"}} year])]
-
-           [:div.content {:style {:margin-top "1rem"}}
-            [action-buttons map-info :ar]]]
-
-          [:hr]
-
-          [metadata-grid map-info :ar]
-          [map-thumbnail map-info :ar]
-          [info-section "الوصف" (:description map-info) :ar]
-          [info-section "ملاحظات" (:notes map-info) :ar]
-          [info-section "مساهمة" (:submitted-by map-info) :ar]]])
-      [:div.container {:style {:margin-top "6rem"}
-                       :lang "ar" :dir "rtl"}
-       [:div.content
-        [:h1.title.is-2 "الخريطة غير موجودة"]
-        [:p "لم يتم العثور على الخريطة المطلوبة."]
-        [:a.button.is-primary {:href (routes/url-for :catalogue)} "العودة للفهرس"]]])))
-
 (defn map-info
-  "Main map info component with language switching"
+  "Combined map info page component with language support"
   [language group map-id]
-  (condp = language
-    :en [map-info-en group map-id]
-    :ar [map-info-ar group map-id]
-    [map-info-en group map-id]))
+  (let [is-arabic (= language :ar)
+        map-info (when (and group map-id) (find-map-by-group-and-id group map-id language))]
+    (if map-info
+      (let [year (:year map-info)]
+        [:div.container (cond-> {:style {:margin-top "6rem" :margin-bottom "3rem"}}
+                               is-arabic (assoc :lang "ar" :dir "rtl"))
+         [breadcrumb-nav map-info language]
+
+         [:div.content
+          [:div
+           [:h1.title.is-2 (:title map-info)]
+           [:h2.subtitle.is-4
+            (if (and (:all-groups map-info) (> (count (:all-groups map-info)) 1))
+              [:div.field.is-grouped.is-grouped-multiline
+               (for [group (:all-groups map-info)]
+                 [:div.control {:key group}
+                  [:span.tag.is-primary.is-medium group]])]
+              [:span.tag.is-primary.is-medium (:group map-info)])
+            (when year [:span.tag.is-info.is-medium {:style (if is-arabic
+                                                               {:margin-right "0.5rem"}
+                                                               {:margin-left "0.5rem"})} year])]
+           [:div.content {:style {:margin-top "1rem"}}
+            [action-buttons map-info language]]]
+
+          [:hr]
+          [metadata-grid map-info language]
+          [map-thumbnail map-info]
+          [info-section (if is-arabic "الوصف" "Description") (:description map-info) language]
+          [info-section (if is-arabic "ملاحظات" "Notes") (:notes map-info) language]
+          [info-section (if is-arabic "مساهمة" "Submitted by") (:submitted-by map-info) language]]])
+
+      [:div.container (cond-> {:style {:margin-top "6rem"}}
+                             is-arabic (assoc :lang "ar" :dir "rtl"))
+       [:div.content
+        [:h1.title.is-2 (if is-arabic "الخريطة غير موجودة" "Map Not Found")]
+        [:p (if is-arabic "لم يتم العثور على الخريطة المطلوبة." "The requested map could not be found.")]
+        [:a.button.is-primary {:href (routes/url-for :catalogue)}
+         (if is-arabic "العودة للفهرس" "Return to Catalogue")]]])))
