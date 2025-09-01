@@ -297,7 +297,14 @@
                                             :maxNativeZoom 17
                                             :opacity 0.8})}})
 (def bahrain-layers
-  {"1914 - Bahrain Harbour" {:title "1914 - Bahrain Harbour"
+  {"1817 - Bahrain Harbour" {:title "A Plan of the Islands of Bahrain and Arad"
+                             :year 1817
+                             :viewable false
+                             :description "The original of this map can be found in the archives of the Hydrographic Office in Taunton, UK, (reference: Original Documents w 66/1). It is mentioned in the first chapter of the unpublished account of the Survey of the Persian Gulf, written by G.B. Brucks in 1835.This is the earliest surviving British survey of Bahrain and its waters. The strange shape of the island is because the Mercury only surveyed the waters to the north east of Bahrain and did not sail round the island. The different anchorages of the Mercury are marked 'A' on the map; the fort marked 'D' is Abu Mahir fort, then an island but now an integral part of Muharraq Island and the headquarters of the coastguards. Manama and the Qala'at al-Bahrain (the 'Portuguese Fort') are named for the first time on a map; but, historically, the most important feature of this map is that it is the first time the name of Muharraq (here spelt as Maharag) is used on any English document as the name of the main city on Arad island. Muharraq was founded only seven years previously, in 1810."
+                             :source "Second-Lt. Wilson of the East India Company Cruiser Mercury."
+                             :source-link "/maps/1817-A Plan of the Islands of Bahrain and Arad.tif"
+                             :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"}
+   "1914 - Bahrain Harbour" {:title "1914 - Bahrain Harbour"
                              :year 1914
                              :url (form-tile-url "1914-Harbour")
                              :description nil
