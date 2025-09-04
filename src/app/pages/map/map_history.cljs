@@ -55,6 +55,13 @@
           [:span.icon.home [:i.fas.fa-external-link-alt]]
           (or (:link-1-label details) 
               (if arabic? "رابط إضافي" "Additional Link"))]])
+      (when (:link-2 details)
+        [:a {:href (:link-2 details)
+             :target "_blank"}
+         [:div.panel-block {:style {:color "#DA291C"}}
+          [:span.icon.home [:i.fas.fa-external-link-alt]]
+          (or (:link-2-label details) 
+              (if arabic? "رابط إضافي ثاني" "Additional Link 2"))]])
       [:p.panel-block.description-text
        [:strong (:notes-header txt)] ": " (:notes txt)]
       [:a {:href (:source-link details) :style {:color "#DA291C"}}
