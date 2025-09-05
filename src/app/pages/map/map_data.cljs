@@ -304,6 +304,23 @@
                              :source "Second-Lt. Wilson of the East India Company Cruiser Mercury."
                              :source-link "/maps/1817-A Plan of the Islands of Bahrain and Arad.tif"
                              :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"}
+   "1904 - Bahrain" {:title "1904-5 - Bahrain"
+                     :year 1904
+                     :url (form-tile-url "1904-Bahrain")
+                     :description "The map was created for Lorimer’s 5000-page encyclopaedia for the colonial British government, titled ‘Gazetteer of the Persian Gulf, Oman, and Central Arabia,’ and published in 1908. The survey was conducted in the winter season of 1904-1905 under Surveyor Sher Jang. Every place listed in this map has a detailed description in the Gazetteer (linked). Due its accuracy and scale, it’s said official government departments continued to reference this map for over 50 years."
+                     :notes "Original scan was deformed without a clear projection. Rectified using two passes: 1) warped deformities 'straight' using coordinate grid as GCPs with an Indian Survey projection.  2) Created an extensive list of historic springs, forts, and geographic features and hand matched them against the 1956, 1977, and 1969 maps as reference."
+                     :source "Gazetteer of the Persian Gulf"
+                     :source-link "/maps/1904-Bahrain.tif"
+                     :link-1 "/documents/Gazetteer of the Persian Gulf. Vol. II. Geographical and Statistical. J G Lorimer. 1908, p235-280.pdf"
+                     :link-1-label "Gazetteer of the Persian Gulf"
+                     :link-2 "https://www.alwasatnews.com/m1904/index.htm"
+                     :link-2-label "AlWasat article on 1904 map"
+                     :scale "1:63,360"
+                     :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+                     :issuer-link "/maps/1904-Bahrain-georeferenced.tif"
+                     :opts (merge base-opts {:minNativeZoom 9
+                                             :maxNativeZoom 15
+                                             :opacity 0.8})}
    "1914 - Bahrain Harbour" {:title "1914 - Bahrain Harbour"
                              :year 1914
                              :url (form-tile-url "1914-Harbour")
