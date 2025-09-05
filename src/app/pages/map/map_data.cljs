@@ -1051,11 +1051,6 @@
                              :scale "1:73,000"
                              :source-file "1903.73000.Bahrain Harbour"
                              :status "needs-processing"}
-   "1904 - Bahrain" {:title "Bahrain - 1904"
-                     :year 1904
-                     :scale "1:63,360"
-                     :source-file "1904.63360.Bahrain"
-                     :status "needs-processing"}
    "1926 - Manama" {:title "Manama - 1926"
                     :year 1926
                     :scale "1:2,400"
