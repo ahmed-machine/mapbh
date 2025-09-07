@@ -257,6 +257,19 @@
                     :opts (merge base-opts {:minNativeZoom 11
                                             :maxNativeZoom 17
                                             :opacity 0.8})}
+   "1981 - Muharraq" {:title "Muharraq"
+                      :year 1981
+                      :url (form-tile-url "1981-NAP-Muharraq")
+                      :description "Part of National Addressing Project conducted in 1981."
+                      :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
+                      :source-link "/maps/1981.NAP.Muharraq.tif"
+                      :source "National Addressing Project"
+                      :scale "1:25,000"
+                      :issuer "Ministry of Information"
+                      :issuer-link "/maps/1981.NAP.Muharraq.zip"
+                      :opts (merge base-opts {:minNativeZoom 14
+                                              :maxNativeZoom 20
+                                              :opacity 0.8})}
    "1992 - Manama" {:title "Manama - State of Bahrain - 1992 (Edition 4)"
                     :year 1992
                     :url (form-tile-url "1992-Manama.4")
@@ -919,7 +932,20 @@
                     :issuer-link "/maps/1981.NAP.Manama.zip"
                     :opts (merge base-opts {:minNativeZoom 13
                                             :maxNativeZoom 19
-                                            :opacity 0.8})}})
+                                            :opacity 0.8})}
+   "1981 - Muharraq" {:title "Muharraq"
+                      :year 1981
+                      :url (form-tile-url "1981-NAP-Muharraq")
+                      :description "Part of National Addressing Project conducted in 1981."
+                      :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
+                      :source-link "/maps/1981.NAP.Muharraq.tif"
+                      :source "National Addressing Project"
+                      :scale "1:25,000"
+                      :issuer "Ministry of Information"
+                      :issuer-link "/maps/1981.NAP.Muharraq.zip"
+                      :opts (merge base-opts {:minNativeZoom 14
+                                              :maxNativeZoom 20
+                                              :opacity 0.8})}})
 
 (def layers {"Bahrain" bahrain-layers
              "Manama" manama-layers
