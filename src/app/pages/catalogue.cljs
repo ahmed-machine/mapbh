@@ -282,7 +282,7 @@
   []
   (let [search-term (r/atom "")
         selected-group-filter (r/atom "")
-        sort-state (r/atom {:sort-key :year :sort-dir :desc})
+        sort-state (r/atom {:sort-key :year :sort-dir :asc})
         include-backlog (r/atom true)]
 
     (fn []
@@ -345,7 +345,7 @@
   []
   (let [search-term (r/atom "")
         selected-group-filter (r/atom "")
-        sort-state (r/atom {:sort-key :year :sort-dir :desc})
+        sort-state (r/atom {:sort-key :year :sort-dir :asc})
         include-backlog (r/atom true)]
 
     (fn []
