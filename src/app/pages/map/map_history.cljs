@@ -144,10 +144,34 @@
 
 (defn download-button
   [state*]
-  (let [map (:map @state*)]
-  ;; Add option to save map
-    [:button.download-button.button.is-success.is-small.is-light.is-outlined {:on-click (fn [] (-> (new js/LeafletExporter. map 1.0) .Export))}
-     [:i.fas.fa-download]]))
+  (let [export-state (reagent/atom :ready)]  ; :ready, :exporting
+    (fn []
+      (let [map (:map @state*)]  ; Get map from current state
+        [:button.download-button.button.is-small.is-light
+         {:class (if (= @export-state :exporting) "is-warning" "is-success") ; yellow when loading, green when ready
+          :on-click (fn []
+                      (when map  ; Only proceed if map exists
+                        (reset! export-state :exporting)
+                        ;; Small delay to ensure UI updates before export
+                        (js/setTimeout
+                         (fn []
+                           (try
+                             (let [exporter (new js/LeafletExporter. map 1.0)
+                                   result (.Export exporter)]
+                               (if (and result (.-then result))
+                                 (-> result
+                                     (.then (fn [] (reset! export-state :ready)))
+                                     (.catch (fn [e]
+                                               (.error js/console "Export failed:" e)
+                                               (reset! export-state :ready))))
+                                 (js/setTimeout #(reset! export-state :ready) 3000)))
+                             (catch js/Error e
+                               (.error js/console "Export failed:" e)
+                               (reset! export-state :ready))))
+                         100)))}
+         (case @export-state
+           :exporting [:i.fa.fa-cog.fa-spin]
+           :ready [:i.fas.fa-download])]))))
 
 (defn base-layer-change
   [map state*]
