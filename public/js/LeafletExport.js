@@ -282,20 +282,20 @@ class LeafletExporter {
         }
         let promise = new Promise(resolve => {
             let loaded = false;
-            
+
             // Add timeout for tile loading (10 seconds)
             const timeout = setTimeout(() => {
                 if (!loaded) {
                     loaded = true;
                     resolve()
                 }
-            }, 10000);
-            
+            }, 60000); // Fetch tiles for a minute
+
             image.onload = () => {
                 if (loaded) return;
                 loaded = true;
                 clearTimeout(timeout);
-                
+
                 let promise
                 if (layer.transformTileImage) {
                     promise = layer.transformTileImage(image)
