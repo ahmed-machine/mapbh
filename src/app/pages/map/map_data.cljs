@@ -1189,6 +1189,11 @@
                             :year 1942
                             :source-file "Bahrein Island, 1942"
                             :status "needs-processing"}
+   "1948 - Bahrain" {:title "'Water Zone 'B' Structure Contour Map Showing Distribution of Artesian Water' [‎18r]"
+                     :year 1948
+                     :description "A map showing the national distribution of artesian water wells in Bahrain. The map is enclosed in a report that was written by the Bahrain Petroleum Company at request of the Government of Bahrain in October 1948."
+                     :source-file "1948.Bahrain Water"
+                     :status "needs-processing"}
    "1951 - Manama" {:title "Manama - 1951 (9 maps)"
                     :year 1951
                     :scale "1:2,400"
