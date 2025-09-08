@@ -347,6 +347,7 @@
                                                                        :source-link "/maps/1829-Trigonometrical Survey of the Arabian or Southern side of the Persian Gulf sheet 4.tif"
                                                                        :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"}
 
+
    "1904 - Bahrain" {:title "1904-5 - Bahrain"
                      :year 1904
                      :url (form-tile-url "1904-Bahrain")
@@ -1097,26 +1098,50 @@
    "Other" {}})
 
 (def backlog
-  {"1862 - Bahrain Harbour" {:title "Bahrain Harbour - 1862"
-                             :year 1862
-                             :scale "1:73,000"
-                             :source-file "1862.73000.Bahrain Harbour"
+  {"1872 - Bahreyn Harbour" {:title "Bahreyn Harbour"
+                             :year 1872
+                             :source-file "Bahreyn Harbour, c. 1872"
                              :status "needs-processing"}
+   "1875 - Bahrain Harbour 1" {:title "Bahrain Harbour - Part 1"
+                               :year 1875
+                               :source-file "Bahrain Harbour, 1875 - 1"
+                               :status "needs-processing"}
+   "1875 - Bahrain Harbour 2" {:title "Bahrain Harbour - Part 2"
+                               :year 1875
+                               :source-file "Bahrain Harbour, 1875 - 2"
+                               :status "needs-processing"}
    "1903 - Bahrain Harbour" {:title "Bahrain Harbour - 1903"
                              :year 1903
                              :scale "1:73,000"
                              :source-file "1903.73000.Bahrain Harbour"
                              :status "needs-processing"}
+   "1903 - Persian Gulf Plans" {:title "Plans in the Persian Gulf - Bahrein Harbour"
+                                :year 1903
+                                :source-file "Plans in the Persian Gulf - Bahrein Harbour, 1903"
+                                :status "needs-processing"}
+   "1905 - Khor Kaliya" {:title "Khor Kaliya"
+                         :year 1905
+                         :source-file "Khor Kaliya, 1905"
+                         :status "needs-processing"}
+   "1916 - Persian Gulf Plans" {:title "Plans in the Persian Gulf - Multiple Harbours"
+                                :year 1916
+                                :source-file "Plans in the Persian Gulf - Bahrein Harbour, Magam, Lingeh, Dibai, 1916"
+                                :status "needs-processing"}
    "1926 - Manama" {:title "Manama - 1926"
                     :year 1926
                     :scale "1:2,400"
                     :source-file "1926.2400.Manama"
                     :status "needs-processing"}
-   "1933 - Manama" {:title "Manama - 1933"
-                    :year 1933
-                    :scale "1:3,639"
-                    :source-file "1933.3639.Manama"
-                    :status "needs-processing"}
+   "1933 - Manamah Plan" {:title "Manamah - Plan of Port and Town - 1933"
+                          :year 1933
+                          :scale "1:3,639"
+                          :source-file "Manamah - Plan of Port and Town, 1933"
+                          :status "needs-processing"}
+   "1938-9 - Manama Town" {:title "Manama Town - 1357 (1938:9)"
+                           :year 1938
+                           :source-file "Manama Town, 1357 (1938:9)"
+                           :status "needs-processing"
+                           :notes "Historical Hijri date"}
    "1933 - Bahrain" {:title "Bahrain - 1933"
                      :year 1933
                      :scale "1:40,000"
@@ -1132,25 +1157,45 @@
                                   :scale "1:63,360"
                                   :source-file "1934.63360.Bahrain Facility Map"
                                   :status "needs-processing"}
-   "1937 - Muharraq Island" {:title "Muharraq Island - 1937"
-                             :year 1937
-                             :scale "1:20,000"
-                             :source-file "1937.20000.Muharraq Island"
+   "1936 - Plans North East Coast" {:title "Plans on the North East coast of Bahrain Island"
+                                    :year 1936
+                                    :source-file "Plans on the North East coast of Bahrain Island, 1936"
+                                    :status "needs-processing"}
+   "1937 - Naval Base Khor Kaliya" {:title "Naval Base at Khor Kaliya [Jufair]"
+                                    :year 1937
+                                    :source-file "Naval Base at Khor Kaliya [Jufair], 1937"
+                                    :status "needs-processing"}
+   "1938-9 - Hawar Islands" {:title "Hawar Islands"
+                             :year 1938
+                             :source-file "Hawar Islands, 1938:9"
                              :status "needs-processing"}
+   "1939 - Bahrein Island" {:title "Bahrein Island"
+                            :year 1939
+                            :source-file "Bahrein Island, 1939"
+                            :status "needs-processing"}
    "1939 - Pearl Banks" {:title "Pearl Banks - 1939"
                          :year 1939
                          :source-file "1939.Pearl Banks"
                          :status "needs-processing"}
+   "1939-40 - Hawar Islands" {:title "Hawar Islands"
+                              :year 1939
+                              :source-file "Hawar Islands, 1939:40"
+                              :status "needs-processing"}
    "1940 - Pearl Banks" {:title "Pearl Banks - 1940"
                          :year 1940
                          :source-file "1940.Pearl Banks"
                          :status "needs-processing"}
+   "1942 - Bahrein Island" {:title "Bahrein Island"
+                            :year 1942
+                            :source-file "Bahrein Island, 1942"
+                            :status "needs-processing"}
    "1951 - Manama" {:title "Manama - 1951 (9 maps)"
                     :year 1951
                     :scale "1:2,400"
                     :source-file "1951.2400.Manama collection"
                     :status "needs-processing"
                     :notes "Multi-sheet map collection with 9 maps"}
+
    "1951 - Aerial Manama" {:title "Aerial View - Manama - 1951"
                            :year 1951
                            :scale "1:5,000"
@@ -1161,6 +1206,10 @@
                      :scale "1:63,360"
                      :source-file "1952.63360.Bahrain"
                      :status "needs-processing"}
+   "1956 - Bahrain March" {:title "Bahrain Island - March 1956"
+                           :year 1956
+                           :source-file "Bahrain Island, March 1956"
+                           :status "needs-processing"}
    "1953 - Welcome to Bahrain" {:title "Welcome to Bahrain - Manama - 1953"
                                 :year 1953
                                 :source-file "1953.NA.Welcome to Bahrain - Manama"
@@ -1190,20 +1239,37 @@
                                 :source-file "1965.Welcome to Bahrain collection"
                                 :status "needs-processing"
                                 :notes "Multi-file collection with 4 maps"}
-   "1966 - Jufayr West" {:title "Jufayr West - 1966"
-                         :year 1966
-                         :scale "1:5,000"
-                         :source-file "1966.5000.Jufayr West"
-                         :status "needs-processing"}
+   "1967 - Jufair Town Plans" {:title "Jufair Town Plans - 1967 (2 sheets)"
+                               :year 1967
+                               :scale "1:5,000"
+                               :source-file "Bahrain Town Plans - 1967 [Manama] Jufair collection"
+                               :status "needs-processing"
+                               :notes "2-sheet collection: East and West"}
+   "1967 - Muharraq Island Plans" {:title "Muharraq Island Town Plans - 1967 (4 sheets)"
+                                   :year 1967
+                                   :source-file "Bahrain Town Plans - 1967 Muharraq Island collection"
+                                   :status "needs-processing"
+                                   :notes "4-sheet detailed coverage of Muharraq Island"}
    "1967 - Manama Traffic" {:title "Manama Traffic - 1967"
                             :year 1967
                             :source-file "1967.Manama traffic"
                             :status "needs-processing"}
-   "1969 - Bahrain" {:title "Bahrain - 1969"
-                     :year 1969
-                     :scale "1:63,360"
-                     :source-file "1969.63360.Bahrain"
-                     :status "needs-processing"}
+   "1969 - Bahrain Arabic" {:title "Bahrain Island (in Arabic) - 1969"
+                            :year 1969
+                            :scale "1:63,360"
+                            :source-file "Bahrain Island (in Arabic), 1969"
+                            :status "needs-processing"
+                            :notes "Arabic language version"}
+   "1970 - Al-Manamah Al-Jufayr Plans" {:title "Al-Manamah and Al-Jufayr Town Plans - 1970 (5 sheets)"
+                                        :year 1970
+                                        :source-file "Bahrain Town Plans - 1970 Al-Manamah and Al-Jufayr collection"
+                                        :status "needs-processing"
+                                        :notes "5-sheet comprehensive coverage of Manama and Jufayr"}
+   "1970 - Jazirat al-Muharraq Plans" {:title "Jazirat al-Muharraq Town Plans - 1970 (4 sheets)"
+                                       :year 1970
+                                       :source-file "Bahrain Town Plans - 1970 Jazirat al-Muharraq collection"
+                                       :status "needs-processing"
+                                       :notes "4-sheet complete Muharraq Island coverage"}
    "1976 - Northern Bahrain" {:title "Northern Bahrain - 1976"
                               :year 1976
                               :scale "1:50,000"
