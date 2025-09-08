@@ -1,36 +1,30 @@
 (ns app.pages.map-info
-  (:require [reagent.core :as r]
-            [app.pages.map.map-data :as map-data :refer [ar-layers get-thumbnail-path]]
+  (:require [app.pages.map.map-data :refer [get-thumbnail-path maps get-map-text]]
             [app.pages.catalogue :as catalogue]
             [app.routes :as routes]
-            [clojure.string :as str]
-            [re-frame.core :as rf]
-            [app.model :as model]))
+            [clojure.string :as str]))
 
 (defn find-map-by-group-and-id
-  "Find map information by group and map ID using direct lookup with language support"
+  "Find map information by group and map ID with language support"
   [group map-id language]
   (when (and group map-id)
-    ;; Find all groups that contain this map
-    (let [all-entries (for [[group-name group-maps] map-data/layers
-                           :when (contains? group-maps map-id)]
-                       {:group group-name
-                        :map-info (get group-maps map-id)})
-          first-entry (first all-entries)
-          all-groups (map :group all-entries)]
-      (when first-entry
-        (let [english-data (:map-info first-entry)
-              ;; Try to get Arabic data from any of the groups (use first group as primary)
-              primary-group (first all-groups)
-              arabic-data (when (= language :ar)
-                           (get-in ar-layers [primary-group map-id]))
-              ;; Merge Arabic data over English, falling back to English for missing fields
-              merged-data (if arabic-data
-                           (merge english-data arabic-data)
-                           english-data)]
-          (merge merged-data {:map-id map-id
-                             :group primary-group
-                             :all-groups all-groups}))))))
+    ;; Get map data
+    (when-let [map-info (get maps map-id)]
+      (let [groups (:groups map-info)
+            title (get-map-text map-info language :title)
+            description (get-map-text map-info language :description)
+            notes (get-map-text map-info language :notes)
+            labels (get-map-text map-info language :labels)
+            submitted-by (get-map-text map-info language :submitted-by)]
+        (merge map-info
+               {:map-id map-id
+                :title title
+                :description description
+                :notes notes
+                :labels labels
+                :submitted-by submitted-by
+                :group (first groups)  ; Primary group for backward compatibility
+                :all-groups (vec groups)})))))
 
 (defn info-section
   "Render an information section if content exists"

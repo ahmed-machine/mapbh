@@ -1,6 +1,6 @@
 (ns app.pages.catalogue
   (:require [reagent.core :as r]
-            [app.pages.map.map-data :as map-data :refer [ar-layers backlog]]
+            [app.pages.map.map-data :as map-data :refer [backlog maps get-map-text get-grouped-maps]]
             [app.routes :as routes]
             [clojure.string :as str]))
 
@@ -61,40 +61,32 @@
     {:lat 26.0450 :lng 50.5460 :zoom 10}))
 
 (defn flatten-map-data
-  "Convert nested map data structure to flat list for table display"
+  "Convert map data structure to flat list for table display"
   [language include-backlog?]
-  (let [;; First collect all map entries with their groups
-        all-entries (for [[group-name group-maps] map-data/layers
-                         [map-id map-info] group-maps]
-                     {:map-id map-id
-                      :group group-name
-                      :map-info map-info})
-
-        ;; Group by map-id to find maps that appear in multiple groups
-        grouped-by-id (group-by :map-id all-entries)
-        ;; Create final entries with all groups listed
-        unique-maps (for [[map-id entries] grouped-by-id]
-                     (let [first-entry (first entries)
-                           all-groups (map :group entries)
-                           map-info (:map-info first-entry)]
-                       (let [primary-group (first all-groups)
-                             has-arabic-translation (get-in ar-layers [primary-group map-id])
-                             ;; Use Arabic data when available and language is Arabic
-                             display-data (if (and (= language :ar) has-arabic-translation)
-                                            (merge map-info has-arabic-translation)
-                                            map-info)]
-                         (merge display-data
-                                {:map-id map-id
-                                 :group (if (> (count all-groups) 1)
-                                         (str/join ", " all-groups)
-                                         (first all-groups))
-                                 :all-groups all-groups
-                                 :year (or (:year display-data) (extract-year (:title display-data)))
-                                 :has-description (not (str/blank? (:description display-data)))
-                                 :has-notes (not (str/blank? (:notes display-data)))
-                                 :has-english true  ; All items in the main layers have English
-                                 :has-arabic (boolean has-arabic-translation)
-                                 :is-backlog false}))))
+  (let [;; Process maps structure
+        unique-maps (for [[map-id map-info] maps]
+                      (let [groups (:groups map-info)
+                            title (get-map-text map-info language :title)
+                            description (get-map-text map-info language :description)
+                            notes (get-map-text map-info language :notes)]
+                        {:map-id map-id
+                         :title title
+                         :description description
+                         :notes notes
+                         :year (:year map-info)
+                         :scale (:scale map-info)
+                         :source (:source map-info)
+                         :issuer (:issuer map-info)
+                         :viewable (:viewable map-info)
+                         :group (if (> (count groups) 1)
+                                 (str/join ", " groups)
+                                 (first groups))
+                         :all-groups (vec groups)
+                         :has-description (not (str/blank? description))
+                         :has-notes (not (str/blank? notes))
+                         :has-english true
+                         :has-arabic (not (str/blank? (get-map-text map-info :ar :title)))
+                         :is-backlog false}))
 
         ;; Add backlog entries
         backlog-entries (for [[map-id map-info] backlog]
