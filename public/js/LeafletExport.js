@@ -40,7 +40,7 @@ class LeafletExporter {
         this._SetCrop(crop)
     }
 
-    async Export() {
+    async Export(filename = "exported") {
         await this._FetchLayers()
         for (let tileLayer of this.tileLayers) {
             for (let tile of Object.values(tileLayer.tileImages)) {
@@ -64,7 +64,7 @@ class LeafletExporter {
                 url = URL.createObjectURL(blob),
                 a = document.createElement("a");
             a.href = url;
-            a.download = "exported.png";
+            a.download = filename + ".png";
             newImg.onload = function() {
                 // no longer need to read the blob so it's revoked
                 URL.revokeObjectURL(url);

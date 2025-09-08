@@ -3,7 +3,8 @@
             [reagent.core :as reagent]
             [app.model :as model]
             [app.pages.map.map-data :refer [viewable-layers ar-layers base-satellite default-map-state]]
-            [app.util.url :as url]))
+            [app.util.url :as url]
+            [clojure.string :as str]))
 
 ;; Constants
 (def ^:private transparency-mode "transparency")
@@ -156,8 +157,14 @@
                         (js/setTimeout
                          (fn []
                            (try
-                             (let [exporter (new js/LeafletExporter. map 1.0)
-                                   result (.Export exporter)]
+                             (let [current-layer-data (get-in viewable-layers (:selected @state*))
+                                   layer-title (str (or (:title current-layer-data) "exported"))
+                                   ;; Clean filename for safe file download
+                                   safe-filename (-> layer-title
+                                                    (str/replace #"[/\\:*?\"<>|]" "-")
+                                                    (str/replace #"\s+" "_"))
+                                   exporter (new js/LeafletExporter. map 1.0)
+                                   result (.Export exporter safe-filename)]
                                (if (and result (.-then result))
                                  (-> result
                                      (.then (fn [] (reset! export-state :ready)))
