@@ -94,6 +94,91 @@ body.map-page {
         padding-right: env(safe-area-inset-right);
     }
 }
+
+/* 
+ * Mobile Navbar Responsive Layout
+ * - Prevents overflow with horizontal scrolling
+ * - Scales content appropriately for screen size  
+ * - Provides larger Arabic text for better readability
+ */
+
+/* Tablet and Mobile (< 1024px) */
+@media screen and (max-width: 1023px) {
+    .navbar,
+    .navbar-brand,
+    .navbar-menu.is-active {
+        display: flex;
+        align-items: center;
+        min-height: 3.25rem;
+    }
+    
+    .navbar-menu.is-active {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .navbar-menu.is-active .navbar-start,
+    .navbar-menu.is-active .navbar-end {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0 0.5rem;
+        height: 100%;
+    }
+    
+    .navbar-menu.is-active .navbar-item {
+        flex: 0 0 auto;
+        padding: 0.5rem 0.35rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        height: auto;
+    }
+    
+    .navbar-brand .logo {
+        font-size: 1.1rem;
+    }
+    
+    /* Arabic text sizing - 20% larger for better readability */
+    .navbar[lang="ar"] .navbar-item,
+    .navbar[direction="rtl"] .navbar-item {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Mobile (< 550px) */
+@media screen and (max-width: 550px) {
+    .navbar {
+        padding: 0 0.5rem;
+    }
+    
+    .navbar-brand .logo {
+        font-size: 1rem;
+    }
+    
+    .navbar-menu.is-active .navbar-item {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.65rem;
+    }
+    
+    /* Language switcher */
+    .navbar-item[style*="font-family"] {
+        font-size: 0.65rem;
+    }
+    
+    /* Arabic text sizing - 15% larger for better readability */
+    .navbar[lang="ar"] .navbar-item,
+    .navbar[direction="rtl"] .navbar-item {
+        font-size: 0.75rem;
+    }
+}
+
 /* Map control buttons - positioned relative to map container */
 .download-button, .pin-button {
     position: absolute;
