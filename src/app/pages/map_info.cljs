@@ -4,6 +4,45 @@
             [app.routes :as routes]
             [clojure.string :as str]))
 
+(defn text
+  "Centralized text function for map info translations"
+  [arabic?]
+  (if arabic?
+    {:metadata {:scale "المقياس"
+                :source "المصدر"
+                :issuer "الناشر"
+                :year "السنة"}
+     :sections {:description "الوصف"
+                :notes "ملاحظات"
+                :submitted-by "مساهمة"}
+     :buttons {:view-map "عرض الخريطة"
+               :download-source "تحميل المصدر"
+               :original-file "الملف الأصلي"
+               :additional-link "رابط إضافي"
+               :additional-link-2 "رابط إضافي ثاني"}
+     :navigation {:home "الرئيسية"
+                  :catalogue "فهرس الخرائط"}
+     :errors {:not-found "الخريطة غير موجودة"
+              :not-found-desc "لم يتم العثور على الخريطة المطلوبة."
+              :return-catalogue "العودة للفهرس"}}
+    {:metadata {:scale "Scale"
+                :source "Source"
+                :issuer "Issuer"
+                :year "Year"}
+     :sections {:description "Description"
+                :notes "Notes"
+                :submitted-by "Submitted by"}
+     :buttons {:view-map "View Map"
+               :download-source "Download Source"
+               :original-file "Original File"
+               :additional-link "Additional Link"
+               :additional-link-2 "Additional Link 2"}
+     :navigation {:home "Home"
+                  :catalogue "Catalogue"}
+     :errors {:not-found "Map Not Found"
+              :not-found-desc "The requested map could not be found."
+              :return-catalogue "Return to Catalogue"}}))
+
 (defn find-map-by-group-and-id
   "Find map information by group and map ID with language support"
   [group map-id language]
@@ -39,14 +78,15 @@
   "Render metadata in a clean grid layout"
   [map-info language]
   (let [is-arabic (= language :ar)
+        txt (text is-arabic)
         metadata-items (cond-> []
-                        (:scale map-info) (conj {:label (if is-arabic "المقياس" "Scale")
+                        (:scale map-info) (conj {:label (get-in txt [:metadata :scale])
                                                 :value (:scale map-info)})
-                        (:source map-info) (conj {:label (if is-arabic "المصدر" "Source")
+                        (:source map-info) (conj {:label (get-in txt [:metadata :source])
                                                  :value (:source map-info)})
-                        (:issuer map-info) (conj {:label (if is-arabic "الناشر" "Issuer")
+                        (:issuer map-info) (conj {:label (get-in txt [:metadata :issuer])
                                                  :value (:issuer map-info)})
-                        (:year map-info) (conj {:label (if is-arabic "السنة" "Year")
+                        (:year map-info) (conj {:label (get-in txt [:metadata :year])
                                                :value (:year map-info)}))]
     (when (seq metadata-items)
       [:div.columns.is-multiline
@@ -73,7 +113,7 @@
         [:i.fas.fa-map {:style (if is-arabic
                                   {:margin-left "0.5rem" :padding "0.2rem"}
                                   {:margin-right "0.5rem" :padding "0.2rem"})}]
-        (if is-arabic "عرض الخريطة" "View Map")])
+        (get-in (text is-arabic) [:buttons :view-map])])
 
      (when (:source-link map-info)
        [:a.button.is-light.is-small
@@ -82,7 +122,7 @@
         [:i.fas.fa-download {:style (if is-arabic
                                        {:margin-left "0.5rem" :padding "0.2rem"}
                                        {:margin-right "0.5rem" :padding "0.2rem"})}]
-        (if is-arabic "تحميل المصدر" "Download Source")])
+        (get-in (text is-arabic) [:buttons :download-source])])
 
      (when (:issuer-link map-info)
        [:a.button.is-light.is-small
@@ -91,7 +131,7 @@
         [:i.fas.fa-file-image {:style (if is-arabic
                                          {:margin-left "0.5rem" :padding "0.2rem"}
                                          {:margin-right "0.5rem" :padding "0.2rem"})}]
-        (if is-arabic "الملف الأصلي" "Original File")])
+        (get-in (text is-arabic) [:buttons :original-file])])
 
      (when (:link-1 map-info)
        [:a.button.is-light.is-small
@@ -101,7 +141,7 @@
                                                 {:margin-left "0.5rem" :padding "0.2rem"}
                                                 {:margin-right "0.5rem" :padding "0.2rem"})}]
         (or (:link-1-label map-info)
-            (if is-arabic "رابط إضافي" "Additional Link"))])
+            (get-in (text is-arabic) [:buttons :additional-link]))])
 
      (when (:link-2 map-info)
        [:a.button.is-light.is-small
@@ -111,7 +151,7 @@
                                                 {:margin-left "0.5rem" :padding "0.2rem"}
                                                 {:margin-right "0.5rem" :padding "0.2rem"})}]
         (or (:link-2-label map-info)
-            (if is-arabic "رابط إضافي ثاني" "Additional Link 2"))])]))
+            (get-in (text is-arabic) [:buttons :additional-link-2]))])]))
 
 (defn map-thumbnail
   "Render map thumbnail if available"
@@ -136,9 +176,9 @@
     [:nav.breadcrumb {:aria-label "breadcrumbs"}
      [:ul
       [:li [:a {:href (routes/url-for :home)}
-            (if is-arabic "الرئيسية" "Home")]]
+            (get-in (text is-arabic) [:navigation :home])]]
       [:li [:a {:href (routes/url-for :catalogue)}
-            (if is-arabic "فهرس الخرائط" "Catalogue")]]
+            (get-in (text is-arabic) [:navigation :catalogue])]]
       [:li.is-active [:a {:aria-current "page"} (:title map-info)]]]]))
 
 (defn map-info
@@ -171,14 +211,14 @@
           [:hr]
           [metadata-grid map-info language]
           [map-thumbnail map-info]
-          [info-section (if is-arabic "الوصف" "Description") (:description map-info) language]
-          [info-section (if is-arabic "ملاحظات" "Notes") (:notes map-info) language]
-          [info-section (if is-arabic "مساهمة" "Submitted by") (:submitted-by map-info) language]]])
+          [info-section (get-in (text is-arabic) [:sections :description]) (:description map-info) language]
+          [info-section (get-in (text is-arabic) [:sections :notes]) (:notes map-info) language]
+          [info-section (get-in (text is-arabic) [:sections :submitted-by]) (:submitted-by map-info) language]]])
 
       [:div.container (cond-> {:style {:margin-top "6rem"}}
                              is-arabic (assoc :lang "ar" :dir "rtl"))
        [:div.content
-        [:h1.title.is-2 (if is-arabic "الخريطة غير موجودة" "Map Not Found")]
-        [:p (if is-arabic "لم يتم العثور على الخريطة المطلوبة." "The requested map could not be found.")]
+        [:h1.title.is-2 (get-in (text is-arabic) [:errors :not-found])]
+        [:p (get-in (text is-arabic) [:errors :not-found-desc])]
         [:a.button.is-primary {:href (routes/url-for :catalogue)}
-         (if is-arabic "العودة للفهرس" "Return to Catalogue")]]])))
+         (get-in (text is-arabic) [:errors :return-catalogue])]]])))
