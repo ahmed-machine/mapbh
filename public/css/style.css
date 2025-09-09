@@ -130,25 +130,24 @@ body.map-page {
         padding: 0 0.5rem;
         height: 100%;
     }
-    
+
     .navbar-menu.is-active .navbar-item {
         flex: 0 0 auto;
-        padding: 0.5rem 0.35rem;
-        font-size: 0.75rem;
+        font-size: 1rem;
         white-space: nowrap;
         display: flex;
         align-items: center;
         height: auto;
     }
-    
+
     .navbar-brand .logo {
         font-size: 1.1rem;
     }
-    
+
     /* Arabic text sizing - 20% larger for better readability */
     .navbar[lang="ar"] .navbar-item,
     .navbar[direction="rtl"] .navbar-item {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 }
 
@@ -157,25 +156,25 @@ body.map-page {
     .navbar {
         padding: 0 0.5rem;
     }
-    
+
     .navbar-brand .logo {
         font-size: 1rem;
     }
-    
+
     .navbar-menu.is-active .navbar-item {
-        padding: 0.5rem 0.25rem;
+        padding: 0.5rem 0.15rem;
         font-size: 0.65rem;
     }
-    
+
     /* Language switcher */
     .navbar-item[style*="font-family"] {
-        font-size: 0.65rem;
+        font-size: 1rem;
     }
-    
+
     /* Arabic text sizing - 15% larger for better readability */
     .navbar[lang="ar"] .navbar-item,
     .navbar[direction="rtl"] .navbar-item {
-        font-size: 0.75rem;
+        font-size: 1rem;
     }
 }
 
