@@ -4,6 +4,27 @@
             [app.routes :as routes]
             [clojure.string :as str]))
 
+(defn text
+  "Centralized text function for catalogue translations"
+  [arabic?]
+  (if arabic?
+    {:page {:title "فهرس الخرائط"
+            :subtitle "تصفح وابحث جميع الخرائط"
+            :search-placeholder "ابحث في الخرائط..."
+            :include-backlog "خرائط لم تنشر"
+            :sort-by "ترتيب حسب:"
+            :showing-count (fn [filtered total] (str "عرض " filtered " من " total " خريطة"))}
+     :buttons {:info "تفاصيل"
+               :view "عرض"}}
+    {:page {:title "Catalogue"
+            :subtitle "Browse and search through all maps on the site"
+            :search-placeholder "Search maps..."
+            :include-backlog "Include Backlog Maps"
+            :sort-by "Sort by:"
+            :showing-count (fn [filtered total] (str "Showing " filtered " of " total " maps"))}
+     :buttons {:info "Info"
+               :view "View"}}))
+
 (defn safe-parse-int
   "Safely parse integer with radix, returning nil if invalid"
   [s]
@@ -221,7 +242,7 @@
                   [:i.fas.fa-info-circle {:style (if (= language :ar)
                                                           {:margin-left "0.5rem" :padding "0.2rem"}
                                                           {:margin-right "0.5rem" :padding "0.2rem"})}]
-                  (if (= language :ar) "تفاصيل" "Info")]
+                  (get-in (text (= language :ar)) [:buttons :info])]
                  (when is-viewable
                    [:a.button.is-light.is-small
                     {:href (str (routes/url-for :map)
@@ -231,7 +252,7 @@
                     [:i.fas.fa-map {:style (if (= language :ar)
                                                    {:margin-left "0.5rem" :padding "0.2rem"}
                                                    {:margin-right "0.5rem" :padding "0.2rem"})}]
-                    (if (= language :ar) "عرض" "View")])
+                    (get-in (text (= language :ar)) [:buttons :view])])
 ]))]
            [:td [:strong (:title item)]]
            [:td (when (:year item) (:year item))]
@@ -276,42 +297,52 @@
                 (= (:group item) selected-group)))
             data)))
 
-(defn catalogue-en
-  "English version of catalogue page"
-  []
+(defn catalogue-unified
+  "Unified catalogue page with i18n support"
+  [language]
   (let [search-term (r/atom "")
         selected-group-filter (r/atom "")
         sort-state (r/atom {:sort-key :year :sort-dir :asc})
-        include-backlog (r/atom true)]
+        include-backlog (r/atom true)
+        arabic? (= language :ar)
+        txt (text arabic?)]
 
     (fn []
-      (let [all-data (flatten-map-data :en @include-backlog)
+      (let [all-data (flatten-map-data language @include-backlog)
             group-filtered-data (group-filter @selected-group-filter all-data)
             filtered-data (search-filter @search-term group-filtered-data)]
-        [:div.container {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}}
+        [:div.container (merge {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}}
+                               (when arabic? {:lang "ar" :dir "rtl"}))
          [:div.content
-          [:h1.title.is-2.has-text-centered-mobile "Catalogue"]
-          [:p.subtitle.has-text-centered-mobile "Browse and search through all maps on the site"]
+          [:h1.title.is-2.has-text-centered-mobile (get-in txt [:page :title])]
+          [:p.subtitle.has-text-centered-mobile (get-in txt [:page :subtitle])]
 
           ;; Mobile-first search field
           [:div.field
-           [:div.control.has-icons-left
+           [:div.control (if arabic? {:class "has-icons-right"} {:class "has-icons-left"})
             [:input.input
              {:type "text"
-              :placeholder "Search maps..."
+              :placeholder (get-in txt [:page :search-placeholder])
               :value @search-term
               :on-change #(reset! search-term (-> % .-target .-value))}]
-            [:span.icon.is-left
+            [:span.icon (if arabic? {:class "is-right"} {:class "is-left"})
              [:i.fas.fa-search]]]]
 
           ;; Include Backlog checkbox
           [:div.field
            [:div.control
-            [:label.checkbox
-             [:input {:type "checkbox"
-                      :checked @include-backlog
-                      :on-change #(reset! include-backlog (-> % .-target .-checked))}]
-             [:span {:style {:margin-left "0.5rem"}} "Include Backlog Maps"]]]]
+            [:label.checkbox (when arabic? {:style {:direction "rtl"}})
+             (if arabic?
+               [:<>
+                [:span {:style {:margin-right "0.5rem"}} (get-in txt [:page :include-backlog])]
+                [:input {:type "checkbox"
+                         :checked @include-backlog
+                         :on-change #(reset! include-backlog (-> % .-target .-checked))}]]
+               [:<>
+                [:input {:type "checkbox"
+                         :checked @include-backlog
+                         :on-change #(reset! include-backlog (-> % .-target .-checked))}]
+                [:span {:style {:margin-left "0.5rem"}} (get-in txt [:page :include-backlog])]])]]]
 
           ;; Group filter button (mobile-friendly)
           (when (not (str/blank? @selected-group-filter))
@@ -319,94 +350,32 @@
              [:div.control
               [:button.button.is-small.is-info.is-light
                {:on-click #(reset! selected-group-filter "")}
-               [:span @selected-group-filter]
-               [:span.icon.is-small [:i.fas.fa-times {:style {:margin-left "0.3rem"}}]]]]])
+               (if arabic?
+                 [:<>
+                  [:span.icon.is-small [:i.fas.fa-times {:style {:margin-right "0.3rem"}}]]
+                  [:span @selected-group-filter]]
+                 [:<>
+                  [:span @selected-group-filter]
+                  [:span.icon.is-small [:i.fas.fa-times {:style {:margin-left "0.3rem"}}]]])]]])
 
           ;; Mobile-responsive level
           [:div.level.is-mobile
-           [:div.level-left
+           [:div (if arabic? {:class "level-right"} {:class "level-left"})
             [:div.level-item
              [:p.has-text-grey.is-size-7-mobile
-              (str "Showing " (count filtered-data) " of " (count all-data) " maps")]]]
+              ((get-in txt [:page :showing-count]) (count filtered-data) (count all-data))]]]
            ;; Sort controls - hidden on mobile, shown on tablet+
-           [:div.level-right.is-hidden-mobile
+           [:div (if arabic? {:class "level-left is-hidden-mobile"} {:class "level-right is-hidden-mobile"})
             [:div.level-item
              [:div.field.is-grouped
               [:div.control
                [:div.tags.has-addons
-                [:span.tag.is-small "Sort by:"]
+                [:span.tag.is-small (get-in txt [:page :sort-by])]
                 [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
 
-          [catalogue-table filtered-data sort-state :en selected-group-filter]]]))))
-
-(defn catalogue-ar
-  "Arabic version of catalogue page"
-  []
-  (let [search-term (r/atom "")
-        selected-group-filter (r/atom "")
-        sort-state (r/atom {:sort-key :year :sort-dir :asc})
-        include-backlog (r/atom true)]
-
-    (fn []
-      (let [all-data (flatten-map-data :ar @include-backlog)
-            group-filtered-data (group-filter @selected-group-filter all-data)
-            filtered-data (search-filter @search-term group-filtered-data)]
-        [:div.container {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}
-                         :lang "ar" :dir "rtl"}
-         [:div.content
-          [:h1.title.is-2.has-text-centered-mobile "فهرس الخرائط"]
-          [:p.subtitle.has-text-centered-mobile "تصفح وابحث جميع الخرائط"]
-
-          ;; Mobile-first search field (RTL)
-          [:div.field
-           [:div.control.has-icons-right
-            [:input.input
-             {:type "text"
-              :placeholder "ابحث في الخرائط..."
-              :value @search-term
-              :on-change #(reset! search-term (-> % .-target .-value))}]
-            [:span.icon.is-right
-             [:i.fas.fa-search]]]]
-
-          ;; Include Backlog checkbox (RTL)
-          [:div.field
-           [:div.control
-            [:label.checkbox {:style {:direction "rtl"}}
-             [:span {:style {:margin-right "0.5rem"}} "خرائط لم تنشر"]
-             [:input {:type "checkbox"
-                      :checked @include-backlog
-                      :on-change #(reset! include-backlog (-> % .-target .-checked))}]]]]
-
-          ;; Group filter button (mobile-friendly, RTL)
-          (when (not (str/blank? @selected-group-filter))
-            [:div.field
-             [:div.control
-              [:button.button.is-small.is-info.is-light
-               {:on-click #(reset! selected-group-filter "")}
-               [:span.icon.is-small [:i.fas.fa-times {:style {:margin-right "0.3rem"}}]]
-               [:span @selected-group-filter]]]])
-
-          ;; Mobile-responsive level (RTL)
-          [:div.level.is-mobile
-           [:div.level-right
-            [:div.level-item
-             [:p.has-text-grey.is-size-7-mobile
-              (str "عرض " (count filtered-data) " من " (count all-data) " خريطة")]]]
-           ;; Sort controls - hidden on mobile, shown on tablet+
-           [:div.level-left.is-hidden-mobile
-            [:div.level-item
-             [:div.field.is-grouped
-              [:div.control
-               [:div.tags.has-addons
-                [:span.tag.is-small "ترتيب حسب:"]
-                [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
-
-          [catalogue-table filtered-data sort-state :ar selected-group-filter]]]))))
+          [catalogue-table filtered-data sort-state language selected-group-filter]]]))))
 
 (defn catalogue
   "Main catalogue component with language switching"
   [language]
-  (condp = language
-    :en [catalogue-en]
-    :ar [catalogue-ar]
-    [catalogue-en]))
+  [catalogue-unified language])
