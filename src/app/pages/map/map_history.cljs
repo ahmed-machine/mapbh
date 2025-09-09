@@ -138,7 +138,7 @@
 
 (defn map-container
   []
-  [:div#mapid {:style {:height (str "calc(" js/window.screen.availHeight "px - 10rem)")}}])
+  [:div#mapid])
 
 (defn get-layer
   [state*]
@@ -521,7 +521,7 @@
         map (:map @state*)
         txt (get-in (text nil nil arabic?) [:buttons :switch-mode])]
     [:button.button.is-danger.is-small.is-rounded
-     {:style {:position :absolute :top "65px" :left "60px" :z-index 997 :font-size (when arabic? "105%")}
+     {:style {:position :absolute :top "13px" :left "60px" :z-index 997 :font-size (when arabic? "105%")}
       :on-click (fn []
                   (let [zoom-level (.getZoom map)
                         {:keys [lat lng]} (js->clj (.getCenter map) :keywordize-keys true)]
@@ -566,6 +566,9 @@
     (reagent/create-class
      {:component-did-mount
       (fn [] ;; Setup Map
+        ;; Add map-page class to body to prevent scrolling
+        (-> js/document .-body .-classList (.add "map-page"))
+        
         ;; Parse URL parameters and update state safely after component mount
         (try
           (let [url-state (url/parse-url-params (get-grouped-maps (get-viewable-maps maps)))]
@@ -578,6 +581,11 @@
         (if (= transparency-mode (:mode @state*))
           (init-map state*)
           (sbs-init-map state*)))
+      
+      :component-will-unmount
+      (fn []
+        ;; Remove map-page class from body when leaving map page
+        (-> js/document .-body .-classList (.remove "map-page")))
       :render
       (fn []
         (let [arabic? (= :ar @language*)]
