@@ -2,7 +2,7 @@
   (:require [re-frame.core :as rf]
             [reagent.core :as reagent]
             [app.model :as model]
-            [app.pages.map.map-data :refer [base-satellite default-map-state maps get-map-text get-grouped-maps get-viewable-maps]]
+            [app.pages.map.map-data :refer [base-satellite default-map-state maps get-map-text get-grouped-maps get-viewable-maps tileserver-url]]
             [app.util.url :as url]
             [clojure.string :as str]))
 
@@ -15,6 +15,42 @@
   "Get map data by [group map-id] path"
   [[_group map-id]]
   (get maps map-id))
+
+(defn fetch-tilejson-center
+  "Fetch center coordinates from TileJSON metadata"
+  [map-id]
+  (let [map-info (get maps map-id)
+        map-url (:url map-info)
+        ;; Extract the tile name from the URL pattern like /data/TILE-NAME/{z}/{x}/{y}.png
+        ;; and convert it to /data/TILE-NAME.json
+        tilejson-url (when map-url
+                       (-> map-url
+                           (.replace "/{z}/{x}/{y}.png" ".json")))]
+    (-> (js/fetch tilejson-url)
+        (.then (fn [response]
+                 (.json response)))
+        (.then (fn [tilejson]
+                 (let [center (.-center tilejson)
+                       minzoom (.-minzoom tilejson)]
+                   (if center
+                     {:lat (aget center 1)
+                      :lng (aget center 0)
+                      :zoom (+ 1 minzoom)}
+                     {:lat 26.0450 :lng 50.5460 :zoom 10}))))
+        (.catch (fn [e]
+                  {:lat 26.0450 :lng 50.5460 :zoom 10})))))
+
+(defn auto-center-map-from-tilejson
+  "Auto-center map using TileJSON data for the selected layer"
+  [map map-id]
+  (when (and map map-id)
+    (-> (fetch-tilejson-center map-id)
+        (.then (fn [center]
+                 (.flyTo map
+                         (-> js/L (.latLng (:lat center) (:lng center)))
+                         (:zoom center)
+                         #js {:animate true :duration 1.5})))
+        (.catch (fn [e])))))
 
 
 (defn text
@@ -204,6 +240,11 @@
                                 layer-obj (get (js->clj layer) "layer")]
                             (when (and (not= lname "Terrain") (not= lname "Satellite"))
                               (swap! state* assoc :selected [gname lname])
+                              ;; Auto-center map based on TileJSON if should-auto-center flag is set
+                              (when (:should-auto-center @state*)
+                                (auto-center-map-from-tilejson map lname)
+                                ;; Clear the auto-center flag after first use
+                                (swap! state* dissoc :should-auto-center))
                               ;; In side-by-side mode, recreate the control with current layers
                               (when (and (get-pinned-layer state*) (= (:mode @state*) side-by-side-mode))
                                 ;; Use setTimeout to let the initial control creation finish first

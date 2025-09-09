@@ -1,6 +1,5 @@
 (ns app.pages.map-info
   (:require [app.pages.map.map-data :refer [get-thumbnail-path maps get-map-text]]
-            [app.pages.catalogue :as catalogue]
             [app.routes :as routes]
             [clojure.string :as str]))
 
@@ -101,15 +100,13 @@
   "Render action buttons for viewing map and downloading files"
   [map-info language]
   (let [is-arabic (= language :ar)
-        bounds (catalogue/get-layer-bounds (:group map-info) (:map-id map-info) (:title map-info))
         is-viewable (not= false (:viewable map-info))]
     [:div.buttons
      (when is-viewable
        [:a.button.is-light.is-small
         {:href (str (routes/url-for :map)
                    "?map=" (js/encodeURIComponent (:map-id map-info))
-                   "&coords=" (:lat bounds) "," (:lng bounds)
-                   "&zoom=" (:zoom bounds))}
+                   "&flyTo=true")}
         [:i.fas.fa-map {:style (if is-arabic
                                   {:margin-left "0.5rem" :padding "0.2rem"}
                                   {:margin-right "0.5rem" :padding "0.2rem"})}]
