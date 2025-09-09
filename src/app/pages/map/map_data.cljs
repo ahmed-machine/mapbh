@@ -1,9 +1,5 @@
 (ns app.pages.map.map-data)
 
-;;;;;;;;;;;;;;;;;;;;;;;
-;; Map data and opts ;;
-;;;;;;;;;;;;;;;;;;;;;;;
-
 (def base-opts {:attribution "© OpenStreetMap, Mapbox"
                 :maxZoom 20
                 :minZoom 9
@@ -13,13 +9,13 @@
                 :id "Standard Style"
                 :tileSize 512})
 
-(def tileserver-url #_"http://localhost:8080" "https://map.mapbh.org")
+(def tileserver-url #_"http://localhost:8080" "https://map.mapbh.org") ;; Defaults to remote server, uncomment to use local tileserver
 (defn form-tile-url [tile-name] (str tileserver-url "/data/" tile-name "/{z}/{x}/{y}.png"))
 
 (def access-tokens ["pk.eyJ1IjoiYWhtZWRhbG11dGF3YSIsImEiOiJja2s1a3JqdWMwbHJiMnVzM2U5bHZleGNwIn0.icIlmsN_TY4zztxqC__e8Q"
-                    "pk.eyJ1IjoidG9sb2NvcmUiLCJhIjoiY2trNWtuamxjMDY3ZzJubnhybjlscXRyNCJ9.ug82VbeEK-sPDD_YgJLBLw"])
+                    "pk.eyJ1IjoidG9sb2NvcmUiLCJhIjoiY2trNWtuamxjMDY3ZzJubnhybjlscXRyNCJ9.ug82VbeEK-sPDD_YgJLBLw"]) ;; Mapbox Satellite
 
-(def map-id "satellite-streets-v11")
+(def map-id "satellite-streets-v12")
 
 (def base-satellite {"Terrain" {:url "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 :opts (assoc base-opts :zoomOffset -1)}
@@ -39,968 +35,10 @@
    :transparency 0.65
 })
 
-(def other-layers
-  {"1963 - Awali" {:title "Awali"
-                   :year 1963
-                   :url (form-tile-url "1963-Awali")
-                   :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Edition 2 revised from by 42 Survey Engineer Regiment and additional street names supplied by 19 Topographic Squadron RE. Edition 2 GSGS 1963. Published by D. Survey, War Office and Air Ministry, 1963."
-                   :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformation is based on estimated coordinates and datums, hand-referenced after. Likely some errors."
-                   :issuer-link "/maps/1963.5000.Awali.tif"
-                   :source "42 Survey Engineer Regiment"
-                   :source-link "/maps/1963.5000.Awali.warped.tif"
-                   :issuer "Army Map Service, Corps of Engineers"
-                   :scale "1:5,000"
-                   :opts (merge base-opts {:minNativeZoom 13
-                                           :maxNativeZoom 19
-                                           :opacity 0.7})}})
-
-(def manama-layers
-  {"1937 - Manama" {:title "PLAN OF PORT AND TOWN - Manama 1937"
-                    :year 1937
-                    :url (form-tile-url "1937-Manama")
-                    :description "Plan of Manamah, Bahrain. The plan indicates settlements, streets, buildings and landmarks. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
-                    :notes "Some map drift along the southern and western ends of the document. Mostly accurate."
-                    :source-link "/maps/1937-Manama.tif"
-                    :source "British Library: India Office Records and Private Papers"
-                    :scale "1:3,639"
-                    :issuer "Qatar Digital Library"
-                    :issuer-link "/maps/1937-Manama.jpg"
-                    :opts (merge base-opts {:minNativeZoom 13
-                                            :maxNativeZoom 19
-                                            :opacity 0.7})}
-   "1957 - Manama" {:title "Manama"
-                    :year 1957
-                    :url (form-tile-url "1957-Manama")
-                    :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Series GSGS 4880 Edition 1 GSGS 1957. Published by D. Survey, War Office and Air Ministry, 1957."
-                    :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformation is based on estimated coordinates and datums, hand-referenced after. Likely some errors."
-                    :issuer-link "/maps/1957.5000.Manama.tif"
-                    :source "42 Survey Engineer Regiment"
-                    :source-link "/maps/1957.5000.Manama.warped.tif"
-                    :issuer "D. Survey War Office and Air Ministry, 1957"
-                    :scale "1:5,000"
-                    :opts (merge base-opts {:minNativeZoom 13
-                                            :maxNativeZoom 19
-                                            :opacity 0.7})}
-   "1968 - Al Jufayr" {:title "Al Jufayr"
-                       :year 1968
-                       :url (form-tile-url "1968-AlJufayr")
-                       :description "Produced by SPC RE in 1968 from existing mapping and other sources with full revision from RAF Air Photography dated 1966."
-                       :notes "Well-preserved."
-                       :issuer-link "/maps/1968.Al Jufayr.5000.zip"
-                       :source "SPC RE"
-                       :source-link "/maps/1968.Al Jufayr.5000.tiff"
-                       :issuer "D Survey, Ministry of Defence, United Kingdom, 1968"
-                       :scale "1:5,000"
-                       :opts (merge base-opts {:minNativeZoom 13
-                                               :maxNativeZoom 19
-                                               :opacity 0.7})}
-   "1969 - Manama & AlJufayr" {:title "AL MANAMAH & AL JUFAYR - 1969"
-                               :year 1969
-                               :url (form-tile-url "1969-Manama")
-                               :description "Mosaic prepared by SPC RE in 1969 from air photography dated October 1968 and trig control. Names taken from K962 sheet Manama dated 1963. Names and cultural details raised from various sources 1969. This plan supersedes series K962 edit on 3.GSGS sheet Manama."
-                               :notes "Excellent condition 5-part map series. Required color corrections, some warping, stitching, and coordinates were offset from real location. "
-                               :source-link "/maps/1969-Manama-stitched.zip"
-                               :source "Ministry of Defence, United Kingdom, 1969"
-                               :scale "1:5,000"
-                               :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
-                               :issuer-link "/maps/1969-Manama.zip"
-                               :submitted-by "Ali Karimi"
-                               :opts (merge base-opts {:minNativeZoom 13
-                                                       :maxNativeZoom 18
-                                                       :opacity 0.7})}
-   "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
-                                    :year 1977
-                                    :url (form-tile-url "1977-USSR-Bahrain")
-                                    :description "Description in Russian can be found in the bottom-right corner of the map. Produced in 1977 and 1980, in a factory in Sverdlovsk (now Ekaterinburg). There are many exciting features in these maps that are sorely missing in other contemporary maps. NATO mappers intentionally obfuscated sensitive areas like airports and navy yards from their maps but the Soviets include these on theirs. To produce these details, the Soviets had to rely on ground intelligence to obtain both aerial and ground measurements. Discovered in second-hand thrift stores following the collapse of the Soviet Union."
-                                    :notes "More art than science tracking this projection down. EPSG:28409 (Pulkovo 1942 / Gauss-Kruger zone 9). Special shoutout to Tristan Bobin for his contributions in rectifying this map."
-                                    :source-link "/maps/1977_ManamaMuharraq_USSRMap.tif"
-                                    :source "USSR"
-                                    :scale "1:10,000"
-                                    :issuer "USSR"
-                                    :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
-                                    :opts (merge base-opts {:minNativeZoom 12
-                                                            :maxNativeZoom 18
-                                                            :opacity 0.8})}
-   "1977 - Manama" {:title "Manama - State of Bahrain - 1977 (Edition 1)"
-                    :year 1977
-                    :url (form-tile-url "1977-Manama.1")
-                    :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                    :source-link "/maps/1977-Manama.1.tif"
-                    :source "Fairey Surveys Ltd"
-                    :scale "1:25,000"
-                    :issuer "Unknown"
-                    :issuer-link "/maps/1977.Manama.1.original.tif"
-                    :opts (merge base-opts {:minNativeZoom 11
-                                            :maxNativeZoom 17
-                                            :opacity 0.8})}
-   "1981 - Manama" {:title "Manama"
-                    :year 1981
-                    :url (form-tile-url "1981-NAP-Manama")
-                    :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual provided"
-                    :link-1 "/documents/NAP-Manama-Manual.pdf"
-                    :link-1-label "Manama Manual"
-                    :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
-                    :source-link "/maps/1981.NAP.Manama.tif"
-                    :source "National Addressing Project"
-                    :scale "1:25,000"
-                    :issuer "Ministry of Information"
-                    :issuer-link "/maps/1981.NAP.Manama.zip"
-                    :opts (merge base-opts {:minNativeZoom 13
-                                            :maxNativeZoom 19
-                                            :opacity 0.8})}
-   "1992 - Manama" {:title "Manama - State of Bahrain - 1992 (Edition 4)"
-                    :year 1992
-                    :url (form-tile-url "1992-Manama.4")
-                    :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983, and Oct. 1986. Field surveys from 1986 to 1991."
-                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                    :source-link "/maps/1992-Manama.4.tif"
-                    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                    :scale "1:25,000"
-                    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                    :issuer-link "/maps/1992.Manama.4.original.tif"
-                    :opts (merge base-opts {:minNativeZoom 11
-                                            :maxNativeZoom 17
-                                            :opacity 0.8})}
-   "1998 - Manama" {:title "Manama - State of Bahrain - 1998 (Edition 5)"
-                    :year 1998
-                    :url (form-tile-url "1998-Manama.5")
-                    :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, and 1992 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                    :source-link "/maps/1998-Manama.5.tif"
-                    :source "Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                    :scale "1:25,000"
-                    :issuer "Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                    :issuer-link "/maps/1998.Manama.5.original.tif"
-                    :opts (merge base-opts {:minNativeZoom 11
-                                            :maxNativeZoom 17
-                                            :opacity 0.8})}
-   "2006 - Manama" {:title "Manama - State of Bahrain - 2006 (Edition 6)"
-                    :year 2006
-                    :url (form-tile-url "2006-Manama.6")
-                    :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, 1992, 1998 and 2006 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                    :source-link "/maps/2006-Manama.6.tif"
-                    :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                    :scale "1:25,000"
-                    :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                    :issuer-link "/maps/2006.Manama.6.original.tif"
-                    :opts (merge base-opts {:minNativeZoom 11
-                                            :maxNativeZoom 17
-                                            :opacity 0.8})}})
-(def muharraq-layers
-  {"1931 - Muharraq" {:title "MOHARRAK TOWN - March 1931"
-                      :year 1931
-                      :url (form-tile-url "1931-Muharraq")
-                      :description nil
-                      :notes "Accurate in Old Muharraq. Drifts in the southern part of the map near Bu Maher."
-                      :issuer-link "/maps/1931-Muharraq.jpg"
-                      :source "Unknown"
-                      :source-link "/maps/1931-Muharraq.tif"
-                      :submitted-by "Ali Karimi"
-                      :scale "1:2,400"
-                      :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
-                      :opts (merge base-opts {:minNativeZoom 13
-                                              :maxNativeZoom 19
-                                              :opacity 0.7})}
-   "1937 - Muharraq" {:title "MUHARRAQ ISLAND - Jan 1937"
-                      :year 1937
-                      :url (form-tile-url "1937-Muharraq")
-                      :description "The map shows Muhurraq Island, and the causeway linking Muharraq to Manama. Also shown are principal roads, tracks, buildings (including the Political Agency in Manana), islands, and the location of several underwater freshwater springs. A rectangle on Muharraq Island indicates the area specified for the landing ground."
-                      :notes "Well-preserved and decently accurate."
-                      :source-link "/maps/1937-Muharraq.tif"
-                      :source "British Library: India Office Records and Private Papers"
-                      :scale "1:20,000"
-                      :issuer "Qatar Digital Library"
-                      :issuer-link "https://www.qdl.qa/en/archive/81055/vdc_100025608108.0x000080"
-                      :opts (merge base-opts {:maxZoom 20
-                                              :minZoom 9
-                                              :minNativeZoom 13
-                                              :maxNativeZoom 16
-                                              :opacity 0.7})}
-   "1957 - Muharraq" {:title "Muharraq"
-                      :year 1957
-                      :url (form-tile-url "1957-Muharraq")
-                      :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Series GSGS 4880 Edition 1 GSGS 1957. Published by D. Survey, War Office and Air Ministry, 1957."
-                      :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformation is based on estimated coordinates and datums, hand-referenced after. Likely some errors."
-                      :issuer-link "/maps/1957.5000.Muharraq2.tif"
-                      :source "42 Survey Engineer Regiment"
-                      :source-link "/maps/1957.5000.Manama.warped.tif"
-                      :issuer "D. Survey War Office and Air Ministry, 1957"
-                      :scale "1:5,000"
-                      :opts (merge base-opts {:minNativeZoom 13
-                                              :maxNativeZoom 19
-                                              :opacity 0.7})}
-   "1977 - USSR - Manama/Muharraq" {:title "Manama and Muharraq - 1977"
-                                    :year 1977
-                                    :url (form-tile-url "1977-USSR-Bahrain")
-                                    :description "Description in Russian can be found in the bottom-right corner of the map. Produced in 1977 and 1980, in a factory in Sverdlovsk (now Ekaterinburg). There are many exciting features in these maps that are sorely missing in other contemporary maps. NATO mappers intentionally obfuscated sensitive areas like airports and navy yards from their maps but the Soviets include these on theirs. To produce these details, the Soviets had to rely on ground intelligence to obtain both aerial and ground measurements. Discovered in second-hand thrift stores following the collapse of the Soviet Union."
-                                    :notes "More art than science tracking this projection down. EPSG:28409 (Pulkovo 1942 / Gauss-Kruger zone 9). Special shoutout to Tristan Bobin for his contributions in rectifying this map."
-                                    :source-link "/maps/1977_ManamaMuharraq_USSRMap.tif"
-                                    :source "USSR"
-                                    :scale "1:10,000"
-                                    :issuer "USSR"
-                                    :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
-                                    :opts (merge base-opts {:minNativeZoom 12
-                                                            :maxNativeZoom 18
-                                                            :opacity 0.8})}
-   "1977 - Manama" {:title "Manama - State of Bahrain - 1977 (Edition 1)"
-                    :year 1977
-                    :url (form-tile-url "1977-Manama.1")
-                    :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                    :source-link "/maps/1977-Manama.1.tif"
-                    :source "Fairey Surveys Ltd"
-                    :scale "1:25,000"
-                    :issuer "Unknown"
-                    :issuer-link "/maps/1977.Manama.1.original.tif"
-                    :opts (merge base-opts {:minNativeZoom 11
-                                            :maxNativeZoom 17
-                                            :opacity 0.8})}
-   "1981 - Muharraq" {:title "Muharraq"
-                      :year 1981
-                      :url (form-tile-url "1981-NAP-Muharraq")
-                      :description "Part of National Addressing Project conducted in 1981."
-                      :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
-                      :source-link "/maps/1981.NAP.Muharraq.tif"
-                      :source "National Addressing Project"
-                      :scale "1:25,000"
-                      :issuer "Ministry of Information"
-                      :issuer-link "/maps/1981.NAP.Muharraq.zip"
-                      :opts (merge base-opts {:minNativeZoom 14
-                                              :maxNativeZoom 20
-                                              :opacity 0.8})}
-   "1992 - Manama" {:title "Manama - State of Bahrain - 1992 (Edition 4)"
-                    :year 1992
-                    :url (form-tile-url "1992-Manama.4")
-                    :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983, and Oct. 1986. Field surveys from 1986 to 1991."
-                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                    :source-link "/maps/1992-Manama.4.tif"
-                    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                    :scale "1:25,000"
-                    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                    :issuer-link "/maps/1992.Manama.4.original.tif"
-                    :opts (merge base-opts {:minNativeZoom 11
-                                            :maxNativeZoom 17
-                                            :opacity 0.8})}
-   "1998 - Manama" {:title "Manama - State of Bahrain - 1998 (Edition 5)"
-                    :year 1998
-                    :url (form-tile-url "1998-Manama.5")
-                    :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, and 1992 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                    :source-link "/maps/1998-Manama.5.tif"
-                    :source "Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                    :scale "1:25,000"
-                    :issuer "Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                    :issuer-link "/maps/1998.Manama.5.original.tif"
-                    :opts (merge base-opts {:minNativeZoom 11
-                                            :maxNativeZoom 17
-                                            :opacity 0.8})}
-   "2006 - Manama" {:title "Manama - State of Bahrain - 2006 (Edition 6)"
-                    :year 2006
-                    :url (form-tile-url "2006-Manama.6")
-                    :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, 1992, 1998 and 2006 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                    :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                    :source-link "/maps/2006-Manama.6.tif"
-                    :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                    :scale "1:25,000"
-                    :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                    :issuer-link "/maps/2006.Manama.6.original.tif"
-                    :opts (merge base-opts {:minNativeZoom 11
-                                            :maxNativeZoom 17
-                                            :opacity 0.8})}})
-(def bahrain-layers
-  {"1817 - Bahrain" {:title "A Plan of the Islands of Bahrain and Arad"
-                     :year 1817
-                     :viewable false
-                     :description "The original of this map can be found in the archives of the Hydrographic Office in Taunton, UK, (reference: Original Documents w 66/1). It is mentioned in the first chapter of the unpublished account of the Survey of the Persian Gulf, written by G.B. Brucks in 1835.This is the earliest surviving British survey of Bahrain and its waters. The strange shape of the island is because the Mercury only surveyed the waters to the north east of Bahrain and did not sail round the island. The different anchorages of the Mercury are marked 'A' on the map; the fort marked 'D' is Abu Mahir fort, then an island but now an integral part of Muharraq Island and the headquarters of the coastguards. Manama and the Qala'at al-Bahrain (the 'Portuguese Fort') are named for the first time on a map; but, historically, the most important feature of this map is that it is the first time the name of Muharraq (here spelt as Maharag) is used on any English document as the name of the main city on Arad island. Muharraq was founded only seven years previously, in 1810."
-                     :source "Second-Lt. Wilson of the East India Company Cruiser Mercury."
-                     :source-link "/maps/1817-A Plan of the Islands of Bahrain and Arad.tif"
-                     :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"}
-   "1817 - Sketch of the Islands of Bahrain and Arad" {:title "A Sketch of the Islands of Bahrain and Arad, with a plan of the anchorage, December 1817"
-                                                       :year 1817
-                                                       :viewable false
-                                                       :description "December 1817. The original of this map can be found in the archives of the Hydrographic Office in Taunton, UK, (reference: Original Documents w 66/2). Historically, this sketch is important as it shows the earliest-known views (from the sea) of Manama, Moharraq, Qala'at al-Bahrain (the Portuguese Fort), and Abu Mahir Fort."
-                                                       :source "Captain Forbes of HMS Challenger"
-                                                       :source-link "/maps/1817-A Sketch of the Islands of Bahrain and Arad, with a plan of the anchorage, December 1817.tif"
-                                                       :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"}
-   "1820 - Chart of the Gulf of Persia" {:title "Chart of the Gulf of Persia"
-                                         :year 1820
-                                         :viewable false
-                                         :description "The original of this map can be found in the archives of the Hydrographic Office in Taunton, UK, (reference: a 11). After the initial surveys of Bahrain in 1817, the next survey was in March 1818 of the north-western anchorage of Bahrain by Captain Eatwell of the East India Company cruiser Benares. The manuscript original of this chart can be found in the archives of the Hydrographic Office in Taunton, UK (reference: Original Documents w 63). The chart by Eatwell was published for the first time as an inset to the 1820 map by Hurd, which incorporated the additions to knowledge of the Gulf gained in the previous eleven years. The shape of Bahrain Island is still strange to modern eyes as ships had not yet circumnavigated the island. The modern shape of Bahrain Island had to wait for the map produced as a result of the survey by Brucks in 1825 [map 4]. By chance, Bracks was a 2nd Lieutenant on the Benares when this chart was made, according to the first chapter of the unpublished account of the Survey of the Persian Gulf, written by Brucks in 1835. The Hawar Islands are not yet part of this map or indeed of any map. This is the first map in English to show Zubara [spelt 'Zebarra' here], the ancestral home of the al-Khalifa ruling family of Bahrain."
-                                         :source "Thomas Hurd, Hydrographer to the Admiralty"
-                                         :source-link "/maps/1820 - Chart of the Gulf of Persia.tif"
-                                         :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"}
-
-   "1828 - Trigonometrical Plan of the Island and Harbour of Bahrain" {:title "Trigonometrical Plan of the Island and Harbour of Bahrain"
-                                                                       :year 1828
-                                                                       :viewable false
-                                                                       :description "The original of this map can be found in the India Office Records (now part of the British Library Oriental and India Office Collections) (reference IOR: X/3630/21). The survey was done in 1825 but not published until 16th June 1828. This is the first map to show the correct shape of Bahrain Island, before modern land reclamation altered it. The survey was done by Lts Brucks and Rogers; the map was drawn by Lt. Houghton. Manama and Muharraq and Arad are shown, as with earlier maps. Also mentioned for the first time on a map are: the towns of Rifa'a, Zallaq (as 'Sadoo Boo Gafhy'), and Diraz; the ruins of Jow on the east coast (although they are not named); Adhari Pool, described as a 'reservoir and springs of fresh water' leading to a small lake, now disappeared; Al-Khamis mosque (although it is not named); Sitra, Umm Nassan, Umm Saban and Jidda islands (although they are not named). As part of the cartouche, there is a sketch of the Khamis Mosque, drawn by A. Mackell - the earliest known view of the mosque. On this map of Bahrain Island and Harbour is also included the Fasht al Diebel [called 'Debil Shoal']. In 1829 Brucks used the geographical knowledge gained from surveying this map, to describe parts of Bahrain as follows: 'The island of Bahrain or Awal is between eighty and ninety statute miles in circumference, and about one-fifth of it is well watered, thickly inhabited, and partially cultivated; the remainder is either hilly or a desert - nearly equally divided. There are the remains of several fine reservoirs and aqueducts built by the Portuguese, but falling fast to decay; as is the Portuguese fort, which has originally been a strong place, and protecting the Portuguese harbour, not now in use, having given way to that of Munama [sic], near it. The only other ruins of any interest are those of a mosque built by the Alassar people. The Shaikh, Abdulla bin Ahmed, resides at Muharraq, on the island of that name, which is a large town, and contains about six thousand inhabitants [this is the earliest use of Muharraq to describe the island as well as the city]. The principal town on Bahrain is Munama (sic), and is the port of the island, most of the merchants either residing, or having their karavanseria there. The other principal town on the island is Raffar (sic), situated on a hill seven miles distant, the residence of Shaikh Khalifa.... It consists of a square fort or Ghuree, surrounded by habitations… Numerous other small towns and villages are scattered over the cultivated part of the island, but none of sufficient note to require remark. On the eastern side of the island are the ruins of a large town called Jow, formerly the residence of the Shaikhs, abandoned in 1800 for want of a sheltered port, and the inhabitants transferred to Muharraq. The islands of Muharraq, Arad, and Samahoy (sic) are twelve miles round, and only separated at very high spring tides. They have a few date plantations on them, and about seven thousand five hundred inhabitants. There is very little water on them, most of that used being brought from Bahrein. The fortifications are a Ghuree [fort] at Muharraq, on a sandy point, containing six or eight guns, and commanding the channel; two others, one at Arad and another at Samahoy, and a ruinous wall round the town [this city wall of Muharraq has long since disappeared]. On Bahrain are Raffar, seven miles from Munama, and about fifty other Ghurees, with a number of towers in different parts.'"
-                                                                       :source "Lt. G.B. Brucks and Lt. W.E. Rogers of the East India Company Marine Service"
-                                                                       :source-link "/maps/1828-Trigonometrical Plan of the Island and Harbour of Bahrein on the Arabian side of the Gulf of Persia.tif"
-                                                                       :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"}
-   "1829 - Trigonometrical Survey of the Arabian or Southern Side of the Persian Gulf' sheet 4" {:title "Trigonometrical Survey of the Arabian or Southern Side of the Persian Gulf' sheet 4"
-                                                                       :year 1829
-                                                                       :viewable false
-                                                                       :description "The original of this map can be found in the India Office Records (now part of the British Library Oriental and India Office Collections) (reference IOR: X/3630/20/4), It is one of a series of five charts covering the southern, or Arabian, side of the Persian Gulf, from the Musandam Peninsula to Kuwait. The survey was done in 1824 but not published until 1st January 1829. Bahrain can be seen in its Gulf context. Thus the coasts of modern-day Saudi Arabia and Qatar are shown. Zubara is shown again, and here the Hawar Islands are shown for the first time on any map. Strictly speaking, the islands were called Warden's Islands [named after Francis Warden, a member of the Council in Bombay] and the main island in the group was called Hawar. As with the previous map of Bahrein Island and Harbour, in 1829 Brucks used the geographical knowledge gained from surveying this map, to describe Zubara and the Hawar islands as follows: 'Zobara is a large town, now in ruins. It is situated in a bay, and has been, before it was destroyed, a place of considerable trade. The inhabitants are of the Tribe of Alassar, and subject to Bahrein; a number of fine Nujdee horses are still exported from this place. This was originally the principal place of the Uttoobee Tribe, until they separated. Warden's Islands is a group of eight or nine islands and rocks.... The principal is called Al Howahk, and is about four miles long. It has two fishing villages on it, and belongs to Bahrein.'"
-                                                                       :source "Lt. J.M. Guy and Lt. G.B. Brucks of the East India Company Marine Service"
-                                                                       :source-link "/maps/1829-Trigonometrical Survey of the Arabian or Southern side of the Persian Gulf sheet 4.tif"
-                                                                       :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"}
-
-
-   "1904 - Bahrain" {:title "1904-5 - Bahrain"
-                     :year 1904
-                     :url (form-tile-url "1904-Bahrain")
-                     :description "The map was created for Lorimer’s 5000-page encyclopaedia for the colonial British government, titled ‘Gazetteer of the Persian Gulf, Oman, and Central Arabia,’ and published in 1908. The survey was conducted in the winter season of 1904-1905 under Surveyor Sher Jang. Every place listed in this map has a detailed description in the Gazetteer (linked). Due its accuracy and scale, it’s said official government departments continued to reference this map for over 50 years."
-                     :notes "Original scan was deformed without a clear projection. Rectified using two passes: 1) warped deformities 'straight' using coordinate grid as GCPs with an Indian Survey projection.  2) Created an extensive list of historic springs, forts, and geographic features and hand matched them against the 1956, 1977, and 1969 maps as reference."
-                     :source "Gazetteer of the Persian Gulf"
-                     :source-link "/maps/1904-Bahrain.tif"
-                     :link-1 "/documents/Gazetteer of the Persian Gulf. Vol. II. Geographical and Statistical. J G Lorimer. 1908, p235-280.pdf"
-                     :link-1-label "Gazetteer of the Persian Gulf"
-                     :link-2 "https://www.alwasatnews.com/m1904/index.htm"
-                     :link-2-label "AlWasat article on 1904 map"
-                     :scale "1:63,360"
-                     :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
-                     :issuer-link "/maps/1904-Bahrain-georeferenced.tif"
-                     :opts (merge base-opts {:minNativeZoom 9
-                                             :maxNativeZoom 15
-                                             :opacity 0.8})}
-   "1914 - Bahrain Harbour" {:title "1914 - Bahrain Harbour"
-                             :year 1914
-                             :url (form-tile-url "1914-Harbour")
-                             :description nil
-                             :notes "Gets less accurate in the south."
-                             :issuer-link "/maps/1914-Harbour.png"
-                             :source "Marine Survey of India - Officers of R.I.M.S Investigator"
-                             :source-link "/maps/1914-Harbour.tif"
-                             :submitted-by "Ali Karimi"
-                             :scale "1:73,000"
-                             :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
-                             :opts (merge base-opts {:minNativeZoom 10
-                                                     :maxNativeZoom 15
-                                                     :opacity 0.8})}
-   "1937 - Bahrain" {;; English
-                     :title "BAHRAIN ISLAND - 1937"
-                     :year 1937
-                     :url (form-tile-url "1937-Bahrain")
-                     :description "Plan of Bahrain. The plan indicates hydrology, settlements and  as well as providing some indication of relief. Included is a table of reference of symbols used. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
-                     :notes "Original scan of document was distorted and outlines begin to diverge greatly further and further south.  This is one of my favorite maps because it shows the borders of shallow waters around Bahrain. Those borders now correspond almost exactly to the borders of reclaimed land around the island. It costs less to reclaim shallow water. "
-                     :issuer-link "/maps/1937-Bahrain.jpg"
-                     :source "British Library: India Office Records and Private Papers"
-                     :source-link "/maps/1937-Bahrain.tif"
-                     :issuer "Qatar Digital Library"
-                     :scale "1:63,360"
-
-                     :opts (merge base-opts {:minNativeZoom 11
-                                             :maxNativeZoom 15
-                                             :opacity 0.7})}
-   "1943 - Bahrain" {:title "BAHRAIN ISLAND - 1943"
-                     :year 1943
-                     :url (form-tile-url "1943-Bahrain")
-                     :description "Series GSGS 4035 Edition 2. Shows physical features, residential places, cultivated land, selected buildings, marsh land, and major roads.
-  Relief shown by landform drawings, contours, and spot heights. Compiled from Air photographs in A.H.Q. Drawing Office, Hinaidi, 1937. Drawn and Heliographed by O.S. 1939."
-                     :notes "Well-preserved, undistorted scan. Map has relatively few inaccuracies."
-                     :issuer-link "/maps/1943-Bahrain.jpg"
-                     :source "US Army Map Service"
-                     :source-link "/maps/1943-Bahrain.tif"
-                     :issuer "University of Texas Library"
-                     :scale "1:63,360"
-                     :opts (merge base-opts {:minNativeZoom 10
-                                             :maxNativeZoom 15
-                                             :opacity 0.7})}
-   "1956 - Bahrain" {:title "BAHRAIN ISLAND - 1956"
-                     :year 1956
-                     :url (form-tile-url "1956-Bahrain")
-                     :description "Series GSGS 4035 Edition 4. Compiled, drawn, reproduced by Huntings Aerosurveys Ltd., from Air Photographs dated 1952, 1953. Reproduced and Printed by 42 Survey Engineer Regiment May 1956. Published by D. Survey War Office and Air Ministry, 1956."
-                     :notes "Well-preserved, undistorted scan. There are some inaccuracies particularly with tiny islands, but relatively precise."
-                     :issuer-link "/maps/1956-Bahrain.jpg"
-                     :source "Huntings Aerosurveys Ltd."
-                     :source-link "/maps/1956-Bahrain.tif"
-                     :submitted-by "Ali Karimi"
-                     :issuer "D. Survey War Office and Air Ministry, 1956"
-                     :scale "1:63,360"
-                     :opts (merge base-opts {:minNativeZoom 9
-                                             :maxNativeZoom 15
-                                             :opacity 0.7})}
-   "1968 - Bahrain" {:title "BAHRAIN ISLANDS - 1968"
-                     :year 1968
-                     :url (form-tile-url "1968-Bahrain")
-                     :description "Compiled, drawn, reproduced from Air Photographs dated 1952-1953. Revised by 42 Survey Engineer Regiment from Air Photography dated 1962. Revised and Printed by FAIREY SURVEYS LTD., Reform Road, Maidenhead, Berkshire, England, 1968. Published by PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
-                     :notes "Well-preserved."
-                     :issuer-link "/maps/1968.63360.Bahrain.tif"
-                     :source "Fairey Surveys"
-                     :source-link "/maps/1968.63360.Bahrain.warped2.tiff"
-
-                     :issuer "PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
-                     :scale "1:63,360"
-                     :opts (merge base-opts {:minNativeZoom 9
-                                             :maxNativeZoom 15
-                                             :opacity 0.7})}
-
-   "1973 - Bahrain" {:title "Bahrain - 1973"
-                     :year 1973
-                     :url (form-tile-url "1973-Bahrain")
-                     :description "Compiled and drawn by 42 Survey Engineer Regiment in 1971-2 from air photography dated 1969 and other sources. Control supplied by MCE RE and No 1 A(S)LS RE. Field check 1971 and revision in 1973 from air photography dated 1970. Names rendered in accordance with BGN/PCGN system of transliteration from Arabic. Projection: Traverse Mercator, Spheroid: Clarke 1880, Horizontal Datum: Nahrwan, Vertical Datum: MSL. Series K7610, Edition 1-GSGS. "
-                     :notes "High resolution, with slight alignment issues. Projection is based off the Clarke 1880 Spheroid with a Datum in Nahrwan. Required post-processing/alignment work after translation and warping. Provided parameters appear to be off."
-                     :source-link "/maps/1973-Bahrain.tif"
-                     :source "Ministry of Defence, United Kingdom, 1973"
-                     :scale "1:50,000"
-                     :issuer "Unknown"
-                     :issuer-link "/maps/1973-Bahrain.zip"
-                     :opts (merge base-opts {:minNativeZoom 11
-                                             :maxNativeZoom 16
-                                             :opacity 0.8})}
-   "1977 - Bahrain (25k)" {:title "State of Bahrain - 1977"
-                           :year 1977
-                           :url (form-tile-url "1977-Bahrain")
-                           :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                           :notes "This is a 7-sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                           :source-link "/maps/1977-Bahrain-v2.tif"
-                           :source "Fairey Surveys Ltd"
-                           :scale "1:25,000"
-                           :issuer "Unknown"
-                           :issuer-link "/maps/1977-Bahrain.zip"
-                           :opts (merge base-opts {:minNativeZoom 11
-                                                   :maxNativeZoom 16
-                                                   :opacity 0.8})}
-   "1977 - Bahrain (50k)" {:title "State of Bahrain - 1977"
-                           :year 1977
-                           :url (form-tile-url "1977-Bahrain.50k")
-                           :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain. Edition 1."
-                           :notes "This is a 3-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                           :source-link "/maps/1977-Bahrain-50k.compressed.tif"
-                           :source "Fairey Surveys Ltd"
-                           :scale "1:50,000"
-                           :issuer "Unknown"
-                           :issuer-link "/maps/1977.50k.zip"
-                           :opts (merge base-opts {:minNativeZoom 11
-                                                   :maxNativeZoom 17
-                                                   :opacity 0.8})}
-   "1985 - Bahrain (10k)" {:title "State of Bahrain - 1985"
-                           :year 1985
-                           :url (form-tile-url "1985-Bahrain.10k")
-                           :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from air photography taken in 1983 by B.K.S. Surveys LTD. and field survey revisions 1984."
-                           :notes "This is a 28-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:50,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. Please note that sheet 73 and 94 are from 1977. Sheet 73 is missing and sheet 94 is available but lower quality. This is the holy grail of Bahrain maps."
-                           :source-link "/maps/1985-Bahrain(10k).tif"
-                           :source "Fairey Surveys Ltd."
-                           :scale "1:10,000"
-                           :issuer "Ministry of Information, Bahrain"
-                           :issuer-link "/maps/1985-Bahrain.10k.zip"
-                           :opts (merge base-opts {:minNativeZoom 13
-                                                   :maxNativeZoom 19
-                                                   :opacity 0.8})}
-  "1986 - Bahrain (50k)" {:title "State of Bahrain - 1986"
-                           :year 1986
-                           :url (form-tile-url "1986-Bahrain.50k")
-                           :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1986. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain. Edition 2."
-                           :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                           :source-link "/maps/1986-Bahrain(50k).tif"
-                           :source "Fairey Surveys Ltd"
-                           :scale "1:50,000"
-                           :issuer "Ministry of Defence, UK"
-                           :issuer-link "/maps/1986-Bahrain.zip"
-                           :opts (merge base-opts {:minNativeZoom 8
-                                                   :maxNativeZoom 16
-                                                   :opacity 0.8})}
-   "1990 - Bahrain (50k)" {:title "State of Bahrain - 1990"
-                           :year 1990
-                           :url (form-tile-url "1990-Bahrain.50k")
-                           :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1990. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain. Major Revision 1989 by Survey Directorate, Ministry of Housing from air photography and field surveys 1987-1989. Partial revision by MCE RE in 1990. Edition 4."
-                           :notes "Note: The Hawar sheet is actually from 1986 since a 1990 edition wasn't produced. This is a 3 sheet-series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                           :source-link "/maps/1990-Bahrain(50k).tif"
-                           :source "Ministry of Defence, UK"
-                           :scale "1:50,000"
-                           :issuer "Ministry of Defence, UK"
-                           :issuer-link "/maps/1990-Bahrain.zip"
-                           :opts (merge base-opts {:minNativeZoom 9
-                                                   :maxNativeZoom 16
-                                                   :opacity 0.8})}
-   "1997 - Bahrain (50k)" {:title "State of Bahrain - 1997"
-                           :year 1997
-                           :url (form-tile-url "1997-Bahrain.50k")
-                           :description "Produced in 1977 under the direction of the  Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, and 1998 by Survey Directorate, Ministry of Housing, State of Bahrain, from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Edition 5."
-                           :notes "This is a 3-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                           :source-link "/maps/1997-Bahrain(50k).tif"
-                           :source "Ministry of Housing"
-                           :scale "1:50,000"
-                           :issuer "Ministry of Housing"
-                           :issuer-link "/maps/1997-Bahrain.zip"
-                           :opts (merge base-opts {:minNativeZoom 8
-                                                   :maxNativeZoom 16})}
-   "2004 - Bahrain (50k)" {:title "State of Bahrain - 2004"
-                           :year 2004
-                           :url (form-tile-url "2004-Bahrain.50k")
-                           :description "Produced in 1977 under the direction of the Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, 1993, 1996, and 2002 by Survey Directorate from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Edition 6."
-                           :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. North sheet was published 2003."
-                           :source-link "/maps/2004-Bahrain(50k).tiff"
-                           :source "Ministry of Housing"
-                           :scale "1:50,000"
-                           :issuer "Dar Akbar Al Khaleej"
-                           :issuer-link "/maps/2004-Bahrain.zip"
-                           :opts (merge base-opts {:minNativeZoom 8
-                                                   :maxNativeZoom 16})}
-   "2030 - Bahrain" {:title "Vision 2030"
-                     :year 2030
-                     :url (form-tile-url "2030-Bahrain")
-                     :description "National Detail Land Use map 2030 is the second version of the National Plan and Development Strategy updated Map illustrating detailed Land Use. Data and Relevant Information produced by GIS in GDUP. Issue Date: 11/1/2016."
-                     :notes "No scale or boundaries provided, hand matched."
-                     :source-link "/maps/2030-Bahrain.tif"
-                     :submitted-by "Maitham Almubarak"
-                     :source "National Plan and Development"
-                     :scale "N/A, probably 1:50,000"
-                     :issuer "Urban Planning & Development Authority"
-                     :issuer-link "/maps/2030-Bahrain.jpg"
-                     :opts (merge base-opts {:minNativeZoom 10
-                                             :maxNativeZoom 15
-                                             :opacity 0.8})}})
-
-(def fairey {"Manama - 1977" {:title "Manama - State of Bahrain - 1977 (Edition 1)"
-                              :year 1977
-                              :url (form-tile-url "1977-Manama.1")
-                              :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                              :source-link "/maps/1977-Manama.1.tif"
-                              :source "Fairey Surveys Ltd"
-                              :scale "1:25,000"
-                              :issuer "Unknown"
-                              :issuer-link "/maps/1977.Manama.1.original.tif"
-                              :opts (merge base-opts {:minNativeZoom 11
-                                                      :maxNativeZoom 17
-                                                      :opacity 0.8})}
-             "Manama - 1992" {:title "Manama - State of Bahrain - 1992 (Edition 4)"
-                              :year 1992
-                              :url (form-tile-url "1992-Manama.4")
-                              :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983, and Oct. 1986. Field surveys from 1986 to 1991."
-                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                              :source-link "/maps/1992-Manama.4.tif"
-                              :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                              :scale "1:25,000"
-                              :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                              :issuer-link "/maps/1992.Manama.4.original.tif"
-                              :opts (merge base-opts {:minNativeZoom 11
-                                                      :maxNativeZoom 17
-                                                      :opacity 0.8})}
-             "Manama - 1998" {:title "Manama - State of Bahrain - 1998 (Edition 5)"
-                              :year 1998
-                              :url (form-tile-url "1998-Manama.5")
-                              :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, and 1992 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                              :source-link "/maps/1998-Manama.5.tif"
-                              :source "Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                              :scale "1:25,000"
-                              :issuer "Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                              :issuer-link "/maps/1998.Manama.5.original.tif"
-                              :opts (merge base-opts {:minNativeZoom 11
-                                                      :maxNativeZoom 17
-                                                      :opacity 0.8})}
-             "Manama - 2006" {:title "Manama - State of Bahrain - 2006 (Edition 6)"
-                              :year 2006
-                              :url (form-tile-url "2006-Manama.6")
-                              :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, 1992, 1998 and 2006 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                              :source-link "/maps/2006-Manama.6.tif"
-                              :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                              :scale "1:25,000"
-                              :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                              :issuer-link "/maps/2006.Manama.6.original.tif"
-                              :opts (merge base-opts {:minNativeZoom 11
-                                                      :maxNativeZoom 17
-                                                      :opacity 0.8})}
-             "Budaiya - 1977" {:title "Budaiya - State of Bahrain - 1977 (Edition 1)"
-                               :year 1977
-                               :url (form-tile-url "1977-Budaiya.1")
-                               :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                               :source-link "/maps/1977-Budaiya.1.tif"
-                               :source "Fairey Surveys Ltd"
-                               :scale "1:25,000"
-                               :issuer "Unknown"
-                               :issuer-link "/maps/1977.Budaiya.1.original.tif"
-                               :opts (merge base-opts {:minNativeZoom 11
-                                                       :maxNativeZoom 17
-                                                       :opacity 0.8})}
-             "Budaiya - 1987" {:title "Budaiya - State of Bahrain - 1987 (Edition 2)"
-                               :year 1987
-                               :url (form-tile-url "1987-Budaiya.2")
-                               :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from Air Photography taken in Jan. 1983 by B.K.S. Surveys LTD. And field surveys Revisions 1986"
-                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                               :source-link "/maps/1987-Budaiya.2.tif"
-                               :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                               :scale "1:25,000"
-                               :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                               :issuer-link "/maps/1987.Budaiya.2.original.tif"
-                               :opts (merge base-opts {:minNativeZoom 11
-                                                       :maxNativeZoom 17
-                                                       :opacity 0.8})}
-             "Budaiya - 1990" {:title "Budaiya - State of Bahrain - 1990 (Edition 3)"
-                               :year 1990
-                               :url (form-tile-url "1990-Budaiya.3")
-                               :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated 1983 and 1986. Field surveys from 1984 to 1990."
-                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                               :source-link "/maps/1990-Budaiya.3.tif"
-                               :source "Fairey Surveys Ltd"
-                               :scale "1:25,000"
-                               :issuer "Unknown"
-                               :issuer-link "/maps/1990.Budaiya.3.original.tif"
-                               :opts (merge base-opts {:minNativeZoom 11
-                                                       :maxNativeZoom 17
-                                                       :opacity 0.8})}
-             "Budaiya - 1997" {:title "Budaiya - State of Bahrain - 1997 (Edition 4)"
-                               :year 1997
-                               :url (form-tile-url "1997-Budaiya.4")
-                               :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987 and 1990 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1997 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                               :source-link "/maps/1997-Budaiya.4.tif"
-                               :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                               :scale "1:25,000"
-                               :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                               :issuer-link "/maps/1997.Budaiya.4.original.tif"
-                               :opts (merge base-opts {:minNativeZoom 11
-                                                       :maxNativeZoom 17
-                                                       :opacity 0.8})}
-             "Budaiya - 2007" {:title "Budaiya - State of Bahrain - 2007 (Edition 5)"
-                               :year 2007
-                               :url (form-tile-url "2007-Budaiya.5")
-                               :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987, 1990, 1997, and 2007 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                               :source-link "/maps/2007-Budaiya.5.tif"
-                               :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                               :scale "1:25,000"
-                               :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                               :issuer-link "/maps/2007.Budaiya.5.original.tif"
-                               :opts (merge base-opts {:minNativeZoom 11
-                                                       :maxNativeZoom 17
-                                                       :opacity 0.8})}
-
-             "Riffa - 1977" {:title "Riffa - State of Bahrain - 1977 (Edition 1)"
-                             :year 1977
-                             :url (form-tile-url "1977-Riffa.1")
-                             :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                             :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                             :source-link "/maps/1977-Riffa.1.tif"
-                             :source "Fairey Surveys Ltd"
-                             :scale "1:25,000"
-                             :issuer "Unknown"
-                             :issuer-link "/maps/1977.Riffa.1.original.tif"
-                             :opts (merge base-opts {:minNativeZoom 11
-                                                     :maxNativeZoom 17
-                                                     :opacity 0.8})}
-             "Riffa - 1987" {:title "Riffa - State of Bahrain - 1987 (Edition 2)"
-                             :year 1987
-                             :url (form-tile-url "1987-Riffa.2")
-                             :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from Air Photography taken in Jan. 1983 by B.K.S. Surveys LTD. And field surveys Revisions 1986"
-                             :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                             :source-link "/maps/1987-Riffa.2.tif"
-                             :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                             :scale "1:25,000"
-                             :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                             :issuer-link "/maps/1987.Riffa.2.original.tif"
-                             :opts (merge base-opts {:minNativeZoom 11
-                                                     :maxNativeZoom 17
-                                                     :opacity 0.8})}
-             "Riffa - 1997" {:title "Riffa - State of Bahrain - 1997 (Edition 4)"
-                             :year 1997
-                             :url (form-tile-url "1997-Riffa.4")
-                             :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987 and 1991 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1997 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                             :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                             :source-link "/maps/1997-Riffa.4.tif"
-                             :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                             :scale "1:25,000"
-                             :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                             :issuer-link "/maps/1997.Riffa.4.original.tif"
-                             :opts (merge base-opts {:minNativeZoom 11
-                                                     :maxNativeZoom 17
-                                                     :opacity 0.8})}
-             "Riffa - 2005" {:title "Riffa - State of Bahrain - 2005 (Edition 5)"
-                             :year 2005
-                             :url (form-tile-url "2005-Riffa.5")
-                             :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1986, 1991,  and 2004 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                             :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                             :source-link "/maps/2005-Riffa.5.tif"
-                             :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                             :scale "1:25,000"
-                             :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
-                             :issuer-link "/maps/2005.Riffa.5.original.tif"
-                             :opts (merge base-opts {:minNativeZoom 11
-                                                     :maxNativeZoom 17
-                                                     :opacity 0.8})}
-             "Zallaq - 1977" {:title "Zallaq - State of Bahrain - 1977 (Edition 1)"
-                              :year 1977
-                              :url (form-tile-url "1977-Zallaq.1")
-                              :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                              :source-link "/maps/1977-Zallaq.1.tif"
-                              :source "Fairey Surveys Ltd"
-                              :scale "1:25,000"
-                              :issuer "Unknown"
-                              :issuer-link "/maps/1977.Zallaq.1.original.tif"
-                              :opts (merge base-opts {:minNativeZoom 11
-                                                      :maxNativeZoom 17
-                                                      :opacity 0.8})}
-             "Zallaq - 1995" {:title "Zallaq - State of Bahrain - 1995 (Edition 3)"
-                              :year 1995
-                              :url (form-tile-url "1995-Zallaq.3")
-                              :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from Air Photography taken in Jan. 1983 by B.K.S. Surveys LTD. And field surveys Revisions 1986"
-                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                              :source-link "/maps/1995-Zallaq.3.tif"
-                              :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                              :scale "1:25,000"
-                              :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                              :issuer-link "/maps/1995.Zallaq.3.original.tif"
-                              :opts (merge base-opts {:minNativeZoom 11
-                                                      :maxNativeZoom 17
-                                                      :opacity 0.8})}
-             "Zallaq - 2006" {:title "Zallaq - State of Bahrain - 2006 (Edition 4)"
-                              :year 2006
-                              :url (form-tile-url "2006-Zallaq.4")
-                              :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987 and 1991 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 2006 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                              :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                              :source-link "/maps/2006-Zallaq.4.tif"
-                              :source "Survey Directorate, Ministry of Housing, State of Bahrain"
-                              :scale "1:25,000"
-                              :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
-                              :issuer-link "/maps/2006.Zallaq.4.original.tif"
-                              :opts (merge base-opts {:minNativeZoom 11
-                                                      :maxNativeZoom 17
-                                                      :opacity 0.8})}
-             "Mamtala - 1977" {:title "Mamtala - State of Bahrain - 1977 (Edition 1)"
-                               :year 1977
-                               :url (form-tile-url "1977-Mamtala.1")
-                               :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                               :source-link "/maps/1977-Mamtala.1.tif"
-                               :source "Fairey Surveys Ltd"
-                               :scale "1:25,000"
-                               :issuer "Unknown"
-                               :issuer-link "/maps/1977.Mamtala.1.original.tif"
-                               :opts (merge base-opts {:minNativeZoom 11
-                                                       :maxNativeZoom 17
-                                                       :opacity 0.8})}
-             "Mamtala - 1990" {:title "Mamtala - State of Bahrain - 1990 (Edition 2)"
-                               :year 1990
-                               :url (form-tile-url "1990-Mamtala.2")
-                               :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983 and Oct. 1986. Field surveys from 1986 to 1990."
-                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                               :source-link "/maps/1990-Mamtala.2.tif"
-                               :source "Fairey Surveys Ltd"
-                               :scale "1:25,000"
-                               :issuer "Unknown"
-                               :issuer-link "/maps/1990.Mamtala.2.original.tif"
-                               :opts (merge base-opts {:minNativeZoom 11
-                                                       :maxNativeZoom 17
-                                                       :opacity 0.8})}
-             "Mamtala - 1998" {:title "Mamtala - State of Bahrain - 1998 (Edition 3)"
-                               :year 1998
-                               :url (form-tile-url "1998-Mamtala.3")
-                               :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1990 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                               :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                               :source-link "/maps/1998-Mamtala.3.tif"
-                               :source "Fairey Surveys Ltd"
-                               :scale "1:25,000"
-                               :issuer "Unknown"
-                               :issuer-link "/maps/1998.Mamtala.3.original.tif"
-                               :opts (merge base-opts {:minNativeZoom 11
-                                                       :maxNativeZoom 17
-                                                       :opacity 0.8})}
-             "Rumaytha - 1977" {:title "Rumaytha - State of Bahrain - 1977 (Edition 1)"
-                                :year 1977
-                                :url (form-tile-url "1977-Rumaytha.1")
-                                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                                :source-link "/maps/1977-Rumaytha.1.tif"
-                                :source "Fairey Surveys Ltd"
-                                :scale "1:25,000"
-                                :issuer "Unknown"
-                                :issuer-link "/maps/1977.Rumaytha.1.original.tif"
-                                :opts (merge base-opts {:minNativeZoom 11
-                                                        :maxNativeZoom 17
-                                                        :opacity 0.8})}
-             "Rumaytha - 1991" {:title "Rumaytha - State of Bahrain - 1990 (Edition 2)"
-                                :year 1991
-                                :url (form-tile-url "1991-Rumaytha.2")
-                                :description "Original photogrammetric compilation by Fairey Surveys Ltd in 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983 and Oct. 1986. Field surveys from 1986 to 1991"
-                                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                                :source-link "/maps/1991-Rumaytha.2.tif"
-                                :source "Fairey Surveys Ltd"
-                                :scale "1:25,000"
-                                :issuer "Unknown"
-                                :issuer-link "/maps/1991.Rumaytha.2.original.tif"
-                                :opts (merge base-opts {:minNativeZoom 11
-                                                        :maxNativeZoom 17
-                                                        :opacity 0.8})}
-             "Rumaytha - 2000" {:title "Rumaytha - State of Bahrain - 1998 (Edition 3)"
-                                :year 2000
-                                :url (form-tile-url "2000-Rumaytha.3")
-                                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1991 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in year 2000 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                                :source-link "/maps/2000-Rumaytha.3.tif"
-                                :source "Fairey Surveys Ltd"
-                                :scale "1:25,000"
-                                :issuer "Unknown"
-                                :issuer-link "/maps/2000.Rumaytha.3.original.tif"
-                                :opts (merge base-opts {:minNativeZoom 11
-                                                        :maxNativeZoom 17
-                                                        :opacity 0.8})}
-             "Ras Al Barr - 1977" {:title "Ras Al Barr - State of Bahrain - 1977 (Edition 1)"
-                                   :year 1977
-                                   :url (form-tile-url "1977-Ras Al Barr.1")
-                                   :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
-                                   :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                                   :source-link "/maps/1977-Ras Al Barr.1.tif"
-                                   :source "Fairey Surveys Ltd"
-                                   :scale "1:25,000"
-                                   :issuer "Unknown"
-                                   :issuer-link "/maps/1977.Ras Al Barr.1.original.tif"
-                                   :opts (merge base-opts {:minNativeZoom 11
-                                                           :maxNativeZoom 17
-                                                           :opacity 0.8})}
-             "Ras Al Barr - 2000" {:title "Ras Al Barr - State of Bahrain - 2000 (Edition 2)"
-                                   :year 2000
-                                   :url (form-tile-url "2000-Ras Al Barr.2")
-                                   :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 2000 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 2006 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
-                                   :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
-                                   :source-link "/maps/2000-Ras Al Barr.2.tif"
-                                   :source "Fairey Surveys Ltd"
-                                   :scale "1:25,000"
-                                   :issuer "Unknown"
-                                   :issuer-link "/maps/2000.Ras Al Barr.2.original.tif"
-                                   :opts (merge base-opts {:minNativeZoom 11
-                                                           :maxNativeZoom 17
-                                                           :opacity 0.8})}
-             "Hawar - 1993" {:title "Hawar - State of Bahrain - 1993 (Edition 1)"
-                             :year 1993
-                             :url (form-tile-url "1993-Hawar.1")
-                             :description "Compiled from 1:10,000 maps published in 1981. Additional information from 1991 air photography and field surveys 1993. Produced by the Survey Directorate, Ministry of Housing, Bahrain"
-                             :notes "This is a 2-part addendum to the 7 sheet series (1:25,000 scale) produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. Originally commissioned along with the original set in 1977, the first edition would only appear in 1993."
-                             :source-link "/maps/1993-Hawar.1.tif"
-                             :source "Fairey Surveys Ltd"
-                             :scale "1:25,000"
-                             :issuer "Unknown"
-                             :issuer-link "/maps/1993.Hawar.1.zip"
-                             :opts (merge base-opts {:minNativeZoom 11
-                                                     :maxNativeZoom 17
-                                                     :opacity 0.8})}})
-
-
-(def geological-survey-layers
-  {"1975 - Agriculture Capability" {:title "Agriculture Capability - 1975"
-                                    :year 1975
-                                    :url (form-tile-url "1975-Agriculture-Capability")
-                                    :description "Agriculture capability map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
-                                    :notes "Georeferenced from original survey data."
-                                    :source-link "/maps/1975.50k.Agriculture Capability-georeferenced.tif"
-                                    :source "Doornkamp, Brunsden, and Jones"
-                                    :scale "1:50,000"
-                                    :issuer "Ministry of Works, Power and Water"
-                                    :issuer-link "/maps/1975.50k.Agriculture Capability-source-scan.tif"
-                                    :opts (merge base-opts {:minNativeZoom 10
-                                                            :maxNativeZoom 16
-                                                            :opacity 0.8})}
-   "1975 - Soils" {:title "Soils - 1975"
-                   :year 1975
-                   :url (form-tile-url "1975-Soils")
-                   :description "Soil classification map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
-                   :notes "Georeferenced from original survey data."
-                   :source-link "/maps/1975.50k.Soils-georeferenced.tif"
-                   :source "Doornkamp, Brunsden, and Jones"
-                   :scale "1:50,000"
-                   :issuer "Ministry of Works, Power and Water"
-                   :issuer-link "/maps/1975.50k.Soils-source-scan.tif"
-                   :opts (merge base-opts {:minNativeZoom 10
-                                           :maxNativeZoom 16
-                                           :opacity 0.8})}
-   "1976 - Bahrain Geology" {:title "Bahrain Geology - 1976"
-                             :year 1976
-                             :url (form-tile-url "1976-Bahrain-Geology")
-                             :description "Geological map showing rock formations and structures, based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
-                             :notes "Georeferenced from original survey data."
-                             :source-link "/maps/1976.50k.Bahrain Geology-georeferenced.tif"
-                             :source "Doornkamp, Brunsden, and Jones"
-                             :scale "1:50,000"
-                             :issuer "Ministry of Works, Power and Water"
-                             :issuer-link "/maps/1976.50k.Bahrain Geology-source-scan.tif"
-                             :opts (merge base-opts {:minNativeZoom 10
-                                                     :maxNativeZoom 16
-                                                     :opacity 0.8})}
-   "1976 - Bahrain Geomorphology" {:title "Bahrain Geomorphology and Superficial Materials - 1976"
-                                   :year 1976
-                                   :url (form-tile-url "1976-Bahrain-Geomorphology")
-                                   :description "Geomorphological features and superficial materials map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
-                                   :notes "Georeferenced from original survey data."
-                                   :source-link "/maps/1976.50k.Bahrain Geomorphology and superficial materials-georeferenced.tif"
-                                   :source "Doornkamp, Brunsden, and Jones"
-                                   :scale "1:50,000"
-                                   :issuer "Ministry of Works, Power and Water"
-                                   :issuer-link "/maps/1976.50k.Bahrain Geomorphology and superficial materials-source-scan.tif"
-                                   :opts (merge base-opts {:minNativeZoom 10
-                                                           :maxNativeZoom 16
-                                                           :opacity 0.8})}
-   "1976 - Drainage" {:title "Drainage - 1976"
-                      :year 1976
-                      :url (form-tile-url "1976-Drainage")
-                      :description "Drainage patterns and water flow systems map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
-                      :notes "Georeferenced from original survey data."
-                      :source-link "/maps/1976.50k.Drainage-georeferenced.tif"
-                      :source "Doornkamp, Brunsden, and Jones"
-                      :scale "1:50,000"
-                      :issuer "Ministry of Works, Power and Water"
-                      :issuer-link "/maps/1976.50k.Drainage-source-scan.tif"
-                      :opts (merge base-opts {:minNativeZoom 10
-                                              :maxNativeZoom 16
-                                              :opacity 0.8})}})
-(def nap
-  {"1981 - Manama" {:title "Manama"
-                    :year 1981
-                    :url (form-tile-url "1981-NAP-Manama")
-                    :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual provided"
-                    :link-1 "/documents/NAP-Manama-Manual.pdf"
-                    :link-1-label "Manama Manual"
-                    :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
-                    :source-link "/maps/1981.NAP.Manama.tif"
-                    :source "National Addressing Project"
-                    :scale "1:25,000"
-                    :issuer "Ministry of Information"
-                    :issuer-link "/maps/1981.NAP.Manama.zip"
-                    :opts (merge base-opts {:minNativeZoom 13
-                                            :maxNativeZoom 19
-                                            :opacity 0.8})}
-   "1981 - Muharraq" {:title "Muharraq"
-                      :year 1981
-                      :url (form-tile-url "1981-NAP-Muharraq")
-                      :description "Part of National Addressing Project conducted in 1981."
-                      :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
-                      :source-link "/maps/1981.NAP.Muharraq.tif"
-                      :source "National Addressing Project"
-                      :scale "1:25,000"
-                      :issuer "Ministry of Information"
-                      :issuer-link "/maps/1981.NAP.Muharraq.zip"
-                      :opts (merge base-opts {:minNativeZoom 14
-                                              :maxNativeZoom 20
-                                              :opacity 0.8})}})
-
-(def layers {"Bahrain" bahrain-layers
-             "Manama" manama-layers
-             "Muharraq" muharraq-layers
-             "National Addressing Project (1981)" nap
-             "Fairey Surveys 1:25k (1977-2007)" fairey
-             "Geological Survey (1975-76)" geological-survey-layers
-             "Other" other-layers})
-
-(defn filter-viewable-maps
-  "Filter map layers to only include viewable maps (defaults to true if not specified)"
-  [layers-map]
-  (into {}
-    (for [[group-name group-maps] layers-map]
-      [group-name
-       (into {}
-         (for [[map-id map-data] group-maps]
-           (when (not= false (:viewable map-data))
-             [map-id map-data])))])))
-
-(def viewable-layers (filter-viewable-maps layers))
+;; Helper functions for map data processing
 
 (defn- path-to-thumbnail
-  "Convert file path to thumbnail path"
+  "Convert file path to thumbnail path. Thumbnail paths mirror source/issuer filenames and are generated by script."
   [file-path]
   (when file-path
     (let [filename (if (.startsWith file-path "/maps/")
@@ -1025,77 +63,38 @@
         (when (image-format? issuer-link) (path-to-thumbnail issuer-link))
         (path-to-thumbnail source-link))))
 
+(defn get-map-text
+  "Get localized text for a map entry. Falls back to English if Arabic not available."
+  [map-entry language field]
+  (let [i18n-data (:i18n map-entry)
+        lang-key (if (= language :ar) :ar :en)
+        text (get-in i18n-data [lang-key field])]
+    (or text (get-in i18n-data [:en field]))))
 
-(def ar-layers
-  {"Bahrain"
-   {"1914 - Bahrain Harbour" {:title "١٩١٤ - ميناء البحرين"
-                              :year 1914
-                              :description nil
-                              :submitted-by "علي كريمي"
-                              :notes "أقل دقة في الجنوب."}
-    "1937 - Bahrain" {:title "جزيرة البحرين - ١٩٣٧ "
-                      :year 1937
-                      :description "تشير الخطة إلى الهيدرولوجيا والأماكن السكنية و ميزات جغرافية كمستويات الارتفاع."
-                      :notes "الوثيقة الاصلية لم تنسخ و ترقم بشكل جيد. الخارطة تنحرف من الساحل الاصلي بشكل متزايد في جنوب الجزيرة. هذه الخارطة احد خرائطي المفضله لأنه توحي لنا حدود المياه الضحلة حول الجزيرة. هذه الحدود اليوم هي أيضآ حدود الأراضي المدفونه. دفان المياه الضحلة أسهل و اقل تكلفة فصارت هذه الملامح الجغرافية شبه حدود للدفان المستمر."}
-    "1977 - Bahrain (25k)" {:title "البحرين - ١٩٧٧"
-                            :year 1977
-                            :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
-                            :notes " هذه الخارطة سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
-    "1977 - Bahrain (50k)" {:title "البحرين - ١٩٧٧"
-                            :year 1977
-                            :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
-                            :notes " هذه الخارطة سلسلة فيها ٣ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."}
+(defn get-maps-by-group
+  "Filter maps that belong to a specific group"
+  [maps group-name]
+  (into {}
+        (filter (fn [[map-id map-data]]
+                  (contains? (:groups map-data) group-name))
+                maps)))
 
-    "1985 - Bahrain (10k)" {:title "البحرين - ١٩٨٥"
-                            :year 1985
-                            :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD. اضافت مديرية المساحةتحت وزارة الاسكان معلومات من صور جوية التقت في عام ١٩٨٣ بواسطة B.K.S. Surveys LTD و تعديلات ميدانية في ١٩٨٤."
-                            :notes " هذه الخارطة سلسلة فيها ٢٨ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة. يرجى ملاحظة أن الورقة ٧٣ و ٩٤ من ضمن خرائط عام ١٩٧٧ وليس ١٩٨٥. الورقة ٧٣ مفقودة والورقة ٩٤ متوفرة ولكن بجودة ضعيفة.  هذه الخرائط عبارة عن كنز ثمين اي انها تعطي نظرة لمنتصف الثمانينات والتحولات الجذرية للدولة في فترة قلت فيها الوثائق"}
+(defn get-grouped-maps
+  "Organize maps by groups for backward compatibility with existing code"
+  [maps]
+  (let [all-groups (set (mapcat #(:groups (second %)) maps))]
+    (into {}
+          (map (fn [group-name]
+                 [group-name (get-maps-by-group maps group-name)])
+               all-groups))))
 
-    "1973 - Bahrain" {:title "البحرين - ١٩٧٣"
-                      :year 1973
-                      :description nil
-                      :notes "خرائط عالية الجودة فيها مشاكل بسيطة في دقة المحاذة. الإسقاط الاصلي يعتمد على حسابات كلارك ١٨٨٠ و موقع مرجعي في نهروان. تم محاذة اضافية بعد الترجمة و التحوير بسبب اخطاء في البيانات المدونة في الخارطة"}
-    "1943 - Bahrain" {:title "جزيرة البحرين - ١٩٤٣"
-                      :year 1943
-                      :description "الخارطة تُظهر الميزات الجغرافية والأماكن السكنية والأراضي الزراعية والمباني والأهوار والطرق الرئيسية. موضحة بالخارطة الطبوغرافية. تم جمعها من صور جوية في A.H.Q. مكتب الرسم ، هنيدي، ١٩٣٧. رسم وطبع بالهليوغراف بواسطة O.S. 1939
-"
-                      :notes "خارطة دقيقة بأخطاء بسيطة"}
-    "1956 - Bahrain" {:title "جزيرة البحرين - ١٩٥٦"
-                      :year 1956
-                      :description "سلسلة  جي اس جي اس ٤٠٣٥ النسخة الرابعة. جُمعت ورُسمت وأُنتجت من قبل شركة هانتنجز ايروسورفيز من صور جوية أخذت في عاميّ ١٩٥٢ و١٩٥٣. أعاد انتاجها وطباعتها فوج ٤٢ للجهاز الهندسي لمساحة الأراضي البريطانية في مايو ١٩٥٦ ونُشرت من قبل مديرية جهاز المساحة لمكتب الحرب ووزارة الملاحة الجوية البريطانية."
-                      :notes "خارطة انتجت رقمياً بجودة عالية. توجد اخطاء بسيطة بالخارطة خاصة بما يتعلق بالجزر الصغيرة."}
-    "2030 - Bahrain"  {:title "رؤية البحرين ‫-‬ ٢٠٣٠"
-                       :year 2030
-                       :description "ﺧﺎرﻃﺔ اﻟﻤﺨﻄﻂ اﻟﮭﯿﻜﻠﻲ اﻻﺳﺘﺮاﺗﯿﺠﻲ ﻟﻤﻤﻠﻜﺔ اﻟﺒﺤﺮﯾﻦـ لاستخدام الأراضي ٢٠٣٠، النسخة الثانية. الخطة الوطنية توضح استخدامات الأراضي بالتفصيل. البيانات والمعلومات ذات انتجت بـ GIS في GDUP. تاريخ الإصدار: ١١/١/٢٠١٦"
-                       :notes "تم التنسيق باليد لعدم وجود البيانات الجيوغرافية"}}
-   "Manama" {"1937 - Manama"  {:title "المنامة - ١٩٣٧"
-                               :year 1937
-                               :description nil
-                               :notes "خارطة متوسطة الدقة. أخطاء بسيطة في غرب و جنوب الخارطة الأصلية"}
-             "1969 - Manama & AlJufayr" {:title "المنامة و الجفير - ١٩٦٩"
-                                         :year 1969
-                                         :description nil
-                                         :submitted-by "علي كريمي"
-                                         :notes "سلسلة خرائط فيها ٥ أجزاء. تطلبت تصحيحات لالألوان، تصحيحات تشكيلية، ولم تطابق الإسقاط المحدد"}
-             "1977 - USSR - Manama/Muharraq"  {:title "المنامة و المحرق ١٩٧٧"
-                                               :year 1977
-                                               :description "يوجد الوصف باللغة الروسية في الركن الأيمن السفلي من الخريطة.  تم إنتاج هذه الخريطة بين عامي   ١٩٧٧ و ١٩٨٠ في مصنع في سفيردلوفسك (إيكاترينبرج اليوم). تم اكتشاف هذه الخرائط في متاجر سيكوند هاند في الفترة ما بعد انهيار الاتحاد السوفيتي وتم جمعها عشوائياً. هناك العديد من المميزات في هذه الخرائط الغير موجودة في خرائط معاصرة لها. حينما تعمد رسامو الخرائط من حلف ناتو إخفاء مناطق حساسة مثل المطارات والموانئ من خرائطهم، السوفيتين لم يخفوها. لإنتاج هذه التفاصيل، اضطروا السوفيتيين للاعتماد على  مخابرات وجواسيس في الارض و الجو للحصول على ادق التفاصيل."
-                                               :notes  "صعب المنال. EPSG:28409 ‏(Pulkovo 1942 / Gauss-Kruger zone 9). شكر خاص لـ Tristan Bobin على مساهماته في تصحيح هذه الخريطة."}}
-   "Muharraq" {"1937 - Muharraq" {:title "جزيرة المحرق - ١٩٣٧"
-                                  :year 1937
-                                  :description nil
-                                  :notes "خارطة دقيقة من دون اي اشكاليات"}
-               "1931 - Muharraq" {:title "مدينة المحرق - ١٩٣١"
-                                  :year 1931
-                                  :description nil
-                                  :submitted-by "علي كريمي"
-                                  :notes "الخارطة دقيقة قرب سوق المحرق لكنها تنحذر بقرب بو ماهر في الجنوب "}
-
-               "1977 - USSR - Manama/Muharraq"  {:title "المنامة و المحرق ١٩٧٧"
-                                                 :year 1977
-                                                 :description "يوجد الوصف باللغة الروسية في الركن الأيمن السفلي من الخريطة.  تم إنتاج هذه الخريطة بين عامي   ١٩٧٧ و ١٩٨٠ في مصنع في سفيردلوفسك (إيكاترينبرج اليوم). تم اكتشاف هذه الخرائط في متاجر سيكوند هاند في الفترة ما بعد انهيار الاتحاد السوفيتي وتم جمعها عشوائياً. هناك العديد من المميزات في هذه الخرائط الغير موجودة في خرائط معاصرة لها. حينما تعمد رسامو الخرائط من حلف ناتو إخفاء مناطق حساسة مثل المطارات والموانئ من خرائطهم، السوفيتين لم يخفوها. لإنتاج هذه التفاصيل، اضطروا السوفيتيين للاعتماد على  مخابرات وجواسيس في الارض و الجو للحصول على ادق التفاصيل."
-                                                 :notes "صعب المنال. EPSG:28409 ‏(Pulkovo 1942 / Gauss-Kruger zone 9). شكر خاص لـ Tristan Bobin على مساهماته في تصحيح هذه الخريطة."}}
-   "Other" {}})
+(defn get-viewable-maps
+  "Filter maps to only include viewable ones (defaults to true if not specified)"
+  [maps]
+  (into {}
+        (filter (fn [[map-id map-data]]
+                  (not= false (:viewable map-data)))
+                maps)))
 
 (def backlog
   {"1872 - Bahreyn Harbour" {:title "Bahreyn Harbour"
@@ -1364,3 +363,1302 @@
                                   :year 1986
                                   :source-file "Bahrain Yesterday and Today"
                                   :status "needs-processing"}})
+
+
+(def maps
+  {
+   "1963 - Awali"
+   {:groups #{"Other"}
+    :year 1963
+    :url (form-tile-url "1963-Awali")
+    :scale "1:5,000"
+    :source "42 Survey Engineer Regiment"
+    :issuer "Army Map Service, Corps of Engineers"
+    :source-link "/maps/1963.5000.Awali.warped.tif"
+    :issuer-link "/maps/1963.5000.Awali.tif"
+    :i18n {:en {:title "Awali"
+                :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Edition 2 revised from by 42 Survey Engineer Regiment and additional street names supplied by 19 Topographic Squadron RE. Edition 2 GSGS 1963. Published by D. Survey, War Office and Air Ministry, 1963."
+                :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformation is based on estimated coordinates and datums, hand-referenced after. Likely some errors."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.7})}
+
+   "1937 - Manama"
+   {:groups #{"Manama"}
+    :year 1937
+    :url (form-tile-url "1937-Manama")
+    :scale "1:3,639"
+    :source "British Library: India Office Records and Private Papers"
+    :issuer "Qatar Digital Library"
+    :source-link "/maps/1937-Manama.tif"
+    :issuer-link "/maps/1937-Manama.jpg"
+    :i18n {:en {:title "PLAN OF PORT AND TOWN - Manama 1937"
+                :description "Plan of Manamah, Bahrain. The plan indicates settlements, streets, buildings and landmarks. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
+                :notes "Some map drift along the southern and western ends of the document. Mostly accurate."
+                :labels nil}
+           :ar {:title "المنامة - ١٩٣٧"
+                :description nil
+                :notes "خارطة متوسطة الدقة. أخطاء بسيطة في غرب و جنوب الخارطة الأصلية"
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.7})}
+
+   "1957 - Manama"
+   {:groups #{"Manama"}
+    :year 1957
+    :url (form-tile-url "1957-Manama")
+    :scale "1:5,000"
+    :source "42 Survey Engineer Regiment"
+    :issuer "D. Survey War Office and Air Ministry, 1957"
+    :source-link "/maps/1957.5000.Manama.warped.tif"
+    :issuer-link "/maps/1957.5000.Manama.tif"
+    :i18n {:en {:title "Manama"
+                :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Series GSGS 4880 Edition 1 GSGS 1957. Published by D. Survey, War Office and Air Ministry, 1957."
+                :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformation is based on estimated coordinates and datums, hand-referenced after. Likely some errors."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.7})}
+
+   "1968 - Al Jufayr"
+   {:groups #{"Manama"}
+    :year 1968
+    :url (form-tile-url "1968-AlJufayr")
+    :scale "1:5,000"
+    :source "SPC RE"
+    :issuer "D Survey, Ministry of Defence, United Kingdom, 1968"
+    :source-link "/maps/1968.Al Jufayr.5000.tiff"
+    :issuer-link "/maps/1968.Al Jufayr.5000.zip"
+    :i18n {:en {:title "Al Jufayr"
+                :description "Produced by SPC RE in 1968 from existing mapping and other sources with full revision from RAF Air Photography dated 1966."
+                :notes "Well-preserved."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.7})}
+
+   "1969 - Manama & AlJufayr"
+   {:groups #{"Manama"}
+    :year 1969
+    :url (form-tile-url "1969-Manama")
+    :scale "1:5,000"
+    :source "Ministry of Defence, United Kingdom, 1969"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1969-Manama-stitched.zip"
+    :issuer-link "/maps/1969-Manama.zip"
+    :i18n {:en {:title "AL MANAMAH & AL JUFAYR - 1969"
+                :description "Mosaic prepared by SPC RE in 1969 from air photography dated October 1968 and trig control. Names taken from K962 sheet Manama dated 1963. Names and cultural details raised from various sources 1969. This plan supersedes series K962 edit on 3.GSGS sheet Manama."
+                :notes "Excellent condition 5-part map series. Required color corrections, some warping, stitching, and coordinates were offset from real location. "
+                :labels nil
+                :submitted-by "Ali Karimi"}
+           :ar {:title "المنامة و الجفير - ١٩٦٩"
+                :description nil
+                :notes "سلسلة خرائط فيها ٥ أجزاء. تطلبت تصحيحات لالألوان، تصحيحات تشكيلية، ولم تطابق الإسقاط المحدد"
+                :labels nil
+                :submitted-by "علي كريمي"}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 18
+                            :opacity 0.7})}
+
+   "1977 - USSR - Manama/Muharraq"
+   {:groups #{"Manama" "Muharraq"}
+    :year 1977
+    :url (form-tile-url "1977-USSR-Bahrain")
+    :scale "1:10,000"
+    :source "USSR"
+    :issuer "USSR"
+    :source-link "/maps/1977_ManamaMuharraq_USSRMap.tif"
+    :issuer-link "/maps/1977 - USSR - Manama & Muharraq.zip"
+    :i18n {:en {:title "Manama and Muharraq - 1977"
+                :description "Description in Russian can be found in the bottom-right corner of the map. Produced in 1977 and 1980, in a factory in Sverdlovsk (now Ekaterinburg). There are many exciting features in these maps that are sorely missing in other contemporary maps. NATO mappers intentionally obfuscated sensitive areas like airports and navy yards from their maps but the Soviets include these on theirs. To produce these details, the Soviets had to rely on ground intelligence to obtain both aerial and ground measurements. Discovered in second-hand thrift stores following the collapse of the Soviet Union."
+                :notes "More art than science tracking this projection down. EPSG:28409 (Pulkovo 1942 / Gauss-Kruger zone 9). Special shoutout to Tristan Bobin for his contributions in rectifying this map."
+                :labels nil}
+           :ar {:title "المنامة و المحرق ١٩٧٧"
+                :description "يوجد الوصف باللغة الروسية في الركن الأيمن السفلي من الخريطة.  تم إنتاج هذه الخريطة بين عامي   ١٩٧٧ و ١٩٨٠ في مصنع في سفيردلوفسك (إيكاترينبرج اليوم). تم اكتشاف هذه الخرائط في متاجر سيكوند هاند في الفترة ما بعد انهيار الاتحاد السوفيتي وتم جمعها عشوائياً. هناك العديد من المميزات في هذه الخرائط الغير موجودة في خرائط معاصرة لها. حينما تعمد رسامو الخرائط من حلف ناتو إخفاء مناطق حساسة مثل المطارات والموانئ من خرائطهم، السوفيتين لم يخفوها. لإنتاج هذه التفاصيل، اضطروا السوفيتيين للاعتماد على  مخابرات وجواسيس في الارض و الجو للحصول على ادق التفاصيل."
+                :notes "صعب المنال. EPSG:28409 ‏(Pulkovo 1942 / Gauss-Kruger zone 9). شكر خاص لـ Tristan Bobin على مساهماته في تصحيح هذه الخريطة."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 12
+                            :maxNativeZoom 18
+                            :opacity 0.8})}
+
+   "1977 - Manama"
+   {:groups #{"Manama" "Muharraq" "Fairey Surveys 1:25k (1977-2007)"}
+    :year 1977
+    :url (form-tile-url "1977-Manama.1")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Manama.1.tif"
+    :issuer-link "/maps/1977.Manama.1.original.tif"
+    :i18n {:en {:title "Manama - State of Bahrain - 1977 (Edition 1)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "1981 - Manama"
+   {:groups #{"Manama" "National Addressing Project (1981)"}
+    :year 1981
+    :url (form-tile-url "1981-NAP-Manama")
+    :scale "1:25,000"
+    :source "National Addressing Project"
+    :issuer "Ministry of Information"
+    :source-link "/maps/1981.NAP.Manama.tif"
+    :issuer-link "/maps/1981.NAP.Manama.zip"
+    :link-1 "/documents/NAP-Manama-Manual.pdf"
+    :link-1-label "Manama Manual"
+    :i18n {:en {:title "Manama"
+                :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual provided"
+                :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.8})}
+
+   "1992 - Manama"
+   {:groups #{"Manama" "Muharraq" "Fairey Surveys 1:25k (1977-2007)"}
+    :year 1992
+    :url (form-tile-url "1992-Manama.4")
+    :scale "1:25,000"
+    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :source-link "/maps/1992-Manama.4.tif"
+    :issuer-link "/maps/1992.Manama.4.original.tif"
+    :i18n {:en {:title "Manama - State of Bahrain - 1992 (Edition 4)"
+                :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983, and Oct. 1986. Field surveys from 1986 to 1991."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "1998 - Manama"
+   {:groups #{"Manama" "Muharraq" "Fairey Surveys 1:25k (1977-2007)"}
+    :year 1998
+    :url (form-tile-url "1998-Manama.5")
+    :scale "1:25,000"
+    :source "Ministry of Housing, Municipalities and Environment, State of Bahrain."
+    :issuer "Ministry of Housing, Municipalities and Environment, State of Bahrain."
+    :source-link "/maps/1998-Manama.5.tif"
+    :issuer-link "/maps/1998.Manama.5.original.tif"
+    :i18n {:en {:title "Manama - State of Bahrain - 1998 (Edition 5)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, and 1992 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "2006 - Manama"
+   {:groups #{"Manama" "Muharraq" "Fairey Surveys 1:25k (1977-2007)"}
+    :year 2006
+    :url (form-tile-url "2006-Manama.6")
+    :scale "1:25,000"
+    :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+    :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+    :source-link "/maps/2006-Manama.6.tif"
+    :issuer-link "/maps/2006.Manama.6.original.tif"
+    :i18n {:en {:title "Manama - State of Bahrain - 2006 (Edition 6)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1985, 1988, 1992, 1998 and 2006 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   ;; Muharraq group maps
+   "1931 - Muharraq"
+   {:groups #{"Muharraq"}
+    :year 1931
+    :url (form-tile-url "1931-Muharraq")
+    :scale "1:2,400"
+    :source "Unknown"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1931-Muharraq.tif"
+    :issuer-link "/maps/1931-Muharraq.jpg"
+    :i18n {:en {:title "MOHARRAK TOWN - March 1931"
+                :description nil
+                :notes "Accurate in Old Muharraq. Drifts in the southern part of the map near Bu Maher."
+                :labels nil
+                :submitted-by "Ali Karimi"}
+           :ar {:title "مدينة المحرق - ١٩٣١"
+                :description nil
+                :notes "الخارطة دقيقة قرب سوق المحرق لكنها تنحذر بقرب بو ماهر في الجنوب "
+                :labels nil
+                :submitted-by "علي كريمي"}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.7})}
+
+   "1937 - Muharraq"
+   {:groups #{"Muharraq"}
+    :year 1937
+    :url (form-tile-url "1937-Muharraq")
+    :scale "1:20,000"
+    :source "British Library: India Office Records and Private Papers"
+    :issuer "Qatar Digital Library"
+    :source-link "/maps/1937-Muharraq.tif"
+    :issuer-link "https://www.qdl.qa/en/archive/81055/vdc_100025608108.0x000080"
+    :i18n {:en {:title "MUHARRAQ ISLAND - Jan 1937"
+                :description "The map shows Muhurraq Island, and the causeway linking Muharraq to Manama. Also shown are principal roads, tracks, buildings (including the Political Agency in Manana), islands, and the location of several underwater freshwater springs. A rectangle on Muharraq Island indicates the area specified for the landing ground."
+                :notes "Well-preserved and decently accurate."
+                :labels nil}
+           :ar {:title "جزيرة المحرق - ١٩٣٧"
+                :description nil
+                :notes "خارطة دقيقة من دون اي اشكاليات"
+                :labels nil}}
+    :opts (merge base-opts {:maxZoom 20
+                            :minZoom 9
+                            :minNativeZoom 13
+                            :maxNativeZoom 16
+                            :opacity 0.7})}
+
+   "1957 - Muharraq"
+   {:groups #{"Muharraq"}
+    :year 1957
+    :url (form-tile-url "1957-Muharraq")
+    :scale "1:5,000"
+    :source "42 Survey Engineer Regiment"
+    :issuer "D. Survey War Office and Air Ministry, 1957"
+    :source-link "/maps/1957.5000.Manama.warped.tif"
+    :issuer-link "/maps/1957.5000.Muharraq2.tif"
+    :i18n {:en {:title "Muharraq"
+                :description "Prepared from existing mapping dated 1953. Revised from Air Photography dated 1956 by 42 Survey Engineer Regiment January 1957. Series GSGS 4880 Edition 1 GSGS 1957. Published by D. Survey, War Office and Air Ministry, 1957."
+                :notes "Well-preserved scan, some drift towards the edges. Incomplete grid data meant transformation is based on estimated coordinates and datums, hand-referenced after. Likely some errors."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.7})}
+
+   "1981 - Muharraq"
+   {:groups #{"Muharraq" "National Addressing Project (1981)"}
+    :year 1981
+    :url (form-tile-url "1981-NAP-Muharraq")
+    :scale "1:25,000"
+    :source "National Addressing Project"
+    :issuer "Ministry of Information"
+    :source-link "/maps/1981.NAP.Muharraq.tif"
+    :issuer-link "/maps/1981.NAP.Muharraq.zip"
+    :i18n {:en {:title "Muharraq"
+                :description "Part of National Addressing Project conducted in 1981."
+                :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 14
+                            :maxNativeZoom 20
+                            :opacity 0.8})}
+
+   ;; Bahrain group maps
+   "1817 - Bahrain"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1817
+    :url nil
+    :scale nil
+    :source "Second-Lt. Wilson of the East India Company Cruiser Mercury."
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1817-A Plan of the Islands of Bahrain and Arad.tif"
+    :issuer-link nil
+    :i18n {:en {:title "A Plan of the Islands of Bahrain and Arad"
+                :description "The original of this map can be found in the archives of the Hydrographic Office in Taunton, UK, (reference: Original Documents w 66/1). It is mentioned in the first chapter of the unpublished account of the Survey of the Persian Gulf, written by G.B. Brucks in 1835.This is the earliest surviving British survey of Bahrain and its waters. The strange shape of the island is because the Mercury only surveyed the waters to the north east of Bahrain and did not sail round the island. The different anchorages of the Mercury are marked 'A' on the map; the fort marked 'D' is Abu Mahir fort, then an island but now an integral part of Muharraq Island and the headquarters of the coastguards. Manama and the Qala'at al-Bahrain (the 'Portuguese Fort') are named for the first time on a map; but, historically, the most important feature of this map is that it is the first time the name of Muharraq (here spelt as Maharag) is used on any English document as the name of the main city on Arad island. Muharraq was founded only seven years previously, in 1810."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+}
+
+   "1817 - Sketch of the Islands of Bahrain and Arad"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1817
+    :url nil
+    :scale nil
+    :source "Captain Forbes of HMS Challenger"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1817-A Sketch of the Islands of Bahrain and Arad, with a plan of the anchorage, December 1817.tif"
+    :issuer-link nil
+    :i18n {:en {:title "A Sketch of the Islands of Bahrain and Arad, with a plan of the anchorage, December 1817"
+                :description "December 1817. The original of this map can be found in the archives of the Hydrographic Office in Taunton, UK, (reference: Original Documents w 66/2). Historically, this sketch is important as it shows the earliest-known views (from the sea) of Manama, Moharraq, Qala'at al-Bahrain (the Portuguese Fort), and Abu Mahir Fort."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+}
+
+   "1820 - Chart of the Gulf of Persia"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1820
+    :url nil
+    :scale nil
+    :source "Thomas Hurd, Hydrographer to the Admiralty"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1820 - Chart of the Gulf of Persia.tif"
+    :issuer-link nil
+    :i18n {:en {:title "Chart of the Gulf of Persia"
+                :description "The original of this map can be found in the archives of the Hydrographic Office in Taunton, UK, (reference: a 11). After the initial surveys of Bahrain in 1817, the next survey was in March 1818 of the north-western anchorage of Bahrain by Captain Eatwell of the East India Company cruiser Benares. The manuscript original of this chart can be found in the archives of the Hydrographic Office in Taunton, UK (reference: Original Documents w 63). The chart by Eatwell was published for the first time as an inset to the 1820 map by Hurd, which incorporated the additions to knowledge of the Gulf gained in the previous eleven years. The shape of Bahrain Island is still strange to modern eyes as ships had not yet circumnavigated the island. The modern shape of Bahrain Island had to wait for the map produced as a result of the survey by Brucks in 1825 [map 4]. By chance, Bracks was a 2nd Lieutenant on the Benares when this chart was made, according to the first chapter of the unpublished account of the Survey of the Persian Gulf, written by Brucks in 1835. The Hawar Islands are not yet part of this map or indeed of any map. This is the first map in English to show Zubara [spelt 'Zebarra' here], the ancestral home of the al-Khalifa ruling family of Bahrain."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+}
+
+   "1828 - Trigonometrical Plan of the Island and Harbour of Bahrain"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1828
+    :url nil
+    :scale nil
+    :source "Lt. G.B. Brucks and Lt. W.E. Rogers of the East India Company Marine Service"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1828-Trigonometrical Plan of the Island and Harbour of Bahrein on the Arabian side of the Gulf of Persia.tif"
+    :issuer-link nil
+    :i18n {:en {:title "Trigonometrical Plan of the Island and Harbour of Bahrain"
+                :description "The original of this map can be found in the India Office Records (now part of the British Library Oriental and India Office Collections) (reference IOR: X/3630/21). The survey was done in 1825 but not published until 16th June 1828. This is the first map to show the correct shape of Bahrain Island, before modern land reclamation altered it. The survey was done by Lts Brucks and Rogers; the map was drawn by Lt. Houghton. Manama and Muharraq and Arad are shown, as with earlier maps. Also mentioned for the first time on a map are: the towns of Rifa'a, Zallaq (as 'Sadoo Boo Gafhy'), and Diraz; the ruins of Jow on the east coast (although they are not named); Adhari Pool, described as a 'reservoir and springs of fresh water' leading to a small lake, now disappeared; Al-Khamis mosque (although it is not named); Sitra, Umm Nassan, Umm Saban and Jidda islands (although they are not named). As part of the cartouche, there is a sketch of the Khamis Mosque, drawn by A. Mackell - the earliest known view of the mosque. On this map of Bahrain Island and Harbour is also included the Fasht al Diebel [called 'Debil Shoal']. In 1829 Brucks used the geographical knowledge gained from surveying this map, to describe parts of Bahrain as follows: 'The island of Bahrain or Awal is between eighty and ninety statute miles in circumference, and about one-fifth of it is well watered, thickly inhabited, and partially cultivated; the remainder is either hilly or a desert - nearly equally divided. There are the remains of several fine reservoirs and aqueducts built by the Portuguese, but falling fast to decay; as is the Portuguese fort, which has originally been a strong place, and protecting the Portuguese harbour, not now in use, having given way to that of Munama [sic], near it. The only other ruins of any interest are those of a mosque built by the Alassar people. The Shaikh, Abdulla bin Ahmed, resides at Muharraq, on the island of that name, which is a large town, and contains about six thousand inhabitants [this is the earliest use of Muharraq to describe the island as well as the city]. The principal town on Bahrain is Munama (sic), and is the port of the island, most of the merchants either residing, or having their karavanseria there. The other principal town on the island is Raffar (sic), situated on a hill seven miles distant, the residence of Shaikh Khalifa.... It consists of a square fort or Ghuree, surrounded by habitations… Numerous other small towns and villages are scattered over the cultivated part of the island, but none of sufficient note to require remark. On the eastern side of the island are the ruins of a large town called Jow, formerly the residence of the Shaikhs, abandoned in 1800 for want of a sheltered port, and the inhabitants transferred to Muharraq. The islands of Muharraq, Arad, and Samahoy (sic) are twelve miles round, and only separated at very high spring tides. They have a few date plantations on them, and about seven thousand five hundred inhabitants. There is very little water on them, most of that used being brought from Bahrein. The fortifications are a Ghuree [fort] at Muharraq, on a sandy point, containing six or eight guns, and commanding the channel; two others, one at Arad and another at Samahoy, and a ruinous wall round the town [this city wall of Muharraq has long since disappeared]. On Bahrain are Raffar, seven miles from Munama, and about fifty other Ghurees, with a number of towers in different parts.'"
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+}
+
+   "1829 - Trigonometrical Survey of the Arabian or Southern Side of the Persian Gulf' sheet 4"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1829
+    :url nil
+    :scale nil
+    :source "Lt. J.M. Guy and Lt. G.B. Brucks of the East India Company Marine Service"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1829-Trigonometrical Survey of the Arabian or Southern side of the Persian Gulf sheet 4.tif"
+    :issuer-link nil
+    :i18n {:en {:title "Trigonometrical Survey of the Arabian or Southern Side of the Persian Gulf' sheet 4"
+                :description "The original of this map can be found in the India Office Records (now part of the British Library Oriental and India Office Collections) (reference IOR: X/3630/20/4), It is one of a series of five charts covering the southern, or Arabian, side of the Persian Gulf, from the Musandam Peninsula to Kuwait. The survey was done in 1824 but not published until 1st January 1829. Bahrain can be seen in its Gulf context. Thus the coasts of modern-day Saudi Arabia and Qatar are shown. Zubara is shown again, and here the Hawar Islands are shown for the first time on any map. Strictly speaking, the islands were called Warden's Islands [named after Francis Warden, a member of the Council in Bombay] and the main island in the group was called Hawar. As with the previous map of Bahrein Island and Harbour, in 1829 Brucks used the geographical knowledge gained from surveying this map, to describe Zubara and the Hawar islands as follows: 'Zobara is a large town, now in ruins. It is situated in a bay, and has been, before it was destroyed, a place of considerable trade. The inhabitants are of the Tribe of Alassar, and subject to Bahrein; a number of fine Nujdee horses are still exported from this place. This was originally the principal place of the Uttoobee Tribe, until they separated. Warden's Islands is a group of eight or nine islands and rocks.... The principal is called Al Howahk, and is about four miles long. It has two fishing villages on it, and belongs to Bahrein.'"
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+}
+
+   "1904 - Bahrain"
+   {:groups #{"Bahrain"}
+    :year 1904
+    :url (form-tile-url "1904-Bahrain")
+    :scale "1:63,360"
+    :source "Gazetteer of the Persian Gulf"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1904-Bahrain.tif"
+    :issuer-link "/maps/1904-Bahrain-georeferenced.tif"
+    :link-1 "/documents/Gazetteer of the Persian Gulf. Vol. II. Geographical and Statistical. J G Lorimer. 1908, p235-280.pdf"
+    :link-1-label "Gazetteer of the Persian Gulf"
+    :link-2 "https://www.alwasatnews.com/m1904/index.htm"
+    :link-2-label "AlWasat article on 1904 map"
+    :i18n {:en {:title "1904-5 - Bahrain"
+                :description "The map was created for Lorimer's 5000-page encyclopaedia for the colonial British government, titled 'Gazetteer of the Persian Gulf, Oman, and Central Arabia,' and published in 1908. The survey was conducted in the winter season of 1904-1905 under Surveyor Sher Jang. Every place listed in this map has a detailed description in the Gazetteer (linked). Due its accuracy and scale, it's said official government departments continued to reference this map for over 50 years."
+                :notes "Original scan was deformed without a clear projection. Rectified using two passes: 1) warped deformities 'straight' using coordinate grid as GCPs with an Indian Survey projection.  2) Created an extensive list of historic springs, forts, and geographic features and hand matched them against the 1956, 1977, and 1969 maps as reference."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 9
+                            :maxNativeZoom 15
+                            :opacity 0.8})}
+
+   "1914 - Bahrain Harbour"
+   {:groups #{"Bahrain"}
+    :year 1914
+    :url (form-tile-url "1914-Harbour")
+    :scale "1:73,000"
+    :source "Marine Survey of India - Officers of R.I.M.S Investigator"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1914-Harbour.tif"
+    :issuer-link "/maps/1914-Harbour.png"
+    :i18n {:en {:title "1914 - Bahrain Harbour"
+                :description nil
+                :notes "Gets less accurate in the south."
+                :labels nil
+                :submitted-by "Ali Karimi"}
+           :ar {:title "١٩١٤ - ميناء البحرين"
+                :description nil
+                :notes "أقل دقة في الجنوب."
+                :labels nil
+                :submitted-by "علي كريمي"}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 15
+                            :opacity 0.8})}
+
+   "1937 - Bahrain"
+   {:groups #{"Bahrain"}
+    :year 1937
+    :url (form-tile-url "1937-Bahrain")
+    :scale "1:63,360"
+    :source "British Library: India Office Records and Private Papers"
+    :issuer "Qatar Digital Library"
+    :source-link "/maps/1937-Bahrain.tif"
+    :issuer-link "/maps/1937-Bahrain.jpg"
+    :i18n {:en {:title "BAHRAIN ISLAND - 1937"
+                :description "Plan of Bahrain. The plan indicates hydrology, settlements and  as well as providing some indication of relief. Included is a table of reference of symbols used. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
+                :notes "Original scan of document was distorted and outlines begin to diverge greatly further and further south.  This is one of my favorite maps because it shows the borders of shallow waters around Bahrain. Those borders now correspond almost exactly to the borders of reclaimed land around the island. It costs less to reclaim shallow water. "
+                :labels nil}
+           :ar {:title "جزيرة البحرين - ١٩٣٧ "
+                :description "تشير الخطة إلى الهيدرولوجيا والأماكن السكنية و ميزات جغرافية كمستويات الارتفاع."
+                :notes "الوثيقة الاصلية لم تنسخ و ترقم بشكل جيد. الخارطة تنحرف من الساحل الاصلي بشكل متزايد في جنوب الجزيرة. هذه الخارطة احد خرائطي المفضله لأنه توحي لنا حدود المياه الضحلة حول الجزيرة. هذه الحدود اليوم هي أيضآ حدود الأراضي المدفونه. دفان المياه الضحلة أسهل و اقل تكلفة فصارت هذه الملامح الجغرافية شبه حدود للدفان المستمر."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 15
+                            :opacity 0.7})}
+
+   "1943 - Bahrain"
+   {:groups #{"Bahrain"}
+    :year 1943
+    :url (form-tile-url "1943-Bahrain")
+    :scale "1:63,360"
+    :source "US Army Map Service"
+    :issuer "University of Texas Library"
+    :source-link "/maps/1943-Bahrain.tif"
+    :issuer-link "/maps/1943-Bahrain.jpg"
+    :i18n {:en {:title "BAHRAIN ISLAND - 1943"
+                :description "Series GSGS 4035 Edition 2. Shows physical features, residential places, cultivated land, selected buildings, marsh land, and major roads.\n Relief shown by landform drawings, contours, and spot heights. Compiled from Air photographs in A.H.Q. Drawing Office, Hinaidi, 1937. Drawn and Heliographed by O.S. 1939."
+                :notes "Well-preserved, undistorted scan. Map has relatively few inaccuracies."
+                :labels nil}
+           :ar {:title "جزيرة البحرين - ١٩٤٣"
+                :description "الخارطة تُظهر الميزات الجغرافية والأماكن السكنية والأراضي الزراعية والمباني والأهوار والطرق الرئيسية. موضحة بالخارطة الطبوغرافية. تم جمعها من صور جوية في A.H.Q. مكتب الرسم ، هنيدي، ١٩٣٧. رسم وطبع بالهليوغراف بواسطة O.S. 1939\n"
+                :notes "خارطة دقيقة بأخطاء بسيطة"
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 15
+                            :opacity 0.7})}
+
+   "1956 - Bahrain"
+   {:groups #{"Bahrain"}
+    :alternate-title "Island of Bahrain Survey"
+    :year 1956
+    :url (form-tile-url "1956-Bahrain")
+    :scale "1:63,360"
+    :source "Huntings Aerosurveys Ltd."
+    :issuer "D. Survey War Office and Air Ministry, 1956"
+    :source-link "/maps/1956-Bahrain.tif"
+    :issuer-link "/maps/1956-Bahrain.jpg"
+    :i18n {:en {:title "BAHRAIN ISLAND - 1956"
+                :description "Series GSGS 4035 Edition 4. Compiled, drawn, reproduced by Huntings Aerosurveys Ltd., from Air Photographs dated 1952, 1953. Reproduced and Printed by 42 Survey Engineer Regiment May 1956. Published by D. Survey War Office and Air Ministry, 1956."
+                :notes "Well-preserved, undistorted scan. There are some inaccuracies particularly with tiny islands, but relatively precise."
+                :labels nil
+                :submitted-by "Ali Karimi"}
+           :ar {:title "جزيرة البحرين - ١٩٥٦"
+                :description "سلسلة  جي اس جي اس ٤٠٣٥ النسخة الرابعة. جُمعت ورُسمت وأُنتجت من قبل شركة هانتنجز ايروسورفيز من صور جوية أخذت في عاميّ ١٩٥٢ و١٩٥٣. أعاد انتاجها وطباعتها فوج ٤٢ للجهاز الهندسي لمساحة الأراضي البريطانية في مايو ١٩٥٦ ونُشرت من قبل مديرية جهاز المساحة لمكتب الحرب ووزارة الملاحة الجوية البريطانية."
+                :notes "خارطة انتجت رقمياً بجودة عالية. توجد اخطاء بسيطة بالخارطة خاصة بما يتعلق بالجزر الصغيرة."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 9
+                            :maxNativeZoom 15
+                            :opacity 0.7})}
+
+   "1968 - Bahrain"
+   {:groups #{"Bahrain"}
+    :year 1968
+    :url (form-tile-url "1968-Bahrain")
+    :scale "1:63,360"
+    :source "Fairey Surveys"
+    :issuer "PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
+    :source-link "/maps/1968.63360.Bahrain.warped2.tiff"
+    :issuer-link "/maps/1968.63360.Bahrain.tif"
+    :i18n {:en {:title "BAHRAIN ISLANDS - 1968"
+                :description "Compiled, drawn, reproduced from Air Photographs dated 1952-1953. Revised by 42 Survey Engineer Regiment from Air Photography dated 1962. Revised and Printed by FAIREY SURVEYS LTD., Reform Road, Maidenhead, Berkshire, England, 1968. Published by PUBLIC WORKS DEPT., BAHRAIN GOVERNMENT."
+                :notes "Well-preserved."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 9
+                            :maxNativeZoom 15
+                            :opacity 0.7})}
+
+   "1973 - Bahrain"
+   {:groups #{"Bahrain"}
+    :year 1973
+    :url (form-tile-url "1973-Bahrain")
+    :scale "1:50,000"
+    :source "Ministry of Defence, United Kingdom, 1973"
+    :issuer "Unknown"
+    :source-link "/maps/1973-Bahrain.tif"
+    :issuer-link "/maps/1973-Bahrain.zip"
+    :i18n {:en {:title "Bahrain - 1973"
+                :description "Compiled and drawn by 42 Survey Engineer Regiment in 1971-2 from air photography dated 1969 and other sources. Control supplied by MCE RE and No 1 A(S)LS RE. Field check 1971 and revision in 1973 from air photography dated 1970. Names rendered in accordance with BGN/PCGN system of transliteration from Arabic. Projection: Traverse Mercator, Spheroid: Clarke 1880, Horizontal Datum: Nahrwan, Vertical Datum: MSL. Series K7610, Edition 1-GSGS. "
+                :notes "High resolution, with slight alignment issues. Projection is based off the Clarke 1880 Spheroid with a Datum in Nahrwan. Required post-processing/alignment work after translation and warping. Provided parameters appear to be off."
+                :labels nil}
+           :ar {:title "البحرين - ١٩٧٣"
+                :description nil
+                :notes "خرائط عالية الجودة فيها مشاكل بسيطة في دقة المحاذة. الإسقاط الاصلي يعتمد على حسابات كلارك ١٨٨٠ و موقع مرجعي في نهروان. تم محاذة اضافية بعد الترجمة و التحوير بسبب اخطاء في البيانات المدونة في الخارطة"
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+
+   "1977 - Bahrain (25k)"
+   {:groups #{"Bahrain"}
+    :year 1977
+    :url (form-tile-url "1977-Bahrain")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Bahrain-v2.tif"
+    :issuer-link "/maps/1977-Bahrain.zip"
+    :i18n {:en {:title "State of Bahrain - 1977"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                :notes "This is a 7-sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title "البحرين - ١٩٧٧"
+                :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
+                :notes " هذه الخارطة سلسلة فيها ٧ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+
+   "1977 - Bahrain (50k)"
+   {:groups #{"Bahrain"}
+    :year 1977
+    :url (form-tile-url "1977-Bahrain.50k")
+    :scale "1:50,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Bahrain-50k.compressed.tif"
+    :issuer-link "/maps/1977.50k.zip"
+    :i18n {:en {:title "State of Bahrain - 1977"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain. Edition 1."
+                :notes "This is a 3-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title "البحرين - ١٩٧٧"
+                :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD من مقره على ريفورم رود ، مايدنهيد ، بيركشاير ، إنجلترا لدولة البحرين."
+                :notes " هذه الخارطة سلسلة فيها ٣ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "1985 - Bahrain (10k)"
+   {:groups #{"Bahrain"}
+    :year 1985
+    :url (form-tile-url "1985-Bahrain.10k")
+    :scale "1:10,000"
+    :source "Fairey Surveys Ltd."
+    :issuer "Ministry of Information, Bahrain"
+    :source-link "/maps/1985-Bahrain(10k).tif"
+    :issuer-link "/maps/1985-Bahrain.10k.zip"
+    :i18n {:en {:title "State of Bahrain - 1985"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from air photography taken in 1983 by B.K.S. Surveys LTD. and field survey revisions 1984."
+                :notes "This is a 28-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:50,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. Please note that sheet 73 and 94 are from 1977. Sheet 73 is missing and sheet 94 is available but lower quality. This is the holy grail of Bahrain maps."
+                :labels nil}
+           :ar {:title "البحرين - ١٩٨٥"
+                :description "تم تجميع ورسم هذه الخريطة من صور فوتوغرافية تم التقاطه خلال يناير/ فبراير١٩٧٧ بواسطة Fairey Surveys LTD. اضافت مديرية المساحةتحت وزارة الاسكان معلومات من صور جوية التقت في عام ١٩٨٣ بواسطة B.K.S. Surveys LTD و تعديلات ميدانية في ١٩٨٤."
+                :notes " هذه الخارطة سلسلة فيها ٢٨ خرائط رسمت في ١٩٧٧. هذه السلسلة احد ثلاث تغطي البحرين انتجت في ١٩٧٧. ترجمة مباشرة من اسقاط UTM Zone 39 إلى Web Mercator مع معالجة بسيطة. يرجى ملاحظة أن الورقة ٧٣ و ٩٤ من ضمن خرائط عام ١٩٧٧ وليس ١٩٨٥. الورقة ٧٣ مفقودة والورقة ٩٤ متوفرة ولكن بجودة ضعيفة.  هذه الخرائط عبارة عن كنز ثمين اي انها تعطي نظرة لمنتصف الثمانينات والتحولات الجذرية للدولة في فترة قلت فيها الوثائق"
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.8})}
+
+   "1986 - Bahrain (50k)"
+   {:groups #{"Bahrain"}
+    :year 1986
+    :url (form-tile-url "1986-Bahrain.50k")
+    :scale "1:50,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Ministry of Defence, UK"
+    :source-link "/maps/1986-Bahrain(50k).tif"
+    :issuer-link "/maps/1986-Bahrain.zip"
+    :i18n {:en {:title "State of Bahrain - 1986"
+                :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1986. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain. Edition 2."
+                :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 8
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+
+   "1990 - Bahrain (50k)"
+   {:groups #{"Bahrain"}
+    :year 1990
+    :url (form-tile-url "1990-Bahrain.50k")
+    :scale "1:50,000"
+    :source "Ministry of Defence, UK"
+    :issuer "Ministry of Defence, UK"
+    :source-link "/maps/1990-Bahrain(50k).tif"
+    :issuer-link "/maps/1990-Bahrain.zip"
+    :i18n {:en {:title "State of Bahrain - 1990"
+                :description "Produced under the direction of the Director of Military Survey, Ministry of Defence, United Kingdom 1990. Revised 1985 from air photography and mapping dated 1983 and 1985 supplied by the Survey Directorate of the Ministry of Housing, Bahrain. Major Revision 1989 by Survey Directorate, Ministry of Housing from air photography and field surveys 1987-1989. Partial revision by MCE RE in 1990. Edition 4."
+                :notes "Note: The Hawar sheet is actually from 1986 since a 1990 edition wasn't produced. This is a 3 sheet-series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 9
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+
+   "1997 - Bahrain (50k)"
+   {:groups #{"Bahrain"}
+    :year 1997
+    :url (form-tile-url "1997-Bahrain.50k")
+    :scale "1:50,000"
+    :source "Ministry of Housing"
+    :issuer "Ministry of Housing"
+    :source-link "/maps/1997-Bahrain(50k).tif"
+    :issuer-link "/maps/1997-Bahrain.zip"
+    :i18n {:en {:title "State of Bahrain - 1997"
+                :description "Produced in 1977 under the direction of the  Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, and 1998 by Survey Directorate, Ministry of Housing, State of Bahrain, from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Edition 5."
+                :notes "This is a 3-sheet series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 8
+                            :maxNativeZoom 16})}
+
+   "2004 - Bahrain (50k)"
+   {:groups #{"Bahrain"}
+    :year 2004
+    :url (form-tile-url "2004-Bahrain.50k")
+    :scale "1:50,000"
+    :source "Ministry of Housing"
+    :issuer "Dar Akbar Al Khaleej"
+    :source-link "/maps/2004-Bahrain(50k).tiff"
+    :issuer-link "/maps/2004-Bahrain.zip"
+    :i18n {:en {:title "State of Bahrain - 2004"
+                :description "Produced in 1977 under the direction of the Military Survey Directorate, Ministry of Defence, United Kingdom. Revised in 1985, 1989, 1993, 1996, and 2002 by Survey Directorate from air photography and field surveys. Revised in 1996 by the Survey Directorate of the Ministry of Housing, Municipalities and Environment, State of Bahrain from air photography and field surveys. Edition 6."
+                :notes "This is a 3 map series produced for the State of Bahrain. One of several series, including the 1:25,000 and 1:10,000 series. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. North sheet was published 2003."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 8
+                            :maxNativeZoom 16})}
+
+   "2030 - Bahrain"
+   {:groups #{"Bahrain"}
+    :year 2030
+    :url (form-tile-url "2030-Bahrain")
+    :scale "N/A, probably 1:50,000"
+    :source "National Plan and Development"
+    :issuer "Urban Planning & Development Authority"
+    :source-link "/maps/2030-Bahrain.tif"
+    :issuer-link "/maps/2030-Bahrain.jpg"
+    :i18n {:en {:title "Vision 2030"
+                :description "National Detail Land Use map 2030 is the second version of the National Plan and Development Strategy updated Map illustrating detailed Land Use. Data and Relevant Information produced by GIS in GDUP. Issue Date: 11/1/2016."
+                :notes "No scale or boundaries provided, hand matched."
+                :labels nil
+                :submitted-by "Maitham Almubarak"}
+           :ar {:title "رؤية البحرين ‫-‬ ٢٠٣٠"
+                :description "ﺧﺎرﻃﺔ اﻟﻤﺨﻄﻂ اﻟﮭﯿﻜﻠﻲ اﻻﺳﺘﺮاﺗﯿﺠﻲ ﻟﻤﻤﻠﻜﺔ اﻟﺒﺤﺮﯾﻦـ لاستخدام الأراضي ٢٠٣٠، النسخة الثانية. الخطة الوطنية توضح استخدامات الأراضي بالتفصيل. البيانات والمعلومات ذات انتجت بـ GIS في GDUP. تاريخ الإصدار: ١١/١/٢٠١٦"
+                :notes "تم التنسيق باليد لعدم وجود البيانات الجيوغرافية"
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 15
+                            :opacity 0.8})}
+
+   ;; Fairey Surveys maps (additional ones not in other groups)
+   "Budaiya - 1977"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1977
+    :url (form-tile-url "1977-Budaiya.1")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Budaiya.1.tif"
+    :issuer-link "/maps/1977.Budaiya.1.original.tif"
+    :i18n {:en {:title "Budaiya - State of Bahrain - 1977 (Edition 1)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Budaiya - 1987"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1987
+    :url (form-tile-url "1987-Budaiya.2")
+    :scale "1:25,000"
+    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :source-link "/maps/1987-Budaiya.2.tif"
+    :issuer-link "/maps/1987.Budaiya.2.original.tif"
+    :i18n {:en {:title "Budaiya - State of Bahrain - 1987 (Edition 2)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from Air Photography taken in Jan. 1983 by B.K.S. Surveys LTD. And field surveys Revisions 1986"
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Budaiya - 1990"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1990
+    :url (form-tile-url "1990-Budaiya.3")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1990-Budaiya.3.tif"
+    :issuer-link "/maps/1990.Budaiya.3.original.tif"
+    :i18n {:en {:title "Budaiya - State of Bahrain - 1990 (Edition 3)"
+                :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated 1983 and 1986. Field surveys from 1984 to 1990."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Budaiya - 1997"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1997
+    :url (form-tile-url "1997-Budaiya.4")
+    :scale "1:25,000"
+    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :source-link "/maps/1997-Budaiya.4.tif"
+    :issuer-link "/maps/1997.Budaiya.4.original.tif"
+    :i18n {:en {:title "Budaiya - State of Bahrain - 1997 (Edition 4)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987 and 1990 from air photography and field surveys by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1997 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Budaiya - 2007"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 2007
+    :url (form-tile-url "2007-Budaiya.5")
+    :scale "1:25,000"
+    :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+    :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+    :source-link "/maps/2007-Budaiya.5.tif"
+    :issuer-link "/maps/2007.Budaiya.5.original.tif"
+    :i18n {:en {:title "Budaiya - State of Bahrain - 2007 (Edition 5)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987, 1990, 1997, and 2007 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Riffa - 1977"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1977
+    :url (form-tile-url "1977-Riffa.1")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Riffa.1.tif"
+    :issuer-link "/maps/1977.Riffa.1.original.tif"
+    :i18n {:en {:title "Riffa - State of Bahrain - 1977 (Edition 1)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Riffa - 1987"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1987
+    :url (form-tile-url "1987-Riffa.2")
+    :scale "1:25,000"
+    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :source-link "/maps/1987-Riffa.2.tif"
+    :issuer-link "/maps/1987.Riffa.2.original.tif"
+    :i18n {:en {:title "Riffa - State of Bahrain - 1987 (Edition 2)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from Air Photography taken in Jan. 1983 by B.K.S. Surveys LTD. And field surveys Revisions 1986"
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Riffa - 1997"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1997
+    :url (form-tile-url "1997-Riffa.4")
+    :scale "1:25,000"
+    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :source-link "/maps/1997-Riffa.4.tif"
+    :issuer-link "/maps/1997.Riffa.4.original.tif"
+    :i18n {:en {:title "Riffa - State of Bahrain - 1997 (Edition 4)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987 and 1991 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1997 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Riffa - 2005"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 2005
+    :url (form-tile-url "2005-Riffa.5")
+    :scale "1:25,000"
+    :source "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+    :issuer "Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+    :source-link "/maps/2005-Riffa.5.tif"
+    :issuer-link "/maps/2005.Riffa.5.original.tif"
+    :i18n {:en {:title "Riffa - State of Bahrain - 2005 (Edition 5)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1986, 1991,  and 2004 from air photography and field surveys by the Topographic Survey Directorate, Survey and Land Registration Bureau, Kingdom of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Zallaq - 1977"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1977
+    :url (form-tile-url "1977-Zallaq.1")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Zallaq.1.tif"
+    :issuer-link "/maps/1977.Zallaq.1.original.tif"
+    :i18n {:en {:title "Zallaq - State of Bahrain - 1977 (Edition 1)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Zallaq - 1995"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1995
+    :url (form-tile-url "1995-Zallaq.3")
+    :scale "1:25,000"
+    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :source-link "/maps/1995-Zallaq.3.tif"
+    :issuer-link "/maps/1995.Zallaq.3.original.tif"
+    :i18n {:en {:title "Zallaq - State of Bahrain - 1995 (Edition 3)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD. Additional information compiled by the Survey Directorate, Ministry of Housing, State of Bahrain from Air Photography taken in Jan. 1983 by B.K.S. Surveys LTD. And field surveys Revisions 1986"
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Zallaq - 2006"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 2006
+    :url (form-tile-url "2006-Zallaq.4")
+    :scale "1:25,000"
+    :source "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :issuer "Survey Directorate, Ministry of Housing, State of Bahrain"
+    :source-link "/maps/2006-Zallaq.4.tif"
+    :issuer-link "/maps/2006.Zallaq.4.original.tif"
+    :i18n {:en {:title "Zallaq - State of Bahrain - 2006 (Edition 4)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1987 and 1991 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 2006 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Mamtala - 1977"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1977
+    :url (form-tile-url "1977-Mamtala.1")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Mamtala.1.tif"
+    :issuer-link "/maps/1977.Mamtala.1.original.tif"
+    :i18n {:en {:title "Mamtala - State of Bahrain - 1977 (Edition 1)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Mamtala - 1990"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1990
+    :url (form-tile-url "1990-Mamtala.2")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1990-Mamtala.2.tif"
+    :issuer-link "/maps/1990.Mamtala.2.original.tif"
+    :i18n {:en {:title "Mamtala - State of Bahrain - 1990 (Edition 2)"
+                :description "Original photogrammetric compilation by Fairey Surveys Ltd 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983 and Oct. 1986. Field surveys from 1986 to 1990."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Mamtala - 1998"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1998
+    :url (form-tile-url "1998-Mamtala.3")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1998-Mamtala.3.tif"
+    :issuer-link "/maps/1998.Mamtala.3.original.tif"
+    :i18n {:en {:title "Mamtala - State of Bahrain - 1998 (Edition 3)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1990 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 1998 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Rumaytha - 1977"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1977
+    :url (form-tile-url "1977-Rumaytha.1")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Rumaytha.1.tif"
+    :issuer-link "/maps/1977.Rumaytha.1.original.tif"
+    :i18n {:en {:title "Rumaytha - State of Bahrain - 1977 (Edition 1)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Rumaytha - 1991"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1991
+    :url (form-tile-url "1991-Rumaytha.2")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1991-Rumaytha.2.tif"
+    :issuer-link "/maps/1991.Rumaytha.2.original.tif"
+    :i18n {:en {:title "Rumaytha - State of Bahrain - 1990 (Edition 2)"
+                :description "Original photogrammetric compilation by Fairey Surveys Ltd in 1977. Subsequent revision by Survey Directorate, Ministry of Housing, State of Bahrain from Photography dated Feb. 1980, Jan. 1983 and Oct. 1986. Field surveys from 1986 to 1991"
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Rumaytha - 2000"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 2000
+    :url (form-tile-url "2000-Rumaytha.3")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/2000-Rumaytha.3.tif"
+    :issuer-link "/maps/2000.Rumaytha.3.original.tif"
+    :i18n {:en {:title "Rumaytha - State of Bahrain - 1998 (Edition 3)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 1991 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in year 2000 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Ras Al Barr - 1977"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1977
+    :url (form-tile-url "1977-Ras Al Barr.1")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1977-Ras Al Barr.1.tif"
+    :issuer-link "/maps/1977.Ras Al Barr.1.original.tif"
+    :i18n {:en {:title "Ras Al Barr - State of Bahrain - 1977 (Edition 1)"
+                :description "This map has been compiled and drawn from photography taken during Jan/Feb 1977 by Fairey Surveys LTD., Reform Road, Maidenhead, Berkshire, England. for The State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Ras Al Barr - 2000"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 2000
+    :url (form-tile-url "2000-Ras Al Barr.2")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/2000-Ras Al Barr.2.tif"
+    :issuer-link "/maps/2000.Ras Al Barr.2.original.tif"
+    :i18n {:en {:title "Ras Al Barr - State of Bahrain - 2000 (Edition 2)"
+                :description "Original photogrammetric compilation in 1977 by Fairey Surveys Ltd. Revised in 2000 from air photography and field survey by the Survey Directorate, Ministry of Housing, State of Bahrain. Revised in 2006 by the Ministry of Housing, Municipalities and Environment, State of Bahrain."
+                :notes "This is a 7 sheet series produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   "Hawar - 1993"
+   {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
+    :year 1993
+    :url (form-tile-url "1993-Hawar.1")
+    :scale "1:25,000"
+    :source "Fairey Surveys Ltd"
+    :issuer "Unknown"
+    :source-link "/maps/1993-Hawar.1.tif"
+    :issuer-link "/maps/1993.Hawar.1.zip"
+    :i18n {:en {:title "Hawar - State of Bahrain - 1993 (Edition 1)"
+                :description "Compiled from 1:10,000 maps published in 1981. Additional information from 1991 air photography and field surveys 1993. Produced by the Survey Directorate, Ministry of Housing, Bahrain"
+                :notes "This is a 2-part addendum to the 7 sheet series (1:25,000 scale) produced for the State of Bahrain. One of 7 series, including series in the 1:100,000, 1:50,000, 1:10,000, 1:2,000, and 1:1,000. Direct translation from UTM Zone 39 to Web Mercator with some raster massaging and stitching. Originally commissioned along with the original set in 1977, the first edition would only appear in 1993."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.8})}
+
+   ;; Geological Survey maps
+   "1975 - Agriculture Capability"
+   {:groups #{"Geological Survey (1975-76)"}
+    :year 1975
+    :url (form-tile-url "1975-Agriculture-Capability")
+    :scale "1:50,000"
+    :source "Doornkamp, Brunsden, and Jones"
+    :issuer "Ministry of Works, Power and Water"
+    :source-link "/maps/1975.50k.Agriculture Capability-georeferenced.tif"
+    :issuer-link "/maps/1975.50k.Agriculture Capability-source-scan.tif"
+    :i18n {:en {:title "Agriculture Capability - 1975"
+                :description "Agriculture capability map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
+                :notes "Georeferenced from original survey data."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+
+   "1975 - Soils"
+   {:groups #{"Geological Survey (1975-76)"}
+    :year 1975
+    :url (form-tile-url "1975-Soils")
+    :scale "1:50,000"
+    :source "Doornkamp, Brunsden, and Jones"
+    :issuer "Ministry of Works, Power and Water"
+    :source-link "/maps/1975.50k.Soils-georeferenced.tif"
+    :issuer-link "/maps/1975.50k.Soils-source-scan.tif"
+    :i18n {:en {:title "Soils - 1975"
+                :description "Soil classification map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
+                :notes "Georeferenced from original survey data."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+
+   "1976 - Bahrain Geology"
+   {:groups #{"Geological Survey (1975-76)"}
+    :year 1976
+    :url (form-tile-url "1976-Bahrain-Geology")
+    :scale "1:50,000"
+    :source "Doornkamp, Brunsden, and Jones"
+    :issuer "Ministry of Works, Power and Water"
+    :source-link "/maps/1976.50k.Bahrain Geology-georeferenced.tif"
+    :issuer-link "/maps/1976.50k.Bahrain Geology-source-scan.tif"
+    :i18n {:en {:title "Bahrain Geology - 1976"
+                :description "Geological map showing rock formations and structures, based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
+                :notes "Georeferenced from original survey data."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+
+   "1976 - Bahrain Geomorphology"
+   {:groups #{"Geological Survey (1975-76)"}
+    :year 1976
+    :url (form-tile-url "1976-Bahrain-Geomorphology")
+    :scale "1:50,000"
+    :source "Doornkamp, Brunsden, and Jones"
+    :issuer "Ministry of Works, Power and Water"
+    :source-link "/maps/1976.50k.Bahrain Geomorphology and superficial materials-georeferenced.tif"
+    :issuer-link "/maps/1976.50k.Bahrain Geomorphology and superficial materials-source-scan.tif"
+    :i18n {:en {:title "Bahrain Geomorphology and Superficial Materials - 1976"
+                :description "Geomorphological features and superficial materials map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
+                :notes "Georeferenced from original survey data."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+
+   "1976 - Drainage"
+   {:groups #{"Geological Survey (1975-76)"}
+    :year 1976
+    :url (form-tile-url "1976-Drainage")
+    :scale "1:50,000"
+    :source "Doornkamp, Brunsden, and Jones"
+    :issuer "Ministry of Works, Power and Water"
+    :source-link "/maps/1976.50k.Drainage-georeferenced.tif"
+    :issuer-link "/maps/1976.50k.Drainage-source-scan.tif"
+    :i18n {:en {:title "Drainage - 1976"
+                :description "Drainage patterns and water flow systems map based on the 1:10,000 Geology maps of the Bahrain Surface Material Resources Survey. UTM Zone 39 (datum: Nahrawan)."
+                :notes "Georeferenced from original survey data."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 16
+                            :opacity 0.8})}
+   })

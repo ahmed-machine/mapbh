@@ -1,14 +1,21 @@
 (ns app.pages.catalogue
   (:require [reagent.core :as r]
-            [app.pages.map.map-data :as map-data :refer [ar-layers backlog]]
+            [app.pages.map.map-data :as map-data :refer [backlog maps get-map-text]]
             [app.routes :as routes]
             [clojure.string :as str]))
+
+(defn safe-parse-int
+  "Safely parse integer with radix, returning nil if invalid"
+  [s]
+  (when s
+    (let [parsed (js/parseInt s 10)]
+      (when-not (js/isNaN parsed) parsed))))
 
 (defn extract-year
   "Extract year from title string"
   [title]
-  (let [year-match (re-find #"\b(19|20)\d{2}\b" title)]
-    (when year-match (js/parseInt year-match))))
+  (when-let [year-match (re-find #"\b(19|20)\d{2}\b" title)]
+    (safe-parse-int year-match)))
 
 (defn get-layer-bounds
   "Get appropriate bounds and zoom for different map types"
@@ -61,40 +68,32 @@
     {:lat 26.0450 :lng 50.5460 :zoom 10}))
 
 (defn flatten-map-data
-  "Convert nested map data structure to flat list for table display"
+  "Convert map data structure to flat list for table display"
   [language include-backlog?]
-  (let [;; First collect all map entries with their groups
-        all-entries (for [[group-name group-maps] map-data/layers
-                         [map-id map-info] group-maps]
-                     {:map-id map-id
-                      :group group-name
-                      :map-info map-info})
-
-        ;; Group by map-id to find maps that appear in multiple groups
-        grouped-by-id (group-by :map-id all-entries)
-        ;; Create final entries with all groups listed
-        unique-maps (for [[map-id entries] grouped-by-id]
-                     (let [first-entry (first entries)
-                           all-groups (map :group entries)
-                           map-info (:map-info first-entry)]
-                       (let [primary-group (first all-groups)
-                             has-arabic-translation (get-in ar-layers [primary-group map-id])
-                             ;; Use Arabic data when available and language is Arabic
-                             display-data (if (and (= language :ar) has-arabic-translation)
-                                            (merge map-info has-arabic-translation)
-                                            map-info)]
-                         (merge display-data
-                                {:map-id map-id
-                                 :group (if (> (count all-groups) 1)
-                                         (str/join ", " all-groups)
-                                         (first all-groups))
-                                 :all-groups all-groups
-                                 :year (or (:year display-data) (extract-year (:title display-data)))
-                                 :has-description (not (str/blank? (:description display-data)))
-                                 :has-notes (not (str/blank? (:notes display-data)))
-                                 :has-english true  ; All items in the main layers have English
-                                 :has-arabic (boolean has-arabic-translation)
-                                 :is-backlog false}))))
+  (let [;; Process maps structure
+        unique-maps (for [[map-id map-info] maps]
+                      (let [groups (:groups map-info)
+                            title (get-map-text map-info language :title)
+                            description (get-map-text map-info language :description)
+                            notes (get-map-text map-info language :notes)]
+                        {:map-id map-id
+                         :title title
+                         :description description
+                         :notes notes
+                         :year (:year map-info)
+                         :scale (:scale map-info)
+                         :source (:source map-info)
+                         :issuer (:issuer map-info)
+                         :viewable (:viewable map-info)
+                         :group (if (> (count groups) 1)
+                                 (str/join ", " groups)
+                                 (first groups))
+                         :all-groups (vec groups)
+                         :has-description (not (str/blank? description))
+                         :has-notes (not (str/blank? notes))
+                         :has-english true
+                         :has-arabic (not (str/blank? (get-map-text map-info :ar :title)))
+                         :is-backlog false}))
 
         ;; Add backlog entries
         backlog-entries (for [[map-id map-info] backlog]
@@ -117,6 +116,11 @@
       (concat unique-maps backlog-entries)
       unique-maps)))
 
+(defn clean-and-parse-number
+  "Clean comma-separated number and parse safely"
+  [number-str]
+  (-> number-str (str/replace #"," "") safe-parse-int))
+
 (defn parse-scale-ratio
   "Parse scale ratio string to numerical value for sorting (e.g., '1:25,000' -> 25000)"
   [scale-str]
@@ -125,17 +129,12 @@
       (let [scale-str (str scale-str)
             ;; Match patterns like "1:25,000", "1:25000", "1/25000", etc.
             ratio-match (re-find #"1[:\/]\s*([0-9,]+)" scale-str)]
-        (if ratio-match
-          (let [number-str (second ratio-match)
-                ;; Remove commas and parse as integer
-                clean-number (-> number-str (str/replace #"," "") js/parseInt)]
-            (if (js/isNaN clean-number) 999999 clean-number))
-          ;; If no ratio pattern found, try to extract any number
-          (let [number-match (re-find #"([0-9,]+)" scale-str)]
-            (if number-match
-              (let [clean-number (-> (first number-match) (str/replace #"," "") js/parseInt)]
-                (if (js/isNaN clean-number) 999999 clean-number))
-              999999)))) ;; Default large number for non-parseable scales
+        (or
+         (when ratio-match
+           (clean-and-parse-number (second ratio-match)))
+         (when-let [number-match (re-find #"([0-9,]+)" scale-str)]
+           (clean-and-parse-number (first number-match)))
+         999999)) ;; Default large number for non-parseable scales
       (catch js/Error _ 999999))))
 
 (defn sort-data
