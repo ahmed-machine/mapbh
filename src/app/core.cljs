@@ -1,7 +1,6 @@
 (ns app.core
   "This namespace contains your application and is the entrypoint for 'yarn start'."
   (:require [reagent.core :as r]
-            [app.util :as util]
             [app.pages.about :as about]
             [app.pages.contribute :as contribute]
             [app.pages.homepage :as homepage]
