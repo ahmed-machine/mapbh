@@ -15,7 +15,14 @@
             :sort-by "ترتيب حسب:"
             :showing-count (fn [filtered total] (str "عرض " filtered " من " total " خريطة"))}
      :buttons {:info "تفاصيل"
-               :view "عرض"}}
+               :view "عرض"}
+     :table {:title "العنوان"
+             :year "السنة"
+             :group "المجموعة"
+             :scale "المقياس"
+             :source "المصدر"
+             :issuer "الناشر"
+             :needs-processing "قيد المعالجة"}}
     {:page {:title "Catalogue"
             :subtitle "Browse and search through all maps on the site"
             :search-placeholder "Search maps..."
@@ -23,7 +30,14 @@
             :sort-by "Sort by:"
             :showing-count (fn [filtered total] (str "Showing " filtered " of " total " maps"))}
      :buttons {:info "Info"
-               :view "View"}}))
+               :view "View"}
+     :table {:title "Title"
+             :year "Year"
+             :group "Group"
+             :scale "Scale"
+             :source "Source"
+             :issuer "Issuer"
+             :needs-processing "Needs Processing"}}))
 
 (defn safe-parse-int
   "Safely parse integer with radix, returning nil if invalid"
@@ -179,6 +193,8 @@
   [data sort-state language selected-group-filter]
   (let [{:keys [sort-key sort-dir]} @sort-state
         sorted-data (sort-data data sort-key sort-dir)
+        arabic? (= language :ar)
+        txt (text arabic?)
 
         header-click (fn [key]
                        (swap! sort-state
@@ -198,22 +214,22 @@
         [:th {:style {:width "120px"}}] ;; Actions column - no text, fixed width
         [:th {:on-click #(header-click :title)
               :style {:cursor "pointer"}}
-         (if (= language :ar) "العنوان " "Title ") [:span.has-text-grey-light (sort-icon :title)]]
+         (str (get-in txt [:table :title]) " ") [:span.has-text-grey-light (sort-icon :title)]]
         [:th {:on-click #(header-click :year)
               :style {:cursor "pointer"}}
-         (if (= language :ar) "السنة " "Year ") [:span.has-text-grey-light (sort-icon :year)]]
+         (str (get-in txt [:table :year]) " ") [:span.has-text-grey-light (sort-icon :year)]]
         [:th {:on-click #(header-click :group)
               :style {:cursor "pointer"}}
-         (if (= language :ar) "المجموعة " "Group ") [:span.has-text-grey-light (sort-icon :group)]]
+         (str (get-in txt [:table :group]) " ") [:span.has-text-grey-light (sort-icon :group)]]
         [:th {:on-click #(header-click :scale)
               :style {:cursor "pointer"}}
-         (if (= language :ar) "المقياس " "Scale ") [:span.has-text-grey-light (sort-icon :scale)]]
+         (str (get-in txt [:table :scale]) " ") [:span.has-text-grey-light (sort-icon :scale)]]
         [:th {:on-click #(header-click :source)
               :style {:cursor "pointer"}}
-         (if (= language :ar) "المصدر " "Source ") [:span.has-text-grey-light (sort-icon :source)]]
+         (str (get-in txt [:table :source]) " ") [:span.has-text-grey-light (sort-icon :source)]]
         [:th {:on-click #(header-click :issuer)
               :style {:cursor "pointer"}}
-         (if (= language :ar) "الناشر " "Issuer ") [:span.has-text-grey-light (sort-icon :issuer)]]]]
+         (str (get-in txt [:table :issuer]) " ") [:span.has-text-grey-light (sort-icon :issuer)]]]]
       [:tbody
        (doall
         (for [item sorted-data]
@@ -226,7 +242,7 @@
               ;; Show status message for backlog items instead of buttons
               [:span.tag.is-light.is-small
                {:style {:color "#666"}}
-               (if (= language :ar) "قيد المعالجة" "Needs Processing")]
+               (get-in txt [:table :needs-processing])]
               ;; Regular action buttons for non-backlog items
               (let [primary-group (if (:all-groups item)
                                     (first (:all-groups item))
@@ -297,7 +313,7 @@
                 (= (:group item) selected-group)))
             data)))
 
-(defn catalogue-unified
+(defn catalogue
   "Unified catalogue page with i18n support"
   [language]
   (let [search-term (r/atom "")
@@ -374,8 +390,3 @@
                 [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
 
           [catalogue-table filtered-data sort-state language selected-group-filter]]]))))
-
-(defn catalogue
-  "Main catalogue component with language switching"
-  [language]
-  [catalogue-unified language])
