@@ -2,13 +2,19 @@
   (:require [re-frame.core :as rf]
             [reagent.core :as reagent]
             [app.model :as model]
-            [app.pages.map.map-data :refer [viewable-layers ar-layers base-satellite default-map-state]]
+            [app.pages.map.map-data :refer [base-satellite default-map-state maps get-map-text get-grouped-maps get-viewable-maps]]
             [app.util.url :as url]
             [clojure.string :as str]))
 
 ;; Constants
 (def ^:private transparency-mode "transparency")
 (def ^:private side-by-side-mode "side-by-side")
+
+;; Helper function to get map data
+(defn get-map-from-maps
+  "Get map data by [group map-id] path"
+  [[_group map-id]]
+  (get maps map-id))
 
 
 (defn text
@@ -38,9 +44,15 @@
 
 (defn modal-description
   [state* arabic?]
-  (let [details (get-in viewable-layers (:selected @state*))
-        ar-details (merge details (get-in ar-layers (:selected @state*)))
-        txt (:description (text details ar-details arabic?))]
+  (let [;; Get map data
+        selected-map-id (second (:selected @state*))
+        details (when-let [map-info (get maps selected-map-id)]
+                  (merge map-info
+                         {:title (get-map-text map-info (if arabic? :ar :en) :title)
+                          :description (get-map-text map-info (if arabic? :ar :en) :description)
+                          :notes (get-map-text map-info (if arabic? :ar :en) :notes)
+                          :submitted-by (get-map-text map-info (if arabic? :ar :en) :submitted-by)}))
+        txt (:description (text details details arabic?))]
     [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr")}
      [:div.modal-content
       [:p.panel-block [:strong (:title-header txt)] ": "
@@ -157,8 +169,8 @@
                         (js/setTimeout
                          (fn []
                            (try
-                             (let [current-layer-data (get-in viewable-layers (:selected @state*))
-                                   layer-title (str (or (:title current-layer-data) "exported"))
+                             (let [current-layer-data (get-map-from-maps (:selected @state*))
+                                   layer-title (str (or (get-map-text current-layer-data :en :title) "exported"))
                                    ;; Clean filename for safe file download
                                    safe-filename (-> layer-title
                                                     (str/replace #"[/\\:*?\"<>|]" "-")
@@ -246,7 +258,10 @@
         process-layers (fn [layers] (->> layers (mapv (fn [[k selected-layer]] [k (-> js/L (.tileLayer (:url selected-layer) (-> selected-layer :opts clj->js)))]))
                                          (sort-by first)
                                          (into (sorted-map))))
-        overlay-layers (->> viewable-layers (map (fn [[k v]] [k (process-layers v)])) (into (sorted-map)))
+        overlay-layers ;; Create grouped layers from maps
+                       (->> (get-grouped-maps (get-viewable-maps maps))
+                            (map (fn [[k v]] [k (process-layers v)]))
+                            (into (sorted-map)))
         ;; Now create base-layers with potential pinned layer
         base-layers (if-let [pinned (get-pinned-layer state* overlay-layers)]
                       (let [[group map-id] (:selected @state*)
@@ -275,7 +290,7 @@
         ;; Create separate layer instance if selected is same as pinned base
         selected (if (and pinned-layer selected-layer-data (= pinned-layer selected-layer-data))
                    ;; Create new instance of the same layer for overlay
-                   (let [layer-config (get-in viewable-layers (:selected @state*))]
+                   (let [layer-config (get-map-from-maps (:selected @state*))]
                      (-> js/L (.tileLayer (:url layer-config) (-> layer-config :opts clj->js))))
                    selected-layer-data)
         ]
@@ -508,7 +523,7 @@
       (fn [] ;; Setup Map
         ;; Parse URL parameters and update state safely after component mount
         (try
-          (let [url-state (url/parse-url-params viewable-layers)]
+          (let [url-state (url/parse-url-params (get-grouped-maps (get-viewable-maps maps)))]
             (when (seq url-state)
               (swap! state* merge url-state)))
           (catch js/Error e
