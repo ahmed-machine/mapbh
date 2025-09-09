@@ -52,55 +52,6 @@
   (when-let [year-match (re-find #"\b(19|20)\d{2}\b" title)]
     (safe-parse-int year-match)))
 
-(defn get-layer-bounds
-  "Get appropriate bounds and zoom for different map types"
-  [group-name map-id title]
-  (cond
-    ;; Specific area maps - higher zoom
-    (or (str/includes? (str/lower-case group-name) "manama")
-        (str/includes? (str/lower-case (str title)) "manama"))
-    {:lat 26.2281 :lng 50.5822 :zoom 13}
-
-    (or (str/includes? (str/lower-case group-name) "muharraq")
-        (str/includes? (str/lower-case (str title)) "muharraq"))
-    {:lat 26.2572 :lng 50.6119 :zoom 13}
-
-    ;; Harbor/port specific
-    (str/includes? (str/lower-case (str title)) "harbour")
-    {:lat 26.2200 :lng 50.6100 :zoom 14}
-
-    ;; Awali area
-    (str/includes? (str/lower-case (str title)) "awali")
-    {:lat 26.0659 :lng 50.4817 :zoom 13}
-
-    ;; Other specific locations
-    (str/includes? (str/lower-case (str title)) "jufayr")
-    {:lat 26.2300 :lng 50.6200 :zoom 13}
-
-    (str/includes? (str/lower-case (str title)) "budaiya")
-    {:lat 26.2000 :lng 50.4500 :zoom 13}
-
-    (str/includes? (str/lower-case (str title)) "riffa")
-    {:lat 26.1300 :lng 50.5500 :zoom 13}
-
-    (str/includes? (str/lower-case (str title)) "hawar")
-    {:lat 25.6500 :lng 50.7500 :zoom 12}
-
-    ;; Geological/specialized maps - medium zoom to see detail
-    (or (str/includes? (str/lower-case group-name) "geological")
-        (str/includes? (str/lower-case (str title)) "geology")
-        (str/includes? (str/lower-case (str title)) "geomorphology")
-        (str/includes? (str/lower-case (str title)) "drainage")
-        (str/includes? (str/lower-case (str title)) "agriculture"))
-    {:lat 26.0450 :lng 50.5460 :zoom 11}
-
-    ;; Fairey surveys - medium zoom for topographic detail
-    (str/includes? (str/lower-case group-name) "fairey")
-    {:lat 26.0450 :lng 50.5460 :zoom 12}
-
-    ;; Default to Bahrain center with appropriate zoom
-    :else
-    {:lat 26.0450 :lng 50.5460 :zoom 10}))
 
 (defn flatten-map-data
   "Convert map data structure to flat list for table display"
@@ -247,7 +198,6 @@
               (let [primary-group (if (:all-groups item)
                                     (first (:all-groups item))
                                     (:group item))
-                    bounds (get-layer-bounds primary-group (:map-id item) (:title item))
                     is-viewable (not= false (:viewable item))]
                 [:div.buttons.are-small {:style (when (= language :ar) {:justify-content "flex-end"})}
                  [:a.button.is-light.is-small
@@ -263,8 +213,7 @@
                    [:a.button.is-light.is-small
                     {:href (str (routes/url-for :map)
                                 "?map=" (js/encodeURIComponent (:map-id item))
-                                "&coords=" (:lat bounds) "," (:lng bounds)
-                                "&zoom=" (:zoom bounds))}
+                                "&flyTo=true")}
                     [:i.fas.fa-map {:style (if (= language :ar)
                                                    {:margin-left "0.5rem" :padding "0.2rem"}
                                                    {:margin-right "0.5rem" :padding "0.2rem"})}]
