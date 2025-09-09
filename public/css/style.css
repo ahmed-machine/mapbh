@@ -67,13 +67,13 @@ body.map-page {
 @supports (-webkit-touch-callout: none) {
     /* Target only iOS Safari */
     #map-history {
-        height: calc(100vh - 3.25rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)); /* Navbar + safe areas */
+        height: calc(100dvh - 3.25rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)); /* Navbar + safe areas */
         -webkit-overflow-scrolling: touch; /* Enable momentum scrolling if needed */
     }
 
     #mapid {
-        height: calc(100vh - 3.25rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)); /* Navbar + safe areas */
-        width: 100vw;
+        height: calc(100dvh - 3.25rem - env(safe-area-inset-top) - env(safe-area-inset-bottom)); /* Navbar + safe areas */
+        width: 100dvw;
         position: relative;
         z-index: 1; /* Ensure map is below fixed nav */
     }
