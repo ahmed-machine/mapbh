@@ -25,9 +25,8 @@
         ;; and convert it to /data/TILE-NAME.json
         tilejson-url (when map-url
                        (-> map-url
-                           (.replace "/{z}/{x}/{y}.png" ".json")))
-        final-url (or tilejson-url (str tileserver-url "/data/" map-id ".json"))]
-    (-> (js/fetch final-url)
+                           (.replace "/{z}/{x}/{y}.png" ".json")))]
+    (-> (js/fetch tilejson-url)
         (.then (fn [response]
                  (.json response)))
         (.then (fn [tilejson]
