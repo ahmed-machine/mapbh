@@ -26,7 +26,9 @@
                               :notes-header "Notes"
                               :source-header "Source"
                               :issuer-header "Issuer"
-                              :submitter-header "Submitted by"} details)
+                              :submitter-header "Submitted by"
+                              :additional-link "Additional Link"
+                              :additional-link-2 "Additional Link 2"} details)
          :buttons {:switch-mode {:transparency "Transparency Mode"
                                  :split "Split Mode"}
                    :description "Description"}}
@@ -36,7 +38,9 @@
                               :notes-header "ملاحظات"
                               :source-header  "المصدر"
                               :issuer-header "الناشر"
-                              :submitter-header " مساهمة"} ar-details)
+                              :submitter-header " مساهمة"
+                              :additional-link "رابط إضافي"
+                              :additional-link-2 "رابط إضافي ثاني"} ar-details)
          :buttons {:switch-mode {:transparency "شفاف"
                                  :split "ابو قسمين"}
                    :description  "تفاصيل"}}} (if arabic? :ar :en)))
@@ -67,14 +71,14 @@
          [:div.panel-block {:style {:color "#DA291C"}}
           [:span.icon.home [:i.fas.fa-external-link-alt]]
           (or (:link-1-label details) 
-              (if arabic? "رابط إضافي" "Additional Link"))]])
+              (:additional-link txt))]])
       (when (:link-2 details)
         [:a {:href (:link-2 details)
              :target "_blank"}
          [:div.panel-block {:style {:color "#DA291C"}}
           [:span.icon.home [:i.fas.fa-external-link-alt]]
           (or (:link-2-label details) 
-              (if arabic? "رابط إضافي ثاني" "Additional Link 2"))]])
+              (:additional-link-2 txt))]])
       [:p.panel-block.description-text
        [:strong (:notes-header txt)] ": " (:notes txt)]
       [:a {:href (:source-link details) :style {:color "#DA291C"}}
