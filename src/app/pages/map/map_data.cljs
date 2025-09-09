@@ -380,7 +380,6 @@
    ;; Other group maps
    "1963 - Awali" 
    {:groups #{"Other"}
-    :alternate-title nil
     :year 1963
     :url (form-tile-url "1963-Awali")
     :scale "1:5,000"
@@ -403,7 +402,6 @@
    ;; Manama group maps
    "1937 - Manama" 
    {:groups #{"Manama"}
-    :alternate-title nil
     :year 1937
     :url (form-tile-url "1937-Manama")
     :scale "1:3,639"
@@ -425,7 +423,6 @@
 
    "1957 - Manama"
    {:groups #{"Manama"}
-    :alternate-title nil
     :year 1957
     :url (form-tile-url "1957-Manama")
     :scale "1:5,000"
@@ -447,7 +444,6 @@
 
    "1968 - Al Jufayr"
    {:groups #{"Manama"}
-    :alternate-title nil
     :year 1968
     :url (form-tile-url "1968-AlJufayr")
     :scale "1:5,000"
@@ -469,7 +465,6 @@
 
    "1969 - Manama & AlJufayr"
    {:groups #{"Manama"}
-    :alternate-title nil
     :year 1969
     :url (form-tile-url "1969-Manama")
     :scale "1:5,000"
@@ -493,7 +488,6 @@
 
    "1977 - USSR - Manama/Muharraq"
    {:groups #{"Manama" "Muharraq"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-USSR-Bahrain")
     :scale "1:10,000"
@@ -515,7 +509,6 @@
 
    "1977 - Manama"
    {:groups #{"Manama" "Muharraq" "Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Manama.1")
     :scale "1:25,000"
@@ -537,7 +530,6 @@
 
    "1981 - Manama"
    {:groups #{"Manama" "National Addressing Project (1981)"}
-    :alternate-title nil
     :year 1981
     :url (form-tile-url "1981-NAP-Manama")
     :scale "1:25,000"
@@ -561,7 +553,6 @@
 
    "1992 - Manama"
    {:groups #{"Manama" "Muharraq" "Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1992
     :url (form-tile-url "1992-Manama.4")
     :scale "1:25,000"
@@ -583,7 +574,6 @@
 
    "1998 - Manama"
    {:groups #{"Manama" "Muharraq" "Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1998
     :url (form-tile-url "1998-Manama.5")
     :scale "1:25,000"
@@ -605,7 +595,6 @@
 
    "2006 - Manama"
    {:groups #{"Manama" "Muharraq" "Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 2006
     :url (form-tile-url "2006-Manama.6")
     :scale "1:25,000"
@@ -628,7 +617,6 @@
    ;; Muharraq group maps
    "1931 - Muharraq"
    {:groups #{"Muharraq"}
-    :alternate-title nil
     :year 1931
     :url (form-tile-url "1931-Muharraq")
     :scale "1:2,400"
@@ -652,7 +640,6 @@
 
    "1937 - Muharraq"
    {:groups #{"Muharraq"}
-    :alternate-title nil
     :year 1937
     :url (form-tile-url "1937-Muharraq")
     :scale "1:20,000"
@@ -676,7 +663,6 @@
 
    "1957 - Muharraq"
    {:groups #{"Muharraq"}
-    :alternate-title nil
     :year 1957
     :url (form-tile-url "1957-Muharraq")
     :scale "1:5,000"
@@ -698,7 +684,6 @@
 
    "1981 - Muharraq"
    {:groups #{"Muharraq" "National Addressing Project (1981)"}
-    :alternate-title nil
     :year 1981
     :url (form-tile-url "1981-NAP-Muharraq")
     :scale "1:25,000"
@@ -721,7 +706,6 @@
    ;; Bahrain group maps
    "1817 - Bahrain"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :viewable false
     :year 1817
     :url nil
@@ -738,11 +722,10 @@
                 :description nil
                 :notes nil
                 :labels nil}}
-    :opts nil}
+}
 
    "1817 - Sketch of the Islands of Bahrain and Arad"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :viewable false
     :year 1817
     :url nil
@@ -759,11 +742,10 @@
                 :description nil
                 :notes nil
                 :labels nil}}
-    :opts nil}
+}
 
    "1820 - Chart of the Gulf of Persia"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :viewable false
     :year 1820
     :url nil
@@ -780,11 +762,10 @@
                 :description nil
                 :notes nil
                 :labels nil}}
-    :opts nil}
+}
 
    "1828 - Trigonometrical Plan of the Island and Harbour of Bahrain"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :viewable false
     :year 1828
     :url nil
@@ -801,11 +782,10 @@
                 :description nil
                 :notes nil
                 :labels nil}}
-    :opts nil}
+}
 
    "1829 - Trigonometrical Survey of the Arabian or Southern Side of the Persian Gulf' sheet 4"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :viewable false
     :year 1829
     :url nil
@@ -822,11 +802,10 @@
                 :description nil
                 :notes nil
                 :labels nil}}
-    :opts nil}
+}
 
    "1904 - Bahrain"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1904
     :url (form-tile-url "1904-Bahrain")
     :scale "1:63,360"
@@ -852,7 +831,6 @@
 
    "1914 - Bahrain Harbour"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1914
     :url (form-tile-url "1914-Harbour")
     :scale "1:73,000"
@@ -876,7 +854,6 @@
 
    "1937 - Bahrain"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1937
     :url (form-tile-url "1937-Bahrain")
     :scale "1:63,360"
@@ -898,7 +875,6 @@
 
    "1943 - Bahrain"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1943
     :url (form-tile-url "1943-Bahrain")
     :scale "1:63,360"
@@ -943,7 +919,6 @@
 
    "1968 - Bahrain"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1968
     :url (form-tile-url "1968-Bahrain")
     :scale "1:63,360"
@@ -965,7 +940,6 @@
 
    "1973 - Bahrain"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1973
     :url (form-tile-url "1973-Bahrain")
     :scale "1:50,000"
@@ -987,7 +961,6 @@
 
    "1977 - Bahrain (25k)"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Bahrain")
     :scale "1:25,000"
@@ -1009,7 +982,6 @@
 
    "1977 - Bahrain (50k)"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Bahrain.50k")
     :scale "1:50,000"
@@ -1031,7 +1003,6 @@
 
    "1985 - Bahrain (10k)"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1985
     :url (form-tile-url "1985-Bahrain.10k")
     :scale "1:10,000"
@@ -1053,7 +1024,6 @@
 
    "1986 - Bahrain (50k)"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1986
     :url (form-tile-url "1986-Bahrain.50k")
     :scale "1:50,000"
@@ -1075,7 +1045,6 @@
 
    "1990 - Bahrain (50k)"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1990
     :url (form-tile-url "1990-Bahrain.50k")
     :scale "1:50,000"
@@ -1097,7 +1066,6 @@
 
    "1997 - Bahrain (50k)"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 1997
     :url (form-tile-url "1997-Bahrain.50k")
     :scale "1:50,000"
@@ -1118,7 +1086,6 @@
 
    "2004 - Bahrain (50k)"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 2004
     :url (form-tile-url "2004-Bahrain.50k")
     :scale "1:50,000"
@@ -1139,7 +1106,6 @@
 
    "2030 - Bahrain"
    {:groups #{"Bahrain"}
-    :alternate-title nil
     :year 2030
     :url (form-tile-url "2030-Bahrain")
     :scale "N/A, probably 1:50,000"
@@ -1163,7 +1129,6 @@
    ;; Fairey Surveys maps (additional ones not in other groups)
    "Budaiya - 1977"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Budaiya.1")
     :scale "1:25,000"
@@ -1185,7 +1150,6 @@
 
    "Budaiya - 1987"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1987
     :url (form-tile-url "1987-Budaiya.2")
     :scale "1:25,000"
@@ -1207,7 +1171,6 @@
 
    "Budaiya - 1990"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1990
     :url (form-tile-url "1990-Budaiya.3")
     :scale "1:25,000"
@@ -1229,7 +1192,6 @@
 
    "Budaiya - 1997"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1997
     :url (form-tile-url "1997-Budaiya.4")
     :scale "1:25,000"
@@ -1251,7 +1213,6 @@
 
    "Budaiya - 2007"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 2007
     :url (form-tile-url "2007-Budaiya.5")
     :scale "1:25,000"
@@ -1273,7 +1234,6 @@
 
    "Riffa - 1977"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Riffa.1")
     :scale "1:25,000"
@@ -1295,7 +1255,6 @@
 
    "Riffa - 1987"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1987
     :url (form-tile-url "1987-Riffa.2")
     :scale "1:25,000"
@@ -1317,7 +1276,6 @@
 
    "Riffa - 1997"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1997
     :url (form-tile-url "1997-Riffa.4")
     :scale "1:25,000"
@@ -1339,7 +1297,6 @@
 
    "Riffa - 2005"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 2005
     :url (form-tile-url "2005-Riffa.5")
     :scale "1:25,000"
@@ -1361,7 +1318,6 @@
 
    "Zallaq - 1977"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Zallaq.1")
     :scale "1:25,000"
@@ -1383,7 +1339,6 @@
 
    "Zallaq - 1995"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1995
     :url (form-tile-url "1995-Zallaq.3")
     :scale "1:25,000"
@@ -1405,7 +1360,6 @@
 
    "Zallaq - 2006"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 2006
     :url (form-tile-url "2006-Zallaq.4")
     :scale "1:25,000"
@@ -1427,7 +1381,6 @@
 
    "Mamtala - 1977"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Mamtala.1")
     :scale "1:25,000"
@@ -1449,7 +1402,6 @@
 
    "Mamtala - 1990"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1990
     :url (form-tile-url "1990-Mamtala.2")
     :scale "1:25,000"
@@ -1471,7 +1423,6 @@
 
    "Mamtala - 1998"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1998
     :url (form-tile-url "1998-Mamtala.3")
     :scale "1:25,000"
@@ -1493,7 +1444,6 @@
 
    "Rumaytha - 1977"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Rumaytha.1")
     :scale "1:25,000"
@@ -1515,7 +1465,6 @@
 
    "Rumaytha - 1991"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1991
     :url (form-tile-url "1991-Rumaytha.2")
     :scale "1:25,000"
@@ -1537,7 +1486,6 @@
 
    "Rumaytha - 2000"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 2000
     :url (form-tile-url "2000-Rumaytha.3")
     :scale "1:25,000"
@@ -1559,7 +1507,6 @@
 
    "Ras Al Barr - 1977"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1977
     :url (form-tile-url "1977-Ras Al Barr.1")
     :scale "1:25,000"
@@ -1581,7 +1528,6 @@
 
    "Ras Al Barr - 2000"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 2000
     :url (form-tile-url "2000-Ras Al Barr.2")
     :scale "1:25,000"
@@ -1603,7 +1549,6 @@
 
    "Hawar - 1993"
    {:groups #{"Fairey Surveys 1:25k (1977-2007)"}
-    :alternate-title nil
     :year 1993
     :url (form-tile-url "1993-Hawar.1")
     :scale "1:25,000"
@@ -1626,7 +1571,6 @@
    ;; Geological Survey maps
    "1975 - Agriculture Capability"
    {:groups #{"Geological Survey (1975-76)"}
-    :alternate-title nil
     :year 1975
     :url (form-tile-url "1975-Agriculture-Capability")
     :scale "1:50,000"
@@ -1648,7 +1592,6 @@
 
    "1975 - Soils"
    {:groups #{"Geological Survey (1975-76)"}
-    :alternate-title nil
     :year 1975
     :url (form-tile-url "1975-Soils")
     :scale "1:50,000"
@@ -1670,7 +1613,6 @@
 
    "1976 - Bahrain Geology"
    {:groups #{"Geological Survey (1975-76)"}
-    :alternate-title nil
     :year 1976
     :url (form-tile-url "1976-Bahrain-Geology")
     :scale "1:50,000"
@@ -1692,7 +1634,6 @@
 
    "1976 - Bahrain Geomorphology"
    {:groups #{"Geological Survey (1975-76)"}
-    :alternate-title nil
     :year 1976
     :url (form-tile-url "1976-Bahrain-Geomorphology")
     :scale "1:50,000"
@@ -1714,7 +1655,6 @@
 
    "1976 - Drainage"
    {:groups #{"Geological Survey (1975-76)"}
-    :alternate-title nil
     :year 1976
     :url (form-tile-url "1976-Drainage")
     :scale "1:50,000"

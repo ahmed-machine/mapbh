@@ -1,14 +1,21 @@
 (ns app.pages.catalogue
   (:require [reagent.core :as r]
-            [app.pages.map.map-data :as map-data :refer [backlog maps get-map-text get-grouped-maps]]
+            [app.pages.map.map-data :as map-data :refer [backlog maps get-map-text]]
             [app.routes :as routes]
             [clojure.string :as str]))
+
+(defn safe-parse-int
+  "Safely parse integer with radix, returning nil if invalid"
+  [s]
+  (when s
+    (let [parsed (js/parseInt s 10)]
+      (when-not (js/isNaN parsed) parsed))))
 
 (defn extract-year
   "Extract year from title string"
   [title]
-  (let [year-match (re-find #"\b(19|20)\d{2}\b" title)]
-    (when year-match (js/parseInt year-match))))
+  (when-let [year-match (re-find #"\b(19|20)\d{2}\b" title)]
+    (safe-parse-int year-match)))
 
 (defn get-layer-bounds
   "Get appropriate bounds and zoom for different map types"
@@ -109,6 +116,11 @@
       (concat unique-maps backlog-entries)
       unique-maps)))
 
+(defn clean-and-parse-number
+  "Clean comma-separated number and parse safely"
+  [number-str]
+  (-> number-str (str/replace #"," "") safe-parse-int))
+
 (defn parse-scale-ratio
   "Parse scale ratio string to numerical value for sorting (e.g., '1:25,000' -> 25000)"
   [scale-str]
@@ -117,17 +129,12 @@
       (let [scale-str (str scale-str)
             ;; Match patterns like "1:25,000", "1:25000", "1/25000", etc.
             ratio-match (re-find #"1[:\/]\s*([0-9,]+)" scale-str)]
-        (if ratio-match
-          (let [number-str (second ratio-match)
-                ;; Remove commas and parse as integer
-                clean-number (-> number-str (str/replace #"," "") js/parseInt)]
-            (if (js/isNaN clean-number) 999999 clean-number))
-          ;; If no ratio pattern found, try to extract any number
-          (let [number-match (re-find #"([0-9,]+)" scale-str)]
-            (if number-match
-              (let [clean-number (-> (first number-match) (str/replace #"," "") js/parseInt)]
-                (if (js/isNaN clean-number) 999999 clean-number))
-              999999)))) ;; Default large number for non-parseable scales
+        (or
+         (when ratio-match
+           (clean-and-parse-number (second ratio-match)))
+         (when-let [number-match (re-find #"([0-9,]+)" scale-str)]
+           (clean-and-parse-number (first number-match)))
+         999999)) ;; Default large number for non-parseable scales
       (catch js/Error _ 999999))))
 
 (defn sort-data
