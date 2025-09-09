@@ -113,6 +113,12 @@
                   layers))
           map-data)))
 
+(defn should-auto-center?
+  "Check if map should auto-center based on URL parameters"
+  []
+  (let [params (get-query-params)]
+    (= "true" (:flyTo params))))
+
 (defn parse-url-params
   "Parse URL parameters into map state, with fallbacks to defaults"
   [map-data]
@@ -133,7 +139,8 @@
                      (js/decodeURIComponent base-raw)
                      base-raw)
               transparency (or (parse-transparency (:transparency params))
-                               (:transparency default-map-state))]
+                               (:transparency default-map-state))
+              should-fly (should-auto-center?)]
           (cond-> {}
             selected-layer (assoc :selected selected-layer)
             lat (assoc :lat lat)
@@ -141,7 +148,8 @@
             zoom (assoc :zoom zoom)
             mode (assoc :mode mode)
             base (assoc :base base)
-            transparency (assoc :transparency transparency)))))
+            transparency (assoc :transparency transparency)
+            should-fly (assoc :should-auto-center true)))))
     (catch js/Error e
       (.warn js/console "Error parsing URL parameters:" e)
       {})))
