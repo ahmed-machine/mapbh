@@ -904,7 +904,20 @@
     :opts (merge base-opts {:minNativeZoom 9
                             :maxNativeZoom 15
                             :opacity 0.7})}
-
+   "1963 - Bahrain"
+   {:groups #{"Bahrain" "Manama" "Muharraq"}
+    :viewable false
+    :year 1963
+    :scale "1:97,500"
+    :source "Abbas Sahab"
+    :source-link "/maps/1963.97500.Bahrain.png"
+    :i18n {:en {:title "Map of Bahrein"
+                :description "Map of Bahrain made in 1963 in the 1:97,500 scale in the English and Farsi languages. It features three inset maps depicting: Manama and Muharraq, a lower scale map of Bahrain, and a regional map depicting Bahrain. This map was created by renowned cartographer Abbas Sahab who comes from a renowned cartographer family in Tehran, Iran. It features beautiful cartouches: a border made up of waves of fish, an artisan working, and a beautiful colorful minaret in Manama."
+               }
+           :ar {:title "خارطة البحرين"
+                :description " خريطة البحرين رُسمت عام ١٩٦٣ بمقياس ١:٩٧٥٠٠ باللغتين الإنجليزية والفارسية. تحتوي على ثلاث خرائط داخلية تصور: المنامة والمحرق، وخريطة البحرين بمقياس أصغر، وخريطة إقليمية تصور البحرين. رسم هذه الخريطة عباس سحاب، رسام خرائط معروف بلقب “اب الخرائط الايرانية” وينتمي إلى عائلة رسامي خرائط مشهورة في طهران. تتميز بزخارف جميلة: حدود مكونة من أمواج من الأسماك وحرفّي عامل ومنارة ملونة جميلة في المنامة."
+                }}
+    }
    "1968 - Bahrain"
    {:groups #{"Bahrain"}
     :year 1968
