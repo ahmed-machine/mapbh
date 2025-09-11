@@ -791,7 +791,28 @@
                 :notes nil
                 :labels nil}}
 }
-
+  "1875 - Rough Sketch Survey of Bahreyn Islands"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1875
+    :scale nil
+    :source "Agar Thompson"
+    :issuer "National Archives of India"
+    :submitted-by "Husain Rajab"
+    :link-1 "/documents/1875-Bahrain-Memo.pdf"
+    :link-1-label "Memo"
+    :link-2 "https://abhilekh-patal.in/Category/ItemDetails/ItemDetails?itemId=80892f1b-a1cd-471b-a50f-c722853c84d2"
+    :link-2-label "Abhilekh Patal (digitization project of the NAI)"
+    :source-link "/maps/1875-Bahrain.png"
+    :i18n {:en {:title "Rough Sketch Survey of Bahreyn Islands"
+                :description "Govt of India, 1875 May, Nos. 298-302. Memo by Col. Ross regarding Bahrein, and sketch map of Bahrein Islands by Mr. Agar Thomson. In the accompanying memo (see PDF above), Agar notes the physical dimensions of the islands, etymology of the names, and history and succession of rulers. It then goes into a breakdown of the contemporary demographic and political composition of Bahrain. It includes a partial family tree of the current ruling family and the breakdown of various tribes and their sect of Islam, residence, and estimated population."
+                :notes "The quality of the scan provided was low. It was split into 5 overlapping segments with heavy discoloration. It was also heavily obscured by a watermark. In photoshop, the map was merged together from the segments. Color correction was applied and the watermark was painted in."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+}
    "1904 - Bahrain"
    {:groups #{"Bahrain"}
     :year 1904
