@@ -1,6 +1,15 @@
 /* Button-to-Modal Expansion Animation */
-/* Gentle bounce animation for scroll arrow */
 
+/* CSS Variables for modal animation */
+:root {
+    --modal-z-backdrop: 1000;
+    --modal-z-content: 1001;
+    --modal-transform-center: translate(-50%, -50%);
+    --modal-transition-expand: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    --modal-transition-fast: all 150ms ease;
+}
+
+/* Modal expansion animation states */
 .button.expanding-to-modal,
 .button.expanded-modal {
     width: var(--modal-width) !important;
@@ -9,17 +18,31 @@
     position: fixed !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    transform: var(--modal-transform-center) !important;
     background: white !important;
     border: 1px solid var(--text-muted) !important;
     border-radius: var(--border-radius-large) !important;
-    z-index: 1000 !important;
+    z-index: var(--modal-z-backdrop) !important;
 }
 
 .button.expanding-to-modal {
     overflow: hidden !important;
     box-shadow: var(--shadow-lg) !important;
-    transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    transition: var(--modal-transition-expand) !important;
+}
+
+.button.expanded-modal {
+    box-shadow: none !important;
+    transition: var(--modal-transition-fast) !important;
+    z-index: var(--modal-z-content) !important;
+}
+
+/* Remove focus outlines and shadows */
+.button.expanded-modal:focus,
+.button.expanded-modal:active,
+.button.expanded-modal:focus-visible {
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 /* Modal backdrop - actual clickable element */
@@ -30,25 +53,11 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
+    z-index: var(--modal-z-backdrop);
     cursor: pointer;
 }
 
-.button.expanded-modal {
-    box-shadow: none !important;
-    transition: all 150ms ease !important;
-    z-index: 1001 !important;
-    position: fixed !important;
-}
-
-.button.expanded-modal:focus,
-.button.expanded-modal:active,
-.button.expanded-modal:focus-visible {
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-
+/* Button content visibility during modal states */
 .button-content {
     display: flex;
     align-items: center;
@@ -63,6 +72,7 @@
     pointer-events: none;
 }
 
+/* Modal content container */
 .modal-content-embedded {
     overflow-y: visible;
     overflow-x: hidden;
@@ -77,6 +87,7 @@
     flex-direction: column;
 }
 
+/* Inner content with scrolling */
 .modal-inner-content {
     max-width: 100%;
     width: 100%;
@@ -92,8 +103,16 @@
     box-sizing: border-box;
     padding: 0 0.75rem 0.75rem 0.75rem;
     text-align: left;
+    /* Hide scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
+.modal-inner-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Text direction support */
 .modal-inner-content[dir="rtl"],
 .modal-inner-content[lang="ar"] {
     text-align: right;
@@ -111,42 +130,45 @@
     direction: ltr;
 }
 
-.modal-inner-content {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.modal-inner-content::-webkit-scrollbar {
-    display: none;
-}
-
-.modal-inner-content * {
+/* Modal content styling - consolidated selectors */
+.modal-inner-content *,
+.modal-inner-content p,
+.modal-inner-content div,
+.modal-inner-content span {
     color: #333 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+    white-space: normal !important;
+    hyphens: auto !important;
 }
 
+/* Link styling */
 .modal-inner-content a {
     color: #DA291C !important;
     text-decoration: underline !important;
     transition: color 100ms ease !important;
 }
 
-.modal-inner-content .icon {
-    margin: 0 0 !important;
-}
-
 .modal-inner-content a:hover {
     color: #b71c1c !important;
-    text-decoration: underline !important;
 }
 
 .modal-inner-content a:visited {
     color: #8b1538 !important;
 }
 
+/* Icon and content block styling */
+.modal-inner-content .icon {
+    margin: 0 !important;
+}
+
+.modal-inner-content strong {
+    font-weight: 600 !important;
+}
+
+/* Panel blocks */
 .modal-inner-content .panel-block {
     background: white !important;
     color: #333 !important;
@@ -158,34 +180,17 @@
     border: none !important;
     display: block !important;
     width: 100% !important;
-    word-wrap: break-word !important;
-    white-space: normal !important;
     line-height: 1.5 !important;
     margin-bottom: 0.25rem !important;
 }
 
 .modal-inner-content .panel-block.description-text {
-    max-height: none !important;
-    overflow-y: visible !important;
     border-bottom: 1px solid #e0e0e0 !important;
     padding-bottom: 0.75rem !important;
     margin-bottom: 0.75rem !important;
 }
 
-.modal-inner-content strong {
-    color: #333 !important;
-    font-weight: 600 !important;
-}
-
-.modal-inner-content p,
-.modal-inner-content div,
-.modal-inner-content span {
-    white-space: normal !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    hyphens: auto !important;
-}
-
+/* Button states */
 .button.is-light[disabled] {
     cursor: not-allowed;
     opacity: 0.6;
@@ -195,30 +200,7 @@
     white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-    .button.expanding-to-modal,
-    .button.expanded-modal {
-        width: var(--modal-width-mobile) !important;
-        height: var(--modal-height-mobile) !important;
-        min-width: var(--modal-width-mobile) !important;
-        border-radius: var(--border-radius) !important;
-        top: calc(50% + calc(var(--navbar-height) / 2)) !important;
-    }
-
-    .modal-inner-content {
-        max-height: calc(90vh - 6rem) !important;
-    }
-
-    .button.expanded-modal .button-content {
-        display: none !important;
-    }
-}
-
-[dir="rtl"] .button.expanding-to-modal,
-[dir="rtl"] .button.expanded-modal {
-    transform-origin: bottom right;
-}
-
+/* Modal close button */
 .button.expanded-modal .modal-close {
     background: var(--accent-color);
     border: 2px solid var(--accent-color);
@@ -239,6 +221,7 @@
     transform: scale(1.1);
 }
 
+/* Scroll indicator arrow */
 .modal-content-embedded::after {
     content: '↓';
     position: absolute;
@@ -262,6 +245,7 @@
     opacity: 0;
 }
 
+/* Bounce animation for scroll arrow */
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateX(-50%) translateY(0);
@@ -272,4 +256,30 @@
     60% {
         transform: translateX(-50%) translateY(-4px);
     }
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .button.expanding-to-modal,
+    .button.expanded-modal {
+        width: var(--modal-width-mobile) !important;
+        height: var(--modal-height-mobile) !important;
+        min-width: var(--modal-width-mobile) !important;
+        border-radius: var(--border-radius) !important;
+        top: calc(50% + calc(var(--navbar-height) / 2)) !important;
+    }
+
+    .modal-inner-content {
+        max-height: calc(90vh - 6rem) !important;
+    }
+
+    .button.expanded-modal .button-content {
+        display: none !important;
+    }
+}
+
+/* RTL support */
+[dir="rtl"] .button.expanding-to-modal,
+[dir="rtl"] .button.expanded-modal {
+    transform-origin: bottom right;
 }
