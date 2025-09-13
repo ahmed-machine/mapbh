@@ -340,7 +340,7 @@ body.map-page {
 }
 
 .modal-button.morphing {
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .modal-button.normal {
