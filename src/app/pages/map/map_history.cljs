@@ -562,20 +562,25 @@
                   (when show-description? "expanded-modal"))
       :disabled morphing?
       :on-click (fn [e]
-                  (when-not (or morphing? show-description?)
-                    ;; Start expansion animation only if modal is not already open
-                    (swap! state* assoc :morphing? true)
-                    ;; After animation completes, show modal content
-                    (js/setTimeout
-                      #(swap! state* assoc :show-description? true :morphing? false)
-                      300)))}
+                  (if show-description?
+                    ;; Modal is open - check if click is on backdrop (not content)
+                    (when (= (.-target e) (.-currentTarget e))
+                      (close-modal state*))
+                    ;; Modal is closed - open it
+                    (when-not morphing?
+                      ;; Start expansion animation
+                      (swap! state* assoc :morphing? true)
+                      ;; After animation completes, show modal content
+                      (js/setTimeout
+                        #(swap! state* assoc :show-description? true :morphing? false)
+                        300))))}
 
      [:div.button-content.button-content-fade {:class (if morphing? "hidden" "visible")}
       [:i.fa.fa-list.description-icon]
       [:span (get-in (text nil nil arabic?) [:buttons :description])]]
 
      (when show-description?
-       [:div.modal-content-embedded
+       [:div.modal-content-embedded {:on-click (fn [e] (.stopPropagation e))}
         [modal-description-content state* arabic?]])]))
 
 

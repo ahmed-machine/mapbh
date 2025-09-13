@@ -23,8 +23,15 @@
 }
 
 .button.expanded-modal {
-    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8) !important;
     transition: all 150ms ease !important;
+}
+
+.button.expanded-modal:focus,
+.button.expanded-modal:active,
+.button.expanded-modal:focus-visible {
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8) !important;
+    outline: none !important;
 }
 
 .button.expanding-to-modal::before,
