@@ -28,7 +28,7 @@ body {
     line-height: 1.6;
 }
 
-/* 
+/*
  * Map Page Layout
  * - Body is fixed to prevent scrolling
  * - Map container accounts for fixed navbar (3.25rem/52px)
@@ -95,10 +95,10 @@ body.map-page {
     }
 }
 
-/* 
+/*
  * Mobile Navbar Responsive Layout
  * - Prevents overflow with horizontal scrolling
- * - Scales content appropriately for screen size  
+ * - Scales content appropriately for screen size
  * - Provides larger Arabic text for better readability
  */
 
@@ -111,12 +111,12 @@ body.map-page {
         align-items: center;
         min-height: 3.25rem;
     }
-    
+
     .navbar-menu.is-active {
         box-shadow: none;
         padding: 0;
     }
-    
+
     .navbar-menu.is-active .navbar-start,
     .navbar-menu.is-active .navbar-end {
         flex-direction: row;
@@ -376,13 +376,7 @@ iframe.video {
     .about h1, .contribute h1, .articles h1 {margin: 2rem 1.5rem;}
 }
 
-.description-text {max-height: 10rem;
-                   align-items: start !important;
-                   border-bottom: 2px lightgray solid !important;
-                   padding-bottom: 2px !important;
-                   overflow-y: scroll;}
-
-.panel-block {display: inline-block !important;}
+/* Removed old conflicting description-text and panel-block styles */
 
 
 /* article styles */
@@ -602,3 +596,375 @@ iframe {display:block; margin: 0 auto; text-align: center;}
 .quote {margin: 3rem;}
 .quote blockquote {margin: 1rem; padding: 1rem; background-color: #efefef}
 .quote em {display: block; text-align: right; margin-right: 1rem;}
+
+/*
+ * Button-to-Modal Expansion Animation
+ * The Description button expands to become the modal itself
+ */
+
+/* Base button state */
+.button.is-light {
+    position: relative;
+    transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    background-color: #f5f5f5; /* Default Bulma light button color */
+}
+
+/* Expanding animation - button grows to modal size */
+.button.expanding-to-modal {
+    /* Expand to modal dimensions - 10% narrower */
+    width: min(80vw, 540px) !important;
+    height: min(80vh, 500px) !important;
+    min-width: min(80vw, 540px) !important;
+
+    /* Center on screen */
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    bottom: unset !important;
+    right: unset !important;
+    transform: translate(-50%, -50%) !important;
+
+    /* Modal-like appearance - force white background */
+    background: white !important;
+    background-color: white !important;
+    border: 1px solid var(--text-muted) !important;
+    border-radius: var(--border-radius-large) !important;
+    box-shadow: var(--shadow-lg) !important;
+
+    /* High z-index to appear above everything */
+    z-index: 1000 !important;
+
+    /* Hide overflow during expansion */
+    overflow: hidden !important;
+
+    /* Spring-like easing for expansion */
+    transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* Fully expanded modal state */
+.button.expanded-modal {
+    /* Same dimensions as expanding state - 10% narrower */
+    width: min(80vw, 540px) !important;
+    height: min(80vh, 500px) !important;
+    min-width: min(80vw, 540px) !important;
+
+    /* Fixed positioning */
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    bottom: unset !important;
+    right: unset !important;
+    transform: translate(-50%, -50%) !important;
+
+    /* Modal styling - force white background */
+    background: white !important;
+    background-color: white !important;
+    border: 1px solid var(--text-muted) !important;
+    border-radius: var(--border-radius-large) !important;
+
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
+    z-index: 1000 !important;
+
+    /* Smooth transitions */
+    transition: all 150ms ease !important;
+}
+
+/* Modal backdrop when expanded - darkens the page behind the modal */
+.button.expanding-to-modal::before,
+.button.expanded-modal::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.05); /* Dark overlay for page content behind modal */
+    z-index: 999; /* Just below the modal but above everything else */
+    opacity: 0;
+    transition: opacity 125ms ease;
+    pointer-events: none; /* Allow clicks to pass through during animation */
+}
+
+.button.expanded-modal::before {
+    opacity: 1;
+    pointer-events: none; /* Let backdrop-click-handler handle clicks */
+}
+
+/* Fade out backdrop when closing */
+.button.expanding-to-modal:not(.expanded-modal)::before {
+    opacity: 0;
+    transition: opacity 50ms ease;
+}
+
+/* Button content transitions */
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: opacity 50ms ease;
+}
+
+.button.expanding-to-modal .button-content,
+.button.expanded-modal .button-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Modal content styling - fixed single scrolling container */
+.modal-content-embedded {
+    overflow-y: visible; /* Remove scrolling from outer container */
+    overflow-x: hidden;
+    transition: opacity 150ms ease 75ms;
+    word-wrap: break-word;
+    word-break: break-word;
+    box-sizing: border-box;
+    height: 100%; /* Take full height of parent */
+    padding: 2.5rem 0.5rem 0.5rem 0.5rem; /* Reduced padding */
+    position: relative; /* For scroll indicator positioning */
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-inner-content {
+    max-width: 100%;
+    width: 100%;
+    color: #333 !important; /* Explicit dark text color */
+    background: white !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.6;
+    height: 100%; /* Full height of container */
+    max-height: calc(80vh - 3rem); /* Match modal height minus reduced padding */
+    overflow-y: auto !important; /* Single scrolling container */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    box-sizing: border-box;
+    padding: 0 0.75rem 0.75rem 0.75rem; /* Reduced padding for more content */
+    text-align: left; /* Default left alignment for English */
+}
+
+/* Arabic/RTL text alignment */
+.modal-inner-content[dir="rtl"],
+.modal-inner-content[lang="ar"] {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* English/LTR with scrollbar on left using direction trick */
+.modal-inner-content[dir="ltr"],
+.modal-inner-content[lang="en"] {
+    text-align: left !important;
+    direction: rtl !important; /* This puts scrollbar on left */
+}
+
+/* Reset text direction for content inside English modal */
+.modal-inner-content[dir="ltr"] > *,
+.modal-inner-content[lang="en"] > * {
+    direction: ltr !important;
+}
+
+/* Scrollbar styling for better visibility */
+.modal-inner-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-inner-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-inner-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.modal-inner-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Ensure all text in modal is visible and wraps properly */
+.modal-inner-content * {
+    color: #333 !important; /* Explicit dark text color */
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Restore proper red link colors */
+.modal-inner-content a {
+    color: #DA291C !important; /* Brand red color */
+    text-decoration: underline !important;
+    transition: color 100ms ease !important;
+}
+
+.modal-inner-content .icon {
+    margin: 0 0 !important; /* overrides bulma icon margins */
+}
+
+.modal-inner-content a:hover {
+    color: #b71c1c !important; /* Darker red on hover */
+    text-decoration: underline !important;
+}
+
+.modal-inner-content a:visited {
+    color: #8b1538 !important; /* Purple-red for visited links */
+}
+
+.modal-inner-content .panel-block {
+    background: white !important;
+    color: #333 !important; /* Explicit dark text color */
+    padding: 0.5rem 0 !important; /* Reduced vertical padding */
+    overflow-y: visible !important;
+    height: auto !important; /* Allow natural height expansion */
+    min-height: auto !important; /* Reset any min-height */
+    max-height: none !important; /* Remove height restrictions */
+    border: none !important;
+    display: block !important; /* Block display for full width */
+    width: 100% !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    line-height: 1.5 !important; /* Slightly tighter line spacing */
+    margin-bottom: 0.25rem !important; /* Reduced space between blocks */
+}
+
+/* Special styling for description text blocks */
+.modal-inner-content .panel-block.description-text {
+    max-height: none !important; /* Remove old max-height restriction */
+    overflow-y: visible !important; /* No scrolling on individual blocks */
+    border-bottom: 1px solid #e0e0e0 !important; /* Subtle separator */
+    padding-bottom: 0.75rem !important; /* Reduced padding before border */
+    margin-bottom: 0.75rem !important; /* Reduced space after border */
+}
+
+.modal-inner-content strong {
+    color: #333 !important; /* Explicit dark text color */
+    font-weight: 600 !important;
+}
+
+/* Force proper text wrapping for long content */
+.modal-inner-content p,
+.modal-inner-content div,
+.modal-inner-content span {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+}
+
+/* Enhanced hover states for non-expanding button */
+.button.is-light:not(.expanding-to-modal):not(.expanded-modal):hover {
+    background-color: var(--background-light) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-smooth);
+}
+
+/* Disabled state */
+.button.is-light[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Ensure text doesn't wrap */
+.button.is-light span {
+    white-space: nowrap;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .button.expanding-to-modal,
+    .button.expanded-modal {
+        width: 90vw !important; /* Keep mobile a bit wider for readability */
+        height: calc(90vh - 3.25rem) !important; /* Account for navbar height (52px) */
+        max-height: calc(100vh - 4rem) !important; /* Ensure space from top */
+        min-width: 90vw !important;
+        border-radius: var(--border-radius) !important;
+        top: calc(50% + 1.625rem) !important; /* Shift down by half navbar height */
+    }
+
+    /* Adjust modal content height on mobile */
+    .modal-inner-content {
+        max-height: calc(90vh - 6rem) !important; /* Account for navbar + reduced padding */
+    }
+
+    /* Hide Description button inside modal on mobile */
+    .button.expanded-modal .button-content{
+        display: none !important;
+    }
+}
+
+/* RTL support for Arabic */
+[dir="rtl"] .button.expanding-to-modal,
+[dir="rtl"] .button.expanded-modal {
+    transform-origin: bottom right;
+}
+
+/* Close button styling */
+.button.expanded-modal .modal-close {
+    border: 2px solid #DA291C !important;
+    content: '';
+    border-radius: 50% !important;
+    background: #DA291C !important;
+    color: #white !important;
+    font-size: 18px !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+    transition: all 100ms ease !important;
+    margin: 1rem 0 !important; /* Add 1rem margin on all sides */
+}
+
+.button.expanded-modal .modal-close:hover {
+
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: white !important;
+    transform: scale(1.1) !important;
+}
+
+/* Scroll indicator arrow at bottom of modal */
+.modal-content-embedded::after {
+    content: '↓';
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.3); /* Muted color */
+    animation: bounce 2s infinite;
+    pointer-events: none;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 300ms ease;
+    z-index: 10;
+}
+
+/* Show scroll indicator when content is scrollable and not at bottom */
+.modal-content-embedded.has-scroll::after {
+    opacity: 1;
+}
+
+/* Hide indicator when scrolled to bottom */
+.modal-content-embedded.at-bottom::after {
+    opacity: 0;
+}
+
+/* Gentle bounce animation for scroll arrow */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-8px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-4px);
+    }
+}
+
+/* Simplified transitions */
+.button.is-light:not(.expanding-to-modal):not(.expanded-modal) {
+    transition: all 150ms ease !important;
+}
