@@ -66,6 +66,7 @@
     "1976-Bahrain-Geomorphology": {"mbtiles": "public/maps/1976-Bahrain-Geomorphology.mbtiles"},
     "1976-Drainage": {"mbtiles": "public/maps/1976-Drainage.mbtiles"},
     "1981-NAP-Manama": {"mbtiles": "public/maps/1981-NAP-Manama.mbtiles"},
+    "1981-NAP-MadinatIsa": {"mbtiles": "public/maps/1981-NAP-MadinatIsa.mbtiles"},
     "1981-NAP-Muharraq": {"mbtiles": "public/maps/1981-NAP-Muharraq.mbtiles"},
     "1904-Bahrain": {"mbtiles": "public/maps/1904-Bahrain.mbtiles"}
   }
