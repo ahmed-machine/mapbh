@@ -734,6 +734,26 @@ iframe {display:block; margin: 0 auto; text-align: center;}
     direction: ltr; /* Reset content direction */
 }
 
+/* Scrollbar styling - very narrow and subtle */
+.modal-inner-content::-webkit-scrollbar {
+    width: 6px; /* Very narrow */
+}
+
+.modal-inner-content::-webkit-scrollbar-track {
+    background: #fafafa; /* Very light track */
+    border-radius: 3px;
+}
+
+.modal-inner-content::-webkit-scrollbar-thumb {
+    background: #e5e7eb; /* Very light gray thumb */
+    border-radius: 3px;
+    min-height: 20px; /* Minimum thumb size */
+}
+
+.modal-inner-content::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db; /* Still very light on hover */
+}
+
 /* Ensure all text in modal is visible and wraps properly */
 .modal-inner-content * {
     color: #333 !important; /* Explicit dark text color */
