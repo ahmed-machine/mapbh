@@ -589,13 +589,11 @@
                       #(swap! state* assoc :show-description? true :morphing? false)
                       300)))}
 
-     ;; Button content (hidden during expansion)
      [:div.button-content {:style {:transition "opacity 150ms ease"
                                   :opacity (if morphing? 0 1)}}
       [:i.fa.fa-list {:style {:margin-right "1rem"}}]
       [:span (get-in (text nil nil arabic?) [:buttons :description])]]
 
-     ;; Modal content (shown after expansion)
      (when show-description?
        [:div.modal-content-embedded {:ref (fn [el]
                                            (when el
@@ -608,7 +606,6 @@
                                                          (.toggle (.-classList el) "has-scroll" scrollable?)
                                                          (.toggle (.-classList el) "at-bottom" at-bottom?))))
                                                    backdrop-click (fn [e]
-                                                                   ;; Check if click was on the modal container itself (not its content)
                                                                    (when (= (.-target e) el)
                                                                      (.preventDefault e)
                                                                      (.stopPropagation e)
@@ -618,18 +615,15 @@
                                                               (.removeEventListener inner "scroll" check-scroll))
                                                             (.removeEventListener js/window "resize" check-scroll)
                                                             (.removeEventListener el "click" backdrop-click))]
-                                               ;; Setup
                                                (js/setTimeout check-scroll 100)
                                                (when-let [inner (.querySelector el ".modal-inner-content")]
                                                  (.addEventListener inner "scroll" check-scroll))
                                                (.addEventListener js/window "resize" check-scroll)
                                                (.addEventListener el "click" backdrop-click)
-                                               ;; Store cleanup function for potential future use
                                                (set! (.-scrollCleanup el) cleanup))))
                                      :style {:opacity (if morphing? 0 1)
                                             :transition "opacity 150ms ease 150ms"}
                                      :on-click (fn [e] 
-                                                ;; Allow backdrop clicks on the container
                                                 (when (= (.-target e) (.-currentTarget e))
                                                   (close-modal state*)))} 
         [modal-description-content state* arabic?]])]))

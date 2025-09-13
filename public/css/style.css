@@ -731,80 +731,75 @@ iframe {display:block; margin: 0 auto; text-align: center;}
 
 .modal-inner-content[dir="ltr"] > *,
 .modal-inner-content[lang="en"] > * {
-    direction: ltr; /* Reset content direction */
+    direction: ltr;
 }
 
-/* Hide scrollbar while keeping scroll functionality */
 .modal-inner-content {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .modal-inner-content::-webkit-scrollbar {
-    display: none; /* WebKit browsers */
+    display: none;
 }
 
-/* Ensure all text in modal is visible and wraps properly */
 .modal-inner-content * {
-    color: #333 !important; /* Explicit dark text color */
+    color: #333 !important;
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
 }
 
-/* Restore proper red link colors */
 .modal-inner-content a {
-    color: #DA291C !important; /* Brand red color */
+    color: #DA291C !important;
     text-decoration: underline !important;
     transition: color 100ms ease !important;
 }
 
 .modal-inner-content .icon {
-    margin: 0 0 !important; /* overrides bulma icon margins */
+    margin: 0 0 !important;
 }
 
 .modal-inner-content a:hover {
-    color: #b71c1c !important; /* Darker red on hover */
+    color: #b71c1c !important;
     text-decoration: underline !important;
 }
 
 .modal-inner-content a:visited {
-    color: #8b1538 !important; /* Purple-red for visited links */
+    color: #8b1538 !important;
 }
 
 .modal-inner-content .panel-block {
     background: white !important;
-    color: #333 !important; /* Explicit dark text color */
-    padding: 0.5rem 0 !important; /* Reduced vertical padding */
+    color: #333 !important;
+    padding: 0.5rem 0 !important;
     overflow-y: visible !important;
-    height: auto !important; /* Allow natural height expansion */
-    min-height: auto !important; /* Reset any min-height */
-    max-height: none !important; /* Remove height restrictions */
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
     border: none !important;
-    display: block !important; /* Block display for full width */
+    display: block !important;
     width: 100% !important;
     word-wrap: break-word !important;
     white-space: normal !important;
-    line-height: 1.5 !important; /* Slightly tighter line spacing */
-    margin-bottom: 0.25rem !important; /* Reduced space between blocks */
+    line-height: 1.5 !important;
+    margin-bottom: 0.25rem !important;
 }
 
-/* Special styling for description text blocks */
 .modal-inner-content .panel-block.description-text {
-    max-height: none !important; /* Remove old max-height restriction */
-    overflow-y: visible !important; /* No scrolling on individual blocks */
-    border-bottom: 1px solid #e0e0e0 !important; /* Subtle separator */
-    padding-bottom: 0.75rem !important; /* Reduced padding before border */
-    margin-bottom: 0.75rem !important; /* Reduced space after border */
+    max-height: none !important;
+    overflow-y: visible !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
 }
 
 .modal-inner-content strong {
-    color: #333 !important; /* Explicit dark text color */
+    color: #333 !important;
     font-weight: 600 !important;
 }
 
-/* Force proper text wrapping for long content */
 .modal-inner-content p,
 .modal-inner-content div,
 .modal-inner-content span {
