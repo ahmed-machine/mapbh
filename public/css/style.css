@@ -187,21 +187,21 @@ body.map-page {
 
 /* Map control buttons - positioned relative to map container */
 .download-button, .pin-button {
-    position: absolute;
+    position: fixed;
     height: 30px;
     width: 30px;
     border-radius: 2px;
     font-size: 0.6rem;
     left: 12px;
-    z-index: 997;
+    z-index: 1002; /* Well above modal */
 }
 
 .download-button {
-    top: 130px; /* Adjusted for navbar offset */
+    top: calc(130px + var(--navbar-height)); /* Account for navbar when fixed positioned */
 }
 
 .pin-button {
-    top: 170px; /* Adjusted for navbar offset */
+    top: calc(170px + var(--navbar-height)); /* Account for navbar when fixed positioned */
 }
 
 
@@ -609,7 +609,7 @@ iframe {display:block; margin: 0 auto; text-align: center;}
  */
 
 /* Base button state */
-.button.is-light {
+.button.is-light.expanded-modal {
     position: relative;
     transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
     background-color: #f5f5f5; /* Default Bulma light button color */
@@ -734,24 +734,14 @@ iframe {display:block; margin: 0 auto; text-align: center;}
     direction: ltr; /* Reset content direction */
 }
 
-/* Scrollbar styling - very narrow and subtle */
+/* Hide scrollbar while keeping scroll functionality */
+.modal-inner-content {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
 .modal-inner-content::-webkit-scrollbar {
-    width: 6px; /* Very narrow */
-}
-
-.modal-inner-content::-webkit-scrollbar-track {
-    background: #fafafa; /* Very light track */
-    border-radius: 3px;
-}
-
-.modal-inner-content::-webkit-scrollbar-thumb {
-    background: #e5e7eb; /* Very light gray thumb */
-    border-radius: 3px;
-    min-height: 20px; /* Minimum thumb size */
-}
-
-.modal-inner-content::-webkit-scrollbar-thumb:hover {
-    background: #d1d5db; /* Still very light on hover */
+    display: none; /* WebKit browsers */
 }
 
 /* Ensure all text in modal is visible and wraps properly */
