@@ -388,6 +388,30 @@
                             :maxNativeZoom 19
                             :opacity 0.7})}
 
+   "1981 - Madinat Isa"
+   {:groups #{"Other" "National Addressing Project (1981)"}
+    :year 1981
+    :url (form-tile-url "1981-NAP-MadinatIsa")
+    :scale "1:25,000"
+    :source "National Addressing Project"
+    :issuer "Ministry of Information"
+    :source-link "/maps/1981.NAP.MadinatIsa.tif"
+    :issuer-link "/maps/1981.NAP.MadinatIsa.png"
+    :link-1 "/documents/NAP - Madinat Isa Manual.pdf"
+    :link-1-label "Madinat Isa Manual"
+    :i18n {:en {:title "Madinat Isa"
+                :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual provided"
+                :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 13
+                            :maxNativeZoom 19
+                            :opacity 0.8})}
+
+
    "1937 - Manama"
    {:groups #{"Manama"}
     :year 1937
