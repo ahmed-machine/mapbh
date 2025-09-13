@@ -81,8 +81,14 @@
                                  :split "ابو قسمين"}
                    :description  "تفاصيل"}}} (if arabic? :ar :en)))
 
+(defn close-modal
+  "Close modal with proper transition back to button state"
+  [state*]
+  ;; Immediately close modal without opacity fade
+  (swap! state* assoc :show-description? false :morphing? false))
 
-(defn modal-description
+(defn modal-description-content
+  "Reusable modal content component that can be embedded or used in traditional modal"
   [state* arabic?]
   (let [;; Get map data
         selected-map-id (second (:selected @state*))
@@ -93,48 +99,49 @@
                           :notes (get-map-text map-info (if arabic? :ar :en) :notes)
                           :submitted-by (get-map-text map-info (if arabic? :ar :en) :submitted-by)}))
         txt (:description (text details details arabic?))]
-    [:div.modal {:id "modal-description" :lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr")}
-     [:div.modal-content
-      [:p.panel-block [:strong (:title-header txt)] ": "
-       (:title txt)]
-      [:div.panel-block [:strong (:scale-header txt)] ": " (:scale txt)]
-      (when (:description txt)
-        [:p.panel-block.description-text
-         (:description txt)])
-      (when (:link-1 details)
-        [:a {:href (:link-1 details)
-             :target "_blank"}
-         [:div.panel-block {:style {:color "#DA291C"}}
-          [:span.icon.home [:i.fas.fa-external-link-alt]]
-          (or (:link-1-label details) 
-              (:additional-link txt))]])
-      (when (:link-2 details)
-        [:a {:href (:link-2 details)
-             :target "_blank"}
-         [:div.panel-block {:style {:color "#DA291C"}}
-          [:span.icon.home [:i.fas.fa-external-link-alt]]
-          (or (:link-2-label details) 
-              (:additional-link-2 txt))]])
-      [:p.panel-block.description-text
-       [:strong (:notes-header txt)] ": " (:notes txt)]
-      [:a {:href (:source-link details) :style {:color "#DA291C"}}
-       [:div.panel-block {:style {:color "#DA291C"}} [:strong (:source-header txt)] ": " (:source txt) " - "
-        [:span.icon.home [:i.fas.fa-download]] "(georectified)"]]
-      (when (:issuer txt)
-        [:a {:href (:issuer-link txt)}
-         [:div.panel-block {:style {:color "#DA291C" :padding-bottom "10px"}}
-          [:strong (:issuer-header txt)] ": " (str " " (:issuer txt)) " - "
-          [:span.icon.home [:i.fas.fa-download]] "(original)"]])
-      (when (:submitted-by txt)
-        [:div.panel-block {:style {:padding-bottom "10px"}} [:strong (:submitter-header txt)] ": "
-         (if (:submitted-by-url details)
-           [:a {:href (:submitted-by-url txt)}
-            (str " " (:submitted-by txt))]
-           (str " " (:submitted-by txt)))])
-      [:button.modal-close.is-large.is-danger {:aria-label "close"
-                                               :style (merge {} (if arabic? {:left "0"} {:right "0"}))
-                                               :on-click (fn [e] (swap! state* update :show-description? not)
-                                                           (-> js/document (.getElementById "modal-description") .-classList (.toggle "is-active")))}]]]))
+    [:div.modal-inner-content {:lang (if arabic? "ar" "en") :dir (if arabic? "rtl" "ltr")}
+     [:p.panel-block [:strong (:title-header txt)] ": "
+      (:title txt)]
+     [:div.panel-block [:strong (:scale-header txt)] ": " (:scale txt)]
+     (when (:description txt)
+       [:p.panel-block.description-text
+        (:description txt)])
+     (when (:link-1 details)
+       [:a {:href (:link-1 details)
+            :target "_blank"}
+        [:div.panel-block.modal-link-block
+         [:span.icon.home [:i.fas.fa-external-link-alt]]
+         (or (:link-1-label details)
+             (:additional-link txt))]])
+     (when (:link-2 details)
+       [:a {:href (:link-2 details)
+            :target "_blank"}
+        [:div.panel-block.modal-link-block
+         [:span.icon.home [:i.fas.fa-external-link-alt]]
+         (or (:link-2-label details)
+             (:additional-link-2 txt))]])
+     [:p.panel-block.description-text
+      [:strong (:notes-header txt)] ": " (:notes txt)]
+     [:a.modal-link {:href (:source-link details)}
+      [:div.panel-block.modal-link-block [:strong (:source-header txt)] ": " (:source txt) " - "
+       [:span.icon.home [:i.fas.fa-download]] "(georectified)"]]
+     (when (:issuer txt)
+       [:a {:href (:issuer-link txt)}
+        [:div.panel-block.modal-issuer-block
+         [:strong (:issuer-header txt)] ": " (str " " (:issuer txt)) " - "
+         [:span.icon.home [:i.fas.fa-download]] "(original)"]])
+     (when (:submitted-by txt)
+       [:div.panel-block.submitter-block [:strong (:submitter-header txt)] ": "
+        (if (:submitted-by-url details)
+          [:a {:href (:submitted-by-url txt)}
+           (str " " (:submitted-by txt))]
+          (str " " (:submitted-by txt)))])
+     ;; Close button
+     [:button.modal-close.is-large.modal-close-positioned {:aria-label "close"
+                                    :on-click (fn [e]
+                                                (.preventDefault e)
+                                                (.stopPropagation e)
+                                                (close-modal state*))}]]))
 
 (defn map-container
   []
@@ -177,17 +184,15 @@
   [state* arabic?]
   (if-let [layer (get-layer state*)]
     (if-let [transparency (-> layer (aget "options") (aget "opacity"))]
-      [:input {:title "Adjust Transparency" :style (merge {:position :absolute :background "transparent" :opacity 0.6 :bottom "35px"
-                                                           :width "120px"
-                                                           :z-index 998}
-                                                          (if arabic? {:left "12px"} {:right "12px"}))
+      [:input {:title "Adjust Transparency" 
+               :class (str "slider transparency-slider " (if arabic? "arabic" "english") " " (:selected @state*))
                :on-change (fn [e v]
                             (let [new-transparency (/ (.. e -target -value) 100)]
                               (update-transparency layer (.. e -target -value))
                               (swap! state* assoc :transparency new-transparency)
                               ;; Update URL when transparency changes
                               (js/setTimeout #(when (:map @state*) (update-url-from-current-state! (:map @state*) state*)) 100)))
-               :class (str "slider " (:selected @state*)) :step 1 :min 0 :max 100 :default-value (* transparency 100) :type "range"}])))
+               :step 1 :min 0 :max 100 :default-value (* transparency 100) :type "range"}])))
 
 
 
@@ -200,7 +205,7 @@
   (let [export-state (reagent/atom :ready)]  ; :ready, :exporting
     (fn []
       (let [map (:map @state*)]  ; Get map from current state
-        [:button.download-button.button.is-small.is-light
+        [:button.download-button.button.is-small.is-light.is-outlined
          {:class (if (= @export-state :exporting) "is-warning" "is-success") ; yellow when loading, green when ready
           :on-click (fn []
                       (when map  ; Only proceed if map exists
@@ -256,13 +261,13 @@
                                         (.remove existing-sbs)
                                         (catch js/Error e))
                                       (swap! state* dissoc :sbs-control))
-                                    
+
                                     ;; Find and remove any orphaned side-by-side controls from DOM
                                     (let [orphaned-controls (.querySelectorAll js/document ".leaflet-sbs")]
                                       (doseq [control (array-seq orphaned-controls)]
                                         (when (.-parentNode control)
                                           (.removeChild (.-parentNode control) control))))
-                                    
+
                                     (let [layers (:layers @state*)
                                           base-string (:base @state*)]
                                       (when-let [[group map-id] (url/parse-pinned-base-string base-string)]
@@ -520,8 +525,8 @@
   (let [mode (:mode @state*)
         map (:map @state*)
         txt (get-in (text nil nil arabic?) [:buttons :switch-mode])]
-    [:button.button.is-danger.is-small.is-rounded
-     {:style {:position :absolute :top "13px" :left "60px" :z-index 997 :font-size (when arabic? "105%")}
+    [:button.button.is-danger.is-small.is-rounded.switch-mode-button
+     {:lang (when arabic? "ar")
       :on-click (fn []
                   (let [zoom-level (.getZoom map)
                         {:keys [lat lng]} (js->clj (.getCenter map) :keywordize-keys true)]
@@ -547,18 +552,67 @@
 
 (defn modal-button
   [state* arabic?]
-  [:button.button.is-light
-   {:style (merge (if arabic? {:right "12px"} {:left "12px"}) {:position :absolute :bottom "23px"  :z-index 997 :font-size (when arabic? "105%")})
-    :on-click (fn [e] (swap! state* update :show-description? not)
-                (-> js/document (.getElementById "modal-description") .-classList (.toggle "is-active")))}
+  (let [morphing? (:morphing? @state*)
+        show-description? (:show-description? @state*)]
+    [:<>
+     ;; Backdrop element - only visible when modal is open
+     (when show-description?
+       [:div.modal-backdrop
+        {:on-click (fn [e] 
+                     (.preventDefault e)
+                     (.stopPropagation e)
+                     (close-modal state*))}])
+     
+     [:button.button.is-light.modal-button
+      {:class (str (if arabic? "arabic " "english ")
+                   (if morphing? "morphing " "normal ")
+                   (when arabic? "large-font ")
+                   (when morphing? "expanding-to-modal ")
+                   (when show-description? "expanded-modal"))
+       :disabled morphing?
+       :on-click (fn [e]
+                   (when-not (or morphing? show-description?)
+                     ;; Start expansion animation
+                     (swap! state* assoc :morphing? true)
+                     ;; After animation completes, show modal content
+                     (js/setTimeout
+                       #(swap! state* assoc :show-description? true :morphing? false)
+                       300)))}
 
-   [:i.fa.fa-list {:style {:margin-right "1rem"}}]
-   (get-in (text nil nil arabic?) [:buttons :description])])
+      [:div.button-content.button-content-fade {:class (if morphing? "hidden" "visible")}
+       [:i.fa.fa-list.description-icon]
+       [:span (get-in (text nil nil arabic?) [:buttons :description])]]
+
+      (when show-description?
+        [:div.modal-content-embedded
+         {:ref (fn [el]
+                 (when el
+                   ;; Set up scroll detection
+                   (let [check-scroll (fn []
+                                       (let [inner (.querySelector el ".modal-inner-content")]
+                                         (when inner
+                                           (let [scrollable? (> (.-scrollHeight inner) (.-clientHeight inner))
+                                                 at-bottom? (<= (- (.-scrollHeight inner) (.-scrollTop inner)) 
+                                                               (+ (.-clientHeight inner) 5))]
+                                             (if scrollable?
+                                               (do
+                                                 (.add (.-classList el) "has-scroll")
+                                                 (if at-bottom?
+                                                   (.add (.-classList el) "at-bottom")
+                                                   (.remove (.-classList el) "at-bottom")))
+                                               (.remove (.-classList el) "has-scroll"))))))]
+                     ;; Initial check
+                     (js/setTimeout check-scroll 100)
+                     ;; Set up scroll listener
+                     (when-let [inner (.querySelector el ".modal-inner-content")]
+                       (.addEventListener inner "scroll" check-scroll)))))}
+         [modal-description-content state* arabic?]])]]))
 
 
 (defn historical-map []
   (let [;; Start with safe defaults, URL parsing will happen in component-did-mount
         initial-state (merge {:show-description? false
+                             :morphing? false
                              :selected [(:group default-map-state) (:map-id default-map-state)]}
                             (dissoc default-map-state :group :map-id))
         state* (reagent/atom initial-state)
@@ -568,7 +622,7 @@
       (fn [] ;; Setup Map
         ;; Add map-page class to body to prevent scrolling
         (-> js/document .-body .-classList (.add "map-page"))
-        
+
         ;; Parse URL parameters and update state safely after component mount
         (try
           (let [url-state (url/parse-url-params (get-grouped-maps (get-viewable-maps maps)))]
@@ -581,7 +635,7 @@
         (if (= transparency-mode (:mode @state*))
           (init-map state*)
           (sbs-init-map state*)))
-      
+
       :component-will-unmount
       (fn []
         ;; Remove map-page class from body when leaving map page
@@ -589,10 +643,9 @@
       :render
       (fn []
         (let [arabic? (= :ar @language*)]
-          [:div#map-history {:style {:overflow-y :none}}
+          [:div#map-history.map-history-container
            [map-container]
            [modal-button state* arabic?]
-           [modal-description state* arabic?]
            [switch-mode state* arabic?]
            [pin-button state* arabic?]
            (when (= transparency-mode (:mode @state*)) [download-button state*])
