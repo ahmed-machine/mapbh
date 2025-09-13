@@ -1,0 +1,285 @@
+/* Button-to-Modal Expansion Animation */
+
+/* CSS Variables for modal animation */
+:root {
+    --modal-z-backdrop: 1000;
+    --modal-z-content: 1001;
+    --modal-transform-center: translate(-50%, -50%);
+    --modal-transition-expand: all 225ms cubic-bezier(0.34, 1.16, 0.84, 1);
+    --modal-transition-fast: all 150ms ease;
+}
+
+/* Modal expansion animation states */
+.button.expanding-to-modal,
+.button.expanded-modal {
+    width: var(--modal-width) !important;
+    height: var(--modal-height) !important;
+    min-width: var(--modal-width) !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: var(--modal-transform-center) !important;
+    background: white !important;
+    border: 1px solid var(--text-muted) !important;
+    border-radius: var(--border-radius-large) !important;
+    z-index: var(--modal-z-backdrop) !important;
+}
+
+.button.expanding-to-modal {
+    overflow: hidden !important;
+    box-shadow: var(--shadow-lg) !important;
+    transition: var(--modal-transition-expand) !important;
+}
+
+.button.expanded-modal {
+    box-shadow: none !important;
+    transition: var(--modal-transition-fast) !important;
+    z-index: var(--modal-z-content) !important;
+}
+
+/* Remove focus outlines and shadows */
+.button.expanded-modal:focus,
+.button.expanded-modal:active,
+.button.expanded-modal:focus-visible {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Modal backdrop - actual clickable element */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: var(--modal-z-backdrop);
+    cursor: pointer;
+}
+
+/* Button content visibility during modal states */
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: opacity 50ms ease;
+}
+
+.button.expanding-to-modal .button-content,
+.button.expanded-modal .button-content {
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+}
+
+/* Modal content container */
+.modal-content-embedded {
+    overflow-y: visible;
+    overflow-x: hidden;
+    transition: opacity 150ms ease 75ms;
+    word-wrap: break-word;
+    word-break: break-word;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 2.5rem 1rem 0.5rem 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Inner content with scrolling */
+.modal-inner-content {
+    max-width: 100%;
+    width: 100%;
+    color: #333 !important;
+    background: white !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.6;
+    height: 100%;
+    max-height: calc(80vh - 3rem);
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 0 0.75rem 0.75rem 0.75rem;
+    text-align: left;
+    /* Hide scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.modal-inner-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Text direction support */
+.modal-inner-content[dir="rtl"],
+.modal-inner-content[lang="ar"] {
+    text-align: right;
+    direction: rtl;
+}
+
+.modal-inner-content[dir="ltr"],
+.modal-inner-content[lang="en"] {
+    text-align: left;
+    direction: rtl;
+}
+
+.modal-inner-content[dir="ltr"] > *,
+.modal-inner-content[lang="en"] > * {
+    direction: ltr;
+}
+
+/* Modal content styling - consolidated selectors */
+.modal-inner-content *,
+.modal-inner-content p,
+.modal-inner-content div,
+.modal-inner-content span {
+    color: #333 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    hyphens: auto !important;
+}
+
+/* Link styling */
+.modal-inner-content a {
+    color: #DA291C !important;
+    text-decoration: underline !important;
+    transition: color 100ms ease !important;
+}
+
+.modal-inner-content a:hover {
+    color: #b71c1c !important;
+}
+
+.modal-inner-content a:visited {
+    color: #8b1538 !important;
+}
+
+/* Icon and content block styling */
+.modal-inner-content .icon {
+    margin: 0 !important;
+}
+
+.modal-inner-content strong {
+    font-weight: 600 !important;
+}
+
+/* Panel blocks */
+.modal-inner-content .panel-block {
+    background: white !important;
+    color: #333 !important;
+    padding: 0.5rem 0 !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    border: none !important;
+    display: block !important;
+    width: 100% !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.modal-inner-content .panel-block.description-text {
+    border-bottom: 1px solid #e0e0e0 !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+/* Button states */
+.button.is-light[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.button.is-light span {
+    white-space: nowrap;
+}
+
+/* Modal close button */
+.button.expanded-modal .modal-close {
+    background: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    color: white;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: var(--spacing-xs);
+    right: 0.15rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.button.expanded-modal .modal-close:hover {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+/* Scroll indicator arrow */
+.modal-content-embedded::after {
+    content: '↓';
+    position: absolute;
+    bottom: 0rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.3);
+    animation: bounce 2s infinite;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease;
+    z-index: 10;
+}
+
+.modal-content-embedded.has-scroll::after {
+    opacity: 1;
+}
+
+.modal-content-embedded.at-bottom::after {
+    opacity: 0;
+}
+
+/* Bounce animation for scroll arrow */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-8px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-4px);
+    }
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .button.expanding-to-modal,
+    .button.expanded-modal {
+        width: var(--modal-width-mobile) !important;
+        height: var(--modal-height-mobile) !important;
+        min-width: var(--modal-width-mobile) !important;
+        border-radius: var(--border-radius) !important;
+        top: calc(50% + calc(var(--navbar-height) / 2)) !important;
+    }
+
+    .modal-inner-content {
+        max-height: calc(90vh - 6rem) !important;
+    }
+
+    .button.expanded-modal .button-content {
+        display: none !important;
+    }
+}
+
+/* RTL support */
+[dir="rtl"] .button.expanding-to-modal,
+[dir="rtl"] .button.expanded-modal {
+    transform-origin: bottom right;
+}
