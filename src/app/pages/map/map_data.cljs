@@ -398,7 +398,7 @@
     :source-link "/maps/1981.NAP.MadinatIsa.tif"
     :issuer-link "/maps/1981.NAP.MadinatIsa.png"
     :link-1 "/documents/NAP - Madinat Isa Manual.pdf"
-    :link-1-label "Manama Manual"
+    :link-1-label "Madinat Isa Manual"
     :i18n {:en {:title "Madinat Isa"
                 :description "Part of National Addressing Project conducted in 1981. Scanned copy of accompanying manual provided"
                 :notes "Handreferenced. None of the NAP maps include any coordinates or projection information."
