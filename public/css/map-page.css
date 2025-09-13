@@ -1,5 +1,16 @@
 /* Map Page Layout and Controls */
 
+/* CSS Variables for common values */
+:root {
+    --map-height: calc(100vh - 3.25rem);
+    --map-height-mobile: calc(100dvh - 3.25rem);
+    --z-index-controls: 997;
+    --z-index-elevated: 998;
+    --z-index-modal-backdrop: 1000;
+    --z-index-modal: 1001;
+    --control-button-left: 12px;
+}
+
 /*
  * Map Page Layout
  * - Body is fixed to prevent scrolling
@@ -18,8 +29,8 @@ body.map-page {
 
 /* Map container - fills viewport minus navbar */
 #mapid {
-    height: calc(100vh - 3.25rem); /* Subtract Bulma navbar height (52px) */
-    height: calc(100dvh - 3.25rem); /* Progressive enhancement for mobile */
+    height: var(--map-height);
+    height: var(--map-height-mobile); /* Progressive enhancement for mobile */
     width: 100vw;
     width: 100dvw; /* Progressive enhancement */
     position: relative;
@@ -30,8 +41,8 @@ body.map-page {
 #map-history {
     overflow: hidden;
     position: relative;
-    height: calc(100vh - 3.25rem); /* Match map container height */
-    height: calc(100dvh - 3.25rem); /* Progressive enhancement */
+    height: var(--map-height);
+    height: var(--map-height-mobile); /* Progressive enhancement */
     padding-top: 0; /* Override any inherited padding */
 }
 
@@ -74,8 +85,8 @@ body.map-page {
     width: 30px;
     border-radius: 2px;
     font-size: 0.6rem;
-    left: 12px;
-    z-index: 998; /* Well above modal */
+    left: var(--control-button-left);
+    z-index: var(--z-index-elevated);
 }
 
 .download-button {
@@ -86,6 +97,7 @@ body.map-page {
     top: calc(170px + var(--navbar-height)); /* Account for navbar when fixed positioned */
 }
 
+/* Leaflet control customization */
 .leaflet-control-layers-toggle {
     background-image: url(../img/control-icon.png) !important;
     background-repeat: no-repeat !important;
@@ -100,14 +112,14 @@ body.map-page {
     color: #2c3e50 !important;
 }
 
-/* Description Modal */
+/* Legacy modal styles - to be removed once confirmed working */
 .modal-close {
     position: absolute !important;
     background: rgb(218, 41, 28) !important;
 }
 
 #modal-description {
-    z-index: 1000;
+    z-index: var(--z-index-modal-backdrop);
     background: whitesmoke;
     font-size: 12;
     width: fit-content;
@@ -118,169 +130,38 @@ body.map-page {
     box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
 }
 
-/* Modal content for map page descriptions */
-.modal-content-embedded {
-    overflow-y: visible;
-    overflow-x: hidden;
-    transition: opacity 150ms ease 75ms;
-    word-wrap: break-word;
-    word-break: break-word;
-    box-sizing: border-box;
-    height: 100%;
-    padding: 2.5rem 1rem 0.5rem 1rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-inner-content {
-    max-width: 100%;
-    width: 100%;
-    color: #333 !important;
-    background: white !important;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    line-height: 1.6;
-    height: 100%;
-    max-height: calc(80vh - 3rem);
-    overflow-y: auto !important;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    padding: 0 0.75rem 0.75rem 0.75rem;
-    text-align: left;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.modal-inner-content::-webkit-scrollbar {
-    display: none;
-}
-
-.modal-inner-content[dir="rtl"],
-.modal-inner-content[lang="ar"] {
-    text-align: right;
-    direction: rtl;
-}
-
-.modal-inner-content[dir="ltr"],
-.modal-inner-content[lang="en"] {
-    text-align: left;
-    direction: rtl;
-}
-
-.modal-inner-content[dir="ltr"] > *,
-.modal-inner-content[lang="en"] > * {
-    direction: ltr;
-}
-
-.modal-inner-content * {
-    color: #333 !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-.modal-inner-content a {
-    color: #DA291C !important;
-    text-decoration: underline !important;
-    transition: color 100ms ease !important;
-}
-
-.modal-inner-content .icon {
-    margin: 0 0 !important;
-}
-
-.modal-inner-content a:hover {
-    color: #b71c1c !important;
-    text-decoration: underline !important;
-}
-
-.modal-inner-content a:visited {
-    color: #8b1538 !important;
-}
-
-.modal-inner-content .panel-block {
-    background: white !important;
-    color: #333 !important;
-    padding: 0.5rem 0 !important;
-    overflow-y: visible !important;
-    height: auto !important;
-    min-height: auto !important;
-    max-height: none !important;
-    border: none !important;
-    display: block !important;
-    width: 100% !important;
-    word-wrap: break-word !important;
-    white-space: normal !important;
-    line-height: 1.5 !important;
-    margin-bottom: 0.25rem !important;
-}
-
-.modal-inner-content .panel-block.description-text {
-    max-height: none !important;
-    overflow-y: visible !important;
-    border-bottom: 1px solid #e0e0e0 !important;
-    padding-bottom: 0.75rem !important;
-    margin-bottom: 0.75rem !important;
-}
-
-.modal-inner-content strong {
-    color: #333 !important;
-    font-weight: 600 !important;
-}
-
-.modal-inner-content p,
-.modal-inner-content div,
-.modal-inner-content span {
-    white-space: normal !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-    hyphens: auto !important;
-}
-
-@media (max-width: 768px) {
-    .modal-inner-content {
-        max-height: calc(90vh - 6rem) !important;
-    }
-}
-
-/* Modal link styles */
-.modal-link {
-    color: #DA291C !important;
-}
-
-.modal-link-block {
-    color: #DA291C !important;
-}
-
+/* Modal link styles - consolidated */
+.modal-link,
+.modal-link-block,
 .modal-issuer-block {
     color: #DA291C !important;
-    padding-bottom: 10px;
 }
 
-/* Map page specific component styles */
+.modal-issuer-block,
 .submitter-block {
     padding-bottom: 10px;
 }
 
+/* Modal close button positioning */
 .modal-close-positioned {
     top: 10px;
     position: absolute;
     z-index: 10;
 }
 
+/* Map controls positioning */
 .switch-mode-button {
     position: absolute;
     top: 13px;
     left: 60px;
-    z-index: 997;
+    z-index: var(--z-index-controls);
 }
 
 .switch-mode-button[lang="ar"] {
     font-size: 105%;
 }
 
+/* Button content animation */
 .button-content-fade {
     transition: opacity 150ms ease;
 }
@@ -293,10 +174,12 @@ body.map-page {
     opacity: 1;
 }
 
+/* Icon spacing */
 .description-icon {
     margin-right: 1rem;
 }
 
+/* Container overflow control */
 .map-history-container {
     overflow-y: hidden;
 }
@@ -308,15 +191,15 @@ body.map-page {
     opacity: 0.6;
     bottom: 35px;
     width: 120px;
-    z-index: 998;
+    z-index: var(--z-index-elevated);
 }
 
 .transparency-slider.arabic {
-    left: 12px;
+    left: var(--control-button-left);
 }
 
 .transparency-slider.english {
-    right: 12px;
+    right: var(--control-button-left);
 }
 
 /* Modal button base styling */
@@ -330,21 +213,21 @@ body.map-page {
 }
 
 .modal-button.arabic {
-    right: 12px;
+    right: var(--control-button-left);
     transform-origin: bottom right;
 }
 
 .modal-button.english {
-    left: 12px;
+    left: var(--control-button-left);
     transform-origin: bottom left;
 }
 
 .modal-button.morphing {
-    z-index: 1001;
+    z-index: var(--z-index-modal);
 }
 
 .modal-button.normal {
-    z-index: 997;
+    z-index: var(--z-index-controls);
 }
 
 .modal-button.arabic.large-font {
