@@ -172,18 +172,10 @@
                             :year 1939
                             :source-file "Bahrein Island, 1939"
                             :status "needs-processing"}
-   "1939 - Pearl Banks" {:title "Pearl Banks - 1939"
-                         :year 1939
-                         :source-file "1939.Pearl Banks"
-                         :status "needs-processing"}
    "1939-40 - Hawar Islands" {:title "Hawar Islands"
                               :year 1939
                               :source-file "Hawar Islands, 1939:40"
                               :status "needs-processing"}
-   "1940 - Pearl Banks" {:title "Pearl Banks - 1940"
-                         :year 1940
-                         :source-file "1940.Pearl Banks"
-                         :status "needs-processing"}
    "1942 - Bahrein Island" {:title "Bahrein Island"
                             :year 1942
                             :source-file "Bahrein Island, 1942"
@@ -366,8 +358,7 @@
 
 
 (def maps
-  {
-   "1963 - Awali"
+  {"1963 - Awali"
    {:groups #{"Other"}
     :year 1963
     :url (form-tile-url "1963-Awali")
@@ -387,6 +378,40 @@
     :opts (merge base-opts {:minNativeZoom 13
                             :maxNativeZoom 19
                             :opacity 0.7})}
+   "1939 - Pearl Banks"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year  1939
+    :scale nil
+    :source "Qatar Digital Library"
+    :source-link "/maps/1939.Pearl Banks.jpg"
+    :issuer-link nil
+    :i18n {:en {:title "Pearl Banks - 1939"
+                :description "Blueprint showing the locations of pearling banks on the Trucial Coast indicated by numbered small circles with a dot in centre."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+   "1940 - Pearl Banks"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year  1940
+    :scale nil
+    :source-link "/maps/1940.Pearl Banks.jpg"
+    :source "Qatar Digital Library"
+    :issuer-link nil
+    :i18n {:en {:title "Pearl Banks - 1940"
+                :description "Batliboi Litho Works, Bombay 8’.  Distinctive Features: Pearl banks indicated by Arabic numerals, the names of topographic features including settlements, islands and pearl beds inserted in Arabic. In the lower right-hand corner of the sheet a descriptive note from the author, this starts and ends with prayers. It includes explanation to the surveying methods and reasons for creating the map, as well as the author’s approval and stamp with his name (Shaykh Mani’ ibn al-Shaykh Rashid al-Maktum), the date: 24 Jumada II 1359 AH, and a note ‘all right reserved’. Labels: Stamp in purple ink which states in Arabic that the map is not to be translated to any other language without author’s permission."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+
 
    "1981 - Madinat Isa"
    {:groups #{"Other" "National Addressing Project (1981)"}
@@ -410,7 +435,6 @@
     :opts (merge base-opts {:minNativeZoom 13
                             :maxNativeZoom 19
                             :opacity 0.8})}
-
 
    "1937 - Manama"
    {:groups #{"Manama"}
