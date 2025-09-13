@@ -193,7 +193,7 @@ body.map-page {
     border-radius: 2px;
     font-size: 0.6rem;
     left: 12px;
-    z-index: 1002; /* Well above modal */
+    z-index: 998; /* Well above modal */
 }
 
 .download-button {
