@@ -585,6 +585,27 @@
 
       (when show-description?
         [:div.modal-content-embedded
+         {:ref (fn [el]
+                 (when el
+                   ;; Set up scroll detection
+                   (let [check-scroll (fn []
+                                       (let [inner (.querySelector el ".modal-inner-content")]
+                                         (when inner
+                                           (let [scrollable? (> (.-scrollHeight inner) (.-clientHeight inner))
+                                                 at-bottom? (<= (- (.-scrollHeight inner) (.-scrollTop inner)) 
+                                                               (+ (.-clientHeight inner) 5))]
+                                             (if scrollable?
+                                               (do
+                                                 (.add (.-classList el) "has-scroll")
+                                                 (if at-bottom?
+                                                   (.add (.-classList el) "at-bottom")
+                                                   (.remove (.-classList el) "at-bottom")))
+                                               (.remove (.-classList el) "has-scroll"))))))]
+                     ;; Initial check
+                     (js/setTimeout check-scroll 100)
+                     ;; Set up scroll listener
+                     (when-let [inner (.querySelector el ".modal-inner-content")]
+                       (.addEventListener inner "scroll" check-scroll)))))}
          [modal-description-content state* arabic?]])]]))
 
 
