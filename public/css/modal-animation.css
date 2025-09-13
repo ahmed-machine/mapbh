@@ -1,0 +1,277 @@
+/* Button-to-Modal Expansion Animation */
+/* Gentle bounce animation for scroll arrow */
+
+.button.expanding-to-modal,
+.button.expanded-modal {
+    width: var(--modal-width) !important;
+    height: var(--modal-height) !important;
+    min-width: var(--modal-width) !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: white !important;
+    border: 1px solid var(--text-muted) !important;
+    border-radius: var(--border-radius-large) !important;
+    z-index: 1000 !important;
+}
+
+.button.expanding-to-modal {
+    overflow: hidden !important;
+    box-shadow: var(--shadow-lg) !important;
+    transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.button.expanded-modal {
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
+    transition: all 150ms ease !important;
+}
+
+.button.expanding-to-modal::before,
+.button.expanded-modal::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.05);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 125ms ease;
+    pointer-events: none;
+}
+
+.button.expanded-modal::before {
+    opacity: 1;
+    pointer-events: none;
+}
+
+.button.expanding-to-modal:not(.expanded-modal)::before {
+    opacity: 0;
+    transition: opacity 50ms ease;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: opacity 50ms ease;
+}
+
+.button.expanding-to-modal .button-content,
+.button.expanded-modal .button-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content-embedded {
+    overflow-y: visible;
+    overflow-x: hidden;
+    transition: opacity 150ms ease 75ms;
+    word-wrap: break-word;
+    word-break: break-word;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 2.5rem 0.5rem 0.5rem 0.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-inner-content {
+    max-width: 100%;
+    width: 100%;
+    color: #333 !important;
+    background: white !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.6;
+    height: 100%;
+    max-height: calc(80vh - 3rem);
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 0 0.75rem 0.75rem 0.75rem;
+    text-align: left;
+}
+
+.modal-inner-content[dir="rtl"],
+.modal-inner-content[lang="ar"] {
+    text-align: right;
+    direction: rtl;
+}
+
+.modal-inner-content[dir="ltr"],
+.modal-inner-content[lang="en"] {
+    text-align: left;
+    direction: rtl;
+}
+
+.modal-inner-content[dir="ltr"] > *,
+.modal-inner-content[lang="en"] > * {
+    direction: ltr;
+}
+
+.modal-inner-content {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.modal-inner-content::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-inner-content * {
+    color: #333 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.modal-inner-content a {
+    color: #DA291C !important;
+    text-decoration: underline !important;
+    transition: color 100ms ease !important;
+}
+
+.modal-inner-content .icon {
+    margin: 0 0 !important;
+}
+
+.modal-inner-content a:hover {
+    color: #b71c1c !important;
+    text-decoration: underline !important;
+}
+
+.modal-inner-content a:visited {
+    color: #8b1538 !important;
+}
+
+.modal-inner-content .panel-block {
+    background: white !important;
+    color: #333 !important;
+    padding: 0.5rem 0 !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    border: none !important;
+    display: block !important;
+    width: 100% !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.modal-inner-content .panel-block.description-text {
+    max-height: none !important;
+    overflow-y: visible !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.modal-inner-content strong {
+    color: #333 !important;
+    font-weight: 600 !important;
+}
+
+.modal-inner-content p,
+.modal-inner-content div,
+.modal-inner-content span {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+}
+
+.button.is-light[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.button.is-light span {
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .button.expanding-to-modal,
+    .button.expanded-modal {
+        width: var(--modal-width-mobile) !important;
+        height: var(--modal-height-mobile) !important;
+        min-width: var(--modal-width-mobile) !important;
+        border-radius: var(--border-radius) !important;
+        top: calc(50% + calc(var(--navbar-height) / 2)) !important;
+    }
+
+    .modal-inner-content {
+        max-height: calc(90vh - 6rem) !important;
+    }
+
+    .button.expanded-modal .button-content {
+        display: none !important;
+    }
+}
+
+[dir="rtl"] .button.expanding-to-modal,
+[dir="rtl"] .button.expanded-modal {
+    transform-origin: bottom right;
+}
+
+.button.expanded-modal .modal-close {
+    background: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    color: white;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.button.expanded-modal .modal-close:hover {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.modal-content-embedded::after {
+    content: '↓';
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.3);
+    animation: bounce 2s infinite;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease;
+    z-index: 10;
+}
+
+.modal-content-embedded.has-scroll::after {
+    opacity: 1;
+}
+
+.modal-content-embedded.at-bottom::after {
+    opacity: 0;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-8px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-4px);
+    }
+}

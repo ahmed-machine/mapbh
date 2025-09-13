@@ -215,7 +215,7 @@
   (let [export-state (reagent/atom :ready)]  ; :ready, :exporting
     (fn []
       (let [map (:map @state*)]  ; Get map from current state
-        [:button.download-button.button.is-small.is-light
+        [:button.download-button.button.is-small.is-light.is-outlined
          {:class (if (= @export-state :exporting) "is-warning" "is-success") ; yellow when loading, green when ready
           :on-click (fn []
                       (when map  ; Only proceed if map exists
@@ -623,9 +623,9 @@
                                                (set! (.-scrollCleanup el) cleanup))))
                                      :style {:opacity (if morphing? 0 1)
                                             :transition "opacity 150ms ease 150ms"}
-                                     :on-click (fn [e] 
+                                     :on-click (fn [e]
                                                 (when (= (.-target e) (.-currentTarget e))
-                                                  (close-modal state*)))} 
+                                                  (close-modal state*)))}
         [modal-description-content state* arabic?]])]))
 
 
