@@ -814,14 +814,6 @@ iframe {display:block; margin: 0 auto; text-align: center;}
     hyphens: auto !important;
 }
 
-/* Enhanced hover states for non-expanding button */
-.button.is-light:not(.expanding-to-modal):not(.expanded-modal):hover {
-    background-color: var(--background-light) !important;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    transition: var(--transition-smooth);
-}
-
 /* Disabled state */
 .button.is-light[disabled] {
     cursor: not-allowed;
