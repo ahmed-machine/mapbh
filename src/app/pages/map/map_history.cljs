@@ -138,8 +138,7 @@
           (str " " (:submitted-by txt)))])
      ;; Close button
      [:button.modal-close.is-large {:aria-label "close"
-                                    :style (merge {} (if arabic? {:left "8px"} {:right "8px"})
-                                                  {:top "8px" :position "absolute" :z-index 10})
+                                    :style {:top "10px" :position "absolute" :z-index 10}
                                     :on-click (fn [e]
                                                 (.preventDefault e)
                                                 (.stopPropagation e)
@@ -600,27 +599,25 @@
      (when show-description?
        [:div.modal-content-embedded {:ref (fn [el]
                                            (when el
-                                             ;; Set up scroll detection
-                                             (let [check-scroll (fn []
-                                                                (let [inner (.querySelector el ".modal-inner-content")]
-                                                                  (when inner
-                                                                    (let [scrollable? (> (.-scrollHeight inner) (.-clientHeight inner))
-                                                                          at-bottom? (<= (- (.-scrollHeight inner) (.-scrollTop inner)) 
-                                                                                       (+ (.-clientHeight inner) 5))] ; 5px tolerance
-                                                                      (if scrollable?
-                                                                        (do 
-                                                                          (.add (.-classList el) "has-scroll")
-                                                                          (if at-bottom?
-                                                                            (.add (.-classList el) "at-bottom")
-                                                                            (.remove (.-classList el) "at-bottom")))
-                                                                        (.remove (.-classList el) "has-scroll"))))))]
-                                               ;; Check initially
+                                             (let [check-scroll
+                                                   (fn []
+                                                     (when-let [inner (.querySelector el ".modal-inner-content")]
+                                                       (let [scrollable? (> (.-scrollHeight inner) (.-clientHeight inner))
+                                                             at-bottom? (<= (- (.-scrollHeight inner) (.-scrollTop inner))
+                                                                          (+ (.-clientHeight inner) 5))]
+                                                         (.toggle (.-classList el) "has-scroll" scrollable?)
+                                                         (.toggle (.-classList el) "at-bottom" at-bottom?))))
+                                                   cleanup (fn []
+                                                            (when-let [inner (.querySelector el ".modal-inner-content")]
+                                                              (.removeEventListener inner "scroll" check-scroll))
+                                                            (.removeEventListener js/window "resize" check-scroll))]
+                                               ;; Setup
                                                (js/setTimeout check-scroll 100)
-                                               ;; Check on scroll
                                                (when-let [inner (.querySelector el ".modal-inner-content")]
                                                  (.addEventListener inner "scroll" check-scroll))
-                                               ;; Check on window resize
-                                               (.addEventListener js/window "resize" check-scroll))))
+                                               (.addEventListener js/window "resize" check-scroll)
+                                               ;; Store cleanup function for potential future use
+                                               (set! (.-scrollCleanup el) cleanup))))
                                      :style {:opacity (if morphing? 0 1)
                                             :transition "opacity 150ms ease 150ms"}
                                      :on-click (fn [e] (.stopPropagation e))} ; Prevent backdrop click when clicking inside

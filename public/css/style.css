@@ -18,6 +18,13 @@
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
+
+    /* Modal dimensions */
+    --modal-width: min(80vw, 540px);
+    --modal-height: min(80vh, 500px);
+    --modal-width-mobile: 90vw;
+    --modal-height-mobile: calc(90vh - 3.25rem);
+    --navbar-height: 3.25rem;
 }
 
 body {
@@ -215,7 +222,6 @@ body.map-page {
 /* Description Modal */
 .modal-close {
     position: absolute !important;
-    top: 0 !important; left: unset; right:unset;
     background: rgb(218, 41, 28) !important;
 }
 
@@ -609,63 +615,37 @@ iframe {display:block; margin: 0 auto; text-align: center;}
     background-color: #f5f5f5; /* Default Bulma light button color */
 }
 
-/* Expanding animation - button grows to modal size */
-.button.expanding-to-modal {
-    /* Expand to modal dimensions - 10% narrower */
-    width: min(80vw, 540px) !important;
-    height: min(80vh, 500px) !important;
-    min-width: min(80vw, 540px) !important;
+/* Shared modal state styles - both expanding and expanded */
+.button.expanding-to-modal,
+.button.expanded-modal {
+    /* Modal dimensions */
+    width: var(--modal-width) !important;
+    height: var(--modal-height) !important;
+    min-width: var(--modal-width) !important;
 
     /* Center on screen */
     position: fixed !important;
     top: 50% !important;
     left: 50% !important;
-    bottom: unset !important;
-    right: unset !important;
     transform: translate(-50%, -50%) !important;
 
-    /* Modal-like appearance - force white background */
+    /* Modal appearance */
     background: white !important;
-    background-color: white !important;
     border: 1px solid var(--text-muted) !important;
     border-radius: var(--border-radius-large) !important;
-    box-shadow: var(--shadow-lg) !important;
-
-    /* High z-index to appear above everything */
     z-index: 1000 !important;
+}
 
-    /* Hide overflow during expansion */
+/* Specific to expanding state */
+.button.expanding-to-modal {
     overflow: hidden !important;
-
-    /* Spring-like easing for expansion */
+    box-shadow: var(--shadow-lg) !important;
     transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
-/* Fully expanded modal state */
+/* Specific to expanded state */
 .button.expanded-modal {
-    /* Same dimensions as expanding state - 10% narrower */
-    width: min(80vw, 540px) !important;
-    height: min(80vh, 500px) !important;
-    min-width: min(80vw, 540px) !important;
-
-    /* Fixed positioning */
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    bottom: unset !important;
-    right: unset !important;
-    transform: translate(-50%, -50%) !important;
-
-    /* Modal styling - force white background */
-    background: white !important;
-    background-color: white !important;
-    border: 1px solid var(--text-muted) !important;
-    border-radius: var(--border-radius-large) !important;
-
     box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
-    z-index: 1000 !important;
-
-    /* Smooth transitions */
     transition: all 150ms ease !important;
 }
 
@@ -742,43 +722,16 @@ iframe {display:block; margin: 0 auto; text-align: center;}
     text-align: left; /* Default left alignment for English */
 }
 
-/* Arabic/RTL text alignment */
+/* Text alignment based on language */
 .modal-inner-content[dir="rtl"],
 .modal-inner-content[lang="ar"] {
-    text-align: right !important;
-    direction: rtl !important;
+    text-align: right;
+    direction: rtl;
 }
 
-/* English/LTR with scrollbar on left using direction trick */
-.modal-inner-content[dir="ltr"],
-.modal-inner-content[lang="en"] {
-    text-align: left !important;
-    direction: rtl !important; /* This puts scrollbar on left */
-}
-
-/* Reset text direction for content inside English modal */
 .modal-inner-content[dir="ltr"] > *,
 .modal-inner-content[lang="en"] > * {
-    direction: ltr !important;
-}
-
-/* Scrollbar styling for better visibility */
-.modal-inner-content::-webkit-scrollbar {
-    width: 10px;
-}
-
-.modal-inner-content::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.modal-inner-content::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-.modal-inner-content::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    direction: ltr; /* Reset content direction */
 }
 
 /* Ensure all text in modal is visible and wraps properly */
@@ -874,21 +827,18 @@ iframe {display:block; margin: 0 auto; text-align: center;}
 @media (max-width: 768px) {
     .button.expanding-to-modal,
     .button.expanded-modal {
-        width: 90vw !important; /* Keep mobile a bit wider for readability */
-        height: calc(90vh - 3.25rem) !important; /* Account for navbar height (52px) */
-        max-height: calc(100vh - 4rem) !important; /* Ensure space from top */
-        min-width: 90vw !important;
+        width: var(--modal-width-mobile) !important;
+        height: var(--modal-height-mobile) !important;
+        min-width: var(--modal-width-mobile) !important;
         border-radius: var(--border-radius) !important;
-        top: calc(50% + 1.625rem) !important; /* Shift down by half navbar height */
+        top: calc(50% + calc(var(--navbar-height) / 2)) !important;
     }
 
-    /* Adjust modal content height on mobile */
     .modal-inner-content {
-        max-height: calc(90vh - 6rem) !important; /* Account for navbar + reduced padding */
+        max-height: calc(90vh - 6rem) !important;
     }
 
-    /* Hide Description button inside modal on mobile */
-    .button.expanded-modal .button-content{
+    .button.expanded-modal .button-content {
         display: none !important;
     }
 }
@@ -901,28 +851,22 @@ iframe {display:block; margin: 0 auto; text-align: center;}
 
 /* Close button styling */
 .button.expanded-modal .modal-close {
-    border: 2px solid #DA291C !important;
-    content: '';
-    border-radius: 50% !important;
-    background: #DA291C !important;
-    color: #white !important;
-    font-size: 18px !important;
-    width: 36px !important;
-    height: 36px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
-    transition: all 100ms ease !important;
-    margin: 1rem 0 !important; /* Add 1rem margin on all sides */
+    background: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    color: white;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    right: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
 }
 
 .button.expanded-modal .modal-close:hover {
-
-    background: rgba(255, 255, 255, 0.95) !important;
-    color: white !important;
-    transform: scale(1.1) !important;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--accent-color);
+    transform: scale(1.1);
 }
 
 /* Scroll indicator arrow at bottom of modal */
