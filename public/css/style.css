@@ -23,7 +23,7 @@
     --modal-width: min(80vw, 540px);
     --modal-height: min(80vh, 500px);
     --modal-width-mobile: 90vw;
-    --modal-height-mobile: calc(90vh - 3.25rem);
+    --modal-height-mobile: calc(72vh - 3.25rem);
     --navbar-height: 3.25rem;
 }
 

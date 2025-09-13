@@ -5,7 +5,7 @@
     --modal-z-backdrop: 1000;
     --modal-z-content: 1001;
     --modal-transform-center: translate(-50%, -50%);
-    --modal-transition-expand: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    --modal-transition-expand: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
     --modal-transition-fast: all 150ms ease;
 }
 
