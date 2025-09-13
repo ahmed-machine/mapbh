@@ -127,7 +127,7 @@ body.map-page {
     word-break: break-word;
     box-sizing: border-box;
     height: 100%;
-    padding: 2.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 2.5rem 1rem 0.5rem 1rem;
     position: relative;
     display: flex;
     flex-direction: column;

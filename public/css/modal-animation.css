@@ -30,7 +30,7 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.8);
-    z-index: 999;
+    z-index: 1000;
     cursor: pointer;
 }
 
@@ -59,6 +59,7 @@
 .button.expanding-to-modal .button-content,
 .button.expanded-modal .button-content {
     opacity: 0;
+    display: none;
     pointer-events: none;
 }
 
@@ -70,7 +71,7 @@
     word-break: break-word;
     box-sizing: border-box;
     height: 100%;
-    padding: 2.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 2.5rem 1rem 0.5rem 1rem;
     position: relative;
     display: flex;
     flex-direction: column;
