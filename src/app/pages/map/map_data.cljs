@@ -410,6 +410,23 @@
                 :description nil
                 :notes nil
                 :labels nil}}}
+   "1694 - Carte Des Trois Arabies"
+   {:groups #{"Gulf"}
+    :viewable false
+    :year  1694
+    :scale nil
+    :source-link "/maps/1694-Carte Des Trois Arabies.png"
+    :source "Bibliothèque nationale de France"
+    :i18n {:en {:title "Carte Des Trois Arabies"
+                :description "At top right, the sober monument-style map cartouche covers inland Persia and includes the title, authorship, printing privilege, and the 1654 publication date. The subtitle reads: “tirée en partie de l'Arabe de Nubie, en partie de divers autres Autheurs” (taken in part from the Arab of Nubia, in part from various other authors). The “Arab of Nubia” refers to twelfth-century Moroccan Arab geographer al-Idrissi. Al-Idrissi’s work Kitab nuzhat al-mushtaq fi'khtiraq al-afaq, also known popularly as the Tabula Rogeriana, is an exhaustive description and accompanying map of the world commissioned by King Roger II of Sicily. A Latin translation of Al-Idrisi’s work was published in 1619 as Geographia Nubiensis, from which Sanson derived the information to populate this map. The three Arabias on this map refer to regions named during the Hellenistic period, popularized by Ptolemy: Arabia Petrae (Petree), Arabia Deserta (Desertee), and Arabia Felix (Heureuse). Arabia Petrae (Stony Arabia), Rome’s province, was named for its capital, Petra. Arabia Deserta signifies the desert interior of the peninsula, and Arabia Felix (Fortunate Arabia) was named for its relative greenery and fortunate agricultural climate. The bounds of these three regions often differ between mapmakers and across time, although the names stay consistent.
+  The naming of water bodies on this map evidences contrasting names given by various sources. The Gulf between Persia and Saudi Arabia is called the \"Golfe de Balsera, et Mer Del Cattif, autrefois Golfe de Perse\" (Balsera Gulf and Sea of Cattif formerly known as the Gulf of Persia). Balsera (Basra, Iraq) and Cattif (Qatif, Saudi Arabia) are both longstanding ports on the Persian Gulf. Ptolemy and his contemporaries named this body of water the Persian Gulf, hence the name as used here. Between Africa and the Arabian Peninsula, the sea is labeled “Mer Rouge et Mer de la Mecque, Golfe D’Arabie aux Anciens” (Red Sea and Sea of Mecca, Arabian Gulf to the ancients). The Red Sea was referred to by the Ottomans as the Sea of Mecca, so Sanson likely worked from authors with Turkish sources. Alternate spellings are provided for the Bab-el-Mandeb (lit. “Gate of Tears”), the treacherous narrow strait separating Yemen and the Horn of Africa.
+  Iraq (Yerak) and Bahrain (Bahraim) are separately demarcated areas, and Arabie Heureuse is also labeled as Yemen (Hyaman). Ottoman control of the Holy Land is clearly marked. (Description sourced from raremaps.com, document from  Bibliothèque nationale de France)"
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
 
 
 
