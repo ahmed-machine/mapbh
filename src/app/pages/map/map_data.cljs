@@ -410,6 +410,54 @@
                 :description nil
                 :notes nil
                 :labels nil}}}
+   "1595 - Deliniantur in hac tabula, Orae maritimae Abexiae, freti Mecani, al Maris Rubri, Arabiae, Ormi, Persiae... / Henricus F. ab Langren sculpsit (sketch)"
+   {:groups #{"Gulf"}
+    :viewable false
+    :year  1595
+    :scale nil
+    :source-link "/maps/1595- Deliniantur in hac tabula.png"
+    :source "Qatar National Library"
+    :i18n {:en {:title "Deliniantur in hac tabula, Orae maritimae Abexiae, freti Mecani, al Maris Rubri, Arabiae, Ormi, Persiae... / Henricus F. ab Langren sculpsit (sketch)"
+                :description "In this table are delineated the coasts of the Abyssinia, the Straits of Mecca, and the Red Sea of ​​Arabia, the coasts of Persia, from Sindam to the Rivers of India, Camba, India and Mala: the Bars, Influxes, Ceylon, Choromandelia, and Orixa, the Rivers of the Ganges, and the Kingdom of Bengal: the positions of the Bays, Influxes, Shoals, Cushions, Fords, and depths, as well as the adjacent seas, with the genuine names of the individual places, as required by the most expert Luftanic ship-Governors: with great study from the best Indian tables, all of which have been revised and improved.
+  Images of the coasts of Abex, the mouth of Mecha, otherwise called the Red Sea, reaching the coasts of Arabia, Ormus, Perfen, to Sinule, mother Rivers Fndus, Cambayen, Judea, end Malabar, the islands of Ceylon, Choromandel, end Orixa, the River Ganges, ends The kingdom of Bengal offered strange opportunities of mountains, islands, cliffs, banks, shallows and depths, with the right names of similar places, alfoo the Zelue offered the most experienced Portuguese villages, all of which were large: flies out the best fe Indianſche Pas ende Life-caerten, ears fine end improved"
+                :notes "Gorgeous 16th Century map of the region centered on the Indian Ocean, from Linschoten's Itinerario. Linschoten's work was a significant advance in the mapping of India and the Middle East. As noted by Tibbetts, the surprising fact about the representation of the (Arabian) peninsula is the close resemblance of the outline to that of a modern map when compared with other engraved maps of the time. Linschoten's maps are styled after Portuguese portolan charts of the 16th Century, upon which the map is based. Even in printed form, these maps retain the lush decorative flourishes of their sources. Linschoten acquired most of the information for the map while serving as the secretary to the Portuguese archbishop in Goa, India from 1583 to 1589. Of particular value were the sailing guides he obtained that not only provided the best sailing routes to the East Indies and its lucrative spice trade but also showed the way from port to port once there. Upon his return to the Netherlands, Linschoten published these documents with accompanying maps and his own descriptions of the area in his monumental Itinerario. Few books have had greater influence on historical events. The extensive details of coastal and other navigational points are likely based on portolan charts of the Portuguese, especially those by Bartolomeu Lasso. Linschoten was ‘one of the pathfinders for the first Dutch voyages to the East’ (Schilder, p. 195). He was in the service of the Portuguese as Secretary to the Portuguese Archbishop of Goa in India from 1583 to 1589. Here, he had access to many Portuguese portolans as well as other valuable commercial information, especially as Goa at this time was the commercial and political center for the Portugal Empire in the East. Van Linschoten left Goa for home in January 1589. On the way to Portugal, his ship was pursued by an English fleet and lost its cargo in a storm while anchored off the Azores. After the loss of the cargo, Van Linschoten was persuaded to stay and help recover it; he spent two years on Tercera, working and preparing his notes from Goa. Van Linschoten eventually arrived in Lisbon early in 1592, and then sailed home to The Netherlands. His account of his experiences is one of the most important travel works of the period. (notes from raremaps.com)"
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+   "1596 - Deliniantur in hac tabula, Orae maritimae Abexiae, freti Mecani, al Maris Rubri, Arabiae, Ormi, Persiae... / Henricus F. ab Langren sculpsit (color)"
+   {:groups #{"Gulf"}
+    :viewable false
+    :year  1596
+    :scale nil
+    :source-link "/maps/1596- Deliniantur in hac tabula.png"
+    :source "Qatar National Library"
+    :i18n {:en {:title "Deliniantur in hac tabula, Orae maritimae Abexiae, freti Mecani, al Maris Rubri, Arabiae, Ormi, Persiae... / Henricus F. ab Langren sculpsit (color)"
+                :description "In this table are delineated the coasts of the Abyssinia, the Straits of Mecca, and the Red Sea of ​​Arabia, the coasts of Persia, from Sindam to the Rivers of India, Camba, India and Mala: the Bars, Influxes, Ceylon, Choromandelia, and Orixa, the Rivers of the Ganges, and the Kingdom of Bengal: the positions of the Bays, Influxes, Shoals, Cushions, Fords, and depths, as well as the adjacent seas, with the genuine names of the individual places, as required by the most expert Luftanic ship-Governors: with great study from the best Indian tables, all of which have been revised and improved.
+  Images of the coasts of Abex, the mouth of Mecha, otherwise called the Red Sea, reaching the coasts of Arabia, Ormus, Perfen, to Sinule, mother Rivers Fndus, Cambayen, Judea, end Malabar, the islands of Ceylon, Choromandel, end Orixa, the River Ganges, ends The kingdom of Bengal offered strange opportunities of mountains, islands, cliffs, banks, shallows and depths, with the right names of similar places, alfoo the Zelue offered the most experienced Portuguese villages, all of which were large: flies out the best fe Indianſche Pas ende Life-caerten, ears fine end improved"
+                :notes "Gorgeous 16th Century map of the region centered on the Indian Ocean, from Linschoten's Itinerario. Linschoten's work was a significant advance in the mapping of India and the Middle East. As noted by Tibbetts, the surprising fact about the representation of the (Arabian) peninsula is the close resemblance of the outline to that of a modern map when compared with other engraved maps of the time. Linschoten's maps are styled after Portuguese portolan charts of the 16th Century, upon which the map is based. Even in printed form, these maps retain the lush decorative flourishes of their sources. Linschoten acquired most of the information for the map while serving as the secretary to the Portuguese archbishop in Goa, India from 1583 to 1589. Of particular value were the sailing guides he obtained that not only provided the best sailing routes to the East Indies and its lucrative spice trade but also showed the way from port to port once there. Upon his return to the Netherlands, Linschoten published these documents with accompanying maps and his own descriptions of the area in his monumental Itinerario. Few books have had greater influence on historical events. The extensive details of coastal and other navigational points are likely based on portolan charts of the Portuguese, especially those by Bartolomeu Lasso. Linschoten was ‘one of the pathfinders for the first Dutch voyages to the East’ (Schilder, p. 195). He was in the service of the Portuguese as Secretary to the Portuguese Archbishop of Goa in India from 1583 to 1589. Here, he had access to many Portuguese portolans as well as other valuable commercial information, especially as Goa at this time was the commercial and political center for the Portugal Empire in the East. Van Linschoten left Goa for home in January 1589. On the way to Portugal, his ship was pursued by an English fleet and lost its cargo in a storm while anchored off the Azores. After the loss of the cargo, Van Linschoten was persuaded to stay and help recover it; he spent two years on Tercera, working and preparing his notes from Goa. Van Linschoten eventually arrived in Lisbon early in 1592, and then sailed home to The Netherlands. His account of his experiences is one of the most important travel works of the period. (notes from raremaps.com)"
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+   "1606 - Turcici Imperii Imago"
+   {:groups #{"Gulf"}
+    :viewable false
+    :year  1606
+    :scale nil
+    :source-link "/maps/1606-Turcici Imperii Imago.png"
+    :source "Bibliothèque nationale de France"
+    :i18n {:en {:title "Turcici Imperii Imago"
+                :description "A map of the Ottoman Empire, showing the Arabian Peninsula with an accurate description of the Ottoman Empire in Asia and Africa, and with many details about the Arabian Peninsula and the Persian Gulf region. It was published in Latin in 1606 and drawn by Jodocus Hondius based on the map of the famous Belgian cartographer Gerhard Mercator with some modifications. It is hand-colored, and the title is decorated with a drawing of one of the Ottoman sultans. Relief shown pictorially., Hand colored., The map has a decorative cartouche with the portrait of Ottoman Sultan Mahumet Turcorum Imperat 2., Detail is extracted from the maps of the Mercators."
+                :notes "Fine Map of the Ottoman Empire from the Mercator-Hondius Atlas. Striking example of this map of the Ottoman Empire, showing their territories in the Balkans, Anatolia, the Levant, the Arabian Peninsula, and North Africa. It was published by Henricus Hondius in his Atlas sive Cosmographicae Meditationes de Fabrica Mundi et Fabricati figura, which translates to the “atlas or cosmographical meditations on the fabric of the world and the figure of the fabric.” This was the atlas begun by the famous Gerard Mercator and published by the Hondius firm throughout the seventeenth century. The border of the Ottoman Empire is marked with a dotted line, demarcating one of the largest land empires in history. Cities and towns are labeled and marked with the characteristic small building symbol that was used throughout the atlas. Mountains and dunes are included, especially on the Arabian Peninsula. Notes indicate extra information about the Caspian Sea, Black Sea, and kingdoms that ring the Ottomans. A handsome strapwork cartouche holds the title and scale in the lower left corner. At the top is a portrait of Sultan Mahumet Turcorum Imperat. This refers to Mehmed III, sultan from 1595-1603. Mehmed III is known for the fratricide of his nineteenth brothers, the war with Austria-Hungary, the Jelali Revolts, and the reception of Queen Elizabeth I’s envoy in 1599. This map first appeared in the atlas in 1606, an additional plate added by Jodocus Hondius. It continued to appear there until the French edition of 1639-44.(notes from raremaps.com)"
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
    "1694 - Carte Des Trois Arabies"
    {:groups #{"Gulf"}
     :viewable false
@@ -427,8 +475,6 @@
                 :description nil
                 :notes nil
                 :labels nil}}}
-
-
 
    "1981 - Madinat Isa"
    {:groups #{"Other" "National Addressing Project (1981)"}
