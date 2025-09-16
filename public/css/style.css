@@ -98,13 +98,9 @@ body {
         padding: 0 0.5rem;
     }
 
-    .navbar-brand .logo {
-        font-size: 1rem;
-    }
-
     .navbar-menu.is-active .navbar-item {
         padding: 0.5rem 0.15rem;
-        font-size: 0.65rem;
+        font-size: 0.75rem;
     }
 
     /* Language switcher */
@@ -164,6 +160,10 @@ a.navbar-item:hover {
     justify-content: flex-end;
     margin-left: auto;
 }
+.navbar-brand .logo {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+}
+
 
 /* Enhanced Homepage Button Styling */
 .home .navbar .button {
@@ -219,7 +219,6 @@ a.navbar-item:hover {
 /* Enhanced Logo Styling */
 .logo {
     font-family: 'Comfortaa', serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 400;
     letter-spacing: -0.02em;
     transition: var(--transition-smooth);
@@ -283,9 +282,7 @@ iframe.video {
 :lang(ar) {font-family: "Amiri", "Scheherazade", serif;
            .logo{
                font-family: 'Comfortaa', serif;
-               font-size: clamp(1.5rem, 3vw, 2rem);
                font-weight: 400;
-               letter-spacing: -0.02em;
                transition: var(--transition-smooth);
                color: var(--primary-color);
            }}
