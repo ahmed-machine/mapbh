@@ -1,0 +1,77 @@
+@font-face {
+  font-family: "Comfortaa";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 300 700;
+  font-stretch: 100;
+  src: 
+    url("Comfortaa.woff2") format("woff2"),
+    url("Comfortaa.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Crimson Text";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100;
+  src: 
+    url("CrimsonText-Regular.woff2") format("woff2"),
+    url("CrimsonText-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Crimson Text";
+  font-display: swap;
+  font-style: oblique 11deg;
+  font-weight: 400;
+  font-stretch: 100;
+  src: 
+    url("CrimsonText-Regular-Italic.woff2") format("woff2"),
+    url("CrimsonText-Regular-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Crimson Text";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100;
+  src: 
+    url("CrimsonText-SemiBold.woff2") format("woff2"),
+    url("CrimsonText-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Crimson Text";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100;
+  src: 
+    url("CrimsonText-Bold.woff2") format("woff2"),
+    url("CrimsonText-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Amiri";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100;
+  src: 
+    url("Amiri-Regular.woff2") format("woff2"),
+    url("Amiri-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Amiri";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100;
+  src: 
+    url("Amiri-Bold.woff2") format("woff2"),
+    url("Amiri-Bold.ttf") format("truetype");
+}
+

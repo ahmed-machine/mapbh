@@ -5,25 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 
     <!-- Primary SEO Meta Tags -->
-    <title>mapBH - Historical Maps of Bahrain | Interactive Map Archive</title>
-    <meta name="title" content="mapBH - Historical Maps of Bahrain | Interactive Map Archive">
+    <title>mapBH - Historical Maps Archive of Bahrain | Interactive Map</title>
+    <meta name="title" content="mapBH - Historical Maps Archive of Bahrain | Interactive Map">
     <meta name="description" content="Explore Bahrain's history through interactive historical maps from the 19th century onwards. Discover urban development, land reclamation, green belt, and geographical changes over time.">
     <meta name="keywords" content="Bahrain historical maps, historical cartography, Bahrain geography, land reclamation, urban development, Middle East history, interactive maps, GIS Bahrain, historical research, Arabian Gulf maps">
     <meta name="author" content="mapBH">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://mapbh.org/">
-    
+
     <!-- Language alternates for SEO -->
     <link rel="alternate" hreflang="en" href="https://mapbh.org/" />
     <link rel="alternate" hreflang="ar" href="https://mapbh.org/ar/" />
     <link rel="alternate" hreflang="x-default" href="https://mapbh.org/" />
-
-    <!-- Language and Geo Meta Tags -->
-    <meta name="language" content="English">
-    <meta name="geo.region" content="BH">
-    <meta name="geo.placename" content="Bahrain">
-    <meta name="geo.position" content="26.0667;50.5577">
-    <meta name="ICBM" content="26.0667, 50.5577">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website">
@@ -52,7 +45,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -126,7 +119,7 @@
           "box": "25.5 50.0 26.5 51.0"
         }
       },
-      "temporalCoverage": "1914/2030",
+      "temporalCoverage": "1550/2030",
       "distribution": {
         "@type": "DataDownload",
         "encodingFormat": "application/geo+json",
@@ -135,23 +128,22 @@
       "license": "https://creativecommons.org/licenses/by-nc/4.0/"
     }
     </script>
+    <!-- Language and Geo Meta Tags -->
+    <meta name="language" content="English">
+    <meta name="geo.region" content="BH">
+    <meta name="geo.placename" content="Bahrain">
+    <meta name="geo.position" content="26.0667;50.5577">
+    <meta name="ICBM" content="26.0667, 50.5577">
+
 
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "703452750a5d4facb9914c1fbbe5fc46"}'></script>
     <!-- Critical CSS first -->
     <link rel="stylesheet" href="/css/bulma.min.css" type="text/css">
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/fonts/fonts.css" type="text/css">
     <link rel="stylesheet" href="/css/map-page.css" type="text/css">
     <link rel="stylesheet" href="/css/modal-animation.css" type="text/css">
-
-    <!-- Preload critical fonts with font-display: swap -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Preload critical logo font to prevent flash -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/comfortaa/v45/1Pt_g8LJRfWJmhDAuUsSQamb1W0lwk4S4WjMDrMfIA.woff2" as="font" type="font/woff2" crossorigin>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400&display=swap" rel="stylesheet">
 
     <!-- Preload main JS -->
     <link rel="modulepreload" href="/js/main.js">
@@ -162,10 +154,6 @@
     <link rel="stylesheet" href="/css/leaflet.groupedlayercontrol.css" type="text/css">
     <link rel="stylesheet" href="/css/Control.Geocoder.css" type="text/css">
     <link rel="stylesheet" href="/css/L.Control.Locate.min.css" type="text/css">
-
-    <!-- Load all fonts with display=swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=fallback" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400&display=swap" rel="stylesheet">
 
     <!-- Font Awesome - load asynchronously -->
     <script async src="/js/669ffff4fe.js" crossorigin="anonymous"></script>
@@ -184,15 +172,7 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
-    <!-- Critical CSS for logo to prevent font flash -->
     <style>
-      /* Preload critical logo styles to prevent flash */
-      .logo {
-        font-family: 'Comfortaa', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: 1.25em;
-        font-display: fallback;
-      }
-      
       /* Accessibility CSS */
       .sr-only {
         position: absolute !important;
@@ -237,11 +217,11 @@
         <noscript>
           <div class="container">
             <h1>mapBH - Historical Maps of Bahrain</h1>
-            <p>This interactive map application showcases the historical development of Bahrain from 1914 to 2030.
+            <p>This interactive map application showcases the historical development of Bahrain from the 19th century to the modern day.
                Please enable JavaScript to view the interactive maps and explore Bahrain's fascinating geographical evolution.</p>
             <p>Features include:</p>
             <ul>
-              <li>Interactive historical maps from 1914-2030</li>
+              <li>Interactive historical maps from the 19th century to modern day</li>
               <li>Land reclamation visualization</li>
               <li>Urban development tracking</li>
               <li>Side-by-side map comparison</li>
