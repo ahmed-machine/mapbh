@@ -475,18 +475,18 @@
                 :description nil
                 :notes nil
                 :labels nil}}}
-  "1154 - Idrissi"
+  "1154 - Idrisi"
    {:groups #{"Gulf"}
     :viewable false
     :year  1154
     :scale nil
-    :source-link "/maps/1154-Nuzhat al-mushtāq fī ikhtirāq al-āfāq (Bahrain).png"
+    :source-link "/maps/1154-Idirisi (Bahrain).png"
     :source "Bibliothèque nationale de France"
     :issuer "Regional Map"
-    :issuer-link "/maps/1154-Nuzhat al-mushtāq fī ikhtirāq al-āfāq (region).jpg"
+    :issuer-link "/maps/1154-Idrisi (region).jpg"
     :link-1 "/documents/كتاب نزهة المشتاق في اختراق الآفاق  - اوال.pdf"
     :link-2 "/documents/ (manuscript) كتاب نزهة المشتاق في اختراق الآفاق  - اوال.pdf"
-    :link-3 "/maps/1154-Nuzhat al-mushtāq fī ikhtirāq al-āfāq.jp2"
+    :link-3 "/maps/1154-Idrisi.jp2"
     :link-1-label "Description of Awal (regular text)"
     :link-2-label "Description of Awal (1250-1325 manuscript)"
     :link-3-label "1951 Arabic recompilation of al-Idrisi's world map"
