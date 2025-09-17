@@ -18,7 +18,8 @@
                :download-source "تحميل المصدر"
                :original-file "الملف الأصلي"
                :additional-link "رابط إضافي"
-               :additional-link-2 "رابط إضافي ثاني"}
+               :additional-link-2 "رابط إضافي ثاني"
+               :additional-link-3 "رابط إضافي ثالث"}
      :navigation {:home "الرئيسية"
                   :catalogue "فهرس الخرائط"}
      :errors {:not-found "الخريطة غير موجودة"
@@ -35,7 +36,8 @@
                :download-source "Download Source"
                :original-file "Original File"
                :additional-link "Additional Link"
-               :additional-link-2 "Additional Link 2"}
+               :additional-link-2 "Additional Link 2"
+               :additional-link-3 "Additional Link 3"}
      :navigation {:home "Home"
                   :catalogue "Catalogue"}
      :errors {:not-found "Map Not Found"
@@ -148,7 +150,17 @@
                                                 {:margin-left "0.5rem" :padding "0.2rem"}
                                                 {:margin-right "0.5rem" :padding "0.2rem"})}]
         (or (:link-2-label map-info)
-            (get-in (text is-arabic) [:buttons :additional-link-2]))])]))
+            (get-in (text is-arabic) [:buttons :additional-link-2]))])
+
+     (when (:link-3 map-info)
+       [:a.button.is-light.is-small
+        {:href (:link-3 map-info)
+         :target "_blank"}
+        [:i.fas.fa-external-link-alt {:style (if is-arabic
+                                                {:margin-left "0.5rem" :padding "0.2rem"}
+                                                {:margin-right "0.5rem" :padding "0.2rem"})}]
+        (or (:link-3-label map-info)
+            (get-in (text is-arabic) [:buttons :additional-link-3]))])]))
 
 (defn map-thumbnail
   "Render map thumbnail if available"

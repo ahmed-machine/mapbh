@@ -1,6 +1,8 @@
 public/maps/1977-Bahrain-stitched.zip !text !filter !merge !diff
-*.tif filter=lfs diff=lfs merge=lfs -text
-*.zip filter=lfs diff=lfs merge=lfs -text
-*.mbtiles filter=lfs diff=lfs merge=lfs -text
-*.tiff filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
+public/maps/*.tif filter=lfs diff=lfs merge=lfs -text
+public/maps/*.zip filter=lfs diff=lfs merge=lfs -text
+public/maps/*.mbtiles filter=lfs diff=lfs merge=lfs -text
+public/maps/*.tiff filter=lfs diff=lfs merge=lfs -text
+public/maps/*.png filter=lfs diff=lfs merge=lfs -text
+public/maps/*.jp2 filter=lfs diff=lfs merge=lfs -text
+public/maps/*.jpg filter=lfs diff=lfs merge=lfs -text

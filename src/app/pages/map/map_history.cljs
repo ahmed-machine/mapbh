@@ -64,7 +64,8 @@
                               :issuer-header "Issuer"
                               :submitter-header "Submitted by"
                               :additional-link "Additional Link"
-                              :additional-link-2 "Additional Link 2"} details)
+                              :additional-link-2 "Additional Link 2"
+                              :additional-link-3 "Additional Link 3"} details)
          :buttons {:switch-mode {:transparency "Transparency Mode"
                                  :split "Split Mode"}
                    :description "Description"}}
@@ -76,7 +77,8 @@
                               :issuer-header "الناشر"
                               :submitter-header " مساهمة"
                               :additional-link "رابط إضافي"
-                              :additional-link-2 "رابط إضافي ثاني"} ar-details)
+                              :additional-link-2 "رابط إضافي ثاني"
+                              :additional-link-3 "رابط إضافي ثالث"} ar-details)
          :buttons {:switch-mode {:transparency "شفاف"
                                  :split "ابو قسمين"}
                    :description  "تفاصيل"}}} (if arabic? :ar :en)))
@@ -120,6 +122,13 @@
          [:span.icon.home [:i.fas.fa-external-link-alt]]
          (or (:link-2-label details)
              (:additional-link-2 txt))]])
+     (when (:link-3 details)
+       [:a {:href (:link-3 details)
+            :target "_blank"}
+        [:div.panel-block.modal-link-block
+         [:span.icon.home [:i.fas.fa-external-link-alt]]
+         (or (:link-3-label details)
+             (:additional-link-3 txt))]])
      [:p.panel-block.description-text
       [:strong (:notes-header txt)] ": " (:notes txt)]
      [:a.modal-link {:href (:source-link details)}

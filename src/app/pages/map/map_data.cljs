@@ -475,6 +475,34 @@
                 :description nil
                 :notes nil
                 :labels nil}}}
+  "1154 - Idrissi"
+   {:groups #{"Gulf"}
+    :viewable false
+    :year  1154
+    :scale nil
+    :source-link "/maps/1154-Nuzhat al-mushtāq fī ikhtirāq al-āfāq (Bahrain).png"
+    :source "Bibliothèque nationale de France"
+    :issuer "Regional Map"
+    :issuer-link "/maps/1154-Nuzhat al-mushtāq fī ikhtirāq al-āfāq (region).jpg"
+    :link-1 "/documents/كتاب نزهة المشتاق في اختراق الآفاق  - اوال.pdf"
+    :link-2 "/documents/ (manuscript) كتاب نزهة المشتاق في اختراق الآفاق  - اوال.pdf"
+    :link-3 "/maps/1154-Nuzhat al-mushtāq fī ikhtirāq al-āfāq.jp2"
+    :link-1-label "Description of Awal (regular text)"
+    :link-2-label "Description of Awal (1250-1325 manuscript)"
+    :link-3-label "1951 Arabic recompilation of al-Idrisi's world map"
+    :i18n {:en {:title "Tabula Rogerina, or The Excursion of the One Who Yearns to Penetrate the Horizons"
+                :description "Bahrain is depicted as ‘Awal island’ (3rd latitude, 6th section). Bahrain, as a historic region, is also mentioned extensively. Al-Idrisi names famous springs such as Adhari, Abu Zaidan, and Muwailgha. He casts doubt on local claims that Adhari is connected to the sea and goes into extensive detail on pearl diving and its trade. In some reproductions of this map, Awal isn’t labelled on the map likely due to deterioration of the base copies, but earlier manuscripts had Awal clearly labelled on it. A 14-page pdf with the original description of Awal by al-Idrissi and a manuscript from 1250-1325 with the original map section + description (pdf) are uploaded on the site. A 1951 re-translation to Arabic by Baghdad’s Survey Publishers is available."
+                :notes "Al-Idrisi was commissioned by King Roger II of Sicily for this work. He was influenced by Ptolemy’s (2nd c.) 'Geography', which had been translated into Arabic by al-Khawarizmi (9th c.) and al-Battani (10th c.). Al-Idrisi worked for 15 years, with other geographers and scholars of the court, to complete his famous disc map on a six-foot silver disc with accompanying text + additional maps for the book. Al-Idrisi and his court compared data, interviewed and documented consistent reports from travelers, and eliminated conflicting information. The result was a compendium of the socioeconomic, physical, cultural, and political conditions of the time, with 70 maps of population centers (7 latitudinal sections, 10 subdivisions each). Notably, Mecca and the Arabian peninsula are centered and depicted at the top of this map.
+There are many derivative versions of this map; Europeans first republished it in 1592 in Roma in the Medici press. In 1600, it was translated to Italian, and Latin in 1619 in Paris under the title 'Geographia Nubiensis'. Al-Idrissi came to be known as l’Arabe de Nubie. This was the most accurate map of the world at the time of the invention of the printing press. The most common version found online is a 1928 composite rectangular map, with the labels romanised, made by a German historian named Konrad Miller."
+                :labels nil}
+           :ar {:title "نزهة المشتاق في اختراق الآفاق"
+                :description "تظهر البحرين هنا باسم جزيرة أوال (خط العرض الثالث، القسم السادس). كما يُذكر إقليم البحرين التاريخي تكراراً. يذكر الإدريسي في كتابه عيون البحرين المشهورة مثل عين عذاري، وأبو زيدان، والمويلغة. ويشكك الادريسي في الادعاءات المحلية التي تقول إن عين عذاري متصلة بالبحر، ويغوص في وصف تفاصيل غوص اللؤلؤ وتجاراته. في بعض النسخ المستعادة لهذه الخريطة، لا يظهر اسم أوال، ويُرجّح أن ذلك بسبب تدهور النسخ الأصلية التي استُخدمت لإعادة الإنتاج، بينما المخطوطات القديمة أظهرت أوال بوضوح. يرافق هذا الإصدار ملف PDF من ١٤ صفحة يحتوي على الوصف الأصلي لأوال بقلم الإدريسي، بالإضافة إلى مخطوطة اصلية من الفترة ١٢٥٠–١٣٢٥ تضم مقطع الخريطة الأصلي مع الوصف (PDF).  والرابط الثالث هي خريطة ميلر بعد ما اعادة ترجمتها الى العربية مطبعة المساحة بغداد في ١٩٥١"
+                :notes "كُلِّف الإدريسي بهذا العمل من قِبل الملك روجر الثاني ملك صقلية. وقد تأثر بكتاب جغرافيا بطليموس (القرن الثاني الميلادي) الذي تُرجم إلى العربية على يد الخوارزمي (القرن التاسع) والبتاني (القرن العاشر). عمل الإدريسي لمدة ١٥ عامًا مع جغرافيين وعلماء لإكمال خريطته الدائرية الشهيرة المنقوشة على قرص فضي بطول ستة أقدام ومرفقة بنصوص، إضافةً إلى خرائط أخرى ضمن الكتاب. وقام الإدريسي ومساعديه بمقارنة البيانات، ومقابلة وتوثيق روايات متسقة من الرحالة، واستبعاد المعلومات المتناقضة. وكانت النتيجة موسوعة تصف الظروف الاقتصادية والاجتماعية والطبيعية والثقافية والسياسية في ذلك العصر، تضم ٧٠ خريطة لمراكز سكانية (٧ أقسام عرضية، ١٠ تقسيمات في كل قسم). من اللافت أن مكة والجزيرة العربية تقع في مركز الخريطة ومصوّرة في أعلاها.
+
+ظهرت نسخ عديدة مشتقة من هذه الخريطة؛ إذ أعاد الأوروبيون نشرها لأول مرة عام ١٥٩٢ في روما تحت إشراف مطبعة ميديتشي. ثم تُرجمت إلى الإيطالية عام ١٦٠٠، وإلى اللاتينية عام ١٦١٩ في باريس تحت عنوان Geographia Nubiensis. وعُرف الإدريسي في أوروبا لاحقًا باسم العربي النوبي (l’Arabe de Nubie). وقد اعتُبرت هذه أدق خريطة للعالم في زمن اختراع الطباعة، ما ساهم في انتشارها السريع. النسخة الأكثر شيوعًا اليوم على الإنترنت هي نسخة مستطيلة مركبة من عام ١٩٢٨ أعدّها المؤرخ الألماني كونراد ميلر، بالأسماء مكتوبة بالحروف اللاتينية. "
+                :labels nil}}}
+
+
 
    "1981 - Madinat Isa"
    {:groups #{"Other" "National Addressing Project (1981)"}
