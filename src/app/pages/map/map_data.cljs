@@ -126,11 +126,6 @@
                                 :year 1916
                                 :source-file "Plans in the Persian Gulf - Bahrein Harbour, Magam, Lingeh, Dibai, 1916"
                                 :status "needs-processing"}
-   "1926 - Manama" {:title "Manama - 1926"
-                    :year 1926
-                    :scale "1:2,400"
-                    :source-file "1926.2400.Manama"
-                    :status "needs-processing"}
    "1933 - Manamah Plan" {:title "Manamah - Plan of Port and Town - 1933"
                           :year 1933
                           :scale "1:3,639"
@@ -526,6 +521,46 @@ There are many derivative versions of this map; Europeans first republished it i
     :opts (merge base-opts {:minNativeZoom 13
                             :maxNativeZoom 19
                             :opacity 0.8})}
+   "1926 - Manama"
+   {:groups #{"Manama"}
+    :year 1926
+    :url (form-tile-url "1926-Manama")
+    :scale "1:2,400"
+    :source "Historic Maps of Bahrain 1817-1970"
+    :issuer "Ministry of Justice"
+    :source-link "/maps/1926-Manama.tif"
+    :issuer-link "/maps/1926-Manama_modified.tif"
+    :i18n {:en {:title "Manamah City - April 1926"
+                :description "The Sea Road at the northern end of Manama (now Government Avenue) was built in two stages - the first was from the Customs Pier westwards, and after that had been completed in 1924/5, the other section from the Customs Pier eastwards to the British Political Agency was built. The sea can be seen between the western portion of the Sea Road and the city of Manama - this illustrates very clearly how this road was built: it was originally built with the sea on both sides, with landowners being obliged to fill in the area between the new road and the old shore. The Old Bahrain Government Office and the Old Customs Office (to the south of the Customs Pier) are on the site of today's Bab-al-Bahrain. The Mesopotamia Persia Corporation property (later Gray Mackenzie, later BMMI) is the site of today's Yateem Centre. The Bahrain Office to the west of the Political Agency was known during Charles Belgrave's day as the Adviserate and after his retirement as the Secretariat; it has since been demolished and the site is occupied by a school. The Wireless Station to the south- east of this map is the wireless station mentioned on the Admiralty charts from 1916 onwards. The European Cemetery to the west of the Wireless Station is the Old Christian Cemetery, now in Zubara Road; the square shape shows that it was the original grant of land from the Ruler before its subsequent enlargement in the 1930s; strangely, the Jewish Cemetery next door is not shown on this map, although it is drawn on the April 1926 map - the land for this cemetery was bought by the Jewish community in 1909. The Municipality Garden in the centre of Manama was started by the Municipality in 1924 and at one stage housed a zoo; it was later built on, today's Zahra School occupying most of the site. The buildings at the extreme south-west of the map, the 'Bahrein Fort' and 'Sheik Hamad's Palace', were described in Lorimer's Gazetteer as follows: There are but few really good buildings [in Manama]. The best are... Manamah fort, the Shaikh's summer residence, a large construction in good repair with several bastions, standing in the open plain behind the town between it and the date gardens; a neat and well built mansion belonging to his son Shaikh Hamad, partly upper-storeyed, which is situated near the fort but somwewhat further inland. This Shaikh Hamad's Palace is not to be confused with the Manama Palace completed in 1927 as his official residence in Manama (later known as the Old Palace, and now as Shaikh Hamad's palace). This building was his private residence, and was situated opposite the present Salmaniya Hospital; the site is now occupied by a block of flats."
+                :notes "The map of Manama dated April 1926 is the first ever survey of Manama; the copy reproduced is from the archives of the Land Registration Department at the Ministry of Justice, Bahrain, and is the only copy that is known to have survived. The historic nature of this copy of the April 1926 map has been enhanced or reduced, depending on one's viewpoint, by the fact that it was used as a working copy - thus, roads and buildings which were constructed after 1926 are shown in pencil on the original map. To the south of Manama the future Belgrave Road (renamed Shaikh Isa Road in the 1960s), Daly Road (renamed Zubara Road in the 1960s), the Hadaya School Manama and the cinema can be seen as additions to the 1926 map; whilst at the northern end of Manama can be seen the future Prior Road (renamed Khalifa Road in the 1960s).  The 1933 Manama map is a copy of the original untouched 1926 map without these additions."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 14
+                            :maxNativeZoom 20
+                            :opacity 0.7})}
+   "1933 - Manama"
+   {:groups #{"Manama"}
+    :year 1933
+    :url (form-tile-url "1933-Manama")
+    :scale "1:2,400"
+    :source "Historic Maps of Bahrain 1817-1970"
+    :issuer "Arabia Intelligence Report"
+    :source-link "/maps/1933-Manama.tif"
+    :issuer-link "/maps/1933-Manama_modified.tif"
+    :i18n {:en {:title "Manamah City - April 1933"
+                :description "The Sea Road at the northern end of Manama (now Government Avenue) was built in two stages - the first was from the Customs Pier westwards, and after that had been completed in 1924/5, the other section from the Customs Pier eastwards to the British Political Agency was built. The sea can be seen between the western portion of the Sea Road and the city of Manama - this illustrates very clearly how this road was built: it was originally built with the sea on both sides, with landowners being obliged to fill in the area between the new road and the old shore. The Old Bahrain Government Office and the Old Customs Office (to the south of the Customs Pier) are on the site of today's Bab-al-Bahrain. The Mesopotamia Persia Corporation property (later Gray Mackenzie, later BMMI) is the site of today's Yateem Centre. The Bahrain Office to the west of the Political Agency was known during Charles Belgrave's day as the Adviserate and after his retirement as the Secretariat; it has since been demolished and the site is occupied by a school. The Wireless Station to the south- east of this map is the wireless station mentioned on the Admiralty charts from 1916 onwards. The European Cemetery to the west of the Wireless Station is the Old Christian Cemetery, now in Zubara Road; the square shape shows that it was the original grant of land from the Ruler before its subsequent enlargement in the 1930s; strangely, the Jewish Cemetery next door is not shown on this map, although it is drawn on the April 1926 map - the land for this cemetery was bought by the Jewish community in 1909. The Municipality Garden in the centre of Manama was started by the Municipality in 1924 and at one stage housed a zoo; it was later built on, today's Zahra School occupying most of the site. The buildings at the extreme south-west of the map, the 'Bahrein Fort' and 'Sheik Hamad's Palace', were described in Lorimer's Gazetteer as follows: There are but few really good buildings [in Manama]. The best are... Manamah fort, the Shaikh's summer residence, a large construction in good repair with several bastions, standing in the open plain behind the town between it and the date gardens; a neat and well built mansion belonging to his son Shaikh Hamad, partly upper-storeyed, which is situated near the fort but somwewhat further inland. This Shaikh Hamad's Palace is not to be confused with the Manama Palace completed in 1927 as his official residence in Manama (later known as the Old Palace, and now as Shaikh Hamad's palace). This building was his private residence, and was situated opposite the present Salmaniya Hospital; the site is now occupied by a block of flats."
+                :notes "The map of Manama and its port dated January 1933 was part of the Arabia Intelligence Report of that year and was a companion map to the 1933 map of Bahrain. However, although it has been given the date of January 1933, it is in reality the original untouched map of Manama in 1926."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 14
+                            :maxNativeZoom 20
+                            :opacity 0.7})}
 
    "1937 - Manama"
    {:groups #{"Manama"}
@@ -534,8 +569,8 @@ There are many derivative versions of this map; Europeans first republished it i
     :scale "1:3,639"
     :source "British Library: India Office Records and Private Papers"
     :issuer "Qatar Digital Library"
-    :source-link "/maps/1937-Manama.tif"
-    :issuer-link "/maps/1937-Manama.jpg"
+    :source-link "/maps/1937-Manama.jpg"
+    :issuer-link "/maps/1937-Manama.tif"
     :i18n {:en {:title "PLAN OF PORT AND TOWN - Manama 1937"
                 :description "Plan of Manamah, Bahrain. The plan indicates settlements, streets, buildings and landmarks. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
                 :notes "Some map drift along the southern and western ends of the document. Mostly accurate."

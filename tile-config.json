@@ -68,6 +68,8 @@
     "1981-NAP-Manama": {"mbtiles": "public/maps/1981-NAP-Manama.mbtiles"},
     "1981-NAP-MadinatIsa": {"mbtiles": "public/maps/1981-NAP-MadinatIsa.mbtiles"},
     "1981-NAP-Muharraq": {"mbtiles": "public/maps/1981-NAP-Muharraq.mbtiles"},
-    "1904-Bahrain": {"mbtiles": "public/maps/1904-Bahrain.mbtiles"}
+    "1904-Bahrain": {"mbtiles": "public/maps/1904-Bahrain.mbtiles"},
+    "1926-Manama"  :  {"mbtiles": "public/maps/1926-Manama.mbtiles"},
+    "1933-Manama"  :  {"mbtiles": "public/maps/1933-Manama.mbtiles"}
   }
 }
