@@ -103,11 +103,6 @@ body {
         font-size: 0.75rem;
     }
 
-    /* Language switcher */
-    .navbar-item[style*="font-family"] {
-        font-size: 1rem;
-    }
-
     /* Arabic text sizing - 15% larger for better readability */
     .navbar[lang="ar"] .navbar-item,
     .navbar[direction="rtl"] .navbar-item {
@@ -162,6 +157,43 @@ a.navbar-item:hover {
 }
 .navbar-brand .logo {
     font-size: clamp(1rem, 3vw, 1.4rem);
+}
+
+/* Language Toggle Switcher */
+.language-toggle {
+    background: #f5f5f5;
+    color: #6c757d;
+    border-radius: 6px;
+    padding: 0rem 0.15rem !important;
+    height: fit-content;
+    margin: auto 0;
+    font-size: 0.65rem !important;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    border: 1px solid #e0e0e0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    white-space: nowrap;
+}
+
+.language-toggle:hover {
+    background: #e9ecef;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+.language-toggle .lang-code {
+    font-weight: 700;
+}
+
+/* Arabic text in language toggle - bigger and bolder */
+.language-toggle .lang-code.arabic-text {
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding-right: 0.2rem;
 }
 
 
