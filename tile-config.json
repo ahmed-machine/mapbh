@@ -15,7 +15,6 @@
     "1914-Harbour" :  {"mbtiles": "public/maps/1914-Harbour.mbtiles"},
     "1931-Muharraq":  {"mbtiles": "public/maps/1931-Muharraq.mbtiles"},
     "1937-Bahrain" :  {"mbtiles": "public/maps/1937-Bahrain.mbtiles"},
-    "1937-Manama"  :  {"mbtiles": "public/maps/1937-Manama.mbtiles"},
     "1937-Muharraq":  {"mbtiles": "public/maps/1937-Muharraq.mbtiles"},
     "1943-Bahrain" :  {"mbtiles": "public/maps/1943-Bahrain.mbtiles"},
     "1956-Bahrain" :  {"mbtiles": "public/maps/1956-Bahrain.mbtiles"},
