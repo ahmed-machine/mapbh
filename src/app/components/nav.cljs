@@ -30,11 +30,12 @@
 
 (defn language-switcher
   [is-arabic]
-  (if is-arabic
-    [:a.navbar-item {:style {:font-family "Roboto, Helvetica, san serif" :font-size "0.8em" :display :flex :align-items :center}
-                     :on-click #(rf/dispatch [::events/set-route-params {:language "en"}])} "English"]
-    [:a.navbar-item {:style {:font-family "Amiri, Scheherazade, serif" :display :flex :align-items :center}
-                     :on-click #(rf/dispatch [::events/set-route-params {:language "ar"}])} "العربية"]))
+  [:a.navbar-item.language-toggle
+   {:on-click #(rf/dispatch [::events/set-route-params
+                            {:language (if is-arabic "en" "ar")}])}
+   [:span.icon [:i.fas.fa-globe]]
+   [:span.lang-code {:class (when-not is-arabic "arabic-text")}
+    (if is-arabic "EN" "ع")]])
 
 (defn top-navbar
   [is-arabic]
