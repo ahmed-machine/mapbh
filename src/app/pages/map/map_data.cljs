@@ -562,27 +562,6 @@ There are many derivative versions of this map; Europeans first republished it i
                             :maxNativeZoom 20
                             :opacity 0.7})}
 
-   "1937 - Manama"
-   {:groups #{"Manama"}
-    :year 1937
-    :url (form-tile-url "1937-Manama")
-    :scale "1:3,639"
-    :source "British Library: India Office Records and Private Papers"
-    :issuer "Qatar Digital Library"
-    :source-link "/maps/1937-Manama.jpg"
-    :issuer-link "/maps/1937-Manama.tif"
-    :i18n {:en {:title "PLAN OF PORT AND TOWN - Manama 1937"
-                :description "Plan of Manamah, Bahrain. The plan indicates settlements, streets, buildings and landmarks. Prepared by naval staff in the Admiralty's Naval Intelligence Division."
-                :notes "Some map drift along the southern and western ends of the document. Mostly accurate."
-                :labels nil}
-           :ar {:title "المنامة - ١٩٣٧"
-                :description nil
-                :notes "خارطة متوسطة الدقة. أخطاء بسيطة في غرب و جنوب الخارطة الأصلية"
-                :labels nil}}
-    :opts (merge base-opts {:minNativeZoom 13
-                            :maxNativeZoom 19
-                            :opacity 0.7})}
-
    "1957 - Manama"
    {:groups #{"Manama"}
     :year 1957
