@@ -126,11 +126,6 @@
                                 :year 1916
                                 :source-file "Plans in the Persian Gulf - Bahrein Harbour, Magam, Lingeh, Dibai, 1916"
                                 :status "needs-processing"}
-   "1933 - Manamah Plan" {:title "Manamah - Plan of Port and Town - 1933"
-                          :year 1933
-                          :scale "1:3,639"
-                          :source-file "Manamah - Plan of Port and Town, 1933"
-                          :status "needs-processing"}
    "1938-9 - Manama Town" {:title "Manama Town - 1357 (1938:9)"
                            :year 1938
                            :source-file "Manama Town, 1357 (1938:9)"
