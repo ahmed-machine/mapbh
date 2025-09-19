@@ -324,10 +324,6 @@
                            :year 2010
                            :source-file "2010.Andrew Duggan"
                            :status "needs-processing"}
-   "2010 - Muharraq Pearling Trail" {:title "Muharraq Pearling Trail - 2010"
-                                     :year 2010
-                                     :source-file "2010.Muharraq Pearling Trail"
-                                     :status "needs-processing"}
    "2011 - Bab AlBahrain" {:title "Bab AlBahrain - 2011"
                            :year 2011
                            :source-file "2011.Bab AlBahrain-front"
@@ -340,11 +336,7 @@
    "Bahrain Landmarks" {:title "Bahrain Landmarks"
                         :year 1995
                         :source-file "Bahrain Landmarks - Front"
-                        :status "needs-processing"}
-   "Bahrain Yesterday and Today" {:title "Bahrain Yesterday and Today"
-                                  :year 1986
-                                  :source-file "Bahrain Yesterday and Today"
-                                  :status "needs-processing"}})
+                        :status "needs-processing"}})
 
 
 (def maps
