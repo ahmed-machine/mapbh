@@ -381,8 +381,8 @@
     :viewable false
     :year  1940
     :scale nil
-    :source-link "/maps/1940.Pearl Banks.jpg"
-    :source "Qatar Digital Library"
+    :source-link "/maps/1940-Pearl Banks of the Gulf.png"
+    :source "Qatar National Library"
     :issuer-link nil
     :i18n {:en {:title "Pearl Banks - 1940"
                 :description "Batliboi Litho Works, Bombay 8’.  Distinctive Features: Pearl banks indicated by Arabic numerals, the names of topographic features including settlements, islands and pearl beds inserted in Arabic. In the lower right-hand corner of the sheet a descriptive note from the author, this starts and ends with prayers. It includes explanation to the surveying methods and reasons for creating the map, as well as the author’s approval and stamp with his name (Shaykh Mani’ ibn al-Shaykh Rashid al-Maktum), the date: 24 Jumada II 1359 AH, and a note ‘all right reserved’. Labels: Stamp in purple ink which states in Arabic that the map is not to be translated to any other language without author’s permission."
