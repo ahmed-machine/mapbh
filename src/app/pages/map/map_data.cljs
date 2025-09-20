@@ -524,7 +524,7 @@ There are many derivative versions of this map; Europeans first republished it i
    "1991 - Life in Bahrain"
    {:groups #{"Bahrain"}
     :year 1991
-    :source "National Addressing Project"
+    :source "Oriental Press, Bahrain"
     :viewable false
     :source-link "/maps/1991 - Life In Bahrain.tif"
     :i18n {:en {:title "Life in Bahrain"
