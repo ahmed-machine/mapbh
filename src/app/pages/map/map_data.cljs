@@ -392,6 +392,22 @@
                 :description nil
                 :notes nil
                 :labels nil}}}
+   "1958 - Pearl Banks"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year  1958
+    :scale nil
+    :source-link "/maps/1958-Pearl Banks of the Arabian Gulf.jpg"
+    :source "Qatar National Library"
+    :issuer-link nil
+    :i18n {:en {:title "Pearl Banks - 1958"
+                :description "Hand drawn map of Pearl Banks of the Gulf with hand-written labels of each pearl bank and ports along the coast. Printed in Bombay. Arabic note in top right, printed with approval of Sh. Salman bin Hamad."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
    "1595 - Deliniantur in hac tabula, Orae maritimae Abexiae, freti Mecani, al Maris Rubri, Arabiae, Ormi, Persiae... / Henricus F. ab Langren sculpsit (sketch)"
    {:groups #{"Gulf"}
     :viewable false
