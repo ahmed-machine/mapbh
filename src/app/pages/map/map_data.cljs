@@ -291,10 +291,6 @@
                             :scale "1:100,000"
                             :source-file "1987.100000.Bahrain"
                             :status "needs-processing"}
-   "1991 - Life in Bahrain" {:title "Life in Bahrain - 1991"
-                             :year 1991
-                             :source-file "1991 - Life In Bahrain"
-                             :status "needs-processing"}
    "1997 - Bahrain NRSC" {:title "Bahrain NRSC - 1997"
                           :year 1997
                           :scale "1:143,000"
@@ -524,6 +520,21 @@ There are many derivative versions of this map; Europeans first republished it i
     :opts (merge base-opts {:minNativeZoom 13
                             :maxNativeZoom 19
                             :opacity 0.8})}
+
+   "1991 - Life in Bahrain"
+   {:groups #{"Bahrain"}
+    :year 1991
+    :source "National Addressing Project"
+    :viewable false
+    :source-link "/maps/1991 - Life In Bahrain.tif"
+    :i18n {:en {:title "Life in Bahrain"
+                :description "Highly stylised fun map. Designed and illustrated by Russ North, Marketed by Shirley Rattray, Produced by Gil Enterprises (Dubai), Printed by Oriental Press, Bahrain. Features lots of advertisements and lots of easter eggs."
+                :notes ""
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
    "1926 - Manama"
    {:groups #{"Manama"}
     :year 1926
