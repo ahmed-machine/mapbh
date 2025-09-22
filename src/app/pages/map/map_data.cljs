@@ -97,11 +97,7 @@
                 maps)))
 
 (def backlog
-  {"1872 - Bahreyn Harbour" {:title "Bahreyn Harbour"
-                             :year 1872
-                             :source-file "Bahreyn Harbour, c. 1872"
-                             :status "needs-processing"}
-   "1903 - Persian Gulf Plans" {:title "Plans in the Persian Gulf - Bahrein Harbour"
+  {"1903 - Persian Gulf Plans" {:title "Plans in the Persian Gulf - Bahrein Harbour"
                                 :year 1903
                                 :source-file "Plans in the Persian Gulf - Bahrein Harbour, 1903"
                                 :status "needs-processing"}
@@ -994,6 +990,23 @@ There are many derivative versions of this map; Europeans first republished it i
     :opts (merge base-opts {:minNativeZoom 12
                            :maxNativeZoom 15
                            :opacity 0.8})}
+
+   "1872 - Bahrain Harbour"
+   {:groups #{"Bahrain"}
+    :year 1872
+    :viewable false
+    :scale "1:73,000"
+    :source "British Admiralty - Chapman of HM Schooner Constance"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1872-Bahrain Harbour.png"
+    :i18n {:en {:title "1872 - Bahreyn Harbour (Manuscript)"
+                :description "Preliminary manuscript chart by Chapman of HM Schooner Constance during the 1872-74 resurvey of the Kateef and Bahrain coasts. This manuscript work informed the next published edition of Chart 20 in 1875. Notable for its cartouche featuring a fine illustration of the Al Khamis mosque - one of the earliest detailed architectural depictions in Bahrain cartographic history."
+                :notes "Original Documents A3273/shelf Wy, Hydrographic Office, Taunton, UK. Preliminary manuscript preceding the 1875 published editions."
+                :labels nil}
+           :ar {:title "١٨٧٢ - ميناء البحرين"
+                :description nil
+                :notes nil
+                :labels nil}}}
 
    "1875 - Bahrain Harbour v1"
    {:groups #{"Bahrain"}
