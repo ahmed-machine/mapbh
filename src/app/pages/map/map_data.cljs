@@ -131,16 +131,6 @@
                            :source-file "Manama Town, 1357 (1938:9)"
                            :status "needs-processing"
                            :notes "Historical Hijri date"}
-   "1933 - Bahrain" {:title "Bahrain - 1933"
-                     :year 1933
-                     :scale "1:40,000"
-                     :source-file "1933.40000.Bahrain"
-                     :status "needs-processing"}
-   "1933 - Bahrain (63k)" {:title "Bahrain - 1933"
-                           :year 1933
-                           :scale "1:63,360"
-                           :source-file "1933.63360.Bahrain"
-                           :status "needs-processing"}
    "1934 - Bahrain Facility Map" {:title "Bahrain Facility Map - 1934"
                                   :year 1934
                                   :scale "1:63,360"
