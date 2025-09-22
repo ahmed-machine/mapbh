@@ -133,12 +133,12 @@
       [:strong (:notes-header txt)] ": " (:notes txt)]
      [:a.modal-link {:href (:source-link details)}
       [:div.panel-block.modal-link-block [:strong (:source-header txt)] ": " (:source txt) " - "
-       [:span.icon.home [:i.fas.fa-download]] "(georectified)"]]
+       [:span.icon.home [:i.fas.fa-download]] "(original)"]]
      (when (:issuer txt)
        [:a {:href (:issuer-link txt)}
         [:div.panel-block.modal-issuer-block
          [:strong (:issuer-header txt)] ": " (str " " (:issuer txt)) " - "
-         [:span.icon.home [:i.fas.fa-download]] "(original)"]])
+         [:span.icon.home [:i.fas.fa-download]] "(georectified)"]])
      (when (:submitted-by txt)
        [:div.panel-block.submitter-block [:strong (:submitter-header txt)] ": "
         (if (:submitted-by-url details)
