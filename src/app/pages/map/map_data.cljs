@@ -1027,6 +1027,27 @@ There are many derivative versions of this map; Europeans first republished it i
     :opts (merge base-opts {:minNativeZoom 10
                             :maxNativeZoom 15
                             :opacity 0.8})}
+   "1933 - Bahrain"
+   {:groups #{"Bahrain"}
+    :year 1933
+    :url (form-tile-url "1933-Bahrain")
+    :scale "1:63,360"
+    :source "Naval Intelligence Division at the British Admiralty"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1933-Bahrain.tif"
+    :issuer-link "/maps/1933-Bahrain-georeferenced.tif"
+    :i18n {:en {:title "Bahrain Island"
+                :description "This builds off the 1904 map and is very similar. Of interest in this map is the Landing Ground marked south of Manama - the old Manama Airport which proved unsuitable to heavy aircraft because of underground water channels. The more favoured site for an airport, in Muharraq, is also marked as a Landing Ground. The marine airport is marked as 'Seaplane Anchorage' above Essex Point, the alternative name for Jufair. The name 'Essex Point' is a later manuscript addition to this map - an area and name which became important in 1935 with the transfer of the British naval base from Henjam on the Persian side of the Gulf to Jufair [Essex Point]. There is no sign of the Manama-Muharraq Causeway, construction of which was begun in 1930, continued the following year, but then stopped until 1934 because of the Depression and lack of government finance. The two hospitals in Manama, marked by a cross are the Victoria Memorial Hospital near the British Political Agency and the American Mission Hospital."
+                :notes "This map can be found in the India Office Records (now part of the British Library Oriental and India Office Collections), (reference IOR: W7LPS/21/D 98b). Original scan was deformed without a clear projection. Created an extensive list of historic springs, forts, and geographic features and hand matched them against the 1904, 1956, 1977, and 1969 maps as reference."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 9
+                            :maxNativeZoom 15
+                            :opacity 0.8})}
+
 
    "1937 - Bahrain"
    {:groups #{"Bahrain"}
