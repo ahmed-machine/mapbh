@@ -15,8 +15,8 @@
                 :notes "ملاحظات"
                 :submitted-by "مساهمة"}
      :buttons {:view-map "عرض الخريطة"
-               :download-source "تحميل المصدر"
-               :original-file "الملف الأصلي"
+               :download-source "الملف الأصلي"
+               :download-issuer "تحميل المصدر"
                :additional-link "رابط إضافي"
                :additional-link-2 "رابط إضافي ثاني"
                :additional-link-3 "رابط إضافي ثالث"}
@@ -33,8 +33,8 @@
                 :notes "Notes"
                 :submitted-by "Submitted by"}
      :buttons {:view-map "View Map"
-               :download-source "Download Source"
-               :original-file "Original File"
+               :download-source "Download Georectified"
+               :download-issuer "Download Source"
                :additional-link "Additional Link"
                :additional-link-2 "Additional Link 2"
                :additional-link-3 "Additional Link 3"}
@@ -130,7 +130,7 @@
         [:i.fas.fa-file-image {:style (if is-arabic
                                          {:margin-left "0.5rem" :padding "0.2rem"}
                                          {:margin-right "0.5rem" :padding "0.2rem"})}]
-        (get-in (text is-arabic) [:buttons :original-file])])
+        (get-in (text is-arabic) [:buttons :download-issuer])])
 
      (when (:link-1 map-info)
        [:a.button.is-light.is-small
