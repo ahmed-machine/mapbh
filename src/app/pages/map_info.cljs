@@ -33,8 +33,8 @@
                 :notes "Notes"
                 :submitted-by "Submitted by"}
      :buttons {:view-map "View Map"
-               :download-source "Download Georectified"
-               :download-issuer "Download Source"
+               :download-source "Download Original"
+               :download-issuer "Download Georectified"
                :additional-link "Additional Link"
                :additional-link-2 "Additional Link 2"
                :additional-link-3 "Additional Link 3"}
