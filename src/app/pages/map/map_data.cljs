@@ -101,19 +101,6 @@
                              :year 1872
                              :source-file "Bahreyn Harbour, c. 1872"
                              :status "needs-processing"}
-   "1875 - Bahrain Harbour 1" {:title "Bahrain Harbour - Part 1"
-                               :year 1875
-                               :source-file "Bahrain Harbour, 1875 - 1"
-                               :status "needs-processing"}
-   "1875 - Bahrain Harbour 2" {:title "Bahrain Harbour - Part 2"
-                               :year 1875
-                               :source-file "Bahrain Harbour, 1875 - 2"
-                               :status "needs-processing"}
-   "1903 - Bahrain Harbour" {:title "Bahrain Harbour - 1903"
-                             :year 1903
-                             :scale "1:73,000"
-                             :source-file "1903.73000.Bahrain Harbour"
-                             :status "needs-processing"}
    "1903 - Persian Gulf Plans" {:title "Plans in the Persian Gulf - Bahrein Harbour"
                                 :year 1903
                                 :source-file "Plans in the Persian Gulf - Bahrein Harbour, 1903"
@@ -459,7 +446,7 @@
                 :description nil
                 :notes nil
                 :labels nil}}}
-  "1154 - Idrisi"
+   "1154 - Idrisi"
    {:groups #{"Gulf"}
     :viewable false
     :year  1154
@@ -485,8 +472,6 @@ There are many derivative versions of this map; Europeans first republished it i
 
 ظهرت نسخ عديدة مشتقة من هذه الخريطة؛ إذ أعاد الأوروبيون نشرها لأول مرة عام ١٥٩٢ في روما تحت إشراف مطبعة ميديتشي. ثم تُرجمت إلى الإيطالية عام ١٦٠٠، وإلى اللاتينية عام ١٦١٩ في باريس تحت عنوان Geographia Nubiensis. وعُرف الإدريسي في أوروبا لاحقًا باسم العربي النوبي (l’Arabe de Nubie). وقد اعتُبرت هذه أدق خريطة للعالم في زمن اختراع الطباعة، ما ساهم في انتشارها السريع. النسخة الأكثر شيوعًا اليوم على الإنترنت هي نسخة مستطيلة مركبة من عام ١٩٢٨ أعدّها المؤرخ الألماني كونراد ميلر، بالأسماء مكتوبة بالحروف اللاتينية. "
                 :labels nil}}}
-
-
 
    "1981 - Madinat Isa"
    {:groups #{"Other" "National Addressing Project (1981)"}
@@ -866,8 +851,7 @@ There are many derivative versions of this map; Europeans first republished it i
            :ar {:title nil
                 :description nil
                 :notes nil
-                :labels nil}}
-}
+                :labels nil}}}
 
    "1817 - Sketch of the Islands of Bahrain and Arad"
    {:groups #{"Bahrain"}
@@ -886,8 +870,7 @@ There are many derivative versions of this map; Europeans first republished it i
            :ar {:title nil
                 :description nil
                 :notes nil
-                :labels nil}}
-}
+                :labels nil}}}
 
    "1820 - Chart of the Gulf of Persia"
    {:groups #{"Bahrain"}
@@ -906,8 +889,7 @@ There are many derivative versions of this map; Europeans first republished it i
            :ar {:title nil
                 :description nil
                 :notes nil
-                :labels nil}}
-}
+                :labels nil}}}
 
    "1828 - Trigonometrical Plan of the Island and Harbour of Bahrain"
    {:groups #{"Bahrain"}
@@ -926,8 +908,7 @@ There are many derivative versions of this map; Europeans first republished it i
            :ar {:title nil
                 :description nil
                 :notes nil
-                :labels nil}}
-}
+                :labels nil}}}
 
    "1829 - Trigonometrical Survey of the Arabian or Southern Side of the Persian Gulf' sheet 4"
    {:groups #{"Bahrain"}
@@ -946,9 +927,8 @@ There are many derivative versions of this map; Europeans first republished it i
            :ar {:title nil
                 :description nil
                 :notes nil
-                :labels nil}}
-}
-  "1875 - Rough Sketch Survey of Bahreyn Islands"
+                :labels nil}}}
+   "1875 - Rough Sketch Survey of Bahreyn Islands"
    {:groups #{"Bahrain"}
     :viewable false
     :year 1875
@@ -968,8 +948,7 @@ There are many derivative versions of this map; Europeans first republished it i
                 :description "حكومة الهند، مايو ١٨٧٥، الأعداد ٢٩٨-٣٠٢. مذكرة من الكولونيل روس بخصوص البحرين، وخريطة تخطيطية لجزر البحرين من إعداد السيد أغار تومسون. في المذكرة المرفقة (انظر المذكرة أعلاه)، يدوّن أغار الأبعاد الجغرافية للجزر، وأصل تسميات جزر البحرين، وتاريخ الحكام وتسلسلهم. ثم ينتقل إلى تفصيل البنية الديموغرافية والسياسية المعاصرة للبحرين. وتشمل المذكرة شجرة عائلة جزئية للأسرة الحاكمة الحالية، بالإضافة إلى توزيع القبائل المختلفة ومذهبها الإسلامي، ومكان إقامتها، وتقدير عدد سكانها."
                 :notes "كانت جودة المسح الضوئي منخفضة، إذ جرى تقسيمه إلى خمسة مقاطع متداخلة تعاني من تغيّر شديد في الألوان. كما حُجبت بشكل كبير بواسطة علامة مائية للأرشيف. في برنامج فوتوشوب، جرى دمج الخريطة من المقاطع المختلفة، وتطبيق تصحيح الألوان، ثم طُمست العلامة المائية لإخفائها."
                 :labels nil
-                :submitted-by "حسين رجب"}}
-}
+                :submitted-by "حسين رجب"}}}
    "1904 - Bahrain"
    {:groups #{"Bahrain"}
     :year 1904
@@ -995,26 +974,111 @@ There are many derivative versions of this map; Europeans first republished it i
                             :maxNativeZoom 15
                             :opacity 0.8})}
 
+   "1862 - Bahrain Harbour"
+   {:groups #{"Bahrain"}
+    :year 1862
+    :url (form-tile-url "1862-Bahrain-Harbour")
+    :scale "1:73,000"
+    :source "British Admiralty - Lt. R.W. Whish & Lt. C.G. Constable RN"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1862-Bahrain Harbour.png"
+    :issuer-link "/maps/1862-Bahrain Harbour-georeferenced.tif"
+    :i18n {:en {:title "1862 - Bahrein Harbour"
+                :description "First comprehensive British Admiralty chart of Bahrain harbour, surveyed in 1860. This chart introduced significant detail including the first naming of Jebel Dukhan, Budaiya, Bilad al Qadim, West Rifa'a, Haniniyah, Naim, Ras Rumman, Zallaq, Busaitein, Dair, Samahij, Hidd, Nabi Saleh, Sitra, Umm alHasam as well as the distinction between Muharraq and Arad islands. Features the Shaikh's House in Manama (the 1840s Manama Palace) and shows 'hillocks and mounds' - the first mention of burial mounds. Includes views of the Portuguese Fort from the sea and the earliest published view of Rufar Fort. Lt. Constable later compiled the first Persian Gulf Pilot (1864) based on this survey."
+                :notes "Chart 20 of the British Admiralty series. Successor to the 1825 chart by Lts Brucks and Rogers. Survey details published in Whish's 'Memoir on Bahreyn' (1860-62). No reliable projection or coordinate data. Transformed using ground control points using 1968 map and nautical charts (bathymetry) as reference. All harbour map series maps were pre-processed to perfectly align with each other, then the 1914 map was used to find GCPs and accurately transform the map, then those GCPs were applied to the other 4."
+                :labels nil}
+           :ar {:title "١٨٦٢ - ميناء البحرين"
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 12
+                           :maxNativeZoom 15
+                           :opacity 0.8})}
+
+   "1875 - Bahrain Harbour v1"
+   {:groups #{"Bahrain"}
+    :year 1875
+    :viewable false
+    :url (form-tile-url "1875-Bahrain-Harbour-1")
+    :scale "1:73,000"
+    :source "British Admiralty - Chapman of HM Schooner Constance"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1875-Bahrain Harbour-1.png"
+    :issuer-link "/maps/1875-Bahrain Harbour-1-georeferenced.tif"
+    :i18n {:en {:title "1875 - Bahrain Harbour (April)"
+                :description "Resurvey of the Kateef and Bahrain coasts conducted between 1872-74 by HM Schooner Constance. This edition mentions the town of Senabis (omitted from the 1862 published version) but notably does not reference the Shaikh's house in Manama. Features a cartouche showing the view of the Portuguese Fort from the sea."
+                :notes "Chart 20/series B/sequence 2. Based on surveys conducted 1872-1874. No reliable projection or coordinate data. Transformed using ground control points using 1968 map and nautical charts (bathymetry) as reference. All harbour map series maps were pre-processed to perfectly align with each other, then the 1914 map was used to find GCPs and accurately transform the map, then those GCPs were applied to the other 4."
+                :labels nil}
+           :ar {:title "١٨٧٥ - ميناء البحرين - النسخة الأولى"
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 12
+                           :maxNativeZoom 15
+                           :opacity 0.8})}
+
+   "1875 - Bahrain Harbour v2"
+   {:groups #{"Bahrain"}
+    :year 1875
+    :url (form-tile-url "1875-Bahrain-Harbour-2")
+    :scale "1:73,000"
+    :source "British Admiralty - Chapman of HM Schooner Constance"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1875-Bahrain Harbour-2.png"
+    :issuer-link "/maps/1875-Bahrain Harbour-2-georeferenced.tif"
+    :i18n {:en {:title "1875 - Bahrain Harbour"
+                :description "Identical to the April 1875 edition but features a unique panoramic cartouche showing the entire coastline from Qalali to the western shore of Bahrain island. This chart received minor nautical corrections in March 1883 and October 1900 before the next full edition in September 1903."
+                :notes "Chart 20/series B/sequence 3. Features coastal panorama instead of fort view. No reliable projection or coordinate data. Transformed using ground control points using 1968 map and nautical charts (bathymetry) as reference. All harbour map series maps were pre-processed to perfectly align with each other, then the 1914 map was used to find GCPs and accurately transform the map, then those GCPs were applied to the other 4."
+                :labels nil}
+           :ar {:title "١٨٧٥ - ميناء البحرين - النسخة الثانية"
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 12
+                           :maxNativeZoom 15
+                           :opacity 0.8})}
+
+   "1903 - Bahrain Harbour"
+   {:groups #{"Bahrain"}
+    :year 1903
+    :url (form-tile-url "1903-Bahrain-Harbour")
+    :scale "1:73,000"
+    :source "Royal Indian Marine Survey vessel Investigator - Commander Henning"
+    :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
+    :source-link "/maps/1903-Bahrain Harbour.png"
+    :issuer-link "/maps/1903-Bahrain Harbour-georeferenced.tif"
+    :i18n {:en {:title "1903 - Bahrein Harbour"
+                :description "New comprehensive survey conducted 1901-02 providing the first accurate street plan of Manama, albeit at small scale. Shows the new British Political Agency building on reclaimed land near Ras Roman (though unnamed) and the flagstaff on the Shaikh's house roof. A February 1906 correction added a pier and flagstaff at the British Political Agency."
+                :notes "Chart 20/series B/sequence 5. Far more accurate depiction of Manama than previous editions. No reliable projection or coordinate data. Transformed using ground control points using 1968 map and nautical charts (bathymetry) as reference. All harbour map series maps were pre-processed to perfectly align with each other, then the 1914 map was used to find GCPs and accurately transform the map, then those GCPs were applied to the other 4."
+                :labels nil}
+           :ar {:title "١٩٠٣ - ميناء البحرين"
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 12
+                           :maxNativeZoom 15
+                           :opacity 0.8})}
+
    "1914 - Bahrain Harbour"
    {:groups #{"Bahrain"}
     :year 1914
-    :url (form-tile-url "1914-Harbour")
+    :url (form-tile-url "1914-Bahrain-Harbour")
     :scale "1:73,000"
-    :source "Marine Survey of India - Officers of R.I.M.S Investigator"
+    :source "Royal Indian Marine Survey vessel Investigator - Commander Henning"
     :issuer "Historic Maps of Bahrain 1817 - 1970 - Jarman"
-    :source-link "/maps/1914-Harbour.tif"
-    :issuer-link "/maps/1914-Harbour.png"
-    :i18n {:en {:title "1914 - Bahrain Harbour"
-                :description nil
-                :notes "Gets less accurate in the south."
+    :source-link "/maps/1914-Bahrain Harbour.png"
+    :issuer-link "/maps/1914-Bahrain Harbour-georeferenced.tif"
+    :i18n {:en {:title "1914 - Bahrein Harbour"
+                :description "The final edition of Bahrein Harbour series, showing minor updates to Manama including the pier and flagstaff at the British Political Agency. Features the new Ruler's flagstaff erected in July 1906 in the open square east of the former Shaikh's House, funded by public subscription and inaugurated by Shaikh Hamad bin Isa. Later corrections included the 1931 Customs Pier and land reclamation, and the 1936 Manama Palace (Shaikh Hamad's Palace)."
+                :notes "Chart 20/series B/sequence 9. The final published edition of the Bahrein Harbour series, with corrections issued through 1936. Gets less accurate in the south. No reliable projection or coordinate data. Transformed using ground control points using 1968 map and nautical charts (bathymetry) as reference. All harbour map series maps were pre-processed to perfectly align with each other, then the 1914 map was used to find GCPs and accurately transform the map, then those GCPs were applied to the other 4."
                 :labels nil
                 :submitted-by "Ali Karimi"}
            :ar {:title "١٩١٤ - ميناء البحرين"
                 :description nil
-                :notes "أقل دقة في الجنوب."
+                :notes nil
                 :labels nil
                 :submitted-by "علي كريمي"}}
-    :opts (merge base-opts {:minNativeZoom 10
+    :opts (merge base-opts {:minNativeZoom 12
                             :maxNativeZoom 15
                             :opacity 0.8})}
    "1933 - Bahrain"
@@ -1111,12 +1175,10 @@ There are many derivative versions of this map; Europeans first republished it i
     :source "Abbas Sahab"
     :source-link "/maps/1963.97500.Bahrain.png"
     :i18n {:en {:title "Map of Bahrein"
-                :description "Map of Bahrain made in 1963 in the 1:97,500 scale in the English and Farsi languages. It features three inset maps depicting: Manama and Muharraq, a lower scale map of Bahrain, and a regional map depicting Bahrain. This map was created by renowned cartographer Abbas Sahab who comes from a renowned cartographer family in Tehran, Iran. It features beautiful cartouches: a border made up of waves of fish, an artisan working, and a beautiful colorful minaret in Manama."
-               }
+                :description "Map of Bahrain made in 1963 in the 1:97,500 scale in the English and Farsi languages. It features three inset maps depicting: Manama and Muharraq, a lower scale map of Bahrain, and a regional map depicting Bahrain. This map was created by renowned cartographer Abbas Sahab who comes from a renowned cartographer family in Tehran, Iran. It features beautiful cartouches: a border made up of waves of fish, an artisan working, and a beautiful colorful minaret in Manama."}
            :ar {:title "خارطة البحرين"
-                :description " خريطة البحرين رُسمت عام ١٩٦٣ بمقياس ١:٩٧٥٠٠ باللغتين الإنجليزية والفارسية. تحتوي على ثلاث خرائط داخلية تصور: المنامة والمحرق، وخريطة البحرين بمقياس أصغر، وخريطة إقليمية تصور البحرين. رسم هذه الخريطة عباس سحاب، رسام خرائط معروف بلقب “اب الخرائط الايرانية” وينتمي إلى عائلة رسامي خرائط مشهورة في طهران. تتميز بزخارف جميلة: حدود مكونة من أمواج من الأسماك وحرفّي عامل ومنارة ملونة جميلة في المنامة."
-                }}
-    }
+                :description " خريطة البحرين رُسمت عام ١٩٦٣ بمقياس ١:٩٧٥٠٠ باللغتين الإنجليزية والفارسية. تحتوي على ثلاث خرائط داخلية تصور: المنامة والمحرق، وخريطة البحرين بمقياس أصغر، وخريطة إقليمية تصور البحرين. رسم هذه الخريطة عباس سحاب، رسام خرائط معروف بلقب “اب الخرائط الايرانية” وينتمي إلى عائلة رسامي خرائط مشهورة في طهران. تتميز بزخارف جميلة: حدود مكونة من أمواج من الأسماك وحرفّي عامل ومنارة ملونة جميلة في المنامة."}}}
+
    "1968 - Bahrain"
    {:groups #{"Bahrain"}
     :year 1968
@@ -1872,5 +1934,4 @@ There are many derivative versions of this map; Europeans first republished it i
                 :labels nil}}
     :opts (merge base-opts {:minNativeZoom 10
                             :maxNativeZoom 16
-                            :opacity 0.8})}
-   })
+                            :opacity 0.8})}})
