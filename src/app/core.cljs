@@ -7,7 +7,7 @@
             [app.pages.catalogue :as catalogue]
             [app.pages.map-info :as map-info]
             [app.pages.articles.index :as article-index]
-            [app.pages.map.map-history :refer [historical-map]]
+            [app.pages.map :refer [historical-map]]
             [app.components.nav :as nav]
             [app.routes :as routes]
             [app.model :as model]
