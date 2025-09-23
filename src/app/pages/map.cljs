@@ -1,4 +1,4 @@
-(ns app.pages.map.map-history
+(ns app.pages.map
   (:require [re-frame.core :as rf]
             [reagent.core :as reagent]
             [app.model :as model]
@@ -193,7 +193,7 @@
   [state* arabic?]
   (if-let [layer (get-layer state*)]
     (if-let [transparency (-> layer (aget "options") (aget "opacity"))]
-      [:input {:title "Adjust Transparency" 
+      [:input {:title "Adjust Transparency"
                :class (str "slider transparency-slider " (if arabic? "arabic" "english") " " (:selected @state*))
                :on-change (fn [e v]
                             (let [new-transparency (/ (.. e -target -value) 100)]
@@ -567,11 +567,11 @@
      ;; Backdrop element - only visible when modal is open
      (when show-description?
        [:div.modal-backdrop
-        {:on-click (fn [e] 
+        {:on-click (fn [e]
                      (.preventDefault e)
                      (.stopPropagation e)
                      (close-modal state*))}])
-     
+
      [:button.button.is-light.modal-button
       {:class (str (if arabic? "arabic " "english ")
                    (if morphing? "morphing " "normal ")
@@ -601,7 +601,7 @@
                                        (let [inner (.querySelector el ".modal-inner-content")]
                                          (when inner
                                            (let [scrollable? (> (.-scrollHeight inner) (.-clientHeight inner))
-                                                 at-bottom? (<= (- (.-scrollHeight inner) (.-scrollTop inner)) 
+                                                 at-bottom? (<= (- (.-scrollHeight inner) (.-scrollTop inner))
                                                                (+ (.-clientHeight inner) 5))]
                                              (if scrollable?
                                                (do
