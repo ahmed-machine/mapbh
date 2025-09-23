@@ -25,20 +25,18 @@
                    (into {})))
 
 
-(defn- panels [panel-name language route-params]
-  (-> {:home  {:en [homepage/en] :ar [homepage/ar]}
-       :map   {:en [historical-map] :ar [historical-map]}
-       :about {:en [about/en] :ar [about/ar]}
-       :catalogue {:en [catalogue/catalogue] :ar [catalogue/catalogue]}
+(defn- panels [panel-name route-params]
+  (-> {:home [homepage/homepage]
+       :map [historical-map]
+       :about [about/about]
+       :catalogue [catalogue/catalogue]
        :map-info (let [group (get route-params :group)
                        map-id (get route-params :map-id)]
-                   {:en [map-info/map-info group map-id]
-                    :ar [map-info/map-info group map-id]})
-       :contribute {:en [contribute/en] :ar [contribute/ar]}
-       :article-index {:en [article-index/en] :ar [article-index/ar]}}
-      (merge articles-map)
-      (get panel-name {:en [homepage/en] :ar [homepage/ar]})
-      (get language)))
+                   [map-info/map-info group map-id])
+       :contribute [contribute/contribute]
+       :article-index [article-index/article-index]}
+      (merge (into {} (for [[k v] articles-map] [k (first (vals v))])))
+      (get panel-name [homepage/homepage])))
 
 
 (defn ui []
@@ -48,7 +46,7 @@
     (fn []
       [:<>
        (if (some #{@ap} `(:home)) nil [nav/top @language])
-       [panels  @ap @language @rp]
+       [panels @ap @rp]
        (if (some #{@ap} `(:map :home)) nil [nav/footer @language])])))
 
 

@@ -1,5 +1,7 @@
 (ns app.pages.articles.index
-  (:require [app.pages.articles.posts.wadi :as wadi]
+  (:require [re-frame.core :as rf]
+            [app.model :as model]
+            [app.pages.articles.posts.wadi :as wadi]
             [app.pages.articles.posts.fairey :as fairey]))
 
 (def entries
@@ -27,3 +29,12 @@
    (into [:ul] (for [entry entries]
                  [:li [:a {:href (str (:route entry))} (:ar-title entry)]
                   " — " (.toLocaleDateString (:date entry))]))])
+
+(defn article-index
+  []
+  (let [language* (rf/subscribe [::model/language])]
+    (fn []
+      (let [language @language*]
+        (if (= language :ar)
+          [ar]
+          [en])))))

@@ -8,7 +8,6 @@
             [clojure.string :as str]))
 
 (defn text
-  "Centralized text function for catalogue translations"
   [arabic?]
   (if arabic?
     {:page {:title "فهرس الخرائط"
@@ -295,7 +294,6 @@
     (url/set-query-params! params)))
 
 (defn catalogue
-  "Unified catalogue page with i18n support"
   []
   (let [language* (rf/subscribe [::model/language])
         initial-params (parse-catalogue-params)
