@@ -2,6 +2,7 @@
   (:require [reagent.core :as r]
             [app.pages.map.map-data :as map-data :refer [backlog maps get-map-text]]
             [app.routes :as routes]
+            [app.util.url :as url]
             [clojure.string :as str]))
 
 (defn text
@@ -141,7 +142,7 @@
 
 (defn catalogue-table
   "Render the catalogue table"
-  [data sort-state language selected-group-filter]
+  [data sort-state language selected-group-filter update-url-fn]
   (let [{:keys [sort-key sort-dir]} @sort-state
         sorted-data (sort-data data sort-key sort-dir)
         arabic? (= language :ar)
@@ -152,7 +153,8 @@
                               (fn [state]
                                 (if (= (:sort-key state) key)
                                   (assoc state :sort-dir (if (= (:sort-dir state) :asc) :desc :asc))
-                                  (assoc state :sort-key key :sort-dir :asc)))))
+                                  (assoc state :sort-key key :sort-dir :asc))))
+                       (update-url-fn))
 
         sort-icon (fn [key]
                     (when (= sort-key key)
@@ -228,11 +230,15 @@
                  [:div.control {:key group}
                   [:span.tag.is-info.is-light.is-clickable
                    {:style {:cursor "pointer"}
-                    :on-click #(reset! selected-group-filter group)}
+                    :on-click #(do
+                                (reset! selected-group-filter group)
+                                (update-url-fn))}
                    group]])]
               [:span.tag.is-info.is-light.is-clickable
                {:style {:cursor "pointer"}
-                :on-click #(reset! selected-group-filter (:group item))}
+                :on-click #(do
+                             (reset! selected-group-filter (:group item))
+                             (update-url-fn))}
                (:group item)])]
            [:td (:scale item)]
            [:td (:source item)]
@@ -248,7 +254,7 @@
                             (str/includes? (str/lower-case (str %))
                                            (str/lower-case search-term)))
                       [(:title item) (:group item) (:source item) (:issuer item)
-                       (:scale item) (:description item) (:notes item)]))
+                       (:scale item) (:description item) (:notes item) (str (:year item))]))
               data)))
 
 (defn group-filter
@@ -262,15 +268,45 @@
                 (= (:group item) selected-group)))
             data)))
 
+(defn parse-catalogue-params
+  "Parse URL parameters for catalogue page"
+  []
+  (let [params (url/get-query-params)]
+    {:search (or (:search params) "")
+     :group (or (:group params) "")
+     :sort (keyword (or (:sort params) "year"))
+     :dir (keyword (or (:dir params) "asc"))
+     :backlog (not= "false" (:backlog params))}))
+
+(defn update-catalogue-url!
+  "Update URL with current catalogue filters without page reload"
+  [search group sort-key sort-dir include-backlog]
+  (let [params (cond-> {}
+                 (not (str/blank? search)) (assoc :search search)
+                 (not (str/blank? group)) (assoc :group group)
+                 (and sort-key (not= sort-key :year)) (assoc :sort (name sort-key))
+                 (and sort-dir (not= sort-dir :asc)) (assoc :dir (name sort-dir))
+                 (not include-backlog) (assoc :backlog "false"))]
+    (url/set-query-params! params)))
+
 (defn catalogue
   "Unified catalogue page with i18n support"
   [language]
-  (let [search-term (r/atom "")
-        selected-group-filter (r/atom "")
-        sort-state (r/atom {:sort-key :year :sort-dir :asc})
-        include-backlog (r/atom true)
+  (let [initial-params (parse-catalogue-params)
+        search-term (r/atom (:search initial-params))
+        selected-group-filter (r/atom (:group initial-params))
+        sort-state (r/atom {:sort-key (:sort initial-params)
+                           :sort-dir (:dir initial-params)})
+        include-backlog (r/atom (:backlog initial-params))
         arabic? (= language :ar)
-        txt (text arabic?)]
+        txt (text arabic?)
+        update-url-fn (fn []
+                        (update-catalogue-url!
+                         @search-term
+                         @selected-group-filter
+                         (:sort-key @sort-state)
+                         (:sort-dir @sort-state)
+                         @include-backlog))]
 
     (fn []
       (let [all-data (flatten-map-data language @include-backlog)
@@ -289,7 +325,9 @@
              {:type "text"
               :placeholder (get-in txt [:page :search-placeholder])
               :value @search-term
-              :on-change #(reset! search-term (-> % .-target .-value))}]
+              :on-change #(do
+                           (reset! search-term (-> % .-target .-value))
+                           (update-url-fn))}]
             [:span.icon (if arabic? {:class "is-right"} {:class "is-left"})
              [:i.fas.fa-search]]]]
 
@@ -302,11 +340,15 @@
                 [:span {:style {:margin-right "0.5rem"}} (get-in txt [:page :include-backlog])]
                 [:input {:type "checkbox"
                          :checked @include-backlog
-                         :on-change #(reset! include-backlog (-> % .-target .-checked))}]]
+                         :on-change #(do
+                                      (reset! include-backlog (-> % .-target .-checked))
+                                      (update-url-fn))}]]
                [:<>
                 [:input {:type "checkbox"
                          :checked @include-backlog
-                         :on-change #(reset! include-backlog (-> % .-target .-checked))}]
+                         :on-change #(do
+                                      (reset! include-backlog (-> % .-target .-checked))
+                                      (update-url-fn))}]
                 [:span {:style {:margin-left "0.5rem"}} (get-in txt [:page :include-backlog])]])]]]
 
           ;; Group filter button (mobile-friendly)
@@ -314,7 +356,9 @@
             [:div.field
              [:div.control
               [:button.button.is-small.is-info.is-light
-               {:on-click #(reset! selected-group-filter "")}
+               {:on-click #(do
+                            (reset! selected-group-filter "")
+                            (update-url-fn))}
                (if arabic?
                  [:<>
                   [:span.icon.is-small [:i.fas.fa-times {:style {:margin-right "0.3rem"}}]]
@@ -338,4 +382,4 @@
                 [:span.tag.is-small (get-in txt [:page :sort-by])]
                 [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
 
-          [catalogue-table filtered-data sort-state language selected-group-filter]]]))))
+          [catalogue-table filtered-data sort-state language selected-group-filter update-url-fn]]]))))
