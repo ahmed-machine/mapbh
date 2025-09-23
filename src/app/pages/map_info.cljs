@@ -1,6 +1,8 @@
 (ns app.pages.map-info
-  (:require [app.pages.map.map-data :refer [get-thumbnail-path maps get-map-text]]
+  (:require [re-frame.core :as rf]
+            [app.pages.map.map-data :refer [get-thumbnail-path maps get-map-text]]
             [app.routes :as routes]
+            [app.model :as model]
             [clojure.string :as str]))
 
 (defn text
@@ -192,42 +194,45 @@
 
 (defn map-info
   "Combined map info page component with language support"
-  [language group map-id]
-  (let [is-arabic (= language :ar)
-        map-info (when (and group map-id) (find-map-by-group-and-id group map-id language))]
-    (if map-info
-      (let [year (:year map-info)]
-        [:div.container (cond-> {:style {:margin-top "6rem" :margin-bottom "3rem"}}
-                               is-arabic (assoc :lang "ar" :dir "rtl"))
-         [breadcrumb-nav map-info language]
+  [group map-id]
+  (fn []
+    (let [language* (rf/subscribe [::model/language])
+          language @language*
+          is-arabic (= language :ar)
+          map-info (when (and group map-id) (find-map-by-group-and-id group map-id language))]
+      (if map-info
+        (let [year (:year map-info)]
+          [:div.container (cond-> {:style {:margin-top "6rem" :margin-bottom "3rem"}}
+                            is-arabic (assoc :lang "ar" :dir "rtl"))
+           [breadcrumb-nav map-info language]
 
+           [:div.content
+            [:div
+             [:h1.title.is-2 (:title map-info)]
+             [:h2.subtitle.is-4
+              (if (and (:all-groups map-info) (> (count (:all-groups map-info)) 1))
+                [:div.field.is-grouped.is-grouped-multiline
+                 (for [group (:all-groups map-info)]
+                   [:div.control {:key group}
+                    [:span.tag.is-primary.is-medium group]])]
+                [:span.tag.is-primary.is-medium (:group map-info)])
+              (when year [:span.tag.is-info.is-medium {:style (if is-arabic
+                                                                {:margin-right "0.5rem"}
+                                                                {:margin-left "0.5rem"})} year])]
+             [:div.content {:style {:margin-top "1rem"}}
+              [action-buttons map-info language]]]
+
+            [:hr]
+            [metadata-grid map-info language]
+            [map-thumbnail map-info]
+            [info-section (get-in (text is-arabic) [:sections :description]) (:description map-info) language]
+            [info-section (get-in (text is-arabic) [:sections :notes]) (:notes map-info) language]
+            [info-section (get-in (text is-arabic) [:sections :submitted-by]) (:submitted-by map-info) language]]])
+
+        [:div.container (cond-> {:style {:margin-top "6rem"}}
+                          is-arabic (assoc :lang "ar" :dir "rtl"))
          [:div.content
-          [:div
-           [:h1.title.is-2 (:title map-info)]
-           [:h2.subtitle.is-4
-            (if (and (:all-groups map-info) (> (count (:all-groups map-info)) 1))
-              [:div.field.is-grouped.is-grouped-multiline
-               (for [group (:all-groups map-info)]
-                 [:div.control {:key group}
-                  [:span.tag.is-primary.is-medium group]])]
-              [:span.tag.is-primary.is-medium (:group map-info)])
-            (when year [:span.tag.is-info.is-medium {:style (if is-arabic
-                                                               {:margin-right "0.5rem"}
-                                                               {:margin-left "0.5rem"})} year])]
-           [:div.content {:style {:margin-top "1rem"}}
-            [action-buttons map-info language]]]
-
-          [:hr]
-          [metadata-grid map-info language]
-          [map-thumbnail map-info]
-          [info-section (get-in (text is-arabic) [:sections :description]) (:description map-info) language]
-          [info-section (get-in (text is-arabic) [:sections :notes]) (:notes map-info) language]
-          [info-section (get-in (text is-arabic) [:sections :submitted-by]) (:submitted-by map-info) language]]])
-
-      [:div.container (cond-> {:style {:margin-top "6rem"}}
-                             is-arabic (assoc :lang "ar" :dir "rtl"))
-       [:div.content
-        [:h1.title.is-2 (get-in (text is-arabic) [:errors :not-found])]
-        [:p (get-in (text is-arabic) [:errors :not-found-desc])]
-        [:a.button.is-primary {:href (routes/url-for :catalogue)}
-         (get-in (text is-arabic) [:errors :return-catalogue])]]])))
+          [:h1.title.is-2 (get-in (text is-arabic) [:errors :not-found])]
+          [:p (get-in (text is-arabic) [:errors :not-found-desc])]
+          [:a.button.is-primary {:href (routes/url-for :catalogue)}
+           (get-in (text is-arabic) [:errors :return-catalogue])]]]))))

@@ -29,11 +29,11 @@
   (-> {:home  {:en [homepage/en] :ar [homepage/ar]}
        :map   {:en [historical-map] :ar [historical-map]}
        :about {:en [about/en] :ar [about/ar]}
-       :catalogue {:en [catalogue/catalogue :en] :ar [catalogue/catalogue :ar]}
+       :catalogue {:en [catalogue/catalogue] :ar [catalogue/catalogue]}
        :map-info (let [group (get route-params :group)
                        map-id (get route-params :map-id)]
-                   {:en [map-info/map-info :en group map-id]
-                    :ar [map-info/map-info :ar group map-id]})
+                   {:en [map-info/map-info group map-id]
+                    :ar [map-info/map-info group map-id]})
        :contribute {:en [contribute/en] :ar [contribute/ar]}
        :article-index {:en [article-index/en] :ar [article-index/ar]}}
       (merge articles-map)
