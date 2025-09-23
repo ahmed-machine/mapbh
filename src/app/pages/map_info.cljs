@@ -1,6 +1,6 @@
 (ns app.pages.map-info
   (:require [re-frame.core :as rf]
-            [app.pages.map.map-data :refer [get-thumbnail-path maps get-map-text]]
+            [app.data :refer [get-thumbnail-path maps get-map-text]]
             [app.routes :as routes]
             [app.model :as model]
             [clojure.string :as str]))
