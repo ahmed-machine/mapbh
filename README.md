@@ -25,7 +25,7 @@ mapBH serves as a digital repository and visualization platform for historical m
 - **Re-frame**: State management framework
 - **Bulma CSS**: Modern CSS framework for styling
 - **Leaflet.js**: Interactive mapping library
-	- Note: Includes several modified Leaflet plugins as well 
+	- Note: Includes several modified Leaflet plugins as well
 ### Backend & Infrastructure
 - **Tileserver-GL**: Map tile server for hosting georeferenced maps
 - **Nginx**: Reverse proxy server
@@ -45,12 +45,13 @@ mapBH serves as a digital repository and visualization platform for historical m
 ├── src/app/                    # ClojureScript source code
 │   ├── components/             # Reusable UI components
 │   ├── pages/                  # Route-specific page components
-│   │   ├── map/                # Map viewer functionality
+│   │   ├── map.cljs            # Interactive map viewer component
 │   │   └── articles/           # Article content and routing
 │   ├── util/                   # Utility functions
 │   ├── core.cljs               # Application entry point
 │   ├── routes.cljs             # Client-side routing
 │   ├── events.cljs             # Re-frame event handlers
+│   ├── data.cljs               # Map metadata and configuration
 │   └── model.cljs              # Application state model
 ├── scripts/                    # Map processing utilities
 ├── server-config/              # Server configuration files
@@ -98,10 +99,10 @@ Historical maps are processed through a georeferencing pipeline:
 
 1. **Preparation**: Scan physical map, and cleanup in photoshop
 2. **Ground Control Points (GCPs)**: Identification of reference coordinates
-3. **Geometric Transformation**: Using GDAL for spatial rectification from source projection to target projection using GCPs, with additional cutlines and stitching for multi-sheet sets.
+3. **Geometric Transformation**: Using GDAL for spatial rectification from source projection to target projection using GCPs, with additional cutlines and stitching for multi-sheet sets. Generates a GeoTiff file.
 4. **Tile Generation**: Converting to MBTiles format for web serving
 
-Where coordinates and projection information are unavailable, we get creative with landmarks, research, and approximation. Due to these reasons as well as historical inaccuracy in maps, not all maps align perfectly.
+Where coordinates and projection information are unavailable, we get creative with landmarks, research, and approximation. Each map is a puzzle to be solved whether in pre-processing or research or code.Due to these reasons as well as historical inaccuracy in maps, not all maps align perfectly.
 
 ### Processing Scripts
 
@@ -131,7 +132,7 @@ user=> (m/file->hiccup "article.md")
 [:div {} [:h1 {} "Article Title"] ...]
 ```
 
-### Map Metadata (map_data.cljs)
+### Map Metadata (data.cljs)
 Each map entry includes:
 - **Title**
 - **Date**
@@ -173,7 +174,7 @@ npm install -g tileserver-gl
 # Start local tile server
 tileserver-gl -c tile-config.json
 
-# Comment out the remote url in map_data.cljs
+# Comment out the remote url in data.cljs
 # Comment out the >2gb large maps in tile_config.json (1985)
 # Access at http://localhost:8080
 
