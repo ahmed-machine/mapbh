@@ -1,4 +1,4 @@
-(ns app.util
+(ns app.util.core
   (:require [clojure.string :as str]))
 
 (defn ->js [var-name]
