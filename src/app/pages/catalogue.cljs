@@ -1,8 +1,10 @@
 (ns app.pages.catalogue
   (:require [reagent.core :as r]
+            [re-frame.core :as rf]
             [app.pages.map.map-data :as map-data :refer [backlog maps get-map-text]]
             [app.routes :as routes]
             [app.util.url :as url]
+            [app.model :as model]
             [clojure.string :as str]))
 
 (defn text
@@ -294,25 +296,26 @@
 
 (defn catalogue
   "Unified catalogue page with i18n support"
-  [language]
-  (let [initial-params (parse-catalogue-params)
+  []
+  (let [language* (rf/subscribe [::model/language])
+        initial-params (parse-catalogue-params)
         search-term (r/atom (:search initial-params))
         selected-group-filter (r/atom (:group initial-params))
         sort-state (r/atom {:sort-key (:sort initial-params)
                            :sort-dir (:dir initial-params)})
-        include-backlog (r/atom (:backlog initial-params))
-        arabic? (= language :ar)
-        txt (text arabic?)
-        update-url-fn (fn []
-                        (update-catalogue-url!
-                         @search-term
-                         @selected-group-filter
-                         (:sort-key @sort-state)
-                         (:sort-dir @sort-state)
-                         @include-backlog))]
-
+        include-backlog (r/atom (:backlog initial-params))]
     (fn []
-      (let [all-data (flatten-map-data language @include-backlog)
+      (let [language @language*
+            arabic? (= language :ar)
+            txt (text arabic?)
+            update-url-fn (fn []
+                            (update-catalogue-url!
+                             @search-term
+                             @selected-group-filter
+                             (:sort-key @sort-state)
+                             (:sort-dir @sort-state)
+                             @include-backlog))
+            all-data (flatten-map-data language @include-backlog)
             group-filtered-data (group-filter @selected-group-filter all-data)
             filtered-data (search-filter @search-term group-filtered-data)]
         [:div.container (merge {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}}
