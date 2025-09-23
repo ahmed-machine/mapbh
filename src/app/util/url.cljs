@@ -1,6 +1,6 @@
 (ns app.util.url
   "URL parameter utilities for shareable map links"
-  (:require [app.pages.map.map-data :refer [default-map-state]]))
+  (:require [app.data :refer [default-map-state]]))
 
 ;; Constants
 (def ^:private coordinate-precision 5)

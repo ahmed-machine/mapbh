@@ -1,4 +1,4 @@
-(ns app.pages.map.map-data)
+(ns app.data)
 
 (def base-opts {:attribution "© OpenStreetMap, Mapbox"
                 :maxZoom 20

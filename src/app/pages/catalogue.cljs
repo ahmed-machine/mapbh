@@ -1,7 +1,7 @@
 (ns app.pages.catalogue
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            [app.pages.map.map-data :as map-data :refer [backlog maps get-map-text]]
+            [app.data :as data :refer [backlog maps get-map-text]]
             [app.routes :as routes]
             [app.util.url :as url]
             [app.model :as model]
