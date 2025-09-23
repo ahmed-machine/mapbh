@@ -6,7 +6,6 @@
             [clojure.string :as str]))
 
 (defn text
-  "Centralized text function for map info translations"
   [arabic?]
   (if arabic?
     {:metadata {:scale "المقياس"
@@ -193,7 +192,6 @@
       [:li.is-active [:a {:aria-current "page"} (:title map-info)]]]]))
 
 (defn map-info
-  "Combined map info page component with language support"
   [group map-id]
   (fn []
     (let [language* (rf/subscribe [::model/language])
