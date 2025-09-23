@@ -245,17 +245,20 @@
            [:td (:issuer item)]]))]]]))
 
 (defn search-filter
-    "Filter data based on search term"
-    [search-term data]
-    (if (str/blank? search-term)
-      data
+  "Filter data based on search term, matching all words"
+  [search-term data]
+  (if (str/blank? search-term)
+    data
+    (let [search-words (->> (str/split (str/lower-case search-term) #"\s+")
+                            (remove str/blank?))]
       (filter (fn [item]
-                (some #(and %
-                            (str/includes? (str/lower-case (str %))
-                                           (str/lower-case search-term)))
-                      [(:title item) (:group item) (:source item) (:issuer item)
-                       (:scale item) (:description item) (:notes item) (str (:year item))]))
-              data)))
+                (let [searchable-text (str/lower-case
+                                       (str/join " "
+                                                 (filter identity
+                                                         [(:title item) (:group item) (:source item) (:issuer item)
+                                                          (:scale item) (:description item) (:notes item) (str (:year item))])))]
+                  (every? #(str/includes? searchable-text %) search-words)))
+              data))))
 
 (defn group-filter
   "Filter data based on selected group"
