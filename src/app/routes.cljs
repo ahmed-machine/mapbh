@@ -5,7 +5,21 @@
             [app.events :as events]
             [app.model :as model]))
 
-(def url-for (fn [route] (bidi/path-for model/routes route :language @(rf/subscribe [::model/language]))))
+;; Slugs for URLs
+(def article-routes
+  {""       :article-index
+   "wadi"   :article-wadi
+   "fairey" :article-fairey})
+
+(def routes ["/" {[:language "/"] {""           :home
+                                   "about"      :about
+                                   "map"        :map
+                                   "map-info"   :map-info
+                                   "catalogue"  :catalogue
+                                   "contribute" :contribute
+                                   "articles/"   article-routes}}])
+
+(def url-for (fn [route] (bidi/path-for routes route :language @(rf/subscribe [::model/language]))))
 
 (defn- parse-query-params
   "Parse query parameters into a map for any route that needs them"
