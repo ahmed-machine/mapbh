@@ -10,7 +10,7 @@
                 :tileSize 512})
 
 (def tileserver-url #_"http://localhost:8080" "https://map.mapbh.org") ;; Defaults to remote server, uncomment to use local tileserver
-(defn form-tile-url [tile-name] (str tileserver-url "/data/" tile-name "/{z}/{x}/{y}.png"))
+(defn form-tile-url [tile-name & type] (str tileserver-url "/data/" tile-name "/{z}/{x}/{y}" (or (first type) ".png")))
 
 (def access-tokens ["pk.eyJ1IjoiYWhtZWRhbG11dGF3YSIsImEiOiJja2s1a3JqdWMwbHJiMnVzM2U5bHZleGNwIn0.icIlmsN_TY4zztxqC__e8Q"
                     "pk.eyJ1IjoidG9sb2NvcmUiLCJhIjoiY2trNWtuamxjMDY3ZzJubnhybjlscXRyNCJ9.ug82VbeEK-sPDD_YgJLBLw"]) ;; Mapbox Satellite
@@ -1947,4 +1947,42 @@ There are many derivative versions of this map; Europeans first republished it i
                 :labels nil}}
     :opts (merge base-opts {:minNativeZoom 10
                             :maxNativeZoom 16
-                            :opacity 0.8})}})
+                            :opacity 0.8})}
+
+   "2014 - Satellite Imagery"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :year 2014
+    :url (form-tile-url "20140611" ".jpg")
+    :scale "High Resolution"
+    :source "ESRI World Imagery"
+    :issuer "ArcGIS/Maxar"
+    :i18n {:en {:title "Bahrain Satellite Imagery - June 11, 2014"
+                :description "High-resolution satellite imagery of Bahrain captured on June 11, 2014, showing detailed urban and coastal features."
+                :notes "Orthorectified and color-balanced."
+                :labels nil}
+           :ar {:title "صور الأقمار الصناعية للبحرين - 11 يونيو 2014"
+                :description "صور عالية الدقة بالأقمار الصناعية للبحرين التقطت في 11 يونيو 2014"
+                :notes "صور مصححة هندسياً ومتوازنة الألوان بدقة أقل من متر"
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 12
+                            :maxNativeZoom 17
+                            :opacity 1.0})}
+
+   "2020 - Satellite Imagery"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :year 2020
+    :url (form-tile-url "20201216" ".jpg")
+    :scale "High Resolution"
+    :source "ESRI World Imagery"
+    :issuer "ArcGIS/Maxar"
+    :i18n {:en {:title "Bahrain Satellite Imagery - December 16, 2020"
+                :description "High-resolution satellite imagery of Bahrain captured on December 16, 2020, showing the most recent urban development and infrastructure."
+                :notes "Orthorectified and color-balanced with sub-meter resolution."
+                :labels nil}
+           :ar {:title "صور الأقمار الصناعية للبحرين - 16 ديسمبر 2020"
+                :description "صور عالية الدقة بالأقمار الصناعية للبحرين التقطت في 16 ديسمبر 2020"
+                :notes "صور مصححة هندسياً ومتوازنة الألوان بدقة أقل من متر"
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 12
+                            :maxNativeZoom 17
+                            :opacity 1.0})}})
