@@ -75,7 +75,7 @@
     "1926-Manama"  :  {"mbtiles": "public/maps/1926-Manama.mbtiles"},
     "1933-Manama"  :  {"mbtiles": "public/maps/1933-Manama.mbtiles"},
     "1933-Bahrain": {"mbtiles": "public/maps/1933-Bahrain.mbtiles"},
-    "20140611": {"mbtiles": "public/maps/20140611.mbtiles"},
+    "20141112": {"mbtiles": "public/maps/20141112.mbtiles"},
     "20201216": {"mbtiles": "public/maps/20201216.mbtiles"}
   }
 }
