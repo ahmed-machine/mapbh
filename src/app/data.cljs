@@ -1947,20 +1947,20 @@ There are many derivative versions of this map; Europeans first republished it i
    "2014 - Satellite Imagery"
    {:groups #{"Satellite Imagery" "Bahrain"}
     :year 2014
-    :url (form-tile-url "20140611" ".jpg")
+    :url (form-tile-url "20141112")
     :scale "High Resolution"
     :source "ESRI World Imagery"
     :issuer "ArcGIS/Maxar"
-    :i18n {:en {:title "Bahrain Satellite Imagery - June 11, 2014"
+    :i18n {:en {:title "Bahrain Satellite Imagery - November 12, 2014"
                 :description "High-resolution satellite imagery of Bahrain captured on June 11, 2014, showing detailed urban and coastal features."
                 :notes "Orthorectified and color-balanced."
                 :labels nil}
-           :ar {:title "صور الأقمار الصناعية للبحرين - 11 يونيو 2014"
-                :description "صور عالية الدقة بالأقمار الصناعية للبحرين التقطت في 11 يونيو 2014"
+           :ar {:title "صور الأقمار الصناعية للبحرين - ١٢ نوفمبر 2014"
+                :description "صور عالية الدقة بالأقمار الصناعية للبحرين التقطت في ١٢ نوفمبر 2014"
                 :notes "صور مصححة هندسياً ومتوازنة الألوان بدقة أقل من متر"
                 :labels nil}}
     :opts (merge base-opts {:minNativeZoom 12
-                            :maxNativeZoom 17
+                            :maxNativeZoom 16
                             :opacity 1.0})}
 
    "2020 - Satellite Imagery"
