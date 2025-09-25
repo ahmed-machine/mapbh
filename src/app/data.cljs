@@ -1,6 +1,6 @@
 (ns app.data)
 
-(def base-opts {:attribution "© OpenStreetMap, Mapbox"
+(def base-opts {:attribution "© OpenStreetMap, ESRI"
                 :maxZoom 20
                 :minZoom 9
                 :zoomOffset -1
@@ -12,14 +12,9 @@
 (def tileserver-url #_"http://localhost:8080" "https://map.mapbh.org") ;; Defaults to remote server, uncomment to use local tileserver
 (defn form-tile-url [tile-name & type] (str tileserver-url "/data/" tile-name "/{z}/{x}/{y}" (or (first type) ".png")))
 
-(def access-tokens ["pk.eyJ1IjoiYWhtZWRhbG11dGF3YSIsImEiOiJja2s1a3JqdWMwbHJiMnVzM2U5bHZleGNwIn0.icIlmsN_TY4zztxqC__e8Q"
-                    "pk.eyJ1IjoidG9sb2NvcmUiLCJhIjoiY2trNWtuamxjMDY3ZzJubnhybjlscXRyNCJ9.ug82VbeEK-sPDD_YgJLBLw"]) ;; Mapbox Satellite
-
-(def map-id "satellite-streets-v12")
-
 (def base-satellite {"Terrain" {:url "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 :opts (assoc base-opts :zoomOffset -1)}
-                     "Satellite" {:url (str "https://api.mapbox.com/styles/v1/mapbox/" map-id "/tiles/{z}/{x}/{y}?access_token=" (rand-nth access-tokens))
+                     "Satellite" {:url "http://services.arcgisonline.com/ArcGis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"
                                   :opts (assoc base-opts :zoomOffset -1)}})
 
 
