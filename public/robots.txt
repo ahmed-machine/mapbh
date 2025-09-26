@@ -49,4 +49,4 @@ Disallow: /
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://mapbh.org/sitemap.xml
+Sitemap: https://www.mapbh.org/sitemap.xml
