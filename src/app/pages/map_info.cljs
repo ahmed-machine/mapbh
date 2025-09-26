@@ -164,20 +164,51 @@
             (get-in (text is-arabic) [:buttons :additional-link-3]))])]))
 
 (defn map-thumbnail
-  "Render map thumbnail if available"
+  "Render map thumbnail with RDFa structured data for Google rich results"
   [map-info]
-  (let [thumbnail-path (get-thumbnail-path map-info)]
+  (let [thumbnail-path (get-thumbnail-path map-info)
+        credit-text (str (:source map-info)
+                        (when (and (:source map-info) (:issuer map-info)) " / ")
+                        (:issuer map-info))]
     (when thumbnail-path
-      [:div.content {:style {:margin-bottom "2rem"}}
+      [:div.content {:style {:margin-bottom "2rem"}
+                     :vocab "https://schema.org/"
+                     :typeof "ImageObject"}
        [:figure.image
         [:img {:src thumbnail-path
+               :property "contentUrl"
                :alt (:title map-info)
                :style {:max-width "600px"
                        :height "auto"
                        :border "1px solid #ddd"
                        :border-radius "4px"
                        :box-shadow "0 2px 4px rgba(0,0,0,0.1)"}
-               :on-error "this.parentElement.parentElement.style.display='none'"}]]])))
+               :on-error "this.parentElement.parentElement.style.display='none'"}]]
+       ;; Hidden structured data elements
+       [:div {:style {:display "none"}}
+        ;; Creator information
+        [:span {:property "creator" :typeof "Organization"}
+         [:span {:property "name"} "mapBH"]]
+        ;; Credit text combining source and issuer
+        (when (or (:source map-info) (:issuer map-info))
+          [:span {:property "creditText"} credit-text])
+        ;; Additional metadata
+        (when (:title map-info)
+          [:span {:property "name"} (:title map-info)])
+        (when (:description map-info)
+          [:span {:property "description"} (:description map-info)])
+        (when (:year map-info)
+          [:span {:property "datePublished"} (str (:year map-info))])
+        (when (:notes map-info)
+          [:span {:property "caption"} (:notes map-info)])
+        (when (:scale map-info)
+          [:meta {:property "additionalProperty"
+                  :content (str "Scale: " (:scale map-info))}])
+        ;; License and acquisition links if available
+        (when (:source-link map-info)
+          [:span {:property "acquireLicensePage"} (:source-link map-info)])
+        (when (:issuer-link map-info)
+          [:span {:property "url"} (:source-link map-info)])]])))
 
 (defn breadcrumb-nav
   "Render breadcrumb navigation"
