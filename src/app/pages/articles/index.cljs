@@ -7,14 +7,22 @@
 (def entries
   [{:en-title "Wadi AlBuhair"
     :ar-title "وادي البحير"
+    :en-description "The story of Wadi AlBuhair - a 45-million-year-old natural valley in Bahrain awaiting conservation amid urban destruction."
+    :ar-description "قصة وادي البحير الذي ينتظر انتصار رغم كثرة أنصاره - واحة طبيعية في قلب البحرين تواجه تحدي التطوير العمراني."
+    :en-keywords ["article" "Bahrain history" "historical maps" "Wadi AlBuhair"]
+    :ar-keywords ["مقال" "تاريخ البحرين" "خرائط تاريخية" "وادي البحير"]
     :date #inst "2022-06-06T17:53:59.000Z"
     :route "wadi"
-    :ns app.pages.articles.posts.wadi}
+    :component wadi/article}
    {:en-title "Fairey Surveys — history of modern map-making in Bahrain"
     :ar-title "فايري سورڤيز - صناع خرائط البحرين الحديثة"
+    :en-description "The history of Fairey Surveys and the creation of modern maps of independent Bahrain in the 1970s, shaping contemporary urban planning."
+    :ar-description "تاريخ شركة فايري سورڤيز وإنتاج أول الخرائط الحديثة للبحرين المستقلة في السبعينيات، ودورها في تشكيل التخطيط العمراني الحديث."
+    :en-keywords ["article" "Bahrain history" "historical maps" "Fairey Surveys"]
+    :ar-keywords ["مقال" "تاريخ البحرين" "خرائط تاريخية" "فايري سورڤيز"]
     :date #inst "2024-04-09T20:53:59.000Z"
     :route "fairey"
-    :ns app.pages.articles.posts.fairey}])
+    :component fairey/article}])
 
 (defn en []
   [:div.container.articles
@@ -35,6 +43,4 @@
   (let [language* (rf/subscribe [::model/language])]
     (fn []
       (let [language @language*]
-        (if (= language :ar)
-          [ar]
-          [en])))))
+        (if (= language :ar) [ar] [en])))))

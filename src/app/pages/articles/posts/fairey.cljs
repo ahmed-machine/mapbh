@@ -1,8 +1,8 @@
 (ns app.pages.articles.posts.fairey
   (:require [reagent.core :as r]
-            [app.routes :as routes]
             [app.events :as events]
             [app.pages.articles.util :refer [image]]
+            [app.model :as model]
             [re-frame.core :as rf]))
 
 (defn en []
@@ -168,4 +168,11 @@
        [:td "Riffa"]
        [:td "3 (likely published in early 1990s, 92/93)"]]]]]])
 
-(defn ar [] (en))
+(defn ar [] [en])
+
+(defn article
+  []
+  (let [language* (rf/subscribe [::model/language])]
+    (fn []
+      (let [language @language*]
+        (if (= language :ar) [ar] [en])))))

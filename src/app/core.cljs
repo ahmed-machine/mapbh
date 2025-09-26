@@ -11,18 +11,14 @@
             [app.components.nav :as nav]
             [app.routes :as routes]
             [app.model :as model]
+            [app.util.meta :as meta]
             [re-frame.core :as rf]))
 
-(def articles-map (->> (for [post article-index/entries]
-                     [(keyword (str "article-" (:route post)))
-                      (:ns post)])
-                   (into [])
-                   (map (fn [[kw n]]
-                          [kw (->> (js->clj n :keywordize-keys true)
-                                   (map (fn [[lng-kw object]]
-                                          [lng-kw [object]]))
-                                   (into {}))]))
-                   (into {})))
+(def articles-map
+  (->> article-index/entries
+       (map (fn [entry]
+              [(keyword (str "article-" (:route entry))) [(:component entry)]]))
+       (into {})))
 
 
 (defn- panels [panel-name route-params]
@@ -35,7 +31,7 @@
                    [map-info/map-info group map-id])
        :contribute [contribute/contribute]
        :article-index [article-index/article-index]}
-      (merge (into {} (for [[k v] articles-map] [k (first (vals v))])))
+      (merge articles-map)
       (get panel-name [homepage/homepage])))
 
 
@@ -44,6 +40,10 @@
         ap       (rf/subscribe [::model/active-panel])
         rp       (rf/subscribe [::model/route-params])]
     (fn []
+      ;; Set meta tags for static pages (skip dynamic pages: map-info only)
+      (when-not (some #{@ap} [:map-info])
+        (when-let [meta-config (routes/get-meta-config-for-route @ap @language)]
+          (meta/set-page-meta! meta-config)))
       [:<>
        (if (some #{@ap} `(:home)) nil [nav/top @language])
        [panels @ap @rp]

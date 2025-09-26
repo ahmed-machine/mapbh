@@ -3,7 +3,8 @@
             [app.data :refer [get-thumbnail-path maps get-map-text]]
             [app.routes :as routes]
             [app.model :as model]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [app.util.meta :as meta]))
 
 (defn text
   [arabic?]
@@ -44,6 +45,26 @@
      :errors {:not-found "Map Not Found"
               :not-found-desc "The requested map could not be found."
               :return-catalogue "Return to Catalogue"}}))
+
+(defn generate-breadcrumb-ld
+  "Generate BreadcrumbList structured data for map info pages"
+  [map-info language]
+  (let [is-arabic (= language :ar)
+        base-url (if is-arabic "https://www.mapbh.org/ar" "https://www.mapbh.org/en")
+        breadcrumb-data {"@context" "https://schema.org"
+                        "@type" "BreadcrumbList"
+                        "itemListElement" [{"@type" "ListItem"
+                                          "position" 1
+                                          "name" (if is-arabic "الرئيسية" "Home")
+                                          "item" (str base-url "/")}
+                                         {"@type" "ListItem"
+                                          "position" 2
+                                          "name" (if is-arabic "فهرس الخرائط" "Catalogue")
+                                          "item" (str base-url "/catalogue")}
+                                         {"@type" "ListItem"
+                                          "position" 3
+                                          "name" (:title map-info)}]}]
+    (js/JSON.stringify (clj->js breadcrumb-data) nil 2)))
 
 (defn find-map-by-group-and-id
   "Find map information by group and map ID with language support"
@@ -229,10 +250,41 @@
           language @language*
           is-arabic (= language :ar)
           map-info (when (and group map-id) (find-map-by-group-and-id group map-id language))]
+
+      ;; Set page meta tags when map-info is available
+      (when map-info
+        (let [thumbnail-path (get-thumbnail-path map-info)
+              map-data (assoc map-info :thumbnail-path thumbnail-path)]
+          (let [title (:title map-data)
+                year (:year map-data)
+                scale (:scale map-data)
+                source (:source map-data)
+                description (:description map-data)
+                thumbnail-path (:thumbnail-path map-data)
+                is-arabic (= language :ar)
+
+                page-title (str title (when year (str " (" year ")")))
+                page-description (or description
+                                   (str title
+                                        (when year (str (if is-arabic " من عام " " from ") year))
+                                        (when scale (str (if is-arabic ". المقياس: " ". Scale: ") scale))
+                                        (when source (str (if is-arabic ". المصدر: " ". Source: ") source))))
+                page-image (when thumbnail-path (str "https://www.mapbh.org" thumbnail-path))]
+            (meta/set-page-meta! {:title page-title
+                                  :description page-description
+                                  :image (or page-image "https://mapbh.org/img/ogbrand.png")
+                                  :image-alt (str title (if is-arabic " - خريطة تاريخية" " - Historical Map"))
+                                  :keywords (if is-arabic
+                                              ["خريطة تاريخية" "البحرين" (str "خريطة " year) title]
+                                              ["historical map" "Bahrain" (str year " map") title])}))))
       (if map-info
-        (let [year (:year map-info)]
+        (let [year (:year map-info)
+              breadcrumb-ld (generate-breadcrumb-ld map-info language)]
           [:div.container (cond-> {:style {:margin-top "6rem" :margin-bottom "3rem"}}
                             is-arabic (assoc :lang "ar" :dir "rtl"))
+           ;; BreadcrumbList structured data
+           [:script {:type "application/ld+json"
+                     :dangerouslySetInnerHTML {:__html breadcrumb-ld}}]
            [breadcrumb-nav map-info language]
 
            [:div.content

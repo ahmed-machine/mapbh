@@ -6,7 +6,8 @@
             [app.util.url :as url]
             [app.model :as model]
             [clojure.string :as str]
-            [cljs.core :as core]))
+            [cljs.core :as core]
+))
 
 (defn text
   [arabic?]
@@ -373,8 +374,8 @@
     (fn []
       (let [language @language*
             arabic? (= language :ar)
-            txt (text arabic?)
-            update-url-fn (fn []
+            txt (text arabic?)]
+        (let [update-url-fn (fn []
                             (update-catalogue-url!
                              @search-term
                              @selected-group-filter
@@ -458,4 +459,4 @@
                 [:span.tag.is-small (get-in txt [:page :sort-by])]
                 [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
 
-          [catalogue-table filtered-data sort-state language selected-group-filter update-url-fn]]]))))
+          [catalogue-table filtered-data sort-state language selected-group-filter update-url-fn]]])))))
