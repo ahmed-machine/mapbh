@@ -1,4 +1,4 @@
-# mapBH ![Deploy](https://github.com/AHAAAAAAA/mapbh/workflows/Deploy/badge.svg)
+# mapBH ![Deploy](https://github.com/ahmed-machine/mapbh/workflows/Deploy/badge.svg)
 
 Interactive site to explore historical maps of Bahrain from the 20th century. This is a comprehensive digital archive of Bahrain's recent cartographic history with tools for detailed exploration, comparison, and research.
 
@@ -72,7 +72,7 @@ mapBH serves as a digital repository and visualization platform for historical m
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/AHAAAAAAA/mapbh.git
+   git clone https://github.com/ahmed-machine/mapbh.git
    cd mapbh
    ```
 

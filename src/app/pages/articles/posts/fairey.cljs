@@ -124,7 +124,7 @@
     "We welcome everyone to explore this collection on "
     [:a {:href "https://mapbh.org/en/map"} "mapBH"]
     " or to clone the entire site/database "
-    [:a {:href "https://github.com/AHAAAAAAA/mapbh"} "from Github"]
+    [:a {:href "https://github.com/ahmed-machine/mapbh"} "from Github"]
     " and host their own copy."]
    [:p
     {} "DISCLAIMER: "
