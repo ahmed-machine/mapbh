@@ -42,5 +42,46 @@
       "type": "image/png",
       "label": "Historical Maps of Bahrain Interface"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Map Viewer",
+      "short_name": "Map",
+      "description": "Interactive historical map viewer",
+      "url": "/en/map",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Catalogue",
+      "short_name": "Catalogue",
+      "description": "Browse complete map collection",
+      "url": "/en/catalogue",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Articles",
+      "short_name": "Articles",
+      "description": "Historical research articles",
+      "url": "/en/articles/",
+      "icons": [
+        {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
   ]
 }
