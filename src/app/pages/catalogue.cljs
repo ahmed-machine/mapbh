@@ -5,7 +5,8 @@
             [app.routes :as routes]
             [app.util.url :as url]
             [app.model :as model]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [cljs.core :as core]))
 
 (defn text
   [arabic?]
@@ -40,6 +41,73 @@
              :source "Source"
              :issuer "Issuer"
              :needs-processing "Needs Processing"}}))
+
+(defn generate-json-ld
+  "Generate JSON-LD structured data for the map catalogue dataset"
+  [language all-data]
+  (let [arabic? (= language :ar)
+        ;; Calculate temporal coverage from years
+        years (remove nil? (map :year all-data))
+        min-year (when (seq years) (apply min years))
+        max-year (when (seq years) (apply max years))
+        ;; Create the main dataset structure
+        dataset (merge
+                 {"@context" "https://schema.org/"
+                  "@type" "Dataset"
+                  "name" (if arabic?
+                           "مجموعة خرائط البحرين التاريخية - mapBH"
+                           "mapBH Historical Maps Collection")
+                  "description" (if arabic?
+                                  "أرشيف رقمي شامل للخرائط التاريخية للبحرين من القرن العشرين، يوفر أدوات تفاعلية للمقارنة والبحث في التطور العمراني والجغرافي للمملكة"
+                                  "A comprehensive digital archive of historical maps of Bahrain from the 19th century, providing interactive tools for comparing and researching the urban and geographic evolution of Bahrain")
+                  "keywords" (if arabic?
+                               ["خرائط البحرين" "خرائط تاريخية" "الخليج العربي" "التراث العمراني" "أرشيف رقمي" "المنامة" "المحرق"]
+                               ["Bahrain maps" "historical cartography" "Persian Gulf" "Arabian Gulf" "urban heritage" "digital archive" "Manama" "Muharraq"])
+                  "creator" {"@type" "Organization"
+                            "name" "mapBH"
+                            "url" "https://www.mapbh.org"}
+                  "license" "https://creativecommons.org/licenses/by-nc/4.0/"
+                  "spatialCoverage" {"@type" "Place"
+                                    "name" (if arabic? "البحرين" "Bahrain")
+                                    "geo" {"@type" "GeoCoordinates"
+                                          "latitude" 26.066700
+                                          "longitude" 50.557700}}
+                  "url" "https://www.mapbh.org/catalogue"
+                  "includedInDataCatalog" {"@type" "DataCatalog"
+                                          "name" "mapBH Digital Archive"}
+                  "distribution" {"@type" "DataDownload"
+                                 "encodingFormat" "application/geo+json"
+                                 "contentUrl" "https://map.mapbh.org"}}
+                 ;; Add temporal coverage if we have years
+                 (when (and min-year max-year)
+                   {"temporalCoverage" (if (= min-year max-year)
+                                         (str min-year)
+                                         (str min-year "/" max-year))})
+                 ;; Add individual maps as hasPart subdatasets
+                 {"hasPart" (->> all-data
+                                (filter :title)
+                                (take 50) ;; Limit to first 50 maps for performance
+                                (map (fn [map-item]
+                                       (merge
+                                        {"@type" "Dataset"
+                                         "name" (:title map-item)}
+                                        (when (:description map-item)
+                                          {"description" (:description map-item)})
+                                        (when (:year map-item)
+                                          {"temporalCoverage" (str (:year map-item))})
+                                        (when (:source map-item)
+                                          {"creator" {"@type" "Organization"
+                                                     "name" (:source map-item)}})
+                                        (when (:scale map-item)
+                                          {"additionalProperty" {"@type" "PropertyValue"
+                                                                "name" "Scale"
+                                                                "value" (:scale map-item)}})
+                                        (when (:issuer map-item)
+                                          {"publisher" {"@type" "Organization"
+                                                       "name" (:issuer map-item)}}))))
+                                vec)})]
+    ;; Return as JSON string for script tag
+    (js/JSON.stringify (clj->js dataset) nil 2)))
 
 (defn safe-parse-int
   "Safely parse integer with radix, returning nil if invalid"
@@ -315,9 +383,13 @@
                              @include-backlog))
             all-data (flatten-map-data language @include-backlog)
             group-filtered-data (group-filter @selected-group-filter all-data)
-            filtered-data (search-filter @search-term group-filtered-data)]
+            filtered-data (search-filter @search-term group-filtered-data)
+            json-ld (generate-json-ld language all-data)]
         [:div.container (merge {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}}
                                (when arabic? {:lang "ar" :dir "rtl"}))
+         ;; JSON-LD structured data script tag
+         [:script {:type "application/ld+json"
+                   :dangerouslySetInnerHTML {:__html json-ld}}]
          [:div.content
           [:h1.title.is-2.has-text-centered-mobile (get-in txt [:page :title])]
           [:p.subtitle.has-text-centered-mobile (get-in txt [:page :subtitle])]
