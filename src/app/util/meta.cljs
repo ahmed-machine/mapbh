@@ -13,6 +13,14 @@
   []
   (.-href js/window.location))
 
+(defn get-current-domain
+  "Get current domain dynamically based on environment"
+  []
+  (let [location js/window.location
+        protocol (.-protocol location)
+        host (.-host location)]
+    (str protocol "//" host)))
+
 (defn get-base-url
   "Get base URL with language prefix"
   [language]
