@@ -188,6 +188,7 @@
   "Render map thumbnail with RDFa structured data for Google rich results"
   [map-info]
   (let [thumbnail-path (get-thumbnail-path map-info)
+        full-thumbnail-url (str (meta/get-current-domain) thumbnail-path)
         credit-text (str (:source map-info)
                         (when (and (:source map-info) (:issuer map-info)) " / ")
                         (:issuer map-info))]
@@ -197,7 +198,6 @@
                      :typeof "ImageObject"}
        [:figure.image
         [:img {:src thumbnail-path
-               :property "contentUrl"
                :alt (:title map-info)
                :style {:max-width "600px"
                        :height "auto"
@@ -207,6 +207,8 @@
                :on-error "this.parentElement.parentElement.style.display='none'"}]]
        ;; Hidden structured data elements
        [:div {:style {:display "none"}}
+        ;; Proper contentUrl with full URL
+        [:meta {:property "contentUrl" :content full-thumbnail-url}]
         ;; Creator information
         [:span {:property "creator" :typeof "Organization"}
          [:span {:property "name"} "mapBH"]]

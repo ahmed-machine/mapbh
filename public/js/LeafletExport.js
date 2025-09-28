@@ -289,7 +289,7 @@ class LeafletExporter {
                     loaded = true;
                     resolve()
                 }
-            }, 60000); // Fetch tiles for a minute
+            }, 90000); // Fetch tiles for a minute
 
             image.onload = () => {
                 if (loaded) return;
