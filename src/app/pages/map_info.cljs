@@ -190,8 +190,8 @@
   (let [thumbnail-path (get-thumbnail-path map-info)
         full-thumbnail-url (str (meta/get-current-domain) thumbnail-path)
         credit-text (str (:source map-info)
-                        (when (and (:source map-info) (:issuer map-info)) " / ")
-                        (:issuer map-info))]
+                         (when (and (:source map-info) (:issuer map-info)) " / ")
+                         (:issuer map-info))]
     (when thumbnail-path
       [:div.content {:style {:margin-bottom "2rem"}
                      :vocab "https://schema.org/"
@@ -215,6 +215,11 @@
         ;; Credit text combining source and issuer
         (when (or (:source map-info) (:issuer map-info))
           [:span {:property "creditText"} credit-text])
+        ;; Copyright notice (required field)
+        [:span {:property "copyrightNotice"}
+         (or credit-text "© mapBH - Digital Map Archive")]
+        ;; License information (required field)
+        [:span {:property "license"} "https://creativecommons.org/licenses/by-sa/4.0/"]
         ;; Additional metadata
         (when (:title map-info)
           [:span {:property "name"} (:title map-info)])
@@ -227,11 +232,11 @@
         (when (:scale map-info)
           [:meta {:property "additionalProperty"
                   :content (str "Scale: " (:scale map-info))}])
-        ;; License and acquisition links if available
+        ;; License and acquisition links if available - using meta tags for URLs
         (when (:source-link map-info)
-          [:span {:property "acquireLicensePage"} (:source-link map-info)])
+          [:meta {:property "acquireLicensePage" :content (str (meta/get-current-domain) (:source-link map-info))}])
         (when (:issuer-link map-info)
-          [:span {:property "url"} (:source-link map-info)])]])))
+          [:meta {:property "url" :content (str (meta/get-current-domain) (or (:source-link map-info) (:issuer-link map-info)))}])]])))
 
 (defn breadcrumb-nav
   "Render breadcrumb navigation"
@@ -288,7 +293,6 @@
            [:script {:type "application/ld+json"
                      :dangerouslySetInnerHTML {:__html breadcrumb-ld}}]
            [breadcrumb-nav map-info language]
-
            [:div.content
             [:div
              [:h1.title.is-2 (:title map-info)]
