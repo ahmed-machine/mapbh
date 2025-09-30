@@ -95,7 +95,7 @@ class LeafletExporter {
 
     async _FetchLayers() {
         let promises = []
-        
+
         this.map.eachLayer(layer => {
             let promise
             try {
@@ -124,7 +124,7 @@ class LeafletExporter {
             }
             promises.push(promise)
         });
-        
+
         return await Promise.all(promises)
     }
 
@@ -167,23 +167,23 @@ class LeafletExporter {
 
     async _FetchTileLayer(layer) {
         const tileSize = layer._tileSize.x
-        
+
         // Use appropriate zoom level - respect layer's min/maxNativeZoom
         // Always fetch tiles from 3 zoom levels higher for best quality, or maxNativeZoom
         const minNativeZoom = layer.options?.minNativeZoom || 0;
         const maxNativeZoom = layer.options?.maxNativeZoom || 20;
         const targetZoom = Math.min(this.zoom + 3, maxNativeZoom);
         const effectiveZoom = Math.max(minNativeZoom, targetZoom);
-        
+
         // Calculate bounds at the effective zoom level
         const zoomDifference = this.zoom - effectiveZoom;
         const scaleFactor = Math.pow(2, zoomDifference);
-        
+
         // Calculate bounds at the effective zoom level
-        const effectiveBounds = zoomDifference !== 0 
+        const effectiveBounds = zoomDifference !== 0
             ? this._calculateScaledBounds(scaleFactor)
             : this.bounds;
-        
+
         const tileLayer = {
             tiles: [],
             tileSize,
@@ -202,7 +202,7 @@ class LeafletExporter {
             }
         }
 
-        
+
         let promises = []
         tileLayer.tiles.forEach(tilePoint => {
             let originalTilePoint = tilePoint.clone()
@@ -232,7 +232,7 @@ class LeafletExporter {
         const centerY = (this.bounds.min.y + this.bounds.max.y) / 2;
         const halfWidth = (this.bounds.max.x - this.bounds.min.x) / 2 / scaleFactor;
         const halfHeight = (this.bounds.max.y - this.bounds.min.y) / 2 / scaleFactor;
-        
+
         return L.bounds(
             new L.Point(centerX / scaleFactor - halfWidth, centerY / scaleFactor - halfHeight),
             new L.Point(centerX / scaleFactor + halfWidth, centerY / scaleFactor + halfHeight)
@@ -306,7 +306,7 @@ class LeafletExporter {
 
                     // Get opacity with fallbacks for different Leaflet versions
                     const currentOpacity = layer.options.opacity ?? layer._opacity ?? 1.0;
-                    
+
                     tileLayer.tileImages.push({
                         img: image,
                         x: tilePos.x,

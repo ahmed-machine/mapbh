@@ -26,11 +26,11 @@
              :scale "المقياس"
              :source "المصدر"
              :issuer "الناشر"
-             :needs-processing "قيد المعالجة"}}
+             :needs-processing "في الارشيف"}}
     {:page {:title "Catalogue"
-            :subtitle "Browse and search through all maps on the site"
+            :subtitle "Browse and search through maps"
             :search-placeholder "Search maps..."
-            :include-backlog "Include Backlog Maps"
+            :include-backlog "Include backlog"
             :sort-by "Sort by:"
             :showing-count (fn [filtered total] (str "Showing " filtered " of " total " maps"))}
      :buttons {:info "Info"
@@ -44,7 +44,7 @@
              :needs-processing "Needs Processing"}}))
 
 (defn generate-json-ld
-  "Generate JSON-LD structured data for the map catalogue dataset"
+  "Generate JSON-LD structured data for the map catalogue dataset. Primarily used for SEO indexing."
   [language all-data]
   (let [arabic? (= language :ar)
         ;; Calculate temporal coverage from years
@@ -56,8 +56,8 @@
                  {"@context" "https://schema.org/"
                   "@type" "Dataset"
                   "name" (if arabic?
-                           "مجموعة خرائط البحرين التاريخية - mapBH"
-                           "mapBH Historical Maps Collection")
+                           "ارشيف  خرائط البحرين الرقمي - mapBH"
+                           "mapBH - Digital Map Archive")
                   "description" (if arabic?
                                   "أرشيف رقمي شامل للخرائط التاريخية للبحرين من القرن العشرين، يوفر أدوات تفاعلية للمقارنة والبحث في التطور العمراني والجغرافي للمملكة"
                                   "A comprehensive digital archive of historical maps of Bahrain from the 19th century, providing interactive tools for comparing and researching the urban and geographic evolution of Bahrain")
@@ -87,7 +87,6 @@
                  ;; Add individual maps as hasPart subdatasets
                  {"hasPart" (->> all-data
                                 (filter :title)
-                                (take 50) ;; Limit to first 50 maps for performance
                                 (map (fn [map-item]
                                        (merge
                                         {"@type" "Dataset"
@@ -116,13 +115,6 @@
   (when s
     (let [parsed (js/parseInt s 10)]
       (when-not (js/isNaN parsed) parsed))))
-
-(defn extract-year
-  "Extract year from title string"
-  [title]
-  (when-let [year-match (re-find #"\b(19|20)\d{2}\b" title)]
-    (safe-parse-int year-match)))
-
 
 (defn flatten-map-data
   "Convert map data structure to flat list for table display"
@@ -208,7 +200,6 @@
     (if (= sort-dir :desc)
       (reverse sorted)
       sorted)))
-
 
 (defn catalogue-table
   "Render the catalogue table"
@@ -388,7 +379,7 @@
             json-ld (generate-json-ld language all-data)]
         [:div.container (merge {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}}
                                (when arabic? {:lang "ar" :dir "rtl"}))
-         ;; JSON-LD structured data script tag
+         ;; JSON-LD structured data script tag (SEO)
          [:script {:type "application/ld+json"
                    :dangerouslySetInnerHTML {:__html json-ld}}]
          [:div.content
@@ -458,5 +449,4 @@
                [:div.tags.has-addons
                 [:span.tag.is-small (get-in txt [:page :sort-by])]
                 [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
-
           [catalogue-table filtered-data sort-state language selected-group-filter update-url-fn]]])))))

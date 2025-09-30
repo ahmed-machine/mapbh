@@ -1378,7 +1378,7 @@ There are many derivative versions of this map; Europeans first republished it i
    {:groups #{"Bahrain"}
     :year 2030
     :url (form-tile-url "2030-Bahrain")
-    :scale "N/A, probably 1:50,000"
+    :scale "~1:100,000"
     :source "National Plan and Development"
     :issuer "Urban Planning & Development Authority"
     :source-link "/maps/2030-Bahrain.jpg"
@@ -1948,7 +1948,7 @@ There are many derivative versions of this map; Europeans first republished it i
    {:groups #{"Satellite Imagery" "Bahrain"}
     :year 2014
     :url (form-tile-url "20141112")
-    :scale "High Resolution"
+    :scale "1:9000"
     :source "ESRI World Imagery"
     :issuer "ArcGIS/Maxar"
     :i18n {:en {:title "Bahrain Satellite Imagery - November 12, 2014"
@@ -1967,7 +1967,7 @@ There are many derivative versions of this map; Europeans first republished it i
    {:groups #{"Satellite Imagery" "Bahrain"}
     :year 2020
     :url (form-tile-url "20201216" ".jpg")
-    :scale "High Resolution"
+    :scale "1:4500"
     :source "ESRI World Imagery"
     :issuer "ArcGIS/Maxar"
     :i18n {:en {:title "Bahrain Satellite Imagery - December 16, 2020"
