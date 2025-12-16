@@ -45,9 +45,9 @@
         (when-let [meta-config (routes/get-meta-config-for-route @ap @language)]
           (meta/set-page-meta! meta-config)))
       [:<>
-       (if (some #{@ap} `(:home)) nil [nav/top @language])
+       (if (some #{@ap} [:home]) nil [nav/top @language])
        [panels @ap @rp]
-       (if (some #{@ap} `(:map :home)) nil [nav/footer @language])])))
+       (if (some #{@ap} [:map :home]) nil [nav/footer @language])])))
 
 
 (defn ^:dev/after-load render
