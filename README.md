@@ -33,32 +33,6 @@ mapBH serves as a digital repository and visualization platform for historical m
 - **Cloudflare**
 - **GitHub Actions**: Continuous deployment
 
-## Project Structure
-
-```
-├── public/                     # Static assets and built files
-│   ├── css/                    # Stylesheets and UI components
-│   ├── js/                     # Compiled JavaScript and runtime
-│   ├── maps/                   # Historical map files (.mbtiles, .tif)
-│   ├── img/                    # Images and article assets
-│   └── index.html              # Main HTML entry point
-├── src/app/                    # ClojureScript source code
-│   ├── components/             # Reusable UI components
-│   ├── pages/                  # Route-specific page components
-│   │   ├── map.cljs            # Interactive map viewer component
-│   │   └── articles/           # Article content and routing
-│   ├── util/                   # Utility functions
-│   ├── core.cljs               # Application entry point
-│   ├── routes.cljs             # Client-side routing
-│   ├── events.cljs             # Re-frame event handlers
-│   ├── data.cljs               # Map metadata and configuration
-│   └── model.cljs              # Application state model
-├── scripts/                    # Map processing utilities
-├── server-config/              # Server configuration files
-├── shadow-cljs.edn             # Build configuration
-├── deps.edn                    # Clojure dependencies
-└── package.json                # Node.js dependencies
-```
 
 ## Development Setup
 
@@ -83,10 +57,10 @@ mapBH serves as a digital repository and visualization platform for historical m
 
 3. **Start development server**
    ```bash
-   
+
    # Option 1: Direct shadow-cljs command
    npx shadow-cljs watch app
-   
+
    # Option 2: For Emacs/CIDER users
 	M-x cider-jack-in-cljs, select shadow, then :app
    ```
@@ -98,7 +72,7 @@ mapBH serves as a digital repository and visualization platform for historical m
 Historical maps are processed through a georeferencing pipeline:
 
 1. **Preparation**: Scan physical map, and cleanup in photoshop
-2. **Ground Control Points (GCPs)**: Identification of reference coordinates
+2. **Ground Control Points (GCPs)**: Identification of reference coordinates, typically corner coordinates or points on the map itself
 3. **Geometric Transformation**: Using GDAL for spatial rectification from source projection to target projection using GCPs, with additional cutlines and stitching for multi-sheet sets. Generates a GeoTiff file.
 4. **Tile Generation**: Converting to MBTiles format for web serving
 
@@ -106,12 +80,12 @@ Where coordinates and projection information are unavailable, we get creative wi
 
 ### Processing Scripts
 
-**Convert GeoTIFF to MBTiles (to server on tileserver)**
+**Convert GeoTIFF to MBTiles (to serve on tileserver)**
 ```bash
 ./scripts/tif2mbtiles.sh <input-path> <output-path>
 ```
 
-**UTM Zone 39 Projection (most common Bahrain standard)**
+**UTM Zone 39 (Ain al Abd) Projection (most common Bahrain standard)**
 ```bash
 ./scripts/utm-zone39-translate.sh "map-name" "x1 y1 x2 y2"
 
@@ -119,8 +93,8 @@ Where coordinates and projection information are unavailable, we get creative wi
 ./scripts/utm-zone39-translate.sh "1969.5000.Manama & AlJufayr.1-5" "453000 2901300 456600 2898900"
 ```
 
-## Articles 
-Lazy blog:
+## Articles
+It's a lazy blog:
 1. **Write in Markdown**
 2. **Convert to Hiccup**: Using the `markdown-to-hiccup` library
 3. **Integration**: Articles are compiled into ClojureScript namespaces
@@ -133,13 +107,7 @@ user=> (m/file->hiccup "article.md")
 ```
 
 ### Map Metadata (data.cljs)
-Each map entry includes:
-- **Title**
-- **Date**
-- **Scale**
-- **Description**
-- **Source Details**: Creator, publisher, series,etc
-- **Processing Notes**: Georeferencing accuracy, transformations applied
+All map entries are in `data.cljs` with associated translations, URLs, and descriptions.
 
 ## Deployment (.github/workflows/main.yml)
 GitHub Actions automatically:
