@@ -54,7 +54,7 @@
       (let [[lat lng] (map js/parseFloat (.split coord-str ","))]
         (when (and (not (js/isNaN lat)) (not (js/isNaN lng)))
           [lat lng]))
-      (catch js/Error e
+      (catch js/Error _
         nil))))
 
 (defn ^:private parse-float-with-bounds
@@ -65,7 +65,7 @@
       (let [val (js/parseFloat s)]
         (when (and (not (js/isNaN val)) (>= val min-val) (<= val max-val))
           val))
-      (catch js/Error e
+      (catch js/Error _
         nil))))
 
 (defn parse-zoom
@@ -107,7 +107,7 @@
   [map-data map-id]
   (when map-id
     (some (fn [[group-name layers]]
-            (some (fn [[layer-key layer-data]]
+            (some (fn [[layer-key _]]
                     (when (= (name layer-key) map-id)
                       [group-name (name layer-key)]))
                   layers))
@@ -165,7 +165,7 @@
   "Serialize current map state to URL parameters"
   [state]
   (let [{:keys [selected lat lng zoom mode base transparency]} state
-        [group map-id] selected
+        [_ map-id] selected
         ;; Truncate lat/lng for cleaner URLs
         truncated-lat (truncate-decimal lat coordinate-precision)
         truncated-lng (truncate-decimal lng coordinate-precision)]

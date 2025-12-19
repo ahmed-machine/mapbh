@@ -37,7 +37,7 @@
                       :lng (aget center 0)
                       :zoom (+ 1 minzoom)}
                      {:lat 26.0450 :lng 50.5460 :zoom 10}))))
-        (.catch (fn [e]
+        (.catch (fn [_]
                   {:lat 26.0450 :lng 50.5460 :zoom 10})))))
 
 (defn auto-center-map-from-tilejson
@@ -50,7 +50,7 @@
                          (-> js/L (.latLng (:lat center) (:lng center)))
                          (:zoom center)
                          #js {:animate true :duration 1.5})))
-        (.catch (fn [e])))))
+        (.catch (fn [_])))))
 
 
 (defn text
@@ -195,7 +195,7 @@
     (if-let [transparency (-> layer (aget "options") (aget "opacity"))]
       [:input {:title "Adjust Transparency"
                :class (str "slider transparency-slider " (if arabic? "arabic" "english") " " (:selected @state*))
-               :on-change (fn [e v]
+               :on-change (fn [e]
                             (let [new-transparency (/ (.. e -target -value) 100)]
                               (update-transparency layer (.. e -target -value))
                               (swap! state* assoc :transparency new-transparency)
@@ -268,7 +268,7 @@
                                     (when-let [existing-sbs (:sbs-control @state*)]
                                       (try
                                         (.remove existing-sbs)
-                                        (catch js/Error e))
+                                        (catch js/Error _))
                                       (swap! state* dissoc :sbs-control))
 
                                     ;; Find and remove any orphaned side-by-side controls from DOM
@@ -412,7 +412,7 @@
         _ (when-let [existing-sbs (:sbs-control @state*)]
             (try
               (.remove existing-sbs)
-              (catch js/Error e))
+              (catch js/Error _))
             (swap! state* dissoc :sbs-control))
         {:keys [map base selected base-layers]} (init-map state*)
         is-pinned-base (get-pinned-layer state*)
@@ -508,7 +508,7 @@
 
 (defn pin-button
   "Button to pin/unpin current overlay as base layer"
-  [state* arabic?]
+  [state* _]
   (let [base (:base @state*)
         is-pinned (and base (string? base) (.startsWith base "pinned-"))
         selected (:selected @state*)]
@@ -551,7 +551,7 @@
                         (when-let [existing-sbs (:sbs-control @state*)]
                           (try
                             (.remove existing-sbs)
-                            (catch js/Error e))
+                            (catch js/Error _))
                           (swap! state* dissoc :sbs-control))
                         (swap! state* assoc :mode transparency-mode :transparency 0.65)
                         (init-map state*)
@@ -579,7 +579,7 @@
                    (when morphing? "expanding-to-modal ")
                    (when show-description? "expanded-modal"))
        :disabled morphing?
-       :on-click (fn [e]
+       :on-click (fn [_]
                    (when-not (or morphing? show-description?)
                      ;; Start expansion animation
                      (swap! state* assoc :morphing? true)

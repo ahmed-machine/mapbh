@@ -1,8 +1,7 @@
 (ns app.events
   (:require [re-frame.core :as re-frame]
              [app.model :as model]
-             [bidi.bidi :as bidi]
-             [clojure.string :as str]))
+             [bidi.bidi :as bidi]))
 
 (re-frame/reg-event-db
  ::set-active-panel
@@ -34,8 +33,8 @@
                          (or current-search ""))]
          {:db new-db
           :history-push new-url})
-       (catch js/Error e
-         (.warn js/console "Language switch failed:" e)
+       (catch js/Error _
+         (.warn js/console "Language switch failed:")
          {:db new-db})))))
 
 ;; Effect handler for navigation using History API
