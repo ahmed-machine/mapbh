@@ -1,7 +1,8 @@
 (ns app.util.meta
   "Centralized meta tag management utility"
   (:require [re-frame.core :as rf]
-            [app.model :as model]))
+            [app.model :as model]
+            [clojure.string :as str]))
 
 (defn get-current-language
   "Get current language from re-frame state"
@@ -74,7 +75,7 @@
       ;; Update basic meta tags
       (update-name-meta-tag! "description" description)
       (when keywords
-        (update-name-meta-tag! "keywords" (if (string? keywords) keywords (clojure.string/join ", " keywords))))
+        (update-name-meta-tag! "keywords" (if (string? keywords) keywords (str/join ", " keywords))))
 
       ;; Update OpenGraph meta tags
       (update-meta-tag! "og:title" title)

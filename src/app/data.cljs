@@ -1,4 +1,5 @@
-(ns app.data)
+(ns app.data
+  (:require [clojure.string :as str]))
 
 (def base-opts {:attribution "© OpenStreetMap, ESRI"
                 :maxZoom 20
@@ -38,15 +39,15 @@
   (when file-path
     (let [filename (if (.startsWith file-path "/maps/")
                      (subs file-path 6)  ; Remove "/maps/" prefix
-                     (last (clojure.string/split file-path #"/")))
-          name-without-ext (clojure.string/replace filename #"\.[^.]+$" "")]
+                     (last (str/split file-path #"/")))
+          name-without-ext (str/replace filename #"\.[^.]+$" "")]
       (str "/thumbnails/" name-without-ext ".png"))))
 
 (defn- image-format?
   "Check if file path is an image format"
   [file-path]
   (and file-path
-       (re-find #"\.(jpg|jpeg|png|tif|tiff)$" (clojure.string/lower-case file-path))))
+       (re-find #"\.(jpg|jpeg|png|tif|tiff)$" (str/lower-case file-path))))
 
 (defn get-thumbnail-path
   "Get thumbnail path for a map, with fallback from source-link to issuer-link"
