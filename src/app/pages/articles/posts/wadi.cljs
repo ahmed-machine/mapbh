@@ -1,6 +1,7 @@
 (ns app.pages.articles.posts.wadi
   (:require [app.pages.articles.util :refer [image]]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [app.util.core :refer [arabic-attrs]]))
 
 (defn en
   []
@@ -44,7 +45,7 @@
 
 (defn ar
   []
-  [:div.container.about  {:dir "rtl" :lang "ar" :style {:font-size "1.4rem"}}
+  [:div.container.about (arabic-attrs)
    [:h1.title "وادي البحير — ينتظر انتصار رغم كثرة أنصاره"]
    [:button.button.is-clickable.is-rounded.is-info.is-light
     {:style {:margin-right "4.5rem"}

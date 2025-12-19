@@ -42,7 +42,7 @@
     (fn []
       ;; Set meta tags for static pages (skip dynamic pages: map-info only)
       (when-not (some #{@ap} [:map-info])
-        (when-let [meta-config (routes/get-meta-config-for-route @ap @language)]
+        (when-let [meta-config (meta/get-meta-config-for-route @ap @language)]
           (meta/set-page-meta! meta-config)))
       [:<>
        (if (some #{@ap} [:home]) nil [nav/top])

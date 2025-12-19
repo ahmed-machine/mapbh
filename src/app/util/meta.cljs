@@ -2,6 +2,7 @@
   "Centralized meta tag management utility"
   (:require [re-frame.core :as rf]
             [app.model :as model]
+            [app.routes :as routes]
             [clojure.string :as str]))
 
 (defn get-current-language
@@ -36,6 +37,14 @@
    :image "https://mapbh.org/img/ogbrand.png"
    :image-alt "mapBH - Digital Map Archive"
    :keywords ["Bahrain historical maps" "historical cartography" "Bahrain geography" "land reclamation" "urban development" "Middle East history" "interactive maps" "GIS Bahrain" "historical research" "Arabian Gulf maps"]})
+
+(defn get-meta-config-for-route
+  "Get meta configuration for a given route and language.
+   Retrieves configs from routes namespace for static and article pages."
+  [route language]
+  (or (get-in routes/page-meta-configs [route language])
+      (get-in routes/article-meta-configs [route language])
+      {}))
 
 (defn set-page-meta!
   "Set all meta tags for a page. Takes a config map and merges with defaults.
