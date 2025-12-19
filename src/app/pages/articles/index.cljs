@@ -1,6 +1,5 @@
 (ns app.pages.articles.index
   (:require [re-frame.core :as rf]
-            [app.model :as model]
             [app.pages.articles.posts.wadi :as wadi]
             [app.pages.articles.posts.fairey :as fairey]))
 
@@ -24,6 +23,16 @@
     :route "fairey"
     :component fairey/article}])
 
+;; Generate article routes from entries - single source of truth
+;; Pattern: {:route "wadi"} → {"wadi" :article-wadi}
+(def article-routes
+  (merge
+    {""  :article-index}  ; Index route
+    (into {}
+      (map (fn [entry]
+             [(:route entry) (keyword (str "article-" (:route entry)))])
+           entries))))
+
 (defn en []
   [:div.container.articles
    [:h1.title "Articles"]
@@ -40,7 +49,7 @@
 
 (defn article-index
   []
-  (let [language* (rf/subscribe [::model/language])]
+  (let [language* (rf/subscribe [:app.model/language])]
     (fn []
       (let [language @language*]
         (if (= language :ar) [ar] [en])))))
