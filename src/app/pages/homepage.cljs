@@ -2,7 +2,8 @@
   (:require [re-frame.core :as rf]
             [app.events :as events]
             [app.model :as model]
-            [app.routes :as routes]))
+            [app.routes :as routes]
+            [app.util.core :refer [arabic-attrs]]))
 
 (defn text
   [arabic?]
@@ -37,7 +38,7 @@
       (let [language @language*
             arabic? (= language :ar)
             txt (text arabic?)]
-        [:div.container.home (when arabic? {:dir "rtl" :lang "ar"})
+        [:div.container.home (when arabic? (arabic-attrs))
          [:div.main-content
           [:div.has-text-centered
            [:h1.logo "mapBH"]

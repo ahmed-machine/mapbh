@@ -76,13 +76,6 @@
     (catch js/Error _
       nil)))
 
-(defn get-meta-config-for-route
-  "Get meta configuration for a given route and language"
-  [route language]
-  (or (get-in page-meta-configs [route language])
-      (get-in article-meta-configs [route language])
-      {}))
-
 (defn- dispatch-route [matched-route]
   (if matched-route
     (let [panel-name (keyword (str (name (:handler matched-route))))

@@ -1,6 +1,7 @@
 (ns app.pages.contribute
   (:require [re-frame.core :as rf]
-            [app.model :as model]))
+            [app.model :as model]
+            [app.util.core :refer [arabic-attrs]]))
 
 (defn en []
   [:div.container.contribute
@@ -19,7 +20,7 @@
 
 
 (defn ar []
-  [:div.container.contribute {:dir "rtl" :lang "ar" :style {:font-size "1.4rem"}}
+  [:div.container.contribute (arabic-attrs)
    [:h1.title "المساهمة في المشروع"]
    [:p "نرحب بجميع المساهمات! الموقع ومجموعة البيانات " [:a {:href "https://github.com/ahmed-machine/mapbh"} "مفتوح المصدر و مجاني."] " الاحتياجات الحالية تتمحور حول إضافة أكبر عدد ممكن من الخرائط، وهذا يتضمن العمل التالي:"]
    [:ul {:style {:margin "2% 12%"}}

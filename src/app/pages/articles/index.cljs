@@ -1,7 +1,8 @@
 (ns app.pages.articles.index
   (:require [re-frame.core :as rf]
             [app.pages.articles.posts.wadi :as wadi]
-            [app.pages.articles.posts.fairey :as fairey]))
+            [app.pages.articles.posts.fairey :as fairey]
+            [app.util.core :refer [arabic-attrs]]))
 
 (def entries
   [{:en-title "Wadi AlBuhair"
@@ -41,7 +42,7 @@
                   " — " (.toLocaleDateString (:date entry))]))])
 
 (defn ar []
-  [:div.container.articles {:dir "rtl" :lang "ar" :style {:font-size "125%"}}
+  [:div.container.articles (arabic-attrs {:font-size "125%"})
    [:h1.title "مقالات"]
    (into [:ul] (for [entry entries]
                  [:li [:a {:href (str (:route entry))} (:ar-title entry)]
