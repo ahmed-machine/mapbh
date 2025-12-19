@@ -2,7 +2,7 @@
   (:require [re-frame.core :as rf]
             [reagent.core :as reagent]
             [app.model :as model]
-            [app.data :refer [base-satellite default-map-state maps get-map-text get-grouped-maps get-viewable-maps tileserver-url]]
+            [app.data :refer [base-satellite default-map-state maps get-map-text get-grouped-maps get-viewable-maps]]
             [app.util.url :as url]
             [clojure.string :as str]))
 
