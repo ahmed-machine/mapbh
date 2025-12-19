@@ -19,20 +19,25 @@
       param-value)))
 
 (defn get-query-params
-  "Parse URL query parameters into a map"
+  "Parse URL query parameters into a map.
+   Handles both form encoding (+ for spaces) and URL encoding.
+   Returns empty map if no parameters or on error."
   []
-  (let [search (-> js/window .-location .-search)
-        params-str (if (.startsWith search "?")
-                     (.substring search 1)
-                     search)]
-    (if (empty? params-str)
-      {}
-      (->> (.split params-str "&")
-           (map #(.split % "="))
-           (filter #(= 2 (count %)))
-           (map (fn [[k v]]
-                  [(keyword k) (decode-form-param v)]))
-           (into {})))))
+  (try
+    (let [search (-> js/window .-location .-search)
+          params-str (if (.startsWith search "?")
+                       (.substring search 1)
+                       search)]
+      (if (empty? params-str)
+        {}
+        (->> (.split params-str "&")
+             (map #(.split % "="))
+             (filter #(= 2 (count %)))
+             (map (fn [[k v]]
+                    [(keyword k) (decode-form-param v)]))
+             (into {}))))
+    (catch js/Error _
+      {})))
 
 (defn set-query-params!
   "Update URL query parameters without page reload"
