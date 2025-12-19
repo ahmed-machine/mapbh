@@ -71,7 +71,7 @@
   "Filter maps that belong to a specific group"
   [maps group-name]
   (into {}
-        (filter (fn [[map-id map-data]]
+        (filter (fn [[_ map-data]]
                   (contains? (:groups map-data) group-name))
                 maps)))
 
@@ -88,7 +88,7 @@
   "Filter maps to only include viewable ones (defaults to true if not specified)"
   [maps]
   (into {}
-        (filter (fn [[map-id map-data]]
+        (filter (fn [[_ map-data]]
                   (not= false (:viewable map-data)))
                 maps)))
 

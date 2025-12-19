@@ -44,9 +44,7 @@
   Usage: (set-page-meta! {:title 'Custom Title' :description 'Custom description'})
   "
   [config]
-  (let [language (get-current-language)
-        current-url (get-current-url)
-        base-url (get-base-url language)
+  (let [current-url (get-current-url)
         ;; Merge config with defaults
         meta-config (merge default-meta config)
         {:keys [title description image image-alt keywords]} meta-config

@@ -86,7 +86,7 @@
         (let [url-params (js/URLSearchParams. search)
               params (js/Object.fromEntries url-params)]
           (js->clj params :keywordize-keys true))))
-    (catch js/Error e
+    (catch js/Error _
       nil)))
 
 (defn get-meta-config-for-route

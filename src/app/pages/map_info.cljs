@@ -90,7 +90,7 @@
 
 (defn info-section
   "Render an information section if content exists"
-  [title content language]
+  [title content _]
   (when (and content (not (str/blank? content)))
     [:div.content
      [:h4.title.is-5 {:style {:margin-bottom "0.5rem"}} title]
@@ -261,8 +261,8 @@
       ;; Set page meta tags when map-info is available
       (when map-info
         (let [thumbnail-path (get-thumbnail-path map-info)
-              map-data (assoc map-info :thumbnail-path thumbnail-path)]
-          (let [title (:title map-data)
+              map-data (assoc map-info :thumbnail-path thumbnail-path)
+              title (:title map-data)
                 year (:year map-data)
                 scale (:scale map-data)
                 source (:source map-data)
@@ -277,13 +277,13 @@
                                         (when scale (str (if is-arabic ". المقياس: " ". Scale: ") scale))
                                         (when source (str (if is-arabic ". المصدر: " ". Source: ") source))))
                 page-image (when thumbnail-path (str "https://www.mapbh.org" thumbnail-path))]
-            (meta/set-page-meta! {:title page-title
-                                  :description page-description
-                                  :image (or page-image "https://mapbh.org/img/ogbrand.png")
-                                  :image-alt (str title (if is-arabic " - خريطة تاريخية" " - Historical Map"))
-                                  :keywords (if is-arabic
-                                              ["خريطة تاريخية" "البحرين" (str "خريطة " year) title]
-                                              ["historical map" "Bahrain" (str year " map") title])}))))
+          (meta/set-page-meta! {:title page-title
+                                :description page-description
+                                :image (or page-image "https://mapbh.org/img/ogbrand.png")
+                                :image-alt (str title (if is-arabic " - خريطة تاريخية" " - Historical Map"))
+                                :keywords (if is-arabic
+                                            ["خريطة تاريخية" "البحرين" (str "خريطة " year) title]
+                                            ["historical map" "Bahrain" (str year " map") title])})))
       (if map-info
         (let [year (:year map-info)
               breadcrumb-ld (generate-breadcrumb-ld map-info language)]

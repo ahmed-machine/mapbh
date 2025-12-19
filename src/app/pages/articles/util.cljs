@@ -1,4 +1,5 @@
-(ns app.pages.articles.util)
+(ns app.pages.articles.util
+  (:require [clojure.string :as str]))
 
 (defn image
   [src alt caption]
@@ -10,6 +11,6 @@
 
 (defn text->paragraphs
   [s]
-  (let [s (clojure.string/split s "\n")]
+  (let [s (str/split s "\n")]
     (for [x s]
       (println (str "[:p " x "] \n")))))
