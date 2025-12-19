@@ -1,7 +1,5 @@
 (ns app.pages.about
-  (:require [reagent.core :as r]
-            [re-frame.core :as rf]
-            [app.routes :as routes]
+  (:require [re-frame.core :as rf]
             [app.model :as model]))
 
 (defn image

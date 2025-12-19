@@ -365,8 +365,8 @@
     (fn []
       (let [language @language*
             arabic? (= language :ar)
-            txt (text arabic?)]
-        (let [update-url-fn (fn []
+            txt (text arabic?)
+            update-url-fn (fn []
                             (update-catalogue-url!
                              @search-term
                              @selected-group-filter
@@ -449,4 +449,4 @@
                [:div.tags.has-addons
                 [:span.tag.is-small (get-in txt [:page :sort-by])]
                 [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
-          [catalogue-table filtered-data sort-state language selected-group-filter update-url-fn]]])))))
+          [catalogue-table filtered-data sort-state language selected-group-filter update-url-fn]]]))))

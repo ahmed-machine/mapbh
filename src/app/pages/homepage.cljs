@@ -1,6 +1,5 @@
 (ns app.pages.homepage
-  (:require [reagent.core :as r]
-            [re-frame.core :as rf]
+  (:require [re-frame.core :as rf]
             [app.events :as events]
             [app.model :as model]
             [app.routes :as routes]))
