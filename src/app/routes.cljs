@@ -4,7 +4,8 @@
             [re-frame.core :as rf]
             [app.events :as events]
             [app.model :as model]
-            [app.pages.articles.index :as article-index]))
+            [app.pages.articles.index :as article-index]
+            [app.util.url :as url]))
 
 ;; Static page meta configurations
 (def page-meta-configs
@@ -64,24 +65,12 @@
 
 (def url-for (fn [route] (bidi/path-for model/routes route :language @(rf/subscribe [::model/language]))))
 
-(defn- parse-query-params
-  "Parse query parameters into a map for any route that needs them"
-  []
-  (try
-    (when-let [search (.-search js/window.location)]
-      (when (and (> (.-length search) 0) (.startsWith search "?"))
-        (let [url-params (js/URLSearchParams. search)
-              params (js/Object.fromEntries url-params)]
-          (js->clj params :keywordize-keys true))))
-    (catch js/Error _
-      nil)))
-
 (defn- dispatch-route [matched-route]
   (if matched-route
     (let [panel-name (keyword (str (name (:handler matched-route))))
           route-params (:route-params matched-route)
           ;; Parse query parameters for routes that need them
-          query-params (parse-query-params)
+          query-params (url/get-query-params)
           final-params (if query-params
                          (merge route-params query-params)
                          route-params)]

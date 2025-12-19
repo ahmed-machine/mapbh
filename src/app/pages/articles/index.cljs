@@ -42,7 +42,7 @@
                   " — " (.toLocaleDateString (:date entry))]))])
 
 (defn ar []
-  [:div.container.articles (arabic-attrs {:font-size "125%"})
+  [:div.container.articles (arabic-attrs)
    [:h1.title "مقالات"]
    (into [:ul] (for [entry entries]
                  [:li [:a {:href (str (:route entry))} (:ar-title entry)]
