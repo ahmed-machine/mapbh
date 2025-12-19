@@ -1,11 +1,6 @@
 (ns app.model
-  (:require [re-frame.core :as rf]))
-
-;; Slugs for URLs
-(def article-routes
-  {""       :article-index
-   "wadi"   :article-wadi
-   "fairey" :article-fairey})
+  (:require [re-frame.core :as rf]
+            [app.pages.articles.index :as article-index]))
 
 (def routes ["/" {[:language "/"] {""           :home
                                    "about"      :about
@@ -13,7 +8,7 @@
                                    "map-info"   :map-info
                                    "catalogue"  :catalogue
                                    "contribute" :contribute
-                                   "articles/"   article-routes}}])
+                                   "articles/"  article-index/article-routes}}])
 
 (rf/reg-sub
  ::active-panel

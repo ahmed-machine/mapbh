@@ -6,19 +6,6 @@
             [app.model :as model]
             [app.pages.articles.index :as article-index]))
 
-;; Slugs for URLs
-(def article-routes
-  {""       :article-index
-   "wadi"   :article-wadi
-   "fairey" :article-fairey})
-
-(def routes ["/" {[:language "/"] {""           :home
-                                   "about"      :about
-                                   "map"        :map
-                                   "map-info"   :map-info
-                                   "catalogue"  :catalogue
-                                   "contribute" :contribute
-                                   "articles/"   article-routes}}])
 ;; Static page meta configurations
 (def page-meta-configs
   "Meta tag configurations for static pages"
@@ -75,7 +62,7 @@
                      :keywords (:ar-keywords entry)}}]))
        (into {})))
 
-(def url-for (fn [route] (bidi/path-for routes route :language @(rf/subscribe [::model/language]))))
+(def url-for (fn [route] (bidi/path-for model/routes route :language @(rf/subscribe [::model/language]))))
 
 (defn- parse-query-params
   "Parse query parameters into a map for any route that needs them"

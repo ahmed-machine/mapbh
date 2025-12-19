@@ -1,8 +1,5 @@
 (ns app.pages.articles.posts.fairey
-  (:require [reagent.core :as r]
-            [app.events :as events]
-            [app.pages.articles.util :refer [image]]
-            [app.model :as model]
+  (:require [app.pages.articles.util :refer [image]]
             [re-frame.core :as rf]))
 
 (defn en []
@@ -172,7 +169,7 @@
 
 (defn article
   []
-  (let [language* (rf/subscribe [::model/language])]
+  (let [language* (rf/subscribe [:app.model/language])]
     (fn []
       (let [language @language*]
         (if (= language :ar) [ar] [en])))))
