@@ -9,7 +9,6 @@
 
 (def routes ["/" {[:language "/"] {""           :home
                                    "about"      :about
-                                   "dialects"   :dialects
                                    "map"        :map
                                    "map-info"   :map-info
                                    "catalogue"  :catalogue
