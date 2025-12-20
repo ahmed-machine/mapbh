@@ -53,3 +53,24 @@
           (if (= language :ar)
             [ar-component]
             [en-component]))))))
+
+(defn icon-margin
+  "Returns appropriate margin for icons based on language direction.
+   In English (LTR), icons have margin-right.
+   In Arabic (RTL), icons have margin-left.
+
+   Args:
+     language - Current language keyword (:en or :ar)
+     size - Optional margin size (default \"0.5rem\")
+
+   Returns:
+     Style map with appropriate margin
+
+   Example:
+     [:i.fas.fa-download {:style (icon-margin language)}]"
+  ([language]
+   (icon-margin language "0.5rem"))
+  ([language size]
+   (if (= language :ar)
+     {:margin-left size :padding "0.2rem"}
+     {:margin-right size :padding "0.2rem"})))

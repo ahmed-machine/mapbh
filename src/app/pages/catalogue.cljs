@@ -4,7 +4,7 @@
             [app.data :as data :refer [backlog maps get-map-text]]
             [app.routes :as routes]
             [app.util.url :as url]
-            [app.util.core :refer [rtl-attrs]]
+            [app.util.core :refer [rtl-attrs icon-margin]]
             [app.model :as model]
             [clojure.string :as str]))
 
@@ -267,18 +267,14 @@
                               "/map-info"
                               "?group=" (js/encodeURIComponent primary-group)
                               "&map-id=" (js/encodeURIComponent (:map-id item)))}
-                  [:i.fas.fa-info-circle {:style (if (= language :ar)
-                                                          {:margin-left "0.5rem" :padding "0.2rem"}
-                                                          {:margin-right "0.5rem" :padding "0.2rem"})}]
+                  [:i.fas.fa-info-circle {:style (icon-margin language)}]
                   (get-in (text (= language :ar)) [:buttons :info])]
                  (when is-viewable
                    [:a.button.is-light.is-small
                     {:href (str (routes/url-for :map)
                                 "?map=" (js/encodeURIComponent (:map-id item))
                                 "&flyTo=true")}
-                    [:i.fas.fa-map {:style (if (= language :ar)
-                                                   {:margin-left "0.5rem" :padding "0.2rem"}
-                                                   {:margin-right "0.5rem" :padding "0.2rem"})}]
+                    [:i.fas.fa-map {:style (icon-margin language)}]
                     (get-in (text (= language :ar)) [:buttons :view])])
 ]))]
            [:td [:strong (:title item)]]

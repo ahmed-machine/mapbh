@@ -3,7 +3,7 @@
             [app.data :refer [get-thumbnail-path maps get-map-text]]
             [app.routes :as routes]
             [app.model :as model]
-            [app.util.core :refer [rtl-attrs]]
+            [app.util.core :refer [rtl-attrs icon-margin]]
             [clojure.string :as str]
             [app.util.meta :as meta]))
 
@@ -132,36 +132,28 @@
         {:href (str (routes/url-for :map)
                    "?map=" (js/encodeURIComponent (:map-id map-info))
                    "&flyTo=true")}
-        [:i.fas.fa-map {:style (if is-arabic
-                                  {:margin-left "0.5rem" :padding "0.2rem"}
-                                  {:margin-right "0.5rem" :padding "0.2rem"})}]
+        [:i.fas.fa-map {:style (icon-margin language)}]
         (get-in (text is-arabic) [:buttons :view-map])])
 
      (when (:source-link map-info)
        [:a.button.is-light.is-small
         {:href (:source-link map-info)
          :target "_blank"}
-        [:i.fas.fa-download {:style (if is-arabic
-                                       {:margin-left "0.5rem" :padding "0.2rem"}
-                                       {:margin-right "0.5rem" :padding "0.2rem"})}]
+        [:i.fas.fa-download {:style (icon-margin language)}]
         (get-in (text is-arabic) [:buttons :download-source])])
 
      (when (:issuer-link map-info)
        [:a.button.is-light.is-small
         {:href (:issuer-link map-info)
          :target "_blank"}
-        [:i.fas.fa-file-image {:style (if is-arabic
-                                         {:margin-left "0.5rem" :padding "0.2rem"}
-                                         {:margin-right "0.5rem" :padding "0.2rem"})}]
+        [:i.fas.fa-file-image {:style (icon-margin language)}]
         (get-in (text is-arabic) [:buttons :download-issuer])])
 
      (when (:link-1 map-info)
        [:a.button.is-light.is-small
         {:href (:link-1 map-info)
          :target "_blank"}
-        [:i.fas.fa-external-link-alt {:style (if is-arabic
-                                                {:margin-left "0.5rem" :padding "0.2rem"}
-                                                {:margin-right "0.5rem" :padding "0.2rem"})}]
+        [:i.fas.fa-external-link-alt {:style (icon-margin language)}]
         (or (:link-1-label map-info)
             (get-in (text is-arabic) [:buttons :additional-link]))])
 
@@ -169,9 +161,7 @@
        [:a.button.is-light.is-small
         {:href (:link-2 map-info)
          :target "_blank"}
-        [:i.fas.fa-external-link-alt {:style (if is-arabic
-                                                {:margin-left "0.5rem" :padding "0.2rem"}
-                                                {:margin-right "0.5rem" :padding "0.2rem"})}]
+        [:i.fas.fa-external-link-alt {:style (icon-margin language)}]
         (or (:link-2-label map-info)
             (get-in (text is-arabic) [:buttons :additional-link-2]))])
 
@@ -179,9 +169,7 @@
        [:a.button.is-light.is-small
         {:href (:link-3 map-info)
          :target "_blank"}
-        [:i.fas.fa-external-link-alt {:style (if is-arabic
-                                                {:margin-left "0.5rem" :padding "0.2rem"}
-                                                {:margin-right "0.5rem" :padding "0.2rem"})}]
+        [:i.fas.fa-external-link-alt {:style (icon-margin language)}]
         (or (:link-3-label map-info)
             (get-in (text is-arabic) [:buttons :additional-link-3]))])]))
 
