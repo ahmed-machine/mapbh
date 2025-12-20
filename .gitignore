@@ -12,5 +12,7 @@ CLAUDE.MD
 .cpcache/
 .nrepl-port
 package-lock.json
-public/maps/1985-Bahrain.10k.mbtiles
-public/maps/1981-NAP.zip
+
+# Large files served from R2
+*.mbtiles
+public/maps/*.zip

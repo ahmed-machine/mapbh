@@ -4,7 +4,8 @@ After=network.target
 
 [Service]
 After=tileserver-gl.service
-ExecStart=tileserver-gl -c /mnt/maps/mapbh/tile-config.json
+WorkingDirectory=/var/www/mapbh
+ExecStart=tileserver-gl -c /var/www/mapbh/tile-config.json
 User=root
 Restart=on-failure
 
