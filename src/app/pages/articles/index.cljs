@@ -16,7 +16,7 @@
    {:en-title "Fairey Surveys — history of modern map-making in Bahrain"
     :ar-title "فايري سورڤيز - صناع خرائط البحرين الحديثة"
     :en-description "The history of Fairey Surveys and the creation of modern maps of independent Bahrain in the 1970s, shaping contemporary urban planning."
-    :ar-description "تاريخ شركة فايري سورڤيز وإنتاج أول الخرائط الحديثة للبحرين المستقلة في السبعينيات، ودورها في تشكيل التخطيط العمراني الحديث."
+    :ar-description "تاريخ شركة فايري سورڤيز وإنتاج أول الخرائط الحديثة للبحرين بعد الاستقلال في السبعينيات، ودورها في تشكيل التخطيط العمراني الحديث."
     :en-keywords ["article" "Bahrain history" "historical maps" "Fairey Surveys"]
     :ar-keywords ["مقال" "تاريخ البحرين" "خرائط تاريخية" "فايري سورڤيز"]
     :date #inst "2024-04-09T20:53:59.000Z"
@@ -34,18 +34,30 @@
            entries))))
 
 (defn en []
-  [:div.container.articles
+  [:div.container.about
    [:h1.title "Articles"]
-   (into [:ul] (for [entry entries]
-                 [:li [:a {:href (str (:route entry))} (:en-title entry)]
-                  " — " (.toLocaleDateString (:date entry))]))])
+   [:div.articles-container
+    (for [entry (sort-by :date #(compare %2 %1) entries)]
+      [:div.box {:key (:route entry)}
+       [:h3.title.is-4 [:a {:href (str (:route entry))}
+                        (:en-title entry)]]
+       [:p.subtitle.is-6
+        [:span.icon [:i.far.fa-calendar-alt]]
+        (.toLocaleDateString (:date entry) "en-US" #js{:year "numeric" :month "long" :day "numeric"})]
+       [:p (:en-description entry)]])]])
 
 (defn ar []
-  [:div.container.articles (arabic-attrs)
+  [:div.container.about (arabic-attrs)
    [:h1.title "مقالات"]
-   (into [:ul] (for [entry entries]
-                 [:li [:a {:href (str (:route entry))} (:ar-title entry)]
-                  " — " (.toLocaleDateString (:date entry))]))])
+   [:div.articles-container
+    (for [entry (sort-by :date #(compare %2 %1) entries)]
+      [:div.box {:key (:route entry)}
+       [:h3.title.is-4 [:a {:href (str (:route entry))}
+                        (:ar-title entry)]]
+       [:p.subtitle.is-6
+        [:span.icon [:i.far.fa-calendar-alt]]
+        (.toLocaleDateString (:date entry) "ar-BH" #js{:year "numeric" :month "long" :day "numeric"})]
+       [:p (:ar-description entry)]])]])
 
 (def article-index
   (bilingual-component en ar))
