@@ -1,8 +1,6 @@
 (ns app.pages.about
-  (:require [re-frame.core :as rf]
-            [app.model :as model]
-            [app.pages.articles.util :refer [image]]
-            [app.util.core :refer [arabic-attrs]]))
+  (:require [app.pages.articles.util :refer [image]]
+            [app.util.core :refer [arabic-attrs bilingual-component]]))
 
 
 (defn en []
@@ -51,11 +49,5 @@
    [:p "برزت معالم هذا المشروع من نقاشات حول تلاشي ثقافتي البحرين الزراعية والبحرية، فإنّه يستحيل على حديثي العهد في البحرين تخيّل المعالم الجغرافية التي شهدت تغييراتٍ جذرية والتي كوّنت أهل البحرين فشكّلت عاداتهم وتقاليدهم ومطبخهم ولغتهم وجيناتهم. كم من هور ومزرعة وقناة وعيون في البحرين لم يعد له أثر الا في ذاكرة المشايخ فأصبح على مشارف النسيان. أملنا في هذا المشروع أن يكون حلقةً في سلسلة موارد وأدواتٍ تساعد على تصوير واستكشاف تاريخ البحرين وثقافتها، لأن بمعرفة ماضي البحرين يتأتّى لنا صناعة مستقبلٍ له على نهج تاريخه أكثر ثباتًا ودواما."]
    ])
 
-(defn about
-  []
-  (let [language* (rf/subscribe [::model/language])]
-    (fn []
-      (let [language @language*]
-        (if (= language :ar)
-          [ar]
-          [en])))))
+(def about
+  (bilingual-component en ar))

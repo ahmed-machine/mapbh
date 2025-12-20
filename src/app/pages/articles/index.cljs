@@ -1,8 +1,7 @@
 (ns app.pages.articles.index
-  (:require [re-frame.core :as rf]
-            [app.pages.articles.posts.wadi :as wadi]
+  (:require [app.pages.articles.posts.wadi :as wadi]
             [app.pages.articles.posts.fairey :as fairey]
-            [app.util.core :refer [arabic-attrs]]))
+            [app.util.core :refer [arabic-attrs bilingual-component]]))
 
 (def entries
   [{:en-title "Wadi AlBuhair"
@@ -48,9 +47,5 @@
                  [:li [:a {:href (str (:route entry))} (:ar-title entry)]
                   " — " (.toLocaleDateString (:date entry))]))])
 
-(defn article-index
-  []
-  (let [language* (rf/subscribe [:app.model/language])]
-    (fn []
-      (let [language @language*]
-        (if (= language :ar) [ar] [en])))))
+(def article-index
+  (bilingual-component en ar))

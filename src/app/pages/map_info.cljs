@@ -3,6 +3,7 @@
             [app.data :refer [get-thumbnail-path maps get-map-text]]
             [app.routes :as routes]
             [app.model :as model]
+            [app.util.core :refer [rtl-attrs]]
             [clojure.string :as str]
             [app.util.meta :as meta]))
 
@@ -22,8 +23,8 @@
                :additional-link "رابط إضافي"
                :additional-link-2 "رابط إضافي ثاني"
                :additional-link-3 "رابط إضافي ثالث"}
-     :navigation {:home "الرئيسية"
-                  :catalogue "فهرس الخرائط"}
+     :navigation {:home "الصفحة الرئيسية"
+                  :catalogue "الفهرس"}
      :errors {:not-found "الخريطة غير موجودة"
               :not-found-desc "لم يتم العثور على الخريطة المطلوبة."
               :return-catalogue "العودة للفهرس"}}
@@ -287,8 +288,8 @@
       (if map-info
         (let [year (:year map-info)
               breadcrumb-ld (generate-breadcrumb-ld map-info language)]
-          [:div.container (cond-> {:style {:margin-top "6rem" :margin-bottom "3rem"}}
-                            is-arabic (assoc :lang "ar" :dir "rtl"))
+          [:div.container (merge {:style {:margin-top "6rem" :margin-bottom "3rem"}}
+                                 (when is-arabic (rtl-attrs)))
            ;; BreadcrumbList structured data
            [:script {:type "application/ld+json"
                      :dangerouslySetInnerHTML {:__html breadcrumb-ld}}]

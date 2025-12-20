@@ -2,6 +2,7 @@
   (:require [app.routes :as routes]
             [app.events :as events]
             [app.model :as model]
+            [app.util.core :refer [rtl-attrs]]
             [re-frame.core :as rf]))
 
 (def nav-items-en
@@ -30,12 +31,20 @@
 
 (defn language-switcher
   [is-arabic]
-  [:a.navbar-item.language-toggle
+  [:a.language-toggle
    {:on-click #(rf/dispatch [::events/set-route-params
-                            {:language (if is-arabic "en" "ar")}])}
-   [:span.icon [:i.fas.fa-globe]]
-   [:span.lang-code {:class (when-not is-arabic "arabic-text")}
-    (if is-arabic "EN" "ع")]])
+                            {:language (if is-arabic "en" "ar")}])
+    :style {:cursor "pointer"
+            :padding-left "1rem"
+            :padding-right "1rem"
+            :background "none"
+            :border "none"
+            :font-size "1.5rem"}}
+   [:span {:style (merge {:opacity (if is-arabic 0.5 1)}
+                         (when-not is-arabic {:font-weight 700}))} "en"]
+   [:span {:style {:opacity 0.5}} "/" ]
+   [:span.arabic-text {:style (merge {:opacity (if is-arabic 1 0.5)}
+                                     (when is-arabic {:font-weight 700}))} "ع"]])
 
 (defn top
   "Top navigation bar - Form-2 component with internal language subscription"
@@ -48,18 +57,22 @@
             is-arabic (= language :ar)
             nav-items (if is-arabic nav-items-ar nav-items-en)
             nav-class (if is-arabic "navbar-end" "navbar-start is-vcentered")]
-        [:nav.navbar.is-fixed-top (when is-arabic {:lang "ar" :direction "rtl"})
+        [:nav.navbar.is-fixed-top (when is-arabic (merge (rtl-attrs) {:style {:direction "rtl"}}))
          [:div.navbar-brand
           [:a.nav-logo.is-vcentered {:href (routes/url-for :home)}
            [:p.column.logo (merge {:style {:color :black :z-index 2}}
                                   (when is-arabic {:style {:color :black :font-family "Comfortaa" :z-index 2}}))
             "mapBH"]]]
          [:div.navbar-menu.is-active {:style {:font-size (if is-arabic "1.1em" "0.8em")}}
+          ;; Main nav items
           [:div {:class nav-class}
-           (when is-arabic [language-switcher is-arabic])
            (for [item nav-items]
-             ^{:key (:key item)} [render-nav-item active-panel item])
-           (when-not is-arabic [language-switcher is-arabic])]]]))))
+             ^{:key (:key item)} [render-nav-item active-panel item])]
+          ;; Language switcher in opposite corner
+          [:div {:class (if is-arabic "navbar-start" "navbar-end")
+                 :style {:margin-right (if is-arabic "0" "1rem")
+                         :margin-left (if is-arabic "1rem" "0")}}
+           [language-switcher is-arabic]]]]))))
 
 (def social-links
   [{:href "https://twitter.com/map_bh" :icon "fab fa-twitter"}
@@ -80,5 +93,5 @@
   (let [language* (rf/subscribe [::model/language])]
     (fn []
       (let [is-arabic (= @language* :ar)]
-        [:footer.footer (when is-arabic {:lang "ar" :direction "rtl"})
+        [:footer.footer (when is-arabic (merge (rtl-attrs) {:style {:direction "rtl"}}))
          [footer-content]]))))
