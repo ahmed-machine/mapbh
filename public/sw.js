@@ -1,10 +1,10 @@
 // Service Worker for mapBH PWA
-// Version: 1.0.0
+// Version: BUILD_TIMESTAMP (replaced during build)
 
-const CACHE_VERSION = 'v1';
-const CACHE_NAME = `mapbh-${CACHE_VERSION}`;
+const CACHE_VERSION = 'BUILD_TIMESTAMP';
+const CACHE_NAME = `mapbh-app-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `mapbh-runtime-${CACHE_VERSION}`;
-const TILE_CACHE = `mapbh-tiles-${CACHE_VERSION}`;
+const TILE_CACHE = `mapbh-tiles`; // Persistent across versions!
 
 // Core assets to cache immediately on install
 const PRECACHE_ASSETS = [
@@ -49,7 +49,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate event - clean up old caches
+// Activate event - clean up old caches (but preserve tiles!)
 self.addEventListener('activate', event => {
   console.log('[Service Worker] Activating...');
 
@@ -57,6 +57,7 @@ self.addEventListener('activate', event => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
+          // Keep current caches and ALWAYS preserve tile cache
           if (cacheName.startsWith('mapbh-') &&
               cacheName !== CACHE_NAME &&
               cacheName !== RUNTIME_CACHE &&
@@ -66,7 +67,10 @@ self.addEventListener('activate', event => {
           }
         })
       );
-    }).then(() => self.clients.claim()) // Take control immediately
+    }).then(() => {
+      console.log('[Service Worker] Activated with version:', CACHE_VERSION);
+      return self.clients.claim(); // Take control immediately
+    })
   );
 });
 

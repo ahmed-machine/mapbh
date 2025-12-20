@@ -5,10 +5,20 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js', {
-      scope: '/'
+      scope: '/',
+      // Force browser to check for SW updates by bypassing HTTP cache
+      updateViaCache: 'none'
     })
     .then(function(registration) {
       console.log('SW registered: ', registration.scope);
+
+      // Check for updates periodically (every hour)
+      setInterval(function() {
+        registration.update();
+      }, 60 * 60 * 1000);
+
+      // Check for updates on page load
+      registration.update();
 
       // Check for updates
       registration.addEventListener('updatefound', function() {
