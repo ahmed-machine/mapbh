@@ -59,6 +59,13 @@
         (when (image-format? issuer-link) (path-to-thumbnail issuer-link))
         (path-to-thumbnail source-link))))
 
+(defn get-collection-thumbnail-paths
+  "Get vector of thumbnail paths for a multi-map collection.
+   Returns nil if not a collection, or vector of thumbnail paths if collection-thumbnails field exists."
+  [map-data]
+  (when-let [file-basenames (:collection-thumbnails map-data)]
+    (mapv #(str "/thumbnails/" % ".png") file-basenames)))
+
 (defn get-map-text
   "Get localized text for a map entry. Falls back to English if Arabic not available."
   [map-entry language field]
@@ -92,216 +99,7 @@
                   (not= false (:viewable map-data)))
                 maps)))
 
-(def backlog
-  {"1903 - Persian Gulf Plans" {:title "Plans in the Persian Gulf - Bahrein Harbour"
-                                :year 1903
-                                :source-file "Plans in the Persian Gulf - Bahrein Harbour, 1903"
-                                :status "needs-processing"}
-   "1905 - Khor Kaliya" {:title "Khor Kaliya"
-                         :year 1905
-                         :source-file "Khor Kaliya, 1905"
-                         :status "needs-processing"}
-   "1916 - Persian Gulf Plans" {:title "Plans in the Persian Gulf - Multiple Harbours"
-                                :year 1916
-                                :source-file "Plans in the Persian Gulf - Bahrein Harbour, Magam, Lingeh, Dibai, 1916"
-                                :status "needs-processing"}
-   "1938-9 - Manama Town" {:title "Manama Town - 1357 (1938:9)"
-                           :year 1938
-                           :source-file "Manama Town, 1357 (1938:9)"
-                           :status "needs-processing"
-                           :notes "Historical Hijri date"}
-   "1934 - Bahrain Facility Map" {:title "Bahrain Facility Map - 1934"
-                                  :year 1934
-                                  :scale "1:63,360"
-                                  :source-file "1934.63360.Bahrain Facility Map"
-                                  :status "needs-processing"}
-   "1936 - Plans North East Coast" {:title "Plans on the North East coast of Bahrain Island"
-                                    :year 1936
-                                    :source-file "Plans on the North East coast of Bahrain Island, 1936"
-                                    :status "needs-processing"}
-   "1937 - Naval Base Khor Kaliya" {:title "Naval Base at Khor Kaliya [Jufair]"
-                                    :year 1937
-                                    :source-file "Naval Base at Khor Kaliya [Jufair], 1937"
-                                    :status "needs-processing"}
-   "1938-9 - Hawar Islands" {:title "Hawar Islands"
-                             :year 1938
-                             :source-file "Hawar Islands, 1938:9"
-                             :status "needs-processing"}
-   "1939 - Bahrein Island" {:title "Bahrein Island"
-                            :year 1939
-                            :source-file "Bahrein Island, 1939"
-                            :status "needs-processing"}
-   "1939-40 - Hawar Islands" {:title "Hawar Islands"
-                              :year 1939
-                              :source-file "Hawar Islands, 1939:40"
-                              :status "needs-processing"}
-   "1942 - Bahrein Island" {:title "Bahrein Island"
-                            :year 1942
-                            :source-file "Bahrein Island, 1942"
-                            :status "needs-processing"}
-   "1948 - Bahrain" {:title "'Water Zone 'B' Structure Contour Map Showing Distribution of Artesian Water' [‎18r]"
-                     :year 1948
-                     :description "A map showing the national distribution of artesian water wells in Bahrain. The map is enclosed in a report that was written by the Bahrain Petroleum Company at request of the Government of Bahrain in October 1948."
-                     :source-file "1948.Bahrain Water"
-                     :status "needs-processing"}
-   "1951 - Manama" {:title "Manama - 1951 (9 maps)"
-                    :year 1951
-                    :scale "1:2,400"
-                    :source-file "1951.2400.Manama collection"
-                    :status "needs-processing"
-                    :notes "Multi-sheet map collection with 9 maps"}
-
-   "1951 - Aerial Manama" {:title "Aerial View - Manama - 1951"
-                           :year 1951
-                           :scale "1:5,000"
-                           :source-file "1951.5000.Aerial Manama"
-                           :status "needs-processing"}
-   "1952 - Bahrain" {:title "Bahrain - 1952"
-                     :year 1952
-                     :scale "1:63,360"
-                     :source-file "1952.63360.Bahrain"
-                     :status "needs-processing"}
-   "1956 - Bahrain March" {:title "Bahrain Island - March 1956"
-                           :year 1956
-                           :source-file "Bahrain Island, March 1956"
-                           :status "needs-processing"}
-   "1953 - Welcome to Bahrain" {:title "Welcome to Bahrain - Manama - 1953"
-                                :year 1953
-                                :source-file "1953.NA.Welcome to Bahrain - Manama"
-                                :status "needs-processing"}
-   "1960 - Bahrain" {:title "Bahrain - 1960"
-                     :year 1960
-                     :scale "1:97,500"
-                     :source-file "1960.97500.Bahrain-front"
-                     :status "needs-processing"}
-   "1961 - Manama" {:title "Manama - 1961"
-                    :year 1961
-                    :scale "1:5,000"
-                    :source-file "1961.5000.Manama"
-                    :status "needs-processing"}
-   "1962 - Bahrain Island" {:title "Bahrain Island - 1962"
-                            :year 1962
-                            :scale "1:63,360"
-                            :source-file "1962.63360.Bahrain Island.5-1"
-                            :status "needs-processing"}
-   "1963 - Manama" {:title "Manama - 1963"
-                    :year 1963
-                    :scale "1:5,000"
-                    :source-file "1963.5000.Manama"
-                    :status "needs-processing"}
-   "1965 - Welcome to Bahrain" {:title "Welcome to Bahrain - 1965 (4 maps)"
-                                :year 1965
-                                :source-file "1965.Welcome to Bahrain collection"
-                                :status "needs-processing"
-                                :notes "Multi-file collection with 4 maps"}
-   "1967 - Jufair Town Plans" {:title "Jufair Town Plans - 1967 (2 sheets)"
-                               :year 1967
-                               :scale "1:5,000"
-                               :source-file "Bahrain Town Plans - 1967 [Manama] Jufair collection"
-                               :status "needs-processing"
-                               :notes "2-sheet collection: East and West"}
-   "1967 - Muharraq Island Plans" {:title "Muharraq Island Town Plans - 1967 (4 sheets)"
-                                   :year 1967
-                                   :source-file "Bahrain Town Plans - 1967 Muharraq Island collection"
-                                   :status "needs-processing"
-                                   :notes "4-sheet detailed coverage of Muharraq Island"}
-   "1967 - Manama Traffic" {:title "Manama Traffic - 1967"
-                            :year 1967
-                            :source-file "1967.Manama traffic"
-                            :status "needs-processing"}
-   "1969 - Bahrain Arabic" {:title "Bahrain Island (in Arabic) - 1969"
-                            :year 1969
-                            :scale "1:63,360"
-                            :source-file "Bahrain Island (in Arabic), 1969"
-                            :status "needs-processing"
-                            :notes "Arabic language version"}
-   "1970 - Al-Manamah Al-Jufayr Plans" {:title "Al-Manamah and Al-Jufayr Town Plans - 1970 (5 sheets)"
-                                        :year 1970
-                                        :source-file "Bahrain Town Plans - 1970 Al-Manamah and Al-Jufayr collection"
-                                        :status "needs-processing"
-                                        :notes "5-sheet comprehensive coverage of Manama and Jufayr"}
-   "1970 - Jazirat al-Muharraq Plans" {:title "Jazirat al-Muharraq Town Plans - 1970 (4 sheets)"
-                                       :year 1970
-                                       :source-file "Bahrain Town Plans - 1970 Jazirat al-Muharraq collection"
-                                       :status "needs-processing"
-                                       :notes "4-sheet complete Muharraq Island coverage"}
-   "1976 - Northern Bahrain" {:title "Northern Bahrain - 1976"
-                              :year 1976
-                              :scale "1:50,000"
-                              :source-file "1976.50000.Northern Bahrain"
-                              :status "needs-processing"}
-   "1979 - Oil & Gas" {:title "Oil & Gas Infrastructure - 1979-1997 (9 maps)"
-                       :year 1979
-                       :source-file "1979-1997.Oil&Gas collection"
-                       :status "needs-processing"
-                       :notes "Multi-year series with 9 maps from 1979-1997"}
-   "1979 - Bahrain Power" {:title "Bahrain Power Infrastructure - 1979"
-                           :year 1979
-                           :scale "1:50,000"
-                           :source-file "1979.50k.Bahrain Power"
-                           :status "needs-processing"}
-   "1980 - Manama (10k)" {:title "Manama - 1980"
-                          :year 1980
-                          :scale "1:10,000"
-                          :source-file "1980.10000.Manama"
-                          :status "needs-processing"}
-   "1980 - Bahrain (100k)" {:title "Bahrain - 1980"
-                            :year 1980
-                            :scale "1:100,000"
-                            :source-file "1980.100000.Bahrain"
-                            :status "needs-processing"}
-   "1981 - National Addressing Project" {:title "National Addressing Project Maps - 1981 (8 maps)"
-                                         :year 1981
-                                         :source-file "1981 NAP collection"
-                                         :status "needs-processing"
-                                         :notes "Multi-sheet collection with 8 maps"}
-   "1987 - Bahrain (100k)" {:title "Bahrain - 1987"
-                            :year 1987
-                            :scale "1:100,000"
-                            :source-file "1987.100000.Bahrain"
-                            :status "needs-processing"}
-   "1997 - Bahrain NRSC" {:title "Bahrain NRSC - 1997"
-                          :year 1997
-                          :scale "1:143,000"
-                          :source-file "1997.143k.Bahrain NRSC"
-                          :status "needs-processing"}
-   "1998 - Bahrain (100k)" {:title "Bahrain - 1998"
-                            :year 1998
-                            :scale "1:100,000"
-                            :source-file "1998.100k.Bahrain"
-                            :status "needs-processing"}
-   "2003 - Pearl Banks and Shoal" {:title "Pearl Banks and Shoal - 2003"
-                                   :year 2003
-                                   :scale "1:350,000"
-                                   :source-file "2003.350k.Pearl Banks and Shoal"
-                                   :status "needs-processing"}
-   "2007 - Bahrain (100k)" {:title "Bahrain - 2007"
-                            :year 2007
-                            :scale "1:100,000"
-                            :source-file "2007.100000.Bahrain"
-                            :status "needs-processing"}
-   "2007 - Bahrain (200k)" {:title "Bahrain - 2007"
-                            :year 2007
-                            :scale "1:200,000"
-                            :source-file "2007.200000.Bahrain"
-                            :status "needs-processing"}
-   "2010 - Andrew Duggan" {:title "Andrew Duggan Collection - 2010"
-                           :year 2010
-                           :source-file "2010.Andrew Duggan"
-                           :status "needs-processing"}
-   "2011 - Bab AlBahrain" {:title "Bab AlBahrain - 2011"
-                           :year 2011
-                           :source-file "2011.Bab AlBahrain-front"
-                           :status "needs-processing"}
-   "1975 - National Housing Policy" {:title "National Housing Policy Maps - 1975 (5 maps)"
-                                     :year 1975
-                                     :source-file "1975 National Housing Policy collection"
-                                     :status "needs-processing"
-                                     :notes "Multi-sheet collection with 5 thematic maps"}
-   "Bahrain Landmarks" {:title "Bahrain Landmarks"
-                        :year 1995
-                        :source-file "Bahrain Landmarks - Front"
-                        :status "needs-processing"}})
+;; Backlog has been processed - all maps uploaded as of 2025-12-20
 
 
 (def maps
@@ -1981,4 +1779,663 @@ There are many derivative versions of this map; Europeans first republished it i
                 :labels nil}}
     :opts (merge base-opts {:minNativeZoom 12
                             :maxNativeZoom 17
-                            :opacity 1.0})}})
+                            :opacity 1.0})}
+   ;; ========== NEWLY ADDED MAPS FROM BACKLOG (Dec 2025) ==========
+
+   "1903 - Persian Gulf Plans"
+   {:groups #{"Historical Maps"}
+    :viewable false
+    :year 1903
+    :source-link "/maps/1903-Plans in the Persian Gulf.tif"
+    :i18n {:en {:title "Plans in the Persian Gulf - Bahrein Harbour - 1903"
+                :description "Plans showing various harbours in the Persian Gulf including Bahrein Harbour."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1905 - Khor Kaliya"
+   {:groups #{"Historical Maps"}
+    :viewable false
+    :year 1905
+    :source-link "/maps/1905-Khor Kaliya.tif"
+    :i18n {:en {:title "Khor Kaliya - 1905"
+                :description "Historical map of Khor Kaliya area."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1916 - Persian Gulf Plans"
+   {:groups #{"Historical Maps"}
+    :viewable false
+    :year 1916
+    :source-link "/maps/1916-Plans in the Persian Gulf.tif"
+    :i18n {:en {:title "Plans in the Persian Gulf - Multiple Harbours - 1916"
+                :description "Plans showing Bahrein Harbour, Magam, Lingeh, and Dibai in the Persian Gulf."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1934 - Bahrain Facility Map"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1934
+    :scale "1:63,360"
+    :source-link "/maps/1934-Bahrain Facility Map.jpg"
+    :i18n {:en {:title "Bahrain Facility Map - 1934"
+                :description "Facility map of Bahrain Island showing infrastructure and major facilities."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1936 - Plans North East Coast"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1936
+    :source-link "/maps/1936-Plans North East Coast.tif"
+    :i18n {:en {:title "Plans on the North East coast of Bahrain Island - 1936"
+                :description "Detailed plans of the north east coastal areas of Bahrain Island."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1937 - Naval Base Khor Kaliya"
+   {:groups #{"Bahrain" "Jufair"}
+    :viewable false
+    :year 1937
+    :source-link "/maps/1937-Naval Base Khor Kaliya.tif"
+    :i18n {:en {:title "Naval Base at Khor Kaliya [Jufair] - 1937"
+                :description "Map of the naval base at Khor Kaliya (Jufair area)."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1938-9 - Manama Town"
+   {:groups #{"Manama"}
+    :viewable false
+    :year 1938
+    :source-link "/maps/1938-9-Manama Town.tif"
+    :i18n {:en {:title "Manama Town - 1357 (1938-9)"
+                :description "Map of Manama town dated 1357 in the Islamic calendar (1938-9 CE)."
+                :notes "Historical Hijri date shown on map."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1938-9 - Hawar Islands"
+   {:groups #{"Hawar"}
+    :viewable false
+    :year 1938
+    :source-link "/maps/1938-9-Hawar Islands.tif"
+    :i18n {:en {:title "Hawar Islands - 1938-9"
+                :description "Map of the Hawar Islands."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1939 - Bahrein Island"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1939
+    :source-link "/maps/1939-Bahrein Island.tif"
+    :i18n {:en {:title "Bahrein Island - 1939"
+                :description "Map of Bahrain Island from 1939."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1939-40 - Hawar Islands"
+   {:groups #{"Hawar"}
+    :viewable false
+    :year 1939
+    :source-link "/maps/1939-40-Hawar Islands.tif"
+    :i18n {:en {:title "Hawar Islands - 1939-40"
+                :description "Map of the Hawar Islands from 1939-1940."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1942 - Bahrein Island"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1942
+    :source-link "/maps/1942-Bahrein Island.tif"
+    :i18n {:en {:title "Bahrein Island - 1942"
+                :description "Map of Bahrain Island from 1942."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1948 - Bahrain Water"
+   {:groups #{"Bahrain" "Infrastructure"}
+    :viewable false
+    :year 1948
+    :source-link "/maps/1948-Bahrain Water.jpg"
+    :source "Bahrain Petroleum Company"
+    :issuer "Government of Bahrain"
+    :i18n {:en {:title "Water Zone 'B' Structure Contour Map Showing Distribution of Artesian Water - 1948"
+                :description "A map showing the national distribution of artesian water wells in Bahrain. The map is enclosed in a report that was written by the Bahrain Petroleum Company at request of the Government of Bahrain in October 1948."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1951 - Manama Collection"
+   {:groups #{"Manama"}
+    :viewable false
+    :year 1951
+    :scale "1:2,400"
+    :source-link "/maps/1951-Manama.zip"
+    :issuer-link "/maps/1951-Manama/"
+    :collection-thumbnails ["1951.2400.Manama.1-1" "1951.2400.Manama.1-2" "1951.2400.Manama.1-3" "1951.2400.Manama.1-4" "1951.2400.Manama.1-5" "1951.2400.Manama.1-7" "1951.2400.Manama.1-8" "1951.2400.Manama.1-9"]
+    :i18n {:en {:title "Manama - 1951 (9 maps)"
+                :description "Multi-sheet map collection showing detailed coverage of Manama in 1951."
+                :notes "Collection of 9 map sheets providing comprehensive coverage."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1951 - Aerial Manama"
+   {:groups #{"Manama"}
+    :viewable false
+    :year 1951
+    :scale "1:5,000"
+    :source-link "/maps/1951-Aerial Manama.jpg"
+    :i18n {:en {:title "Aerial View - Manama - 1951"
+                :description "Aerial photography-based map of Manama from 1951."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1952 - Bahrain"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1952
+    :scale "1:63,360"
+    :source-link "/maps/1952-Bahrain.tif"
+    :i18n {:en {:title "Bahrain - 1952"
+                :description "Complete map of Bahrain Island from 1952."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1953 - Welcome to Bahrain"
+   {:groups #{"Manama" "Tourist Maps"}
+    :viewable false
+    :year 1953
+    :source-link "/maps/1953-Welcome to Bahrain.jpg"
+    :i18n {:en {:title "Welcome to Bahrain - Manama - 1953"
+                :description "Tourist/visitor map of Manama and Bahrain from 1953."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1956 - Bahrain March"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1956
+    :source-link "/maps/1956-Bahrain March.jpg"
+    :i18n {:en {:title "Bahrain Island - March 1956"
+                :description "Map of Bahrain Island from March 1956."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1960 - Bahrain"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1960
+    :scale "1:97,500"
+    :source-link "/maps/1960-Bahrain.tif"
+    :i18n {:en {:title "Bahrain - 1960"
+                :description "Map of Bahrain from 1960, front side."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1961 - Manama"
+   {:groups #{"Manama"}
+    :viewable false
+    :year 1961
+    :scale "1:5,000"
+    :source-link "/maps/1961-Manama.pdf"
+    :i18n {:en {:title "Manama - 1961"
+                :description "Detailed map of Manama from 1961."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1962 - Bahrain Island"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1962
+    :scale "1:63,360"
+    :source-link "/maps/1962-Bahrain Island.pdf"
+    :i18n {:en {:title "Bahrain Island - 1962"
+                :description "Map of Bahrain Island from 1962, sheet 5-1."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1963 - Manama"
+   {:groups #{"Manama"}
+    :viewable false
+    :year 1963
+    :scale "1:5,000"
+    :source-link "/maps/1963-Manama.jpg"
+    :i18n {:en {:title "Manama - 1963"
+                :description "Detailed map of Manama from 1963."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1965 - Welcome to Bahrain Collection"
+   {:groups #{"Bahrain" "Tourist Maps"}
+    :viewable false
+    :year 1965
+    :source-link "/maps/1965-Welcome to Bahrain.zip"
+    :issuer-link "/maps/1965-Welcome to Bahrain/"
+    :collection-thumbnails ["Welcome to Bahrain Facsimile maps (1)" "Welcome to Bahrain Facsimile maps (2)" "Welcome to Bahrain Facsimile maps (3)"]
+    :i18n {:en {:title "Welcome to Bahrain - 1965 (4 maps)"
+                :description "Collection of tourist/visitor maps of Bahrain from 1965."
+                :notes "Multi-file collection with 4 maps."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1967 - Jufair Town Plans"
+   {:groups #{"Jufair"}
+    :viewable false
+    :year 1967
+    :scale "1:5,000"
+    :source-link "/maps/1967-Jufair.zip"
+    :issuer-link "/maps/1967-Jufair/"
+    :collection-thumbnails ["Bahrain Town Plans - [Manama] Jufair East, 1967" "Bahrain Town Plans - [Manama] Jufair West, 1967"]
+    :i18n {:en {:title "Jufair Town Plans - 1967 (2 sheets)"
+                :description "Detailed town plans of Jufair area in Manama."
+                :notes "2-sheet collection: East and West."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1967 - Muharraq Island Plans"
+   {:groups #{"Muharraq"}
+    :viewable false
+    :year 1967
+    :source-link "/maps/1967-Muharraq Island.zip"
+    :issuer-link "/maps/1967-Muharraq Island/"
+    :collection-thumbnails ["Bahrain Town Plans - Muharraq Island 1, 1967" "Bahrain Town Plans - Muharraq Island 2, 1967" "Bahrain Town Plans - Muharraq Island 3, 1967" "Bahrain Town Plans - Muharraq Island 4, 1967"]
+    :i18n {:en {:title "Muharraq Island Town Plans - 1967 (4 sheets)"
+                :description "Comprehensive 4-sheet detailed town plans of Muharraq Island."
+                :notes "4-sheet detailed coverage of Muharraq Island."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1967 - Manama Traffic"
+   {:groups #{"Manama" "Infrastructure"}
+    :viewable false
+    :year 1967
+    :source-link "/maps/1967-Manama Traffic.tif"
+    :i18n {:en {:title "Manama Traffic - 1967"
+                :description "Traffic and transportation map of Manama."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1969 - Bahrain Arabic"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1969
+    :scale "1:63,360"
+    :source-link "/maps/1969-Bahrain Arabic.png"
+    :i18n {:en {:title "Bahrain Island (in Arabic) - 1969"
+                :description "Map of Bahrain Island with Arabic labeling."
+                :notes "Arabic language version."
+                :labels nil}
+           :ar {:title "جزيرة البحرين - ١٩٦٩"
+                :description "خارطة جزيرة البحرين باللغة العربية"
+                :notes nil
+                :labels nil}}}
+
+   "1970 - Al-Manamah Al-Jufayr Plans"
+   {:groups #{"Manama" "Jufair"}
+    :viewable false
+    :year 1970
+    :source-link "/maps/1970-Al-Manamah Al-Jufayr.zip"
+    :issuer-link "/maps/1970-Al-Manamah Al-Jufayr/"
+    :collection-thumbnails ["Bahrain Town Plans - Al-Manamah and Al-Jufayr 1, 1969" "Bahrain Town Plans - Al-Manamah and Al-Jufayr 2, 1970" "Bahrain Town Plans - Al-Manamah and Al-Jufayr 3, 1970" "Bahrain Town Plans - Al-Manamah and Al-Jufayr 4, 1970" "Bahrain Town Plans - Al-Manamah and Al-Jufayr 5, 1970"]
+    :i18n {:en {:title "Al-Manamah and Al-Jufayr Town Plans - 1970 (5 sheets)"
+                :description "Comprehensive 5-sheet town plans covering Manama and Jufayr areas."
+                :notes "5-sheet comprehensive coverage of Manama and Jufayr."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1970 - Jazirat al-Muharraq Plans"
+   {:groups #{"Muharraq"}
+    :viewable false
+    :year 1970
+    :source-link "/maps/1970-Jazirat al-Muharraq.zip"
+    :issuer-link "/maps/1970-Jazirat al-Muharraq/"
+    :collection-thumbnails ["Bahrain Town Plans - Jazirat al-Muharraq 1, 1970" "Bahrain Town Plans - Jazirat al-Muharraq 2, 1970" "Bahrain Town Plans - Jazirat al-Muharraq 3, 1970" "Bahrain Town Plans - Jazirat al-Muharraq 4, 1970"]
+    :i18n {:en {:title "Jazirat al-Muharraq Town Plans - 1970 (4 sheets)"
+                :description "Complete 4-sheet town plans of Muharraq Island."
+                :notes "4-sheet complete Muharraq Island coverage."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1975 - National Housing Policy"
+   {:groups #{"Bahrain" "Infrastructure"}
+    :viewable false
+    :year 1975
+    :source-link "/maps/1975-National Housing Policy.zip"
+    :issuer-link "/maps/1975-National Housing Policy/"
+    :collection-thumbnails ["1975.Combined Constraints & Housing Development" "1975.Existing & Proposed Land Use" "1975.Historical & Recreational Resources" "1975.Natural Phenomena Constraints" "1975.Road Network & Services Infrastructure"]
+    :i18n {:en {:title "National Housing Policy Maps - 1975 (5 maps)"
+                :description "Collection of thematic maps related to national housing policy planning."
+                :notes "Multi-sheet collection with 5 thematic maps."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1976 - Northern Bahrain"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1976
+    :scale "1:50,000"
+    :source-link "/maps/1976-Northern Bahrain.jpg"
+    :i18n {:en {:title "Northern Bahrain - 1976"
+                :description "Map of the northern region of Bahrain."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1979 - Oil & Gas Collection"
+   {:groups #{"Bahrain" "Infrastructure"}
+    :viewable false
+    :year 1979
+    :source-link "/maps/1979-1997-Oil Gas.zip"
+    :issuer-link "/maps/1979-1997-Oil Gas/"
+    :collection-thumbnails ["1979" "1981" "1983" "1984" "1985" "1987" "1989" "1994" "1997"]
+    :i18n {:en {:title "Oil & Gas Infrastructure - 1979-1997 (9 maps)"
+                :description "Multi-year series showing the development of oil and gas infrastructure in Bahrain from 1979 to 1997."
+                :notes "9-map collection spanning 1979-1997."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1979 - Bahrain Power"
+   {:groups #{"Bahrain" "Infrastructure"}
+    :viewable false
+    :year 1979
+    :scale "1:50,000"
+    :source-link "/maps/1979-Bahrain Power.tif"
+    :i18n {:en {:title "Bahrain Power Infrastructure - 1979"
+                :description "Map showing power infrastructure and electrical distribution in Bahrain."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1980 - Manama"
+   {:groups #{"Manama"}
+    :viewable false
+    :year 1980
+    :scale "1:10,000"
+    :source-link "/maps/1980-Manama.png"
+    :i18n {:en {:title "Manama - 1980"
+                :description "Detailed map of Manama at 1:10,000 scale."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1980 - Bahrain"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1980
+    :scale "1:100,000"
+    :source-link "/maps/1980-Bahrain.tif"
+    :i18n {:en {:title "Bahrain - 1980"
+                :description "Map of Bahrain at 1:100,000 scale."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1981 - National Addressing Project"
+   {:groups #{"Bahrain"  "National Addressing Project (1981)"}
+    :viewable false
+    :year 1981
+    :source-link "/maps/1981-NAP.zip"
+    :issuer-link "/maps/1981-NAP/"
+    :collection-thumbnails ["Jidhafs" "Madinat Isa" "Manama North" "Manama South" "Muharraq North" "Muharraq South" "Sitra"]
+    :i18n {:en {:title "National Addressing Project Maps - 1981 (7 maps)"
+                :description "Collection of maps from the National Addressing Project showing detailed addressing and infrastructure."
+                :notes "Multi-sheet collection with 8 maps."
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1987 - Bahrain"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1987
+    :scale "1:100,000"
+    :source-link "/maps/1987-Bahrain.tif"
+    :i18n {:en {:title "Bahrain - 1987"
+                :description "Map of Bahrain at 1:100,000 scale."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1995 - Bahrain Landmarks"
+   {:groups #{"Bahrain" "Tourist Maps"}
+    :viewable false
+    :year 1995
+    :source-link "/maps/Bahrain Landmarks.tif"
+    :i18n {:en {:title "Bahrain Landmarks - 1995"
+                :description "Tourist map highlighting major landmarks and points of interest in Bahrain."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1997 - Bahrain NRSC"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1997
+    :scale "1:143,000"
+    :source-link "/maps/1997-Bahrain NRSC.tif"
+    :i18n {:en {:title "Bahrain NRSC - 1997"
+                :description "Map produced by NRSC (National Remote Sensing Centre)."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "1998 - Bahrain"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 1998
+    :scale "1:100,000"
+    :source-link "/maps/1998-Bahrain.tif"
+    :i18n {:en {:title "Bahrain - 1998"
+                :description "Map of Bahrain at 1:100,000 scale."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "2003 - Pearl Banks and Shoal"
+   {:groups #{"Bahrain" "Marine"}
+    :viewable false
+    :year 2003
+    :scale "1:350,000"
+    :source-link "/maps/2003-Pearl Banks and Shoal.tif"
+    :i18n {:en {:title "Pearl Banks and Shoal - 2003"
+                :description "Map showing pearl banks and shoals around Bahrain."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "2007 - Bahrain (100k)"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 2007
+    :scale "1:100,000"
+    :source-link "/maps/2007-Bahrain-100k.tif"
+    :i18n {:en {:title "Bahrain - 2007"
+                :description "Map of Bahrain at 1:100,000 scale."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "2007 - Bahrain (200k)"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 2007
+    :scale "1:200,000"
+    :source-link "/maps/2007-Bahrain-200k.tif"
+    :i18n {:en {:title "Bahrain - 2007"
+                :description "Map of Bahrain at 1:200,000 scale."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "2010 - Andrew Duggan"
+   {:groups #{"Bahrain"}
+    :viewable false
+    :year 2010
+    :source-link "/maps/2010-Andrew Duggan.pdf"
+    :i18n {:en {:title "Andrew Duggan Collection - 2010"
+                :description "Map collection from Andrew Duggan."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}}
+
+   "2011 - Bab AlBahrain"
+   {:groups #{"Manama"}
+    :viewable false
+    :year 2011
+    :source-link "/maps/2011-Bab AlBahrain.tif"
+    :i18n {:en {:title "Bab AlBahrain - 2011"
+                :description "Map centered on the Bab AlBahrain area of Manama."
+                :notes nil
+                :labels nil}
+           :ar {:title "باب البحرين - ٢٠١١"
+                :description "خارطة تركز على منطقة باب البحرين في المنامة"
+                :notes nil
+                :labels nil}}}
+
+})

@@ -1,6 +1,6 @@
 (ns app.pages.map-info
   (:require [re-frame.core :as rf]
-            [app.data :refer [get-thumbnail-path maps get-map-text]]
+            [app.data :refer [get-thumbnail-path get-collection-thumbnail-paths maps get-map-text]]
             [app.routes :as routes]
             [app.model :as model]
             [app.util.core :refer [rtl-attrs icon-margin]]
@@ -125,7 +125,9 @@
   "Render action buttons for viewing map and downloading files"
   [map-info language]
   (let [is-arabic (= language :ar)
-        is-viewable (not= false (:viewable map-info))]
+        is-viewable (not= false (:viewable map-info))
+        issuer-link (:issuer-link map-info)
+        is-collection (and issuer-link (str/ends-with? issuer-link "/"))]
     [:div.buttons
      (when is-viewable
        [:a.button.is-light.is-small
@@ -142,9 +144,10 @@
         [:i.fas.fa-download {:style (icon-margin language)}]
         (get-in (text is-arabic) [:buttons :download-source])])
 
-     (when (:issuer-link map-info)
+     ;; Only show issuer-link button if it's NOT a collection directory
+     (when (and issuer-link (not is-collection))
        [:a.button.is-light.is-small
-        {:href (:issuer-link map-info)
+        {:href issuer-link
          :target "_blank"}
         [:i.fas.fa-file-image {:style (icon-margin language)}]
         (get-in (text is-arabic) [:buttons :download-issuer])])
@@ -174,26 +177,46 @@
             (get-in (text is-arabic) [:buttons :additional-link-3]))])]))
 
 (defn map-thumbnail
-  "Render map thumbnail with RDFa structured data for Google rich results"
+  "Render map thumbnail(s) with RDFa structured data for Google rich results.
+   For collections, displays all individual thumbnails."
   [map-info]
-  (let [thumbnail-path (get-thumbnail-path map-info)
+  (let [collection-thumbnails (get-collection-thumbnail-paths map-info)
+        single-thumbnail (get-thumbnail-path map-info)
+        thumbnail-path (or single-thumbnail (first collection-thumbnails))
         full-thumbnail-url (str (meta/get-current-domain) thumbnail-path)
         credit-text (str (:source map-info)
                          (when (and (:source map-info) (:issuer map-info)) " / ")
                          (:issuer map-info))]
-    (when thumbnail-path
+    (when (or single-thumbnail collection-thumbnails)
       [:div.content {:style {:margin-bottom "2rem"}
                      :vocab "https://schema.org/"
                      :typeof "ImageObject"}
-       [:figure.image
-        [:img {:src thumbnail-path
-               :alt (:title map-info)
-               :style {:max-width "600px"
-                       :height "auto"
-                       :border "1px solid #ddd"
-                       :border-radius "4px"
-                       :box-shadow "0 2px 4px rgba(0,0,0,0.1)"}
-               :on-error "this.parentElement.parentElement.style.display='none'"}]]
+       ;; Display thumbnails - multiple for collections, single otherwise
+       (if collection-thumbnails
+         ;; Collection: display all thumbnails in a grid
+         [:div.columns.is-multiline {:style {:margin-top "1rem"}}
+          (for [thumb-path collection-thumbnails]
+            [:div.column.is-one-third {:key thumb-path}
+             [:figure.image
+              [:img {:src thumb-path
+                     :alt (:title map-info)
+                     :style {:width "100%"
+                             :height "auto"
+                             :border "1px solid #ddd"
+                             :border-radius "4px"
+                             :box-shadow "0 2px 4px rgba(0,0,0,0.1)"}
+                     :on-error "this.style.display='none'"}]]])]
+         ;; Single map: display one thumbnail
+         [:figure.image
+          [:img {:src single-thumbnail
+                 :alt (:title map-info)
+                 :style {:max-width "600px"
+                         :height "auto"
+                         :border "1px solid #ddd"
+                         :border-radius "4px"
+                         :box-shadow "0 2px 4px rgba(0,0,0,0.1)"}
+                 :on-error "this.parentElement.parentElement.style.display='none'"}]])
+
        ;; Hidden structured data elements
        [:div {:style {:display "none"}}
         ;; Proper contentUrl with full URL
