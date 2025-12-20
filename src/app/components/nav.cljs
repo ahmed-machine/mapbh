@@ -69,9 +69,7 @@
            (for [item nav-items]
              ^{:key (:key item)} [render-nav-item active-panel item])]
           ;; Language switcher in opposite corner
-          [:div {:class (if is-arabic "navbar-start" "navbar-end")
-                 :style {:margin-right (if is-arabic "0" "1rem")
-                         :margin-left (if is-arabic "1rem" "0")}}
+          [:div {:class (if is-arabic "navbar-start" "navbar-end")}
            [language-switcher is-arabic]]]]))))
 
 (def social-links
