@@ -355,6 +355,94 @@ iframe.video {
 .articles ul {list-style: disclosure-closed;}
 .articles {padding-bottom: 3rem;}
 
+/* Article index container - responsive alignment */
+.articles-container {
+    max-width: 800px;
+}
+
+/* Mobile: centered */
+@media screen and (max-width: 1023px) {
+    .articles-container {
+        margin: 0 auto;
+    }
+}
+
+/* Desktop: full width with proper padding */
+@media screen and (min-width: 1024px) {
+    .articles-container {
+        max-width: none;
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    /* RTL (Arabic): right-aligned */
+    [dir="rtl"] .articles-container,
+    [direction="rtl"] .articles-container {
+        margin-left: auto;
+        margin-right: 0;
+    }
+}
+
+/* Article index box styling */
+.articles-container .box {
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid var(--accent-color);
+    transition: var(--transition-smooth);
+}
+
+/* RTL: border on right instead of left */
+[dir="rtl"] .articles-container .box,
+[direction="rtl"] .articles-container .box {
+    border-left: none;
+    border-right: 4px solid var(--accent-color);
+}
+
+/* Article title link styling */
+.articles-container .box .title a {
+    color: var(--text-color);
+    transition: var(--transition-fast);
+}
+
+/* Article subtitle (date) styling */
+.articles-container .box .subtitle {
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+/* Icon spacing in article list */
+.articles-container .box .icon {
+    margin-right: 0.75rem;
+}
+
+/* RTL: icon on left instead of right */
+[dir="rtl"] .articles-container .box .icon,
+[direction="rtl"] .articles-container .box .icon {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+/* Article description text */
+.articles-container .box p {
+    line-height: 1.6;
+}
+
+/* Article index box styling */
+.about .box {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.about .box:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.about .box a:hover {
+    color: var(--accent-color) !important;
+}
+
 .about .title {text-align: center;}
 .about h1.title {font-size: 3rem;}
 .about h4.title {font-size: 2rem;}
