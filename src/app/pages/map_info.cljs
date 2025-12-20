@@ -1,6 +1,6 @@
 (ns app.pages.map-info
   (:require [re-frame.core :as rf]
-            [app.data :refer [get-thumbnail-path get-collection-thumbnail-paths maps get-map-text]]
+            [app.data :refer [get-thumbnail-path get-collection-thumbnail-paths maps get-map-text get-cdn-url]]
             [app.routes :as routes]
             [app.model :as model]
             [app.util.core :refer [rtl-attrs icon-margin]]
@@ -139,7 +139,7 @@
 
      (when (:source-link map-info)
        [:a.button.is-light.is-small
-        {:href (:source-link map-info)
+        {:href (get-cdn-url (:source-link map-info))
          :target "_blank"}
         [:i.fas.fa-download {:style (icon-margin language)}]
         (get-in (text is-arabic) [:buttons :download-source])])
@@ -147,7 +147,7 @@
      ;; Only show issuer-link button if it's NOT a collection directory
      (when (and issuer-link (not is-collection))
        [:a.button.is-light.is-small
-        {:href issuer-link
+        {:href (get-cdn-url issuer-link)
          :target "_blank"}
         [:i.fas.fa-file-image {:style (icon-margin language)}]
         (get-in (text is-arabic) [:buttons :download-issuer])])
@@ -246,9 +246,9 @@
                   :content (str "Scale: " (:scale map-info))}])
         ;; License and acquisition links if available - using meta tags for URLs
         (when (:source-link map-info)
-          [:meta {:property "acquireLicensePage" :content (str (meta/get-current-domain) (:source-link map-info))}])
+          [:meta {:property "acquireLicensePage" :content (get-cdn-url (:source-link map-info))}])
         (when (:issuer-link map-info)
-          [:meta {:property "url" :content (str (meta/get-current-domain) (or (:source-link map-info) (:issuer-link map-info)))}])]])))
+          [:meta {:property "url" :content (get-cdn-url (or (:source-link map-info) (:issuer-link map-info)))}])]])))
 
 (defn breadcrumb-nav
   "Render breadcrumb navigation"

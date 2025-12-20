@@ -13,11 +13,21 @@
 (def tileserver-url #_"http://localhost:8080" "https://map.mapbh.org") ;; Defaults to remote server, uncomment to use local tileserver
 (defn form-tile-url [tile-name & type] (str tileserver-url "/data/" tile-name "/{z}/{x}/{y}" (or (first type) ".png")))
 
+;; CDN configuration for R2-hosted source files
+(def cdn-base-url "https://cdn.mapbh.org")
+
+(defn get-cdn-url
+  "Convert local file path to CDN URL. Returns nil if path is nil."
+  [path]
+  (when path
+    (if (.startsWith path "/maps/")
+      (str cdn-base-url (subs path 6))  ; Remove "/maps/" and use CDN
+      path)))
+
 (def base-satellite {"Terrain" {:url "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 :opts (assoc base-opts :zoomOffset -1)}
                      "Satellite" {:url "http://services.arcgisonline.com/ArcGis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"
                                   :opts (assoc base-opts :zoomOffset -1)}})
-
 
 ;; Default values for map state used in URL parameters and initialization
 (def default-map-state
@@ -41,7 +51,7 @@
                      (subs file-path 6)  ; Remove "/maps/" prefix
                      (last (str/split file-path #"/")))
           name-without-ext (str/replace filename #"\.[^.]+$" "")]
-      (str "/thumbnails/" name-without-ext ".png"))))
+      (str cdn-base-url "/thumbnails/" name-without-ext ".png"))))
 
 (defn- image-format?
   "Check if file path is an image format"
@@ -64,7 +74,7 @@
    Returns nil if not a collection, or vector of thumbnail paths if collection-thumbnails field exists."
   [map-data]
   (when-let [file-basenames (:collection-thumbnails map-data)]
-    (mapv #(str "/thumbnails/" % ".png") file-basenames)))
+    (mapv #(str cdn-base-url "/thumbnails/" % ".png") file-basenames)))
 
 (defn get-map-text
   "Get localized text for a map entry. Falls back to English if Arabic not available."
