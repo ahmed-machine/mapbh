@@ -1,7 +1,5 @@
 (ns app.pages.contribute
-  (:require [re-frame.core :as rf]
-            [app.model :as model]
-            [app.util.core :refer [arabic-attrs]]))
+  (:require [app.util.core :refer [arabic-attrs bilingual-component]]))
 
 (defn en []
   [:div.container.contribute
@@ -33,11 +31,5 @@
    [:p "في العصر الحديث، زادت البيانات و قلت المعلومات و خاصة الصحيحة منها. أتمنى أن يصبح هذا المجهود الفردي المتواضع مشروعاً جماعياً يحكي حكايات البحرين المنسية على أرفف المكتبات المهملة وبين أوراق المجلات القديمة."]
    [:p "شكرٌ خاص الى أبرار حسن و محمد توراني على مساهمتهما في جمع و فهرسة الخرائط كما اتقدم بالشكر الحار لكل من مجد الشهابي و مريم زينل وعلي الجمري و علي كريمي وأحمد زكريا لما قدموه من رؤى قيّمة وترجمة لإنجاز هذا المشروع والى كل من تحملني اثناء العام الماضي. "]])
 
-(defn contribute
-  []
-  (let [language* (rf/subscribe [::model/language])]
-    (fn []
-      (let [language @language*]
-        (if (= language :ar)
-          [ar]
-          [en])))))
+(def contribute
+  (bilingual-component en ar))

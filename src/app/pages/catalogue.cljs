@@ -4,10 +4,9 @@
             [app.data :as data :refer [backlog maps get-map-text]]
             [app.routes :as routes]
             [app.util.url :as url]
+            [app.util.core :refer [rtl-attrs]]
             [app.model :as model]
-            [clojure.string :as str]
-            [cljs.core :as core]
-))
+            [clojure.string :as str]))
 
 (defn text
   [arabic?]
@@ -378,7 +377,7 @@
             filtered-data (search-filter @search-term group-filtered-data)
             json-ld (generate-json-ld language all-data)]
         [:div.container (merge {:style {:margin-top "4rem" :margin-bottom "2rem" :padding "0 1rem"}}
-                               (when arabic? {:lang "ar" :dir "rtl"}))
+                               (when arabic? (rtl-attrs)))
          ;; JSON-LD structured data script tag (SEO)
          [:script {:type "application/ld+json"
                    :dangerouslySetInnerHTML {:__html json-ld}}]
