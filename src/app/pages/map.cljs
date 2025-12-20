@@ -109,21 +109,21 @@
        [:p.panel-block.description-text
         (:description txt)])
      (when (:link-1 details)
-       [:a {:href (:link-1 details)
+       [:a {:href (get-cdn-url (:link-1 details))
             :target "_blank"}
         [:div.panel-block.modal-link-block
          [:span.icon.home [:i.fas.fa-external-link-alt]]
          (or (:link-1-label details)
              (:additional-link txt))]])
      (when (:link-2 details)
-       [:a {:href (:link-2 details)
+       [:a {:href (get-cdn-url (:link-2 details))
             :target "_blank"}
         [:div.panel-block.modal-link-block
          [:span.icon.home [:i.fas.fa-external-link-alt]]
          (or (:link-2-label details)
              (:additional-link-2 txt))]])
      (when (:link-3 details)
-       [:a {:href (:link-3 details)
+       [:a {:href (get-cdn-url (:link-3 details))
             :target "_blank"}
         [:div.panel-block.modal-link-block
          [:span.icon.home [:i.fas.fa-external-link-alt]]

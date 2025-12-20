@@ -154,7 +154,7 @@
 
      (when (:link-1 map-info)
        [:a.button.is-light.is-small
-        {:href (:link-1 map-info)
+        {:href (get-cdn-url (:link-1 map-info))
          :target "_blank"}
         [:i.fas.fa-external-link-alt {:style (icon-margin language)}]
         (or (:link-1-label map-info)
@@ -162,7 +162,7 @@
 
      (when (:link-2 map-info)
        [:a.button.is-light.is-small
-        {:href (:link-2 map-info)
+        {:href (get-cdn-url (:link-2 map-info))
          :target "_blank"}
         [:i.fas.fa-external-link-alt {:style (icon-margin language)}]
         (or (:link-2-label map-info)
@@ -170,7 +170,7 @@
 
      (when (:link-3 map-info)
        [:a.button.is-light.is-small
-        {:href (:link-3 map-info)
+        {:href (get-cdn-url (:link-3 map-info))
          :target "_blank"}
         [:i.fas.fa-external-link-alt {:style (icon-margin language)}]
         (or (:link-3-label map-info)
