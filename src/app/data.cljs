@@ -21,7 +21,7 @@
   [path]
   (when path
     (if (.startsWith path "/maps/")
-      (str cdn-base-url (subs path 6))  ; Remove "/maps/" and use CDN
+      (str cdn-base-url "/" (subs path 6))  ; Remove "/maps/" prefix and add CDN
       path)))
 
 (def base-satellite {"Terrain" {:url "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
