@@ -6,7 +6,7 @@
     "sc": "shadow-cljs",
     "server": "shadow-cljs stop && shadow-cljs start",
     "start": "shadow-cljs watch app",
-    "build": "yarn clean && shadow-cljs release app",
+    "build": "yarn clean && ./scripts/inject-sw-version.sh && shadow-cljs release app",
     "test": "shadow-cljs compile test && node out/test.js",
     "test:watch": "shadow-cljs watch test --config-merge \"{:autorun true}\"",
     "report": "shadow-cljs run shadow.cljs.build-report app report.html",
