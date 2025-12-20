@@ -1,7 +1,7 @@
 (ns app.pages.catalogue
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            [app.data :as data :refer [backlog maps get-map-text]]
+            [app.data :as data :refer [maps get-map-text]]
             [app.routes :as routes]
             [app.util.url :as url]
             [app.util.core :refer [rtl-attrs icon-margin]]
@@ -117,52 +117,29 @@
 
 (defn flatten-map-data
   "Convert map data structure to flat list for table display"
-  [language include-backlog?]
-  (let [;; Process maps structure
-        unique-maps (for [[map-id map-info] maps]
-                      (let [groups (:groups map-info)
-                            title (get-map-text map-info language :title)
-                            description (get-map-text map-info language :description)
-                            notes (get-map-text map-info language :notes)]
-                        {:map-id map-id
-                         :title title
-                         :description description
-                         :notes notes
-                         :year (:year map-info)
-                         :scale (:scale map-info)
-                         :source (:source map-info)
-                         :issuer (:issuer map-info)
-                         :viewable (:viewable map-info)
-                         :group (if (> (count groups) 1)
-                                 (str/join ", " groups)
-                                 (first groups))
-                         :all-groups (vec groups)
-                         :has-description (not (str/blank? description))
-                         :has-notes (not (str/blank? notes))
-                         :has-english true
-                         :has-arabic (not (str/blank? (get-map-text map-info :ar :title)))
-                         :is-backlog false}))
-
-        ;; Add backlog entries
-        backlog-entries (for [[map-id map-info] backlog]
-                         (merge map-info
-                                {:map-id map-id
-                                 :group "Backlog"
-                                 :all-groups ["Backlog"]
-                                 :year (:year map-info)
-                                 :scale (:scale map-info)
-                                 :has-description false
-                                 :has-notes (not (str/blank? (:notes map-info)))
-                                 :has-english true
-                                 :has-arabic false
-                                 :is-backlog true
-                                 :source (:source-file map-info)
-                                 :issuer "Pending Processing"}))]
-
-    ;; Combine regular maps with backlog entries (conditionally)
-    (if include-backlog?
-      (concat unique-maps backlog-entries)
-      unique-maps)))
+  [language]
+  (for [[map-id map-info] maps]
+    (let [groups (:groups map-info)
+          title (get-map-text map-info language :title)
+          description (get-map-text map-info language :description)
+          notes (get-map-text map-info language :notes)]
+      {:map-id map-id
+       :title title
+       :description description
+       :notes notes
+       :year (:year map-info)
+       :scale (:scale map-info)
+       :source (:source map-info)
+       :issuer (:issuer map-info)
+       :viewable (:viewable map-info)
+       :group (if (> (count groups) 1)
+               (str/join ", " groups)
+               (first groups))
+       :all-groups (vec groups)
+       :has-description (not (str/blank? description))
+       :has-notes (not (str/blank? notes))
+       :has-english true
+       :has-arabic (not (str/blank? (get-map-text map-info :ar :title)))})))
 
 (defn clean-and-parse-number
   "Clean comma-separated number and parse safely"
@@ -247,17 +224,10 @@
        (doall
         (for [item sorted-data]
           [:tr {:key (:map-id item)
-                :style (when (:is-backlog item)
-                         {:background-color "#f5f5f5"})}
+}
            ;; Actions column moved to first position
            [:td
-            (if (:is-backlog item)
-              ;; Show status message for backlog items instead of buttons
-              [:span.tag.is-light.is-small
-               {:style {:color "#666"}}
-               (get-in txt [:table :needs-processing])]
-              ;; Regular action buttons for non-backlog items
-              (let [primary-group (if (:all-groups item)
+            (let [primary-group (if (:all-groups item)
                                     (first (:all-groups item))
                                     (:group item))
                     is-viewable (not= false (:viewable item))]
@@ -275,8 +245,7 @@
                                 "?map=" (js/encodeURIComponent (:map-id item))
                                 "&flyTo=true")}
                     [:i.fas.fa-map {:style (icon-margin language)}]
-                    (get-in (text (= language :ar)) [:buttons :view])])
-]))]
+                    (get-in (text (= language :ar)) [:buttons :view])])])]
            [:td [:strong (:title item)]]
            [:td (when (:year item) (:year item))]
            [:td
@@ -335,17 +304,16 @@
      :group (or (:group params) "")
      :sort (keyword (or (:sort params) "year"))
      :dir (keyword (or (:dir params) "asc"))
-     :backlog (not= "false" (:backlog params))}))
+     }))
 
 (defn update-catalogue-url!
   "Update URL with current catalogue filters without page reload"
-  [search group sort-key sort-dir include-backlog]
+  [search group sort-key sort-dir]
   (let [params (cond-> {}
                  (not (str/blank? search)) (assoc :search search)
                  (not (str/blank? group)) (assoc :group group)
                  (and sort-key (not= sort-key :year)) (assoc :sort (name sort-key))
-                 (and sort-dir (not= sort-dir :asc)) (assoc :dir (name sort-dir))
-                 (not include-backlog) (assoc :backlog "false"))]
+                 (and sort-dir (not= sort-dir :asc)) (assoc :dir (name sort-dir)))]
     (url/set-query-params! params)))
 
 (defn catalogue
@@ -356,7 +324,7 @@
         selected-group-filter (r/atom (:group initial-params))
         sort-state (r/atom {:sort-key (:sort initial-params)
                            :sort-dir (:dir initial-params)})
-        include-backlog (r/atom (:backlog initial-params))]
+        ]
     (fn []
       (let [language @language*
             arabic? (= language :ar)
@@ -367,8 +335,8 @@
                              @selected-group-filter
                              (:sort-key @sort-state)
                              (:sort-dir @sort-state)
-                             @include-backlog))
-            all-data (flatten-map-data language @include-backlog)
+))
+            all-data (flatten-map-data language)
             group-filtered-data (group-filter @selected-group-filter all-data)
             filtered-data (search-filter @search-term group-filtered-data)
             json-ld (generate-json-ld language all-data)]
@@ -397,22 +365,7 @@
           ;; Include Backlog checkbox
           [:div.field
            [:div.control
-            [:label.checkbox (when arabic? {:style {:direction "rtl"}})
-             (if arabic?
-               [:<>
-                [:span {:style {:margin-right "0.5rem"}} (get-in txt [:page :include-backlog])]
-                [:input {:type "checkbox"
-                         :checked @include-backlog
-                         :on-change #(do
-                                      (reset! include-backlog (-> % .-target .-checked))
-                                      (update-url-fn))}]]
-               [:<>
-                [:input {:type "checkbox"
-                         :checked @include-backlog
-                         :on-change #(do
-                                      (reset! include-backlog (-> % .-target .-checked))
-                                      (update-url-fn))}]
-                [:span {:style {:margin-left "0.5rem"}} (get-in txt [:page :include-backlog])]])]]]
+            ]]]
 
           ;; Group filter button (mobile-friendly)
           (when (not (str/blank? @selected-group-filter))
@@ -444,4 +397,4 @@
                [:div.tags.has-addons
                 [:span.tag.is-small (get-in txt [:page :sort-by])]
                 [:span.tag.is-info.is-small (name (:sort-key @sort-state))]]]]]]]
-          [catalogue-table filtered-data sort-state language selected-group-filter update-url-fn]]]))))
+          [catalogue-table filtered-data sort-state language selected-group-filter update-url-fn]]))))
