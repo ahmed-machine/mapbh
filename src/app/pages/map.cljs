@@ -2,7 +2,7 @@
   (:require [re-frame.core :as rf]
             [reagent.core :as reagent]
             [app.model :as model]
-            [app.data :refer [base-satellite default-map-state maps get-map-text get-grouped-maps get-viewable-maps]]
+            [app.data :refer [base-satellite default-map-state maps get-map-text get-grouped-maps get-viewable-maps get-cdn-url]]
             [app.util.url :as url]
             [clojure.string :as str]))
 
@@ -131,11 +131,11 @@
              (:additional-link-3 txt))]])
      [:p.panel-block.description-text
       [:strong (:notes-header txt)] ": " (:notes txt)]
-     [:a.modal-link {:href (:source-link details)}
+     [:a.modal-link {:href (get-cdn-url (:source-link details))}
       [:div.panel-block.modal-link-block [:strong (:source-header txt)] ": " (:source txt) " - "
        [:span.icon.home [:i.fas.fa-download]] "(original)"]]
      (when (:issuer txt)
-       [:a {:href (:issuer-link txt)}
+       [:a {:href (get-cdn-url (:issuer-link txt))}
         [:div.panel-block.modal-issuer-block
          [:strong (:issuer-header txt)] ": " (str " " (:issuer txt)) " - "
          [:span.icon.home [:i.fas.fa-download]] "(georectified)"]])
