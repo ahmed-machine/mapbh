@@ -3,10 +3,11 @@
              [app.model :as model]
              [bidi.bidi :as bidi]))
 
-(re-frame/reg-event-db
+(re-frame/reg-event-fx
  ::set-active-panel
- (fn [db [_ active-panel]]
-   (assoc db :active-panel (keyword active-panel))))
+ (fn [{:keys [db]} [_ active-panel]]
+   {:db (assoc db :active-panel (keyword active-panel))
+    :scroll-to-top true}))
 
 (defn ^:private get-current-panel-from-url
   "Extract current panel from URL as fallback when active-panel is unreliable"
@@ -43,3 +44,9 @@
  (fn [url]
    ;; Just update the URL without triggering navigation
    (.pushState js/window.history nil "" url)))
+
+;; Effect handler to scroll to top of page
+(re-frame/reg-fx
+ :scroll-to-top
+ (fn [_]
+   (.scrollTo js/window 0 0)))
