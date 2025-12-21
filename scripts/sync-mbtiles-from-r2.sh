@@ -5,7 +5,10 @@ set -e
 # This script should be run on the production server to download/sync mbtiles
 # Usage: ./scripts/sync-mbtiles-from-r2.sh
 
-MBTILES_DIR="./public/maps"
+# Get the script directory and project root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+MBTILES_DIR="$PROJECT_ROOT/public/maps"
 R2_REMOTE="mapbh:mapbh/mbtiles"
 
 echo "=== Syncing MBTiles from R2 to local server ==="
