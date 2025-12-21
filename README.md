@@ -29,8 +29,9 @@ mapBH serves as a digital repository and visualization platform for historical m
 ### Backend & Infrastructure
 - **Tileserver-GL**: Map tile server for hosting georeferenced maps
 - **Nginx**: Reverse proxy server
-- **Linode VPS**: Hosting platform
-- **Cloudflare**
+- **Linode VPS**: Hosting platform at `/var/www/mapbh`
+- **Cloudflare R2**: CDN storage for source files, thumbnails, and mbtiles
+- **Cloudflare CDN**: Content delivery at `cdn.mapbh.org`
 - **GitHub Actions**: Continuous deployment
 
 
@@ -121,14 +122,23 @@ GitHub Actions automatically:
 - **Tileserver-GL**: Map tile serving with `tile-config.json`
 - **Systemd**: Service management for background processes on server
 
-### Large File Management
-Maps exceeding GitHub's 2GB limit are handled separately:
-```bash
-# Transfer large files directly to server
-scp -r ~/bigmaps/ user@hostname:bigmaps/
+### Large File Management with R2 CDN
 
-# Create symlinks in public directory
-ln -s ./* /mnt/maps/mapbh/public/maps/
+Large files are stored in **Cloudflare R2** and served via CDN (`https://cdn.mapbh.org/`):
+- **Source files** (TIF, PDF, JP2) and **thumbnails** (PNG) served directly from R2
+- **MBTiles** synced from R2 to production server (`/var/www/mapbh/public/maps/`) for local tile serving
+
+**Workflow for new maps:**
+```bash
+# 1. Upload source + generate thumbnail → R2
+./scripts/deploy-map-to-r2.sh public/maps/2025-NewMap.tif
+
+# 2. Generate mbtiles + upload → R2
+./scripts/tif2mbtiles.sh public/maps/2025-NewMap.tif public/maps/2025-NewMap.mbtiles
+./scripts/upload-mbtiles-to-r2.sh public/maps/2025-NewMap.mbtiles
+
+# 3. Server: sync mbtiles from R2 + restart tileserver
+ssh user@server "cd /var/www/mapbh && ./scripts/server-sync-all.sh"
 ```
 
 ## Running Local Tile Server
