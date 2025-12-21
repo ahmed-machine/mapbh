@@ -13,7 +13,7 @@ Interactive site to explore historical maps of Bahrain from the 20th century. Th
 mapBH serves as a digital repository and visualization platform for historical maps of Bahrain, featuring:
 
 - **Interactive Map Viewer**: two modes (transparency, side-by-side)
-- **Multilingual**: Arabic and English
+- **Bilingual**: Arabic and English
 - **Articles**
 - **Catalogue**: all maps in archive with metadata
 ## Stack
@@ -30,8 +30,7 @@ mapBH serves as a digital repository and visualization platform for historical m
 - **Tileserver-GL**: Map tile server for hosting georeferenced maps
 - **Nginx**: Reverse proxy server
 - **Linode VPS**: Hosting platform at `/var/www/mapbh`
-- **Cloudflare R2**: CDN storage for source files, thumbnails, and mbtiles
-- **Cloudflare CDN**: Content delivery at `cdn.mapbh.org`
+- **Cloudflare R2**: CDN storage for source files, thumbnails, and mbtiles. (cdn.mapbh.org)
 - **GitHub Actions**: Continuous deployment
 
 
@@ -77,7 +76,7 @@ Historical maps are processed through a georeferencing pipeline:
 3. **Geometric Transformation**: Using GDAL for spatial rectification from source projection to target projection using GCPs, with additional cutlines and stitching for multi-sheet sets. Generates a GeoTiff file.
 4. **Tile Generation**: Converting to MBTiles format for web serving
 
-Where coordinates and projection information are unavailable, we get creative with landmarks, research, and approximation. Each map is a puzzle to be solved whether in pre-processing or research or code.Due to these reasons as well as historical inaccuracy in maps, not all maps align perfectly.
+Where coordinates and projection information are unavailable, we get creative with landmarks, research, and approximation. Each map is a puzzle to be solved whether in pre-processing or research or code. Due to these reasons as well as historical inaccuracy in maps, not all maps align perfectly. Most maps on the site are a combination of preprocessing tricks in Photoshop, projection translation with GDAL via CLI, and fine-tuning in QGIS.
 
 ### Processing Scripts
 
@@ -137,7 +136,8 @@ Large files are stored in **Cloudflare R2** and served via CDN (`https://cdn.map
 ./scripts/tif2mbtiles.sh public/maps/2025-NewMap.tif public/maps/2025-NewMap.mbtiles
 ./scripts/upload-mbtiles-to-r2.sh public/maps/2025-NewMap.mbtiles
 
-# 3. Server: sync mbtiles from R2 + restart tileserver
+# 3. Add entry to data.cljs. Pushing to main will automatically sync the server.
+Alternatively:
 ssh user@server "cd /var/www/mapbh && ./scripts/server-sync-all.sh"
 ```
 
@@ -148,12 +148,10 @@ To view maps locally with full functionality:
 ```bash
 # Install tileserver-gl globally
 npm install -g tileserver-gl
-
+# Download mbtiles from R2 (./scripts/sync-mbtiles-from-r2.sh)
+# Comment out the remote url in data.cljs and use localhost
 # Start local tile server
 tileserver-gl -c tile-config.json
-
-# Comment out the remote url in data.cljs
-# Comment out the >2gb large maps in tile_config.json (1985)
 # Access at http://localhost:8080
 
 ```
