@@ -2073,7 +2073,7 @@ There are many derivative versions of this map; Europeans first republished it i
     :viewable false
     :year 1962
     :scale "1:63,360"
-    :source-link "/maps/1962-Bahrain Island.pdf"
+    :source-link "/maps/1962.63360.Bahrain.tif"
     :i18n {:en {:title "Bahrain Island - 1962"
                 :description "Map of Bahrain Island from 1962, sheet 5-1."
                 :notes nil

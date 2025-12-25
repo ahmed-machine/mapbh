@@ -23,7 +23,7 @@ mkdir -p "$MBTILES_DIR"
 # Sync mbtiles from R2 to local
 # Using --checksum to verify file integrity
 # Using --update to only download newer/missing files
-rclone sync "$R2_REMOTE/" "$MBTILES_DIR/" \
+rclone sync --s3-no-check-bucket "$R2_REMOTE/" "$MBTILES_DIR/" \
   --include "*.mbtiles" \
   --checksum \
   --progress \

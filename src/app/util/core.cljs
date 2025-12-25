@@ -1,16 +1,5 @@
 (ns app.util.core
-  (:require [clojure.string :as str]
-            [re-frame.core :as rf]))
-
-(defn ->js [var-name]
-      (-> var-name
-          (str/replace #"/" ".")
-          (str/replace #"-" "_")))
-
-
-(defn invoke [function-name & args]
-      (let [fun (js/eval (->js function-name))]
-           (apply fun args)))
+  (:require [re-frame.core :as rf]))
 
 (defn arabic-attrs
   "Returns standard RTL attributes for Arabic content with 1.4rem font size.
