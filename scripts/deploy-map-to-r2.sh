@@ -52,7 +52,7 @@ for map_file in "$@"; do
 
     # Step 2: Upload source file to R2
     echo "  → Uploading source file to R2..."
-    if rclone copy "$map_file" "$R2_REMOTE/" --progress; then
+    if rclone copy --s3-no-check-bucket "$map_file" "$R2_REMOTE/" --progress; then
         echo "  ✓ Uploaded: $filename"
     else
         echo "  ✗ Failed to upload source file"
@@ -61,7 +61,7 @@ for map_file in "$@"; do
 
     # Step 3: Upload thumbnail to R2
     echo "  → Uploading thumbnail to R2..."
-    if rclone copy "$thumbnail_path" "$R2_REMOTE/thumbnails/" --progress; then
+    if rclone copy --s3-no-check-bucket "$thumbnail_path" "$R2_REMOTE/thumbnails/" --progress; then
         echo "  ✓ Uploaded thumbnail: ${map_id}.png"
     else
         echo "  ✗ Failed to upload thumbnail"

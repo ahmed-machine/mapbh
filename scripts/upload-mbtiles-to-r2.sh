@@ -33,7 +33,7 @@ for mbtiles_file in "$@"; do
     echo "Size: $(du -h "$mbtiles_file" | cut -f1)"
 
     # Upload to R2
-    if rclone copy "$mbtiles_file" "$R2_REMOTE/" --progress; then
+    if rclone copy --s3-no-check-bucket "$mbtiles_file" "$R2_REMOTE/" --progress; then
         echo "✓ Uploaded: $filename"
     else
         echo "✗ Failed to upload: $filename"
