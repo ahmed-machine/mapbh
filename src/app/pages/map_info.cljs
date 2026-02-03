@@ -95,7 +95,7 @@
   (when (and content (not (str/blank? content)))
     [:div.content
      [:h4.title.is-5 {:style {:margin-bottom "0.5rem"}} title]
-     [:div.box {:style {:background-color "#fafafa"}}
+     [:div.box
       [:p content]]]))
 
 (defn metadata-grid

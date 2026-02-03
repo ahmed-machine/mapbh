@@ -996,6 +996,28 @@ There are many derivative versions of this map; Europeans first republished it i
            :ar {:title "خارطة البحرين"
                 :description " خريطة البحرين رُسمت عام ١٩٦٣ بمقياس ١:٩٧٥٠٠ باللغتين الإنجليزية والفارسية. تحتوي على ثلاث خرائط داخلية تصور: المنامة والمحرق، وخريطة البحرين بمقياس أصغر، وخريطة إقليمية تصور البحرين. رسم هذه الخريطة عباس سحاب، رسام خرائط معروف بلقب “اب الخرائط الايرانية” وينتمي إلى عائلة رسامي خرائط مشهورة في طهران. تتميز بزخارف جميلة: حدود مكونة من أمواج من الأسماك وحرفّي عامل ومنارة ملونة جميلة في المنامة."}}}
 
+   "1967 - Bahrain"
+   {:groups #{"Bahrain"}
+    :year 1967
+    :url (form-tile-url "1967-Bahrain")
+    :scale "1:2,400"
+    :source "USGS Earth Explorer"
+    :source-link nil
+    :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e839ff7d71d4811/DZB00403600089H016001/"
+    :link-2 "https://en.wikipedia.org/wiki/KH-7_Gambit"
+    :submitted-by "Qasim"
+    :i18n {:en {:title "Northern Bahrain - 1967"
+                :description "This image is declassified data from spy satellite KH-7 Gambit-1. This image was captured February 8, 1967 at roughly 1:2,400 scale. Commonly, the earliest commercially available satellite imagery is from 1984. However, the US and USSR had been launching spy satellites and capturing data over a decade prior. This black/white satellite image covers from Um Nasan to Muharraq and south to Awali. Keyhole (KH) satellite systems KH-7 and KH-9 acquired photographs of the Earth's surface with a telescopic camera system and transported the exposed film through the use of recovery capsules. The capsules or buckets were de-orbited and retrieved by aircraft while the capsules parachuted to earth. The exposed film was developed and the images were analyzed for a range of military applications."
+                :notes nil
+                :labels nil}
+           :ar {:title nil
+                :description nil
+                :notes nil
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 7
+                            :maxNativeZoom 16
+                            :opacity 0.7})}
+
    "1968 - Bahrain"
    {:groups #{"Bahrain"}
     :year 1968
