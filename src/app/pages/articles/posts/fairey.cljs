@@ -62,7 +62,7 @@
     "While it’s unclear when contact between the Bahraini state and Fairey Surveys began, it’s safe to assume that, much like other British protectorates and colonies, it would’ve been facilitated by the British Political Agency in Bahrain as the state transitioned into an independent state. One can extrapolate off the process that led to the hiring of a town planner in 1968:"]
    [:p.quote
     [:blockquote.content
-     {:style {:margin "1rem" :padding "1rem" :background-color "#efefef"}}
+     {:style {:margin "1rem" :padding "1rem"}}
      " There was no government agency for Master Planning or Structural Planning. There was no qualified Town Planner in the Government or indeed in the country. The Government requested the services of a qualified Town Planner from the British Government and the British Ministry of Overseas Development sent Mr. A.M. Munro as Physical Planning Advisor to the Government of Bahrain in 1968. Mr. Munro was a qualified and well experienced Town planner. Before coming to Bahrain he worked in Malaysia and several other foreign countries as an Advisor of British Ministry of Overseas Development. "]
     [:em {:style {:display :block :text-align :right :margin-right "1rem"}} "(The History of Land Use and Development in Bahrain, Mohammed Noor Al-Nabi, 2012)"]]
    [:p
