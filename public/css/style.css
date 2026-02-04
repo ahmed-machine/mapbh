@@ -3,8 +3,7 @@
     --primary-color: #2c3e50;
     --secondary-color: #34495e;
     --accent-color: #DA291C;
-    --background-light: rgb(242, 240, 235);
-    --background-elevated: rgb(230, 228, 222);
+    --background-light: #fafafa;
     --text-color: #2c3e50;
     --text-muted: #7f8c8d;
     --border-radius: 8px;
@@ -28,26 +27,12 @@
     --navbar-height: 3.25rem;
 }
 
-html,
 body {
     padding: 0;
     margin: 0;
-    background-color: var(--background-light);
+    background-color: white;
     color: var(--text-color);
     line-height: 1.6;
-}
-
-/* Override Bulma defaults to use consistent background */
-.navbar,
-.table,
-.footer {
-    background-color: var(--background-light);
-}
-
-/* Elevated elements get slightly darker background */
-.box,
-.button.is-light {
-    background-color: var(--background-elevated);
 }
 
 
@@ -277,7 +262,7 @@ a.navbar-item:hover {
     transition: var(--transition-smooth);
     font-weight: 500;
     font-size: 1rem;
-    background: var(--background-elevated);
+    background: white;
     color: var(--text-color);
     position: relative;
     /* Remove overflow: hidden to allow border visibility */
@@ -444,7 +429,7 @@ iframe.video {
 
 /* Article index box styling */
 .about .box {
-    background: var(--background-light);
+    background: white;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
 }
@@ -518,7 +503,7 @@ iframe.video {
 }
 
 .home .navbar {
-    background: var(--background-light) !important;
+    background: transparent !important;
     box-shadow: none !important;
     flex-direction: column;
     gap: var(--spacing-lg);
@@ -673,5 +658,5 @@ iframe.video {
 iframe {display:block; margin: 0 auto; text-align: center;}
 
 .quote {margin: 3rem;}
-.quote blockquote {margin: 1rem; padding: 1rem; background-color: var(--background-light)}
+.quote blockquote {margin: 1rem; padding: 1rem; background-color: #efefef}
 .quote em {display: block; text-align: right; margin-right: 1rem;}
