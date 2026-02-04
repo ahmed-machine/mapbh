@@ -120,7 +120,7 @@ body.map-page {
 
 #modal-description {
     z-index: var(--z-index-modal-backdrop);
-    background: var(--background-light);
+    background: whitesmoke;
     font-size: 12;
     width: fit-content;
     margin: auto auto;
