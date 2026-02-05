@@ -1015,8 +1015,8 @@ There are many derivative versions of this map; Europeans first republished it i
                 :description nil
                 :notes nil
                 :labels nil}}
-    :opts (merge base-opts {:minNativeZoom 7
-                            :maxNativeZoom 16
+    :opts (merge base-opts {:minNativeZoom 12
+                            :maxNativeZoom 18
                             :opacity 0.7})}
 
    "1968 - Bahrain"
