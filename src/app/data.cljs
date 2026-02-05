@@ -1003,6 +1003,7 @@ There are many derivative versions of this map; Europeans first republished it i
     :scale "1:2,400"
     :source "USGS Earth Explorer"
     :source-link "/maps/1967-Bahrain.zip"
+    :issuer-link "/maps/1967-Bahrain.warped.tif"
     :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e839ff7d71d4811/DZB00403600089H016001/"
     :link-2 "https://en.wikipedia.org/wiki/KH-7_Gambit"
     :submitted-by "Qasim"
