@@ -8,7 +8,7 @@
    [:div.content
     [:p
      {}
-     "This guide walks through the complete process of taking a historical map — often a scanned image from a library or archive — and transforming it into a georeferenced, web-ready overlay that can be compared interactively with modern satellite imagery. It assumes comfort with the command line but no prior experience with geospatial tools." "The techniques described here were developed while building " [:a {:href "https://www.mapbh.org"} "mapBH"] ". Every map on the site passed through some version of this pipeline."]
+     "This guide walks through the process of taking a historical map — often a scanned image from a library or archive — and transforming it into a georeferenced, web-ready map overlay that can be compared interactively with modern satellite imagery. It assumes comfort with the command line but no prior experience with geospatial tools." " The techniques described here were developed while building " [:a {:href "https://www.mapbh.org"} "mapBH"] ". Every map on the site passed through some version of this pipeline."]
     [:div {:style {:display :flex :justify-content :center :gap "1rem" :margin "1.5rem 0"}}
      [:img {:src "https://cdn.mapbh.org/thumbnails/1976.50k.Bahrain%20Geomorphology%20and%20superficial%20materials-source-scan.png"
             :alt "1976 Bahrain Geomorphology and Superficial Materials"
