@@ -13,6 +13,10 @@ CLAUDE.MD
 .nrepl-port
 package-lock.json
 
+# Pre-rendered article HTML (generated at build time)
+public/en/articles/
+public/ar/articles/
+
 # Large files served from R2
 *.mbtiles
 public/maps/*.zip
