@@ -337,6 +337,13 @@ iframe.video {
                                            line-height: 1.75em;}
     .articles ul {margin: 1rem 6.5rem;}
     .about h1, .contribute h1, .articles h1 {margin: 2rem 4.5rem;}
+    .about .content p {margin-left: 2.5rem; margin-right: 2.5rem; text-indent: 0.75em;}
+    .about .content h2 {margin-left: 1.5rem; margin-right: 1.5rem;}
+    .about .content h3 {margin-left: 2.5rem; margin-right: 2.5rem;}
+    .about .content h4 {margin-left: 3.5rem; margin-right: 3.5rem;}
+    .about .content ul, .about .content ol {margin-left: 7rem; margin-right: 7rem;}
+    .about .content pre {margin-left: 3.25rem; margin-right: 3.25rem; width: fit-content;}
+    .about .content table {width: fit-content; margin-left: auto; margin-right: auto;}
 }
 
 @media screen and (max-width: 1024px){
@@ -348,10 +355,18 @@ iframe.video {
                                            line-height: 1.75em;}
     .articles ul {margin: 1rem .5rem;}
     .about h1, .contribute h1, .articles h1 {margin: 2rem 1.5rem;}
+    .about .content p {margin-left: 0.5rem; margin-right: 0.5rem; text-indent: 0.75em;}
+    .about .content h2 {margin-left: 0.25rem; margin-right: 0.25rem;}
+    .about .content h3 {margin-left: 0.5rem; margin-right: 0.5rem;}
+    .about .content h4 {margin-left: 0.75rem; margin-right: 0.75rem;}
+    .about .content ul, .about .content ol {margin-left: 2rem; margin-right: 2rem;}
+    .about .content pre {margin-left: 1rem; margin-right: 1rem; width: fit-content;}
+    .about .content table {width: fit-content; margin-left: auto; margin-right: auto;}
 }
 
 /* article styles */
 
+.about .content {padding-bottom: 4rem;}
 .articles ul {list-style: disclosure-closed;}
 .articles {padding-bottom: 3rem;}
 
