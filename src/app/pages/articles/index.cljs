@@ -1,6 +1,7 @@
 (ns app.pages.articles.index
   (:require [app.pages.articles.posts.wadi :as wadi]
             [app.pages.articles.posts.fairey :as fairey]
+            [app.pages.articles.posts.processing-pipeline :as processing-pipeline]
             [app.util.core :refer [arabic-attrs bilingual-component]]))
 
 (def entries
@@ -21,7 +22,16 @@
     :ar-keywords ["مقال" "تاريخ البحرين" "خرائط تاريخية" "فايري سورڤيز"]
     :date #inst "2024-04-09T20:53:59.000Z"
     :route "fairey"
-    :component fairey/article}])
+    :component fairey/article}
+   {:en-title "how to georeference a historical map"
+    :ar-title "how to georeference a historical map"
+    :en-description "A complete guide to transforming scanned historical maps into georeferenced, web-ready overlays using GDAL, QGIS, and related tools."
+    :ar-description "A complete guide to transforming scanned historical maps into georeferenced, web-ready overlays using GDAL, QGIS, and related tools."
+    :en-keywords ["article" "georeferencing" "GDAL" "QGIS" "map processing" "GeoTIFF" "MBTiles"]
+    :ar-keywords ["article" "georeferencing" "GDAL" "QGIS" "map processing" "GeoTIFF" "MBTiles"]
+    :date #inst "2026-02-06T00:00:00.000Z"
+    :route "processing-pipeline"
+    :component processing-pipeline/article}])
 
 ;; Generate article routes from entries - single source of truth
 ;; Pattern: {:route "wadi"} → {"wadi" :article-wadi}
