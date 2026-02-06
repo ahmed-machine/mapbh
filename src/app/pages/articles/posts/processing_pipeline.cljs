@@ -8,7 +8,7 @@
    [:div.content
     [:p
      {}
-     "This guide walks through the process of taking a historical map — often a scanned image from a library or archive — and transforming it into a georeferenced, web-ready map overlay that can be compared interactively with modern satellite imagery. It assumes comfort with the command line but no prior experience with geospatial tools." " The techniques described here were developed while building " [:a {:href "https://www.mapbh.org"} "mapBH"] ". Every map on the site passed through some version of this pipeline."]
+     "This guide walks through the process of taking a historical map — often a scanned image from a library or archive — and transforming it into a georeferenced, web-ready map overlay that can be compared interactively with modern satellite imagery. It assumes comfort with the command line but no prior experience with geospatial tools." " Techniques described here were developed while building " [:a {:href "https://www.mapbh.org"} "mapBH"] ". Every map on the site passed through some version of this pipeline."]
     [:div {:style {:display :flex :justify-content :center :gap "1rem" :margin "1.5rem 0"}}
      [:img {:src "https://cdn.mapbh.org/thumbnails/1976.50k.Bahrain%20Geomorphology%20and%20superficial%20materials-source-scan.png"
             :alt "1976 Bahrain Geomorphology and Superficial Materials"
@@ -51,8 +51,8 @@
      {}
      "Most maps of Bahrain in the 20th century are reasonably accurate and provide sufficient projection information for us to automate the process and minimise inaccuracies. Examine the map's margins carefully, most include:"]
     [:div {:style {:display :flex :justify-content :center :gap "1rem" :margin "1.5rem 0" :flex-wrap :wrap}}
-     [:img {:src "/img/posts/processing-pipeline/map-projection-info.png"
-            :alt "Map margin showing projection information: Mecca-Muscat Zone, Conical Orthomorphic, Spheroid Clarke 1880"
+     [:img {:src "/img/posts/processing-pipeline/map-grid-data.png"
+            :alt "Map margin showing grid data: Universal Transverse Mercator Zone 39, International spheroid, Ain Al Abd datum"
             :style {:max-height "200px" :object-fit :contain}}]
      [:img {:src "/img/posts/processing-pipeline/map-corner-top-left.png"
             :alt "Top-left corner of a map showing UTM coordinates: 452000E, 2908000N"
@@ -63,7 +63,7 @@
     [:ul
      [:li [:strong "Corner coordinates"] " — latitude/longitude or UTM easting/northing for the map boundaries"]
      [:li [:strong "Projection information"] " — the coordinate reference system (CRS) the map was drawn in (e.g. Universal Transverse Mercator Zone 39)"]
-     [:li [:strong "Datum"] " — the geodetic datum (e.g., Ain Al Abed, Nahrawan)"]
+     [:li [:strong "Datum"] " — the geodetic datum (e.g., Ain Al Abd, Nahrawan)"]
      [:li [:strong "Spheroid"] " — Clarke 1880 spheroid, Universal, etc"]
      [:li [:strong "Scale"] " — useful for sanity-checking your geo-referenced output"]]
     [:p
@@ -71,6 +71,7 @@
      "Record all of this. If coordinates are in UTM format (easting/northing in meters), you will feed them directly to " [:code "gdal_translate"] " later. If they are in degrees/minutes/seconds, convert them to decimal degrees first. There are "
      [:a {:href "https://www.latlong.net/degrees-minutes-seconds-to-decimal-degrees"} "online tools"]
      " to help with this."]
+    [:p [:a {:href "https://cran.r-project.org/web/packages/proj4/proj4.pdf"} "PROJ.4"] " is a standard digital definition of cartographic details for performing conversions between cartographic projections programmatically. Most of the world's projections can often be found " [:a {:href "https://epsg.io"} "predefined online"] "."]
     [:p
      {}
      "If no geographic information is provided at all, you can still georeference the map by setting ground control points (GCPs) on landmarks against a modern base-map in software like QGIS or "
@@ -80,17 +81,17 @@
     [:h3 {} [:strong "Step 2b: "] [:span {:style {:font-weight :normal}} "straight to QGIS's georeferencer"]]
     [:p
      {}
-     "With some older maps, projection information is just not available or lost to history or the inaccuracies in the actual map are too great to overcome. These maps can't be transformed programmatically, and we must attempt to georectify them manually. Try "
+     "With some older maps, projection information is just not available or lost to history or the inaccuracies in the actual map are too great to overcome. These maps can't be transformed programmatically, and we attempt to georectify them manually. Try "
      [:a {:href "https://qgis.org/download/"} "QGIS's"]
      " Georeferencer tool to set ground control points (GCPs) between known landmarks on the historical map and a modern basemap. "
      [:a {:href "http://mapwarper.net"} "MapWarper"]
      " can also serve as a tool to do the same and serve as a temporary tile server for testing. "
-     [:i "Note: exhaust all attempts to do this programmatically (step 2a, 3-8) for maximum precision. Manually georeferenced maps are less accurate."]]
+     [:i "Note: exhaust all attempts to do this programmatically (step 2a, 3-8) for maximum precision. Manually georeferenced maps are less accurate due to added human bias."]]
 
     [:h3 {} [:strong "Step 3: "] [:span {:style {:font-weight :normal}} "prepare the image"]]
     [:p
      {}
-     "I won't dive too deeply here, but Photoshop skills are very useful in salvaging poor scans. Distorted images, overexposed, and unclear images can often be cleaned up with some careful masking, curve manipulation, and colour profiles."]
+     "I won't dive deeply here, but Photoshop skills can be very useful in salvaging poor scans. Distorted, overexposed, and unclear images can often be cleaned up with some careful masking, curve manipulation, and colour profiles."]
     [:p {} "Before georeferencing, clean up the scan:"]
     [:ul
      [:li [:strong "Contrast and levels"] " — if the image is overexposed or washed out, adjust levels."]
@@ -113,6 +114,7 @@
     [:ul
      [:li [:code "-a_srs"] " — assigns the source coordinate reference system"]
      [:li [:code "-a_ullr"] " — assigns the geographic bounding box as: " [:code "<upper-left-X> <upper-left-Y> <lower-right-X> <lower-right-Y>"]]]
+    [:p "This is where the geographic metadata from step 2 is applied. Look up the " [:a {:href "https://cran.r-project.org/web/packages/proj4/proj4.pdf"} "PROJ.4"] " definition that corresponds to the extracted details in step 2 on " [:a {:href "https://epsg.io"} "epsg.io"] ". The definitions are human-readable and the parameters can be substituted depending on the variations in parameters."]
     [:p {} [:strong "For maps in latitude/longitude (EPSG:4326):"]]
     [:pre [:code "gdal_translate -a_srs EPSG:4326 \\\n  -a_ullr <top-left-long> <top-left-lat> <bottom-right-long> <bottom-right-lat> \\\n  ./input.tif ./georeferenced.tif"]]
     [:p {} [:strong "For maps in UTM coordinates:"]]
@@ -133,7 +135,7 @@
     [:pre [:code "gdalwarp \\\n  -s_srs '+proj=utm +zone=39 +ellps=intl +towgs84=-143,-236,7,0,0,0,0 +units=m +no_defs' \\\n  -t_srs EPSG:3857 \\\n  -r lanczos \\\n  ./georeferenced.tif ./warped.tif"]]
     [:p {} "Options:"]
     [:ul
-     [:li [:code "-s_srs"] " — source projection (only needed if not already embedded in the file from Step 5, or if you want to override it)"]
+     [:li [:code "-s_srs"] " — source projection (only needed if not already embedded in the file from Step 5, or if you want to override it), this will be the same proj.4 definition extracted in step 2a and used in step 5."]
      [:li [:code "-t_srs"] " — target projection (Web Mercator)"]
      [:li [:code "-r lanczos"] " — resampling algorithm. The default (" [:code "nearest_neighbor"] ") is fast but produces blocky results. " [:code "cubicspline"] " is slower but yields smoother output, and " [:code "lanczos"] " is generally best."]]
 
@@ -229,7 +231,7 @@
      "This isn't an exhaustive guide, but a starting point. These concepts and tools generalise to several applications which I encourage you to explore. Tile servers work in a similar manner to large document viewers. Weather systems utilise similar GDAL workflows. If you're inclined, there's a few maps in mapBH's "
      [:a {:href "https://mapbh.org/en/catalogue"} "catalogue"]
      " that still need transformation. mapBH's community would be immensely grateful."]
-    [:p {} "I hope you enjoyed this guide, and I'm excited to see what you make with this."]
+    [:p {} "I hope you enjoyed this guide. I intentionally left some sections less-defined to encourage free exploration, and I'm excited to see what you make with this."]
     [:hr]
     [:h2 {} "Useful Links"]
     [:ul
