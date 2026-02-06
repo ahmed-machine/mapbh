@@ -342,7 +342,7 @@ iframe.video {
     .about .content h3 {margin-left: 2.5rem; margin-right: 2.5rem;}
     .about .content h4 {margin-left: 3.5rem; margin-right: 3.5rem;}
     .about .content ul, .about .content ol {margin-left: 7rem; margin-right: 7rem;}
-    .about .content pre {margin-left: 3.25rem; margin-right: 3.25rem; width: fit-content;}
+    .about .content pre {margin-left: 3.25rem; margin-right: 3.25rem; width: fit-content; overflow-x: auto;}
     .about .content table {width: fit-content; margin-left: auto; margin-right: auto;}
 }
 
@@ -360,7 +360,7 @@ iframe.video {
     .about .content h3 {margin-left: 0.5rem; margin-right: 0.5rem;}
     .about .content h4 {margin-left: 0.75rem; margin-right: 0.75rem;}
     .about .content ul, .about .content ol {margin-left: 2rem; margin-right: 2rem;}
-    .about .content pre {margin-left: 1rem; margin-right: 1rem; width: fit-content;}
+    .about .content pre {margin-left: 1rem; margin-right: 1rem; overflow-x: auto;}
     .about .content table {width: fit-content; margin-left: auto; margin-right: auto;}
 }
 
