@@ -33,6 +33,25 @@ body {
     background-color: white;
     color: var(--text-color);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#app > .container {
+    flex: 1;
 }
 
 
@@ -368,94 +387,110 @@ iframe.video {
 
 .about .content {padding-bottom: 4rem;}
 .articles ul {list-style: disclosure-closed;}
-.articles {padding-bottom: 3rem;}
+.articles {padding-bottom: 1.5rem;}
 
-/* Article index container - responsive alignment */
-.articles-container {
-    max-width: 800px;
-}
-
-/* Mobile: centered */
-@media screen and (max-width: 1023px) {
-    .articles-container {
-        margin: 0 auto;
-    }
-}
-
-/* Desktop: full width with proper padding */
-@media screen and (min-width: 1024px) {
-    .articles-container {
-        max-width: none;
-        margin-left: 0;
-        margin-right: auto;
-    }
-
-    /* RTL (Arabic): right-aligned */
-    [dir="rtl"] .articles-container,
-    [direction="rtl"] .articles-container {
-        margin-left: auto;
-        margin-right: 0;
-    }
-}
-
-/* Article index box styling */
-.articles-container .box {
+/* Article card grid */
+.articles-container.columns {
+    margin-top: var(--spacing-sm);
     margin-bottom: var(--spacing-md);
-    border-left: 4px solid var(--accent-color);
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+}
+.articles-container > .column {
+    padding: 0.5rem;
+}
+
+.article-card {
+    background: white;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     transition: var(--transition-smooth);
 }
 
-/* RTL: border on right instead of left */
-[dir="rtl"] .articles-container .box,
-[direction="rtl"] .articles-container .box {
-    border-left: none;
-    border-right: 4px solid var(--accent-color);
+.article-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
 }
 
-/* Article title link styling */
-.articles-container .box .title a {
+.article-card > a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.article-card-content {
+    padding: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.article-card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
     color: var(--text-color);
+    margin-bottom: 0.25rem;
+    text-align: center;
     transition: var(--transition-fast);
 }
 
-/* Article subtitle (date) styling */
-.articles-container .box .subtitle {
+.article-card:hover .article-card-title {
+    color: var(--accent-color);
+}
+
+.article-card .article-card-subtitle {
+    font-size: 0.95rem;
     color: var(--text-muted);
-    margin-bottom: 0.75rem;
-    padding: 0.5rem 0;
+    margin: 0 0 0.25rem;
+    text-indent: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Icon spacing in article list */
-.articles-container .box .icon {
-    margin-right: 0.75rem;
+.article-card .article-card-date {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 0 0 var(--spacing-xs);
+    text-indent: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
-/* RTL: icon on left instead of right */
-[dir="rtl"] .articles-container .box .icon,
-[direction="rtl"] .articles-container .box .icon {
-    margin-right: 0;
-    margin-left: 0.5rem;
-}
-
-/* Article description text */
-.articles-container .box p {
+.article-card .article-card-description {
     line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+    text-indent: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
 }
 
-/* Article index box styling */
-.about .box {
-    background: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
+
+/* Articles index: reduce outer spacing to fill more of the viewport */
+.about:has(.articles-container) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.about:has(.articles-container) > h1.title {
+    margin: 1rem 0 0;
 }
 
-.about .box:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.about .box a:hover {
-    color: var(--accent-color) !important;
+/* Mobile: tighter card padding */
+@media screen and (max-width: 768px) {
+    .article-card-content {
+        padding: var(--spacing-sm);
+    }
 }
 
 .about .title {text-align: center;}

@@ -14,9 +14,11 @@
     :date #inst "2022-06-06T17:53:59.000Z"
     :route "wadi"
     :component wadi/article}
-   {:en-title "Fairey Surveys — history of modern map-making in Bahrain"
-    :ar-title "فايري سورڤيز - صناع خرائط البحرين الحديثة"
-    :en-description "The history of Fairey Surveys and the creation of modern maps of independent Bahrain in the 1970s, shaping contemporary urban planning."
+   {:en-title "Fairey Surveys"
+    :ar-title "فايري سورڤيز"
+    :en-subtitle "history of modern map-making in Bahrain"
+    :ar-subtitle "صناع خرائط البحرين الحديثة"
+    :en-description "The history of Fairey Surveys and the creation of modern maps of independent Bahrain in the 1970s"
     :ar-description "تاريخ شركة فايري سورڤيز وإنتاج أول الخرائط الحديثة للبحرين بعد الاستقلال في السبعينيات، ودورها في تشكيل التخطيط العمراني الحديث."
     :en-keywords ["article" "Bahrain history" "historical maps" "Fairey Surveys"]
     :ar-keywords ["مقال" "تاريخ البحرين" "خرائط تاريخية" "فايري سورڤيز"]
@@ -24,11 +26,11 @@
     :route "fairey"
     :component fairey/article}
    {:en-title "how to georeference a historical map"
-    :ar-title "how to georeference a historical map"
+    :ar-title "حوّل الخرائط التاريخية لبرامج اليوم"
     :en-description "A complete guide to transforming scanned historical maps into georeferenced, web-ready overlays using GDAL, QGIS, and related tools."
-    :ar-description "A complete guide to transforming scanned historical maps into georeferenced, web-ready overlays using GDAL, QGIS, and related tools."
+    :ar-description "دليل شامل لتحويل الخرائط التاريخية إلى طبقات جغرافية مرجعية جاهزة للعرض على الويب باستخدام GDAL وQGIS."
     :en-keywords ["article" "georeferencing" "GDAL" "QGIS" "map processing" "GeoTIFF" "MBTiles"]
-    :ar-keywords ["article" "georeferencing" "GDAL" "QGIS" "map processing" "GeoTIFF" "MBTiles"]
+    :ar-keywords ["مقال" "إسناد جغرافي" "GDAL" "QGIS" "معالجة خرائط" "GeoTIFF" "MBTiles"]
     :date #inst "2026-02-06T00:00:00.000Z"
     :route "processing-pipeline"
     :component processing-pipeline/article}])
@@ -46,28 +48,34 @@
 (defn en []
   [:div.container.about
    [:h1.title "Articles"]
-   [:div.articles-container
+   [:div.columns.is-multiline.articles-container
     (for [entry (sort-by :date #(compare %2 %1) entries)]
-      [:div.box {:key (:route entry)}
-       [:h3.title.is-4 [:a {:href (str (:route entry))}
-                        (:en-title entry)]]
-       [:p.subtitle.is-6
-        [:span.icon [:i.far.fa-calendar-alt]]
-        (.toLocaleDateString (:date entry) "en-US" #js{:year "numeric" :month "long" :day "numeric"})]
-       [:p (:en-description entry)]])]])
+      [:div.column.is-one-third-desktop.is-half-tablet {:key (:route entry)}
+       [:div.article-card
+        [:a {:href (str (:route entry))}
+         [:div.article-card-content
+          [:h3.article-card-title (:en-title entry)]
+          [:p.article-card-subtitle (or (:en-subtitle entry) "\u00a0")]
+          [:p.article-card-date
+           [:span.icon.is-small [:i.far.fa-calendar-alt]]
+           (.toLocaleDateString (:date entry) "en-US" #js{:year "numeric" :month "long" :day "numeric"})]
+          [:p.article-card-description (:en-description entry)]]]]])]])
 
 (defn ar []
   [:div.container.about (arabic-attrs)
    [:h1.title "مقالات"]
-   [:div.articles-container
+   [:div.columns.is-multiline.articles-container
     (for [entry (sort-by :date #(compare %2 %1) entries)]
-      [:div.box {:key (:route entry)}
-       [:h3.title.is-4 [:a {:href (str (:route entry))}
-                        (:ar-title entry)]]
-       [:p.subtitle.is-6
-        [:span.icon [:i.far.fa-calendar-alt]]
-        (.toLocaleDateString (:date entry) "ar-BH" #js{:year "numeric" :month "long" :day "numeric"})]
-       [:p (:ar-description entry)]])]])
+      [:div.column.is-one-third-desktop.is-half-tablet {:key (:route entry)}
+       [:div.article-card
+        [:a {:href (str (:route entry))}
+         [:div.article-card-content
+          [:h3.article-card-title (:ar-title entry)]
+          [:p.article-card-subtitle (or (:ar-subtitle entry) "\u00a0")]
+          [:p.article-card-date
+           [:span.icon.is-small [:i.far.fa-calendar-alt]]
+           (.toLocaleDateString (:date entry) "ar-BH" #js{:year "numeric" :month "long" :day "numeric"})]
+          [:p.article-card-description (:ar-description entry)]]]]])]])
 
 (def article-index
   (bilingual-component en ar))
