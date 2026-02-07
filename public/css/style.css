@@ -366,7 +366,7 @@ iframe.video {
 }
 
 @media screen and (max-width: 1024px){
-    .container {padding: 0 1rem;}
+    .container {padding: 0 1rem; max-width: 100vw; overflow-x: hidden;}
     .image {margin: 2rem 0.5rem !important;
             text-align: center;}
     .about p, .contribute p, .articles ul {margin: 1rem .5rem;
@@ -379,8 +379,8 @@ iframe.video {
     .about .content h3 {margin-left: 0.5rem; margin-right: 0.5rem;}
     .about .content h4 {margin-left: 0.75rem; margin-right: 0.75rem;}
     .about .content ul, .about .content ol {margin-left: 2rem; margin-right: 2rem;}
-    .about .content pre {margin-left: 1rem; margin-right: 1rem; overflow-x: auto;}
-    .about .content table {width: fit-content; margin-left: auto; margin-right: auto;}
+    .about .content pre {margin-left: 1rem; margin-right: 1rem; overflow-x: auto; max-width: calc(100vw - 2rem); box-sizing: border-box;}
+    .about .content table {max-width: calc(100vw - 2rem); margin-left: auto; margin-right: auto; display: block; overflow-x: auto;}
 }
 
 /* article styles */
