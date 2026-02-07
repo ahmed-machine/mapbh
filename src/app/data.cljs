@@ -2476,23 +2476,27 @@ There are many derivative versions of this map; Europeans first republished it i
 
    ;; ========== DECLASSIFIED SATELLITE IMAGERY (DS1) ==========
 
-   "1965 - DS1022-1024DA"
+   "1965 - Bahrain - July"
    {:groups #{"Satellite Imagery" "Bahrain"}
-    :viewable false
     :year 1965
+    :url (form-tile-url "1965-DS1022-1024DA")
     :source "USGS Declassified Satellite Imagery (Declass-1)"
     :issuer "USGS EarthExplorer"
     :source-link "/maps/1965-07-21_LANYARD_DS1022-1024DA007-DA008.tif"
+    :issuer-link "/maps/1965-07-21_LANYARD_DS1022-1024DA007-DA008_modified.tif"
     :link-1 "https://doi.org/10.5066/F78P5XZM"
     :link-1-label "USGS Declass-1 Collection"
     :i18n {:en {:title "CORONA/LANYARD Satellite Imagery - July 21, 1965"
                 :description "Declassified reconnaissance satellite photograph of Bahrain from Mission DS1022-1024, aft-looking camera (DA), frames 007-008 stitched. Part of the CORONA/LANYARD program, declassified by Executive Order in 1995. Original film scanned by USGS EROS."
-                :notes "Stitched from two consecutive frames. Not yet georeferenced."
+                :notes "Stitched from two consecutive frames. Georeferenced to WGS84."
                 :labels nil}
            :ar {:title "صور الأقمار الصناعية كورونا/لانيارد - ٢١ يوليو ١٩٦٥"
                 :description "صورة استطلاعية مرفوعة السرية من قمر صناعي فوق البحرين، المهمة DS1022-1024، الكاميرا الخلفية (DA)، الإطارات 007-008 مدمجة. جزء من برنامج كورونا/لانيارد، رُفعت عنها السرية بأمر تنفيذي عام ١٩٩٥."
-                :notes "مدمجة من إطارين متتاليين. لم تتم المعايرة الجغرافية بعد."
-                :labels nil}}}
+                :notes "مدمجة من إطارين متتاليين. تمت المعايرة الجغرافية وفق نظام WGS84."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 16
+                            :opacity 0.7})}
 
    "1968 - DS1104-1057DA"
    {:groups #{"Satellite Imagery" "Bahrain"}
