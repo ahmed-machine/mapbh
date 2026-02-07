@@ -997,22 +997,25 @@ There are many derivative versions of this map; Europeans first republished it i
                 :description " خريطة البحرين رُسمت عام ١٩٦٣ بمقياس ١:٩٧٥٠٠ باللغتين الإنجليزية والفارسية. تحتوي على ثلاث خرائط داخلية تصور: المنامة والمحرق، وخريطة البحرين بمقياس أصغر، وخريطة إقليمية تصور البحرين. رسم هذه الخريطة عباس سحاب، رسام خرائط معروف بلقب “اب الخرائط الايرانية” وينتمي إلى عائلة رسامي خرائط مشهورة في طهران. تتميز بزخارف جميلة: حدود مكونة من أمواج من الأسماك وحرفّي عامل ومنارة ملونة جميلة في المنامة."}}}
 
    "1967 - Bahrain"
-   {:groups #{"Bahrain"}
+   {:groups #{"Satellite Imagery" "Bahrain"}
     :year 1967
     :url (form-tile-url "1967-Bahrain")
     :scale "1:2,400"
-    :source "USGS Earth Explorer"
+    :source "USGS Declassified Satellite Imagery (Declass-2)"
+    :issuer "USGS EarthExplorer"
     :source-link "/maps/1967-Bahrain.zip"
     :issuer-link "/maps/1967-Bahrain.warped.tif"
     :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e839ff7d71d4811/DZB00403600089H016001/"
+    :link-1-label "USGS EarthExplorer Metadata"
     :link-2 "https://en.wikipedia.org/wiki/KH-7_Gambit"
+    :link-2-label "KH-7 Gambit (Wikipedia)"
     :submitted-by "Qasim"
-    :i18n {:en {:title "Northern Bahrain - 1967"
-                :description "This image is declassified data from spy satellite KH-7 Gambit-1. This image was captured February 8, 1967 at roughly 1:2,400 scale. Commonly, the earliest commercially available satellite imagery is from 1984. However, the US and USSR had been launching spy satellites and capturing data over a decade prior. This black/white satellite image covers from Um Nasan to Muharraq and south to Awali. Keyhole (KH) satellite systems KH-7 and KH-9 acquired photographs of the Earth's surface with a telescopic camera system and transported the exposed film through the use of recovery capsules. The capsules or buckets were de-orbited and retrieved by aircraft while the capsules parachuted to earth. The exposed film was developed and the images were analyzed for a range of military applications."
+    :i18n {:en {:title "KH-7 Gambit Satellite Imagery - February 8, 1967"
+                :description "Declassified reconnaissance satellite photograph of northern Bahrain from KH-7 Gambit-1, entity DZB00403600089H016001. Captured at roughly 1:2,400 scale with 2-4 feet resolution. This black/white image covers from Um Nasan to Muharraq and south to Awali. The KH-7 surveillance system was a high-resolution imaging system operational from July 1963 to June 1967. Declassified in 2002 as part of the Declass-2 collection."
                 :notes nil
                 :labels nil}
-           :ar {:title nil
-                :description nil
+           :ar {:title "صور القمر الصناعي KH-7 غامبيت - ٨ فبراير ١٩٦٧"
+                :description "صورة استطلاعية مرفوعة السرية لشمال البحرين من القمر الصناعي KH-7 غامبيت-1، الملف DZB00403600089H016001. التُقطت بمقياس تقريبي ١:٢٬٤٠٠ بدقة ٢-٤ أقدام. تغطي هذه الصورة بالأبيض والأسود من أم النعسان إلى المحرق وجنوباً إلى عوالي. رُفعت عنها السرية عام ٢٠٠٢ كجزء من مجموعة Declass-2."
                 :notes nil
                 :labels nil}}
     :opts (merge base-opts {:minNativeZoom 12
@@ -2469,6 +2472,98 @@ There are many derivative versions of this map; Europeans first republished it i
            :ar {:title "باب البحرين - ٢٠١١"
                 :description "خارطة تركز على منطقة باب البحرين في المنامة"
                 :notes nil
+                :labels nil}}}
+
+   ;; ========== DECLASSIFIED SATELLITE IMAGERY (DS1) ==========
+
+   "1965 - DS1022-1024DA"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1965
+    :source "USGS Declassified Satellite Imagery (Declass-1)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1965-07-21_LANYARD_DS1022-1024DA007-DA008.tif"
+    :link-1 "https://doi.org/10.5066/F78P5XZM"
+    :link-1-label "USGS Declass-1 Collection"
+    :i18n {:en {:title "CORONA/LANYARD Satellite Imagery - July 21, 1965"
+                :description "Declassified reconnaissance satellite photograph of Bahrain from Mission DS1022-1024, aft-looking camera (DA), frames 007-008 stitched. Part of the CORONA/LANYARD program, declassified by Executive Order in 1995. Original film scanned by USGS EROS."
+                :notes "Stitched from two consecutive frames. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور الأقمار الصناعية كورونا/لانيارد - ٢١ يوليو ١٩٦٥"
+                :description "صورة استطلاعية مرفوعة السرية من قمر صناعي فوق البحرين، المهمة DS1022-1024، الكاميرا الخلفية (DA)، الإطارات 007-008 مدمجة. جزء من برنامج كورونا/لانيارد، رُفعت عنها السرية بأمر تنفيذي عام ١٩٩٥."
+                :notes "مدمجة من إطارين متتاليين. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1968 - DS1104-1057DA"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1968
+    :source "USGS Declassified Satellite Imagery (Declass-1)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1968-08-11_LANYARD_DS1104-1057DA023-DA025.tif"
+    :link-1 "https://doi.org/10.5066/F78P5XZM"
+    :link-1-label "USGS Declass-1 Collection"
+    :i18n {:en {:title "CORONA/LANYARD Satellite Imagery (Aft Camera) - August 11, 1968"
+                :description "Declassified reconnaissance satellite photograph of Bahrain from Mission DS1104-1057, aft-looking camera (DA), frames 023-025 stitched. Part of the CORONA/LANYARD program, declassified by Executive Order in 1995. Original film scanned by USGS EROS."
+                :notes "Stitched from three consecutive frames. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور الأقمار الصناعية كورونا/لانيارد (الكاميرا الخلفية) - ١١ أغسطس ١٩٦٨"
+                :description "صورة استطلاعية مرفوعة السرية من قمر صناعي فوق البحرين، المهمة DS1104-1057، الكاميرا الخلفية (DA)، الإطارات 023-025 مدمجة. جزء من برنامج كورونا/لانيارد، رُفعت عنها السرية بأمر تنفيذي عام ١٩٩٥."
+                :notes "مدمجة من ثلاثة إطارات متتالية. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1968 - DS1104-1057DF"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1968
+    :source "USGS Declassified Satellite Imagery (Declass-1)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1968-08-11_LANYARD_DS1104-1057DF016-DF019.tif"
+    :link-1 "https://doi.org/10.5066/F78P5XZM"
+    :link-1-label "USGS Declass-1 Collection"
+    :i18n {:en {:title "CORONA/LANYARD Satellite Imagery (Fore Camera) - August 11, 1968"
+                :description "Declassified reconnaissance satellite photograph of Bahrain from Mission DS1104-1057, forward-looking camera (DF), frames 016-019 stitched. Stereo pair with the aft camera (DA) exposure from the same mission. Part of the CORONA/LANYARD program, declassified by Executive Order in 1995. Original film scanned by USGS EROS."
+                :notes "Stitched from four consecutive frames. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور الأقمار الصناعية كورونا/لانيارد (الكاميرا الأمامية) - ١١ أغسطس ١٩٦٨"
+                :description "صورة استطلاعية مرفوعة السرية من قمر صناعي فوق البحرين، المهمة DS1104-1057، الكاميرا الأمامية (DF)، الإطارات 016-019 مدمجة. زوج مجسم مع تصوير الكاميرا الخلفية (DA) من نفس المهمة. جزء من برنامج كورونا/لانيارد، رُفعت عنها السرية بأمر تنفيذي عام ١٩٩٥."
+                :notes "مدمجة من أربعة إطارات متتالية. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1969 - DS1052-1073DA"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1969
+    :source "USGS Declassified Satellite Imagery (Declass-1)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1969-09-27_LANYARD_DS1052-1073DA157.tif"
+    :link-1 "https://doi.org/10.5066/F78P5XZM"
+    :link-1-label "USGS Declass-1 Collection"
+    :i18n {:en {:title "CORONA/LANYARD Satellite Imagery - September 27, 1969"
+                :description "Declassified reconnaissance satellite photograph of Bahrain from Mission DS1052-1073, aft-looking camera (DA), frame 157. Part of the CORONA/LANYARD program, declassified by Executive Order in 1995. Original film scanned by USGS EROS."
+                :notes "Single frame. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور الأقمار الصناعية كورونا/لانيارد - ٢٧ سبتمبر ١٩٦٩"
+                :description "صورة استطلاعية مرفوعة السرية من قمر صناعي فوق البحرين، المهمة DS1052-1073، الكاميرا الخلفية (DA)، الإطار 157. جزء من برنامج كورونا/لانيارد، رُفعت عنها السرية بأمر تنفيذي عام ١٩٩٥."
+                :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1976 - KH-9 DZB1212"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1976
+    :source "USGS Declassified Satellite Imagery (Declass-2)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1976-08-26_KH9_DZB1212-500236L002001.tif"
+    :link-1 "https://earthexplorer.usgs.gov"
+    :link-1-label "USGS EarthExplorer"
+    :i18n {:en {:title "KH-9 Mapping Camera Satellite Imagery - August 26, 1976"
+                :description "Declassified reconnaissance satellite photograph of Bahrain from KH-9 mapping camera, entity DZB1212-500236L002001. The KH-9 (Hexagon) mapping program was operational from 1973-1980 and produced 9x18 inch imagery at 20-30 feet resolution. Declassified in 2002 as part of the Declass-2 collection."
+                :notes "Single frame. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور القمر الصناعي KH-9 للمسح - ٢٦ أغسطس ١٩٧٦"
+                :description "صورة استطلاعية مرفوعة السرية من قمر KH-9 الصناعي (هيكساغون) للمسح فوق البحرين، الملف DZB1212-500236L002001. كان برنامج مسح KH-9 يعمل من ١٩٧٣ إلى ١٩٨٠ وأنتج صوراً بمقاس ٩×١٨ بوصة بدقة ٢٠-٣٠ قدماً. رُفعت عنها السرية عام ٢٠٠٢ كجزء من مجموعة Declass-2."
+                :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
                 :labels nil}}}
 
 })
