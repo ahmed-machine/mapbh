@@ -1,5 +1,6 @@
 (ns app.events
   (:require [re-frame.core :as re-frame]
+             [clojure.string :as str]
              [app.model :as model]
              [bidi.bidi :as bidi]))
 
@@ -14,7 +15,11 @@
   []
   (try
     (let [pathname (-> js/window .-location .-pathname)
-          matched (bidi/match-route model/routes pathname)]
+          matched (or (bidi/match-route model/routes pathname)
+                      (when (and (> (count pathname) 1)
+                                 (str/ends-with? pathname "/"))
+                        (bidi/match-route model/routes
+                                          (subs pathname 0 (dec (count pathname))))))]
       (when matched (:handler matched)))
     (catch js/Error _
       :home)))
