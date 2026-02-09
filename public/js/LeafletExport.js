@@ -171,7 +171,8 @@ class LeafletExporter {
         // Use appropriate zoom level - respect layer's min/maxNativeZoom
         // Always fetch tiles from 3 zoom levels higher for best quality, or maxNativeZoom
         const minNativeZoom = layer.options?.minNativeZoom || 0;
-        const maxNativeZoom = layer.options?.maxNativeZoom || 20;
+        // Fall back to maxZoom (which Leaflet adjusts for retina) rather than hardcoded 20
+        const maxNativeZoom = layer.options?.maxNativeZoom || layer.options?.maxZoom || 20;
         const targetZoom = Math.min(this.zoom + 3, maxNativeZoom);
         const effectiveZoom = Math.max(minNativeZoom, targetZoom);
 
@@ -270,15 +271,15 @@ class LeafletExporter {
         let image = new Image()
         image.crossOrigin = "Anonymous"
         let url
-        // Get tile URL using effective zoom if different from current zoom
+        // Get tile URL using effective zoom, accounting for zoomOffset
+        // (e.g. tileSize:512 + zoomOffset:-1 means URL z = tileZoom - 1)
+        const zoomOffset = layer.options?.zoomOffset || 0;
         if (layer.getTileUrlAsync) {
             url = await layer.getTileUrlAsync(tilePoint);
-        } else if (effectiveZoom !== this.zoom) {
-            url = layer._url.replace('{z}', effectiveZoom)
+        } else {
+            url = layer._url.replace('{z}', effectiveZoom + zoomOffset)
                            .replace('{x}', tilePoint.x)
                            .replace('{y}', tilePoint.y);
-        } else {
-            url = layer.getTileUrl(tilePoint);
         }
         let promise = new Promise(resolve => {
             let loaded = false;
