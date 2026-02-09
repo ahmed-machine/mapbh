@@ -1788,11 +1788,11 @@ There are many derivative versions of this map; Europeans first republished it i
     :issuer "ArcGIS/Maxar"
     :i18n {:en {:title "Bahrain Satellite Imagery - November 12, 2014"
                 :description "High-resolution satellite imagery of Bahrain captured on June 11, 2014, showing detailed urban and coastal features."
-                :notes "Orthorectified and color-balanced."
+                :notes "Orthorectified and color-balanced. Imagery at lower zoom levels may be from an earlier date."
                 :labels nil}
            :ar {:title "صور الأقمار الصناعية للبحرين - ١٢ نوفمبر 2014"
                 :description "صور عالية الدقة بالأقمار الصناعية للبحرين التقطت في ١٢ نوفمبر 2014"
-                :notes "صور مصححة هندسياً ومتوازنة الألوان بدقة أقل من متر"
+                :notes "صور مصححة هندسياً ومتوازنة الألوان بدقة أقل من متر. قد تكون الصور عند مستويات التكبير المنخفضة من تاريخ أقدم."
                 :labels nil}}
     :opts (merge base-opts {:minNativeZoom 12
                             :maxNativeZoom 16
