@@ -2498,7 +2498,7 @@ There are many derivative versions of this map; Europeans first republished it i
                             :maxNativeZoom 16
                             :opacity 0.7})}
 
-   "1968 - DS1104-1057DA"
+   "1968 - Bahrain - August - A"
    {:groups #{"Satellite Imagery" "Bahrain"}
     :viewable false
     :year 1968
@@ -2516,7 +2516,7 @@ There are many derivative versions of this map; Europeans first republished it i
                 :notes "مدمجة من ثلاثة إطارات متتالية. لم تتم المعايرة الجغرافية بعد."
                 :labels nil}}}
 
-   "1968 - DS1104-1057DF"
+   "1968 - Bahrain - August - F"
    {:groups #{"Satellite Imagery" "Bahrain"}
     :viewable false
     :year 1968
@@ -2534,7 +2534,7 @@ There are many derivative versions of this map; Europeans first republished it i
                 :notes "مدمجة من أربعة إطارات متتالية. لم تتم المعايرة الجغرافية بعد."
                 :labels nil}}}
 
-   "1969 - DS1052-1073DA"
+   "1969 - Bahrain - September"
    {:groups #{"Satellite Imagery" "Bahrain"}
     :viewable false
     :year 1969
@@ -2552,7 +2552,7 @@ There are many derivative versions of this map; Europeans first republished it i
                 :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
                 :labels nil}}}
 
-   "1976 - KH-9 DZB1212"
+   "1976 - Bahrain - August"
    {:groups #{"Satellite Imagery" "Bahrain"}
     :viewable false
     :year 1976
@@ -2570,6 +2570,126 @@ There are many derivative versions of this map; Europeans first republished it i
                 :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
                 :labels nil}}}
 
+   "1977 - Bahrain - August"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1977
+    :source "USGS Declassified Satellite Imagery (Declass-3)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1977-08-27 - Bahrain - D3C1213-200346A003.tif"
+    :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e83d0b04233cf56/D3C1213-200346A003/"
+    :link-1-label "USGS EarthExplorer - Entity D3C1213-200346A003"
+    :link-2 "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-3"
+    :link-2-label "USGS Declass-3 Collection"
+    :i18n {:en {:title "KH-9 Hexagon Satellite Imagery (Aft Camera) - August 27, 1977"
+                :description "Declassified KH-9 Hexagon reconnaissance satellite photograph of Bahrain from Mission 1213-2, aft-looking camera (A), frame 003. Entity D3C1213-200346A003. Part of the Declass-3 collection, with 2-4 feet ground resolution. Black and white image covering Bahrain."
+                :notes "Single frame. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور القمر الصناعي KH-9 هيكساغون (الكاميرا الخلفية) - ٢٧ أغسطس ١٩٧٧"
+                :description "صورة استطلاعية من القمر الصناعي KH-9 هيكساغون مرفوعة السرية من البحرين، المهمة 1213-2، الكاميرا الخلفية (A)، الإطار 003. الملف D3C1213-200346A003. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. صورة بالأبيض والأسود تغطي البحرين."
+                :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1978 - Bahrain - May"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1978
+    :source "USGS Declassified Satellite Imagery (Declass-3)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1978-05-04 - Bahrain - D3C1214-200421F003.tif"
+    :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e83d0b04233cf56/D3C1214-200421F003/"
+    :link-1-label "USGS EarthExplorer - Entity D3C1214-200421F003"
+    :link-2 "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-3"
+    :link-2-label "USGS Declass-3 Collection"
+    :i18n {:en {:title "KH-9 Hexagon Satellite Imagery (Fore Camera) - May 4, 1978"
+                :description "Declassified KH-9 Hexagon reconnaissance satellite photograph of Bahrain from Mission 1214-2, forward-looking camera (F), frame 003. Entity D3C1214-200421F003. Part of the Declass-3 collection, with 2-4 feet ground resolution. Black and white image covering Bahrain."
+                :notes "Single frame. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور القمر الصناعي KH-9 هيكساغون (الكاميرا الأمامية) - ٤ مايو ١٩٧٨"
+                :description "صورة استطلاعية من القمر الصناعي KH-9 هيكساغون مرفوعة السرية من البحرين، المهمة 1214-2، الكاميرا الأمامية (F)، الإطار 003. الملف D3C1214-200421F003. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. صورة بالأبيض والأسود تغطي البحرين."
+                :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1980 - Bahrain - October"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1980
+    :source "USGS Declassified Satellite Imagery (Declass-3)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1980-10-16 - Bahrain - D3C1216-300950A033.tif"
+    :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e83d0b04233cf56/D3C1216-300950A033/"
+    :link-1-label "USGS EarthExplorer - Entity D3C1216-300950A033"
+    :link-2 "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-3"
+    :link-2-label "USGS Declass-3 Collection"
+    :i18n {:en {:title "KH-9 Hexagon Satellite Imagery (Aft Camera) - October 16, 1980"
+                :description "Declassified KH-9 Hexagon reconnaissance satellite photograph of Bahrain from Mission 1216-3, aft-looking camera (A), frame 033. Entity D3C1216-300950A033. Part of the Declass-3 collection, with 2-4 feet ground resolution. Black and white image covering Bahrain."
+                :notes "Single frame. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور القمر الصناعي KH-9 هيكساغون (الكاميرا الخلفية) - ١٦ أكتوبر ١٩٨٠"
+                :description "صورة استطلاعية من القمر الصناعي KH-9 هيكساغون مرفوعة السرية من البحرين، المهمة 1216-3، الكاميرا الخلفية (A)، الإطار 033. الملف D3C1216-300950A033. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. صورة بالأبيض والأسود تغطي البحرين."
+                :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1981 - Bahrain - March - A"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1981
+    :source "USGS Declassified Satellite Imagery (Declass-3)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1981-03-04 - Bahrain - D3C1216-401438A002.tif"
+    :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e83d0b04233cf56/D3C1216-401438A002/"
+    :link-1-label "USGS EarthExplorer - Entity D3C1216-401438A002"
+    :link-2 "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-3"
+    :link-2-label "USGS Declass-3 Collection"
+    :i18n {:en {:title "KH-9 Hexagon Satellite Imagery (Aft Camera) - March 4, 1981"
+                :description "Declassified KH-9 Hexagon reconnaissance satellite photograph of Bahrain from Mission 1216-4, aft-looking camera (A), frame 002. Entity D3C1216-401438A002. Part of the Declass-3 collection, with 2-4 feet ground resolution. Stereo pair with the forward-looking camera (F) exposure from the same mission. Black and white image covering Bahrain."
+                :notes "Single frame. Stereo pair with 1981 - Bahrain - March - F. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور القمر الصناعي KH-9 هيكساغون (الكاميرا الخلفية) - ٤ مارس ١٩٨١"
+                :description "صورة استطلاعية من القمر الصناعي KH-9 هيكساغون مرفوعة السرية من البحرين، المهمة 1216-4، الكاميرا الخلفية (A)، الإطار 002. الملف D3C1216-401438A002. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. زوج مجسم مع تصوير الكاميرا الأمامية (F) من نفس المهمة. صورة بالأبيض والأسود تغطي البحرين."
+                :notes "إطار واحد. زوج مجسم مع 1981 - Bahrain - March - F. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1981 - Bahrain - March - F"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1981
+    :source "USGS Declassified Satellite Imagery (Declass-3)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1981-03-04 - Bahrain - D3C1216-401438F001.tif"
+    :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e83d0b04233cf56/D3C1216-401438F001/"
+    :link-1-label "USGS EarthExplorer - Entity D3C1216-401438F001"
+    :link-2 "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-3"
+    :link-2-label "USGS Declass-3 Collection"
+    :i18n {:en {:title "KH-9 Hexagon Satellite Imagery (Fore Camera) - March 4, 1981"
+                :description "Declassified KH-9 Hexagon reconnaissance satellite photograph of Bahrain from Mission 1216-4, forward-looking camera (F), frame 001. Entity D3C1216-401438F001. Part of the Declass-3 collection, with 2-4 feet ground resolution. Stereo pair with the aft-looking camera (A) exposure from the same mission. Black and white image covering Bahrain."
+                :notes "Single frame. Stereo pair with 1981 - Bahrain - March - A. Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور القمر الصناعي KH-9 هيكساغون (الكاميرا الأمامية) - ٤ مارس ١٩٨١"
+                :description "صورة استطلاعية من القمر الصناعي KH-9 هيكساغون مرفوعة السرية من البحرين، المهمة 1216-4، الكاميرا الأمامية (F)، الإطار 001. الملف D3C1216-401438F001. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. زوج مجسم مع تصوير الكاميرا الخلفية (A) من نفس المهمة. صورة بالأبيض والأسود تغطي البحرين."
+                :notes "إطار واحد. زوج مجسم مع 1981 - Bahrain - March - A. لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
+   "1982 - Bahrain - May"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :viewable false
+    :year 1982
+    :source "USGS Declassified Satellite Imagery (Declass-3)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1982-05-23 - Bahrain - D3C1217-100109F007.tif"
+    :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e83d0b04233cf56/D3C1217-100109F007/"
+    :link-1-label "USGS EarthExplorer - Entity D3C1217-100109F007"
+    :link-2 "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-3"
+    :link-2-label "USGS Declass-3 Collection"
+    :i18n {:en {:title "KH-9 Hexagon Satellite Imagery (Fore Camera) - May 23, 1982"
+                :description "Declassified KH-9 Hexagon reconnaissance satellite photograph of Bahrain from Mission 1217-1, forward-looking camera (F), frame 007. Entity D3C1217-100109F007. Part of the Declass-3 collection, with 2-4 feet ground resolution. Stereo pair with the aft-looking camera (A) exposure from the same mission. Black and white image covering Bahrain."
+                :notes "Single frame. Stereo pair with 1982 - Bahrain (aft camera, A007+A008). Not yet georeferenced."
+                :labels nil}
+           :ar {:title "صور القمر الصناعي KH-9 هيكساغون (الكاميرا الأمامية) - ٢٣ مايو ١٩٨٢"
+                :description "صورة استطلاعية من القمر الصناعي KH-9 هيكساغون مرفوعة السرية من البحرين، المهمة 1217-1، الكاميرا الأمامية (F)، الإطار 007. الملف D3C1217-100109F007. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. زوج مجسم مع تصوير الكاميرا الخلفية (A) من نفس المهمة. صورة بالأبيض والأسود تغطي البحرين."
+                :notes "إطار واحد. زوج مجسم مع 1982 - Bahrain (الكاميرا الخلفية، A007+A008). لم تتم المعايرة الجغرافية بعد."
+                :labels nil}}}
+
    "1982 - Bahrain"
    {:groups #{"Satellite Imagery" "Bahrain"}
     :year 1982
@@ -2583,12 +2703,12 @@ There are many derivative versions of this map; Europeans first republished it i
     :link-2-label "USGS EarthExplorer - Frame A008"
     :link-3 "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-3"
     :link-3-label "USGS Declass-3 Collection"
-    :i18n {:en {:title "Declassified Satellite Imagery - May 23, 1982"
-                :description "Declassified reconnaissance satellite photograph of Bahrain from Mission 1217-1, aft-looking camera (A), frames 007-008 stitched. Entity D3C1217-100109A007. Part of the Declass-3 collection, with 2-4 feet ground resolution. Black and white image covering Bahrain."
+    :i18n {:en {:title "KH-9 Hexagon Satellite Imagery - May 23, 1982"
+                :description "Declassified KH-9 Hexagon reconnaissance satellite photograph of Bahrain from Mission 1217-1, aft-looking camera (A), frames 007-008 stitched. Entity D3C1217-100109A007. Part of the Declass-3 collection, with 2-4 feet ground resolution. Black and white image covering Bahrain."
                 :notes "Stitched from two frames (A007+A008). Georeferenced to WGS84 Web Mercator."
                 :labels nil}
-           :ar {:title "صور أقمار صناعية رُفعت عنها السرية - ٢٣ مايو ١٩٨٢"
-                :description "صورة استطلاعية مرفوعة السرية من البحرين، المهمة 1217-1، الكاميرا الخلفية (A)، الإطارات 007-008 مدمجة. الملف D3C1217-100109A007. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. صورة بالأبيض والأسود تغطي البحرين."
+           :ar {:title "صور القمر الصناعي KH-9 هيكساغون - ٢٣ مايو ١٩٨٢"
+                :description "صورة استطلاعية من القمر الصناعي KH-9 هيكساغون مرفوعة السرية من البحرين، المهمة 1217-1، الكاميرا الخلفية (A)، الإطارات 007-008 مدمجة. الملف D3C1217-100109A007. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. صورة بالأبيض والأسود تغطي البحرين."
                 :notes "مدمجة من إطارين (A007+A008). تمت المعايرة الجغرافية وفق نظام WGS84 Web Mercator."
                 :labels nil}}
     :opts (merge base-opts {:minNativeZoom 12
