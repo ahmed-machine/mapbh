@@ -2570,4 +2570,27 @@ There are many derivative versions of this map; Europeans first republished it i
                 :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
                 :labels nil}}}
 
+   "1982 - D3C1217"
+   {:groups #{"Satellite Imagery" "Bahrain"}
+    :year 1982
+    :url (form-tile-url "1982-D3C1217")
+    :source "USGS Declassified Satellite Imagery (Declass-3)"
+    :issuer "USGS EarthExplorer"
+    :source-link "/maps/1982-05-23 - Bahrain - D3C1217-100109A007+A008.tif"
+    :link-1 "https://earthexplorer.usgs.gov/scene/metadata/full/5e83d0b04233cf56/D3C1217-100109A007/"
+    :link-1-label "USGS EarthExplorer Metadata"
+    :link-2 "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-3"
+    :link-2-label "USGS Declass-3 Collection"
+    :i18n {:en {:title "Declassified Satellite Imagery - May 23, 1982"
+                :description "Declassified reconnaissance satellite photograph of Bahrain from Mission 1217-1, aft-looking camera (A), frames 007-008 stitched. Entity D3C1217-100109A007. Part of the Declass-3 collection, with 2-4 feet ground resolution. Black and white image covering Bahrain."
+                :notes "Stitched from two frames (A007+A008). Georeferenced to WGS84 Web Mercator."
+                :labels nil}
+           :ar {:title "صور أقمار صناعية رُفعت عنها السرية - ٢٣ مايو ١٩٨٢"
+                :description "صورة استطلاعية مرفوعة السرية من البحرين، المهمة 1217-1، الكاميرا الخلفية (A)، الإطارات 007-008 مدمجة. الملف D3C1217-100109A007. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. صورة بالأبيض والأسود تغطي البحرين."
+                :notes "مدمجة من إطارين (A007+A008). تمت المعايرة الجغرافية وفق نظام WGS84 Web Mercator."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 16
+                            :opacity 0.7})}
+
 })
