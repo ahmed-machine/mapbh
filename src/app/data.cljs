@@ -2589,8 +2589,8 @@ There are many derivative versions of this map; Europeans first republished it i
                 :description "صورة استطلاعية مرفوعة السرية من البحرين، المهمة 1217-1، الكاميرا الخلفية (A)، الإطارات 007-008 مدمجة. الملف D3C1217-100109A007. جزء من مجموعة Declass-3، بدقة ٢-٤ أقدام. صورة بالأبيض والأسود تغطي البحرين."
                 :notes "مدمجة من إطارين (A007+A008). تمت المعايرة الجغرافية وفق نظام WGS84 Web Mercator."
                 :labels nil}}
-    :opts (merge base-opts {:minNativeZoom 11
-                            :maxNativeZoom 17
+    :opts (merge base-opts {:minNativeZoom 12
+                            :maxNativeZoom 18
                             :opacity 0.7})}
 
 })
