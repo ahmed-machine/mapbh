@@ -2554,21 +2554,24 @@ There are many derivative versions of this map; Europeans first republished it i
 
    "1976 - Bahrain - August"
    {:groups #{"Satellite Imagery" "Bahrain"}
-    :viewable false
     :year 1976
+    :url (form-tile-url "1976-KH9-DZB1212")
     :source "USGS Declassified Satellite Imagery (Declass-2)"
     :issuer "USGS EarthExplorer"
-    :source-link "/maps/1976-08-26_KH9_DZB1212-500236L002001.tif"
+    :source-link "/maps/1976-KH9-DZB1212.warped.tif"
     :link-1 "https://earthexplorer.usgs.gov"
     :link-1-label "USGS EarthExplorer"
     :i18n {:en {:title "KH-9 Mapping Camera Satellite Imagery - August 26, 1976"
                 :description "Declassified reconnaissance satellite photograph of Bahrain from KH-9 mapping camera, entity DZB1212-500236L002001. The KH-9 (Hexagon) mapping program was operational from 1973-1980 and produced 9x18 inch imagery at 20-30 feet resolution. Declassified in 2002 as part of the Declass-2 collection."
-                :notes "Single frame. Not yet georeferenced."
+                :notes "Single frame. Georeferenced to WGS84 Web Mercator."
                 :labels nil}
            :ar {:title "صور القمر الصناعي KH-9 للمسح - ٢٦ أغسطس ١٩٧٦"
                 :description "صورة استطلاعية مرفوعة السرية من قمر KH-9 الصناعي (هيكساغون) للمسح فوق البحرين، الملف DZB1212-500236L002001. كان برنامج مسح KH-9 يعمل من ١٩٧٣ إلى ١٩٨٠ وأنتج صوراً بمقاس ٩×١٨ بوصة بدقة ٢٠-٣٠ قدماً. رُفعت عنها السرية عام ٢٠٠٢ كجزء من مجموعة Declass-2."
-                :notes "إطار واحد. لم تتم المعايرة الجغرافية بعد."
-                :labels nil}}}
+                :notes "إطار واحد. تمت المعايرة الجغرافية وفق نظام WGS84 Web Mercator."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 10
+                            :maxNativeZoom 16
+                            :opacity 0.7})}
 
    "1977 - Bahrain - August"
    {:groups #{"Satellite Imagery" "Bahrain"}
