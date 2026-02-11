@@ -2500,21 +2500,24 @@ There are many derivative versions of this map; Europeans first republished it i
 
    "1968 - Bahrain - August - A"
    {:groups #{"Satellite Imagery" "Bahrain"}
-    :viewable false
     :year 1968
+    :url (form-tile-url "1968-DS1104-1057DA")
     :source "USGS Declassified Satellite Imagery (Declass-1)"
     :issuer "USGS EarthExplorer"
-    :source-link "/maps/1968-08-11_LANYARD_DS1104-1057DA023-DA025.tif"
+    :source-link "/maps/1968-DS1104-1057DA.warped.tif"
     :link-1 "https://doi.org/10.5066/F78P5XZM"
     :link-1-label "USGS Declass-1 Collection"
     :i18n {:en {:title "CORONA/LANYARD Satellite Imagery (Aft Camera) - August 11, 1968"
                 :description "Declassified reconnaissance satellite photograph of Bahrain from Mission DS1104-1057, aft-looking camera (DA), frames 023-025 stitched. Part of the CORONA/LANYARD program, declassified by Executive Order in 1995. Original film scanned by USGS EROS."
-                :notes "Stitched from three consecutive frames. Not yet georeferenced."
+                :notes "Stitched from three consecutive frames. Georeferenced to WGS84 Web Mercator."
                 :labels nil}
            :ar {:title "صور الأقمار الصناعية كورونا/لانيارد (الكاميرا الخلفية) - ١١ أغسطس ١٩٦٨"
                 :description "صورة استطلاعية مرفوعة السرية من قمر صناعي فوق البحرين، المهمة DS1104-1057، الكاميرا الخلفية (DA)، الإطارات 023-025 مدمجة. جزء من برنامج كورونا/لانيارد، رُفعت عنها السرية بأمر تنفيذي عام ١٩٩٥."
-                :notes "مدمجة من ثلاثة إطارات متتالية. لم تتم المعايرة الجغرافية بعد."
-                :labels nil}}}
+                :notes "مدمجة من ثلاثة إطارات متتالية. تمت المعايرة الجغرافية وفق نظام WGS84 Web Mercator."
+                :labels nil}}
+    :opts (merge base-opts {:minNativeZoom 11
+                            :maxNativeZoom 17
+                            :opacity 0.7})}
 
    "1968 - Bahrain - August - F"
    {:groups #{"Satellite Imagery" "Bahrain"}
