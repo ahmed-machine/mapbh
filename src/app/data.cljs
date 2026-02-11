@@ -4,11 +4,8 @@
 (def base-opts {:attribution "© OpenStreetMap, ESRI"
                 :maxZoom 20
                 :minZoom 9
-                :zoomOffset -1
-                :detectRetina true
                 :hq true
-                :id "Standard Style"
-                :tileSize 512})
+                :id "Standard Style"})
 
 (def tileserver-url #_"http://localhost:8080" "https://map.mapbh.org") ;; Defaults to remote server, uncomment to use local tileserver
 (defn form-tile-url [tile-name & type] (str tileserver-url "/data/" tile-name "/{z}/{x}/{y}" (or (first type) ".png")))
@@ -25,9 +22,9 @@
       path)))
 
 (def base-satellite {"Terrain" {:url "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                :opts (assoc base-opts :zoomOffset -1)}
-                     "Satellite" {:url "http://services.arcgisonline.com/ArcGis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"
-                                  :opts (assoc base-opts :zoomOffset -1)}})
+                                :opts (assoc base-opts :zoomOffset -1 :tileSize 512 :detectRetina true)}
+                     "Satellite" {:url "https://services.arcgisonline.com/ArcGis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"
+                                  :opts (assoc base-opts :zoomOffset -1 :tileSize 512 :detectRetina true)}})
 
 ;; Default values for map state used in URL parameters and initialization
 (def default-map-state
