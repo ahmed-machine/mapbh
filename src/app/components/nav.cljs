@@ -76,7 +76,8 @@
   [{:href "https://twitter.com/map_bh" :icon "fab fa-twitter"}
    {:href "https://github.com/ahmed-machine/mapbh" :icon "fab fa-github"}
    {:href "mailto:mapbh.org@gmail.com" :icon "fas fa-envelope"}
-   {:href "https://instagram.com/map_bh" :icon "fab fa-instagram"}])
+   {:href "https://instagram.com/map_bh" :icon "fab fa-instagram"}
+   {:href "https://buymeacoffee.com/mapbh" :icon "fas fa-heart"}])
 
 (defn footer-content []
   [:div.content.has-text-centered

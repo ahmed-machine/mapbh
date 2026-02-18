@@ -18,7 +18,8 @@
      :aria {:twitter "تويتر"
             :github "جيت هب"
             :email "بريد إلكتروني"
-            :instagram "إنستغرام"}}
+            :instagram "إنستغرام"
+            :coffee "ادعمنا"}}
     {:tagline "Visualising Bahrain through historic maps."
      :buttons {:explore "Explore Maps"
                :about "About"
@@ -29,7 +30,8 @@
      :aria {:twitter "Twitter"
             :github "GitHub"
             :email "Email"
-            :instagram "Instagram"}}))
+            :instagram "Instagram"
+            :coffee "Buy Me a Coffee"}}))
 
 (defn homepage
   []
@@ -65,7 +67,10 @@
                                  :aria-label (get-in txt [:aria :email])} [:i.fas.fa-envelope]]]
            [:span.icon.home [:a {:style {:color "var(--text-muted)"}
                                  :href "https://instagram.com/map_bh"
-                                 :aria-label (get-in txt [:aria :instagram])} [:i.fab.fa-instagram]]]]
+                                 :aria-label (get-in txt [:aria :instagram])} [:i.fab.fa-instagram]]]
+           [:span.icon.home [:a {:style {:color "var(--text-muted)"}
+                                 :href "https://buymeacoffee.com/mapbh"
+                                 :aria-label (get-in txt [:aria :coffee])} [:i.fas.fa-heart]]]]
           [:div.has-text-centered {:style {:margin-top "var(--spacing-lg)"}}
            [:button.button.is-outlined.is-rounded.language-switch
             {:role "navigation"
