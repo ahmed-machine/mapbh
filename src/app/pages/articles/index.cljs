@@ -2,6 +2,7 @@
   (:require [app.pages.articles.posts.wadi :as wadi]
             [app.pages.articles.posts.fairey :as fairey]
             [app.pages.articles.posts.processing-pipeline :as processing-pipeline]
+            [app.pages.articles.posts.open-data :as open-data]
             [app.util.core :refer [arabic-attrs bilingual-component]]))
 
 (def entries
@@ -33,7 +34,18 @@
     :ar-keywords ["مقال" "إسناد جغرافي" "GDAL" "QGIS" "معالجة خرائط" "GeoTIFF" "MBTiles"]
     :date #inst "2026-02-06T00:00:00.000Z"
     :route "processing-pipeline"
-    :component processing-pipeline/article}])
+    :component processing-pipeline/article}
+   {:en-title "the politics of open data"
+    :ar-title "the politics of open data"
+    :en-subtitle "mapping bahrain: the politics of open data"
+    :ar-subtitle "mapping bahrain: the politics of open data"
+    :en-description "As we mark five years of mapBH, a look at the structural barriers this project set out to overcome and the open data model we built."
+    :ar-description "As we mark five years of mapBH, a look at the structural barriers this project set out to overcome and the open data model we built."
+    :en-keywords ["article" "open data" "mapBH" "Bahrain" "open source" "maps"]
+    :ar-keywords ["article" "open data" "mapBH" "Bahrain" "open source" "maps"]
+    :date #inst "2026-03-17T00:00:00.000Z"
+    :route "open-data"
+    :component open-data/article}])
 
 ;; Generate article routes from entries - single source of truth
 ;; Pattern: {:route "wadi"} → {"wadi" :article-wadi}
