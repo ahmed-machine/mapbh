@@ -44,7 +44,7 @@
      [:a {:href "https://web.archive.org/web/20100614184321/http://www.slrb.gov.bh:80/Commerce/Category/23-4-hypbird-map-bahrain-between-past-present.aspx"} "on-demand paid access"]
      ") that was quietly shuttered in the 2010s. Private collectors prized and guarded individual sheets of maps, often displayed as art in their homes and offices. Researchers and students had to rely on patrons and networks for access, which sharply curtailed serious investigation into modern history. Often, your best academic source was a peer sending a shaky image of a map captured on a phone from a library abroad. Relevant books, such as Jarman\u2019s "
      [:a {:href "https://www.ebay.com/itm/365931848307"} "Historic Maps of Bahrain"]
-     ", were sold second-hand online for upwards of $1000. With village historians, academics, and writers, resource guarding was also instinctive after decades of battle scars vying for access and a minefield of obstacles and pressures. All active participants in the field dutifully recounted their horror stories. Maps were a valuable commodity to be traded and bartered. Without access, most local enthusiasts and students were shut out from conducting rudimentary research."]
+     ", were sold second-hand online for upwards of $1000. With village historians, academics, and writers, resource guarding was also instinctive after decades of battle scars vying for access and a minefield of obstacles and pressures. All active participants in the field dutifully recounted their horror stories. Maps were a valuable commodity to be traded and bartered. Without access, most local enthusiasts and students were shut out from conducting rudimentary research. To change the status quo, we must dig up the past, assess existing conditions, and construct new blueprints for the present."]
 
     [linked-image "/img/posts/open-data/fairey-line-map.png" "Fairey Surveys line map of Bahrain" "State of Bahrain, 1985 \u2014 Fairey Surveys 1:10,000 line map" "https://mapbh.org/en/map-info?group=Bahrain&map-id=1985%20-%20Bahrain%20(10k)"]
 
@@ -52,7 +52,7 @@
 
     [:p
      {}
-     "In most societies, maps are free to access in archives and libraries serve the purpose of decommodification by providing and structuring access to these materials freely. It\u2019s an abdication of our civic society that libraries and national archives still don\u2019t fulfill this role. For decades, we\u2019ve been able to freely access historic maps and transit data for major cities across the world. I\u2019ve made "
+     "In most societies, maps are free to access in archives and libraries serve the purpose of decommodification by providing and structuring access to these materials freely. It\u2019s an abdication of responsibility of both our civic society and national institutions that libraries and national archives still don\u2019t fulfill this role. While the responsibility largely lies with state institutions to provide these resources, it's not uncommon for community and private archives to also fill the gap. For decades, we\u2019ve been able to freely access historic maps and transit data for major cities across the world. I\u2019ve made "
      [:a {:href "https://howfar.nyc"} "maps"]
      " of other cities. Even spy satellite images are "
      [:a {:href "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-1"} "declassified after a few decades"]
@@ -66,7 +66,15 @@
 
     [:p
      {}
-     "Maps of Bahrain are scattered across global archives. Archives in the US, UK, Canada, France, India, and beyond each filled gaps in the catalogue. To find Bahrain, we had to inexplicably look everywhere except Bahrain. Most maps in Bahrain prior to the \u201980s were created by foreign surveying companies, worked on by academics and professionals from those countries, who often donated their materials to their local libraries and archives. Bahrain has also long-relied on foreign companies to fill expertise gaps in key national industries who donated their annotated maps back to their home countries\u2019 archives. Some material, such as the reconnaissance missions of the US and USSR, were captured independently and declassified in their countries to public archives or discovered second-hand. Many now-defunct UK private companies from the colonial era donated their archives to the respective national British archives. Do you see the pattern?"]
+     "Maps of Bahrain are scattered across global archives. Archives in the US, UK, Canada, France, India, and beyond each filled gaps in the catalogue. To find Bahrain, we had to inexplicably look everywhere except Bahrain for " [:i "public"] " access. Most maps in Bahrain prior to the \u201980s were created by foreign surveying companies, worked on by academics and professionals from those countries, who often donated their materials to their local libraries and archives. Bahrain has also long-relied on foreign companies to fill expertise gaps in key national industries who donated their annotated maps back to their home countries\u2019 archives. Some material, such as the reconnaissance missions of the US and USSR, were captured independently and declassified in their countries to public archives or discovered second-hand. Many now-defunct UK private companies from the colonial era donated their archives to the respective national British archives. Do you see the pattern?"]
+
+    [:figure.image
+     {:style {:text-align :center}}
+     [:a {:href "/img/posts/open-data/1960-lawzi-RAF.jpg"}
+      [:img {:alt "RAF aerial photograph of Al Lawzi, Hamad Town, 1960"
+             :src "/img/posts/open-data/1960-lawzi-RAF.jpg"
+             :style {:max-width "60%" :margin "0 auto"}}]]
+     [:figcaption [:a {:href "https://airphotofinder.ncap.org/image/1646340"} "RAF aerial photograph of Al Lawzi, Hamad Town, 1960 \u2014 NCAP"]]]
 
     [:p
      {}
@@ -102,9 +110,11 @@
      [:a {:href "https://mapbh.org/en/articles/processing-pipeline"} "scan, stitch, and georeference"]
      " it to a professional standard. We\u2019ve happily taken requests regarding materials that are difficult to work with and provided our expertise in making them available for researchers and students."]
 
-    [:span.level {:style {:display :block}}
-     [linked-image "/img/posts/open-data/satellite-modern.png" "Satellite imagery of Bilad al Qadim" "Bilad al Qadim, 2026" "https://mapbh.org/en/map?transparency=0"]
-     [linked-image "/img/posts/open-data/orthophoto-map.png" "Orthophoto map of Bilad al Qadim" "Bilad al Qadim, 1969" "https://mapbh.org/en/map-info?group=Manama&map-id=1969%20-%20Manama%20%26%20AlJufayr"]]
+    [:div.columns.is-centered
+     [:div.column
+      [linked-image "/img/posts/open-data/satellite-modern.png" "Satellite imagery of Bilad al Qadim" "Bilad al Qadim, 2026" "https://mapbh.org/en/map?transparency=0"]]
+     [:div.column
+      [linked-image "/img/posts/open-data/orthophoto-map.png" "Orthophoto map of Bilad al Qadim" "Bilad al Qadim, 1969" "https://mapbh.org/en/map-info?group=Manama&map-id=1969%20-%20Manama%20%26%20AlJufayr"]]]
 
     [:h3 {:style {:font-size "1.35em" :font-weight "600" :margin-top "1.25em" :margin-bottom "0.5em"}} "3. open source is a fort"]
 
@@ -112,7 +122,7 @@
      {}
      "None of the data or tools in this project have ever been secret. All of the code, all of the data, is freely available. You can self-host this project today (seriously, "
      [:a {:href "https://github.com/ahmed-machine/mapbh"} "do it"]
-     "). Thousands of copies of this codebase have been made and the entire map collection has been downloaded hundreds of times. The materials are in the public domain; not a single part of the code or data is proprietary. All of it is legal and intentional. This project would not be as successful had it come with a price tag for users. It would also be far more brittle and prone to takedown if it was reliant on a single person. With any open source project, we must note there are frequent attempts to capitalise off free labor and resources to advance private careers and financial interests. Attempts to profit off derivative projects while obfuscating (even attacking) the source of the material are quickly communicated by community members. It\u2019s imperative everyone clearly credits work and allows others the same access they were given. Goodwill is built over years and can be demolished in days."]
+     "). Thousands of copies of this codebase have been made and the entire map collection has been downloaded hundreds of times. The materials are in the public domain; not a single part of the code or data is proprietary. All of it is legal and intentional. This project would not be as successful had it come with a price tag for users. It would also be far more brittle and prone to takedown if it was reliant on a single person. With any open source project, we must note there are frequent attempts to capitalise off our free labour and resources to advance private careers and financial interests. Goodwill is built over years, but can be demolished in days. Everyone should clearly credit work which would allow others the same access they were given."]
 
     [:h3 {:style {:font-size "1.35em" :font-weight "600" :margin-top "1.25em" :margin-bottom "0.5em"}} "4. build the institute"]
 
@@ -168,9 +178,11 @@
      [:a {:href "https://mapbh.org/en/map-info?group=Bahrain&map-id=1991%20-%20Life%20in%20Bahrain"} "1990s cartoon maps of Bahrain"]
      ". Every part of Bahrain is faithfully mapped across eras."]
 
-    [:span.level {:style {:display :block}}
-     [linked-image "/img/posts/open-data/soviet-map-manama.png" "Soviet military map of Manama" "Soviet military map of Manama and Muharraq, 1977" "https://mapbh.org/en/map-info?group=Manama&map-id=1977%20-%20USSR%20-%20Manama%2FMuharraq"]
-     [linked-image "/img/posts/open-data/satellite-bahrain-bw.png" "KH-9 Hexagon satellite image of Bahrain" "KH-9 Hexagon satellite imagery, May 23, 1982" "https://mapbh.org/en/map-info?group=Bahrain&map-id=1982%20-%20Bahrain%20-%20May"]]
+    [:div.columns.is-centered
+     [:div.column
+      [linked-image "/img/posts/open-data/soviet-map-manama.png" "Soviet military map of Manama" "Soviet military map of Manama and Muharraq, 1977" "https://mapbh.org/en/map-info?group=Manama&map-id=1977%20-%20USSR%20-%20Manama%2FMuharraq"]]
+     [:div.column
+      [linked-image "/img/posts/open-data/satellite-bahrain-bw.png" "KH-9 Hexagon satellite image of Bahrain" "US reconaissance KH-9 Hexagon satellite imagery, May 23, 1982" "https://mapbh.org/en/map-info?group=Bahrain&map-id=1982%20-%20Bahrain%20-%20May"]]]
 
     [:p
      {}
@@ -192,11 +204,11 @@
 
     [:p
      {}
-     "A few months ago, I was in conversation with a recent college graduate in architecture who I\u2019ve known since childhood. As we talked through her career changes, I briefly mentioned a mapBH project I had recently completed. Unknowingly, she had used the site extensively in the past assuming it was an established institutional resource. Its existence had coincided with the entire duration of her undergraduate studies and early professional career \u2013 she doesn\u2019t know a time before the project. Unlike previous cohorts of students and enthusiasts, today\u2019s graduating cohorts don\u2019t have battle scars from trying to gain access to map materials. Students of all ages should regularly ask for help, and it felt natural to students that this repository of data on Bahrain was already easily and freely available online so they could focus on the hard part: understanding the historic and cultural developments at hand."]
+     "A few months ago, I was in conversation with a recent college graduate I\u2019ve known since childhood. As we talked through career changes, I briefly mentioned a mapBH project I had recently completed. Unknowingly, she had used the site extensively in the past assuming it was an established institutional resource. Its existence had coincided with the entire duration of her undergraduate studies and early professional career \u2013 she doesn\u2019t know a time before the project. Unlike previous cohorts of students and enthusiasts, today\u2019s graduating cohorts don\u2019t have battle scars from trying to gain access to map materials. Students of all ages should regularly ask for help, and it felt natural to students that this repository of data on Bahrain was already easily and freely available online so they could focus on the hard part: understanding the historic and cultural developments at hand."]
 
     [:p
      {}
-     "That was the point. Our culture and history aren\u2019t commodities for speculation nor should information be used as a bartering chip. It belongs to everyone interested in cultivating and developing these small islands we call home."]
+     "That was the point. It's normal for this information to be available. Our culture and history aren\u2019t commodities for speculation nor should information be used as a bartering chip. It belongs to everyone interested in cultivating and developing these small islands we call home, with the click of a button."]
 
     [:p
      {}

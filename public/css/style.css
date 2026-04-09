@@ -351,6 +351,7 @@ iframe.video {
     iframe.video {padding:0 10rem;}
     .image {margin: 2rem 8rem !important;
             text-align: center;}
+    .columns .column .image {margin: 0 !important;}
     .about p, .contribute p, .articles ul {margin: 1rem 4.5rem;
                                            text-indent: 1.5em;
                                            line-height: 1.75em;}

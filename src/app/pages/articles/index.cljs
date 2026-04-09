@@ -43,7 +43,7 @@
     :ar-description "\u062e\u0645\u0633 \u0633\u0646\u0648\u0627\u062a \u0645\u0646 mapBH\u060c \u0627\u0644\u0635\u0639\u0648\u0628\u0627\u062a \u0648\u0627\u0644\u0627\u0646\u062c\u0627\u0632\u0627\u062a"
     :en-keywords ["article" "open data" "mapBH" "Bahrain" "open source" "maps"]
     :ar-keywords ["\u0645\u0642\u0627\u0644" "\u0628\u064a\u0627\u0646\u0627\u062a \u0645\u0641\u062a\u0648\u062d\u0629" "mapBH" "\u0627\u0644\u0628\u062d\u0631\u064a\u0646" "\u0645\u0635\u062f\u0631 \u0645\u0641\u062a\u0648\u062d" "\u062e\u0631\u0627\u0626\u0637"]
-    :date #inst "2026-03-17T00:00:00.000Z"
+    :date #inst "2026-04-09T00:00:00.000Z"
     :route "open-data"
     :component open-data/article}])
 
