@@ -112,9 +112,9 @@
 
     [:div.columns.is-centered
      [:div.column
-      [linked-image "/img/posts/open-data/satellite-modern.png" "Satellite imagery of Bilad al Qadim" "Bilad al Qadim, 2026" "https://mapbh.org/en/map?transparency=0"]]
+      [linked-image "/img/posts/open-data/satellite-modern.png" "Satellite imagery of Bilad al Qadim" "Bilad al Qadim, 2026" "https://mapbh.org/en/map?map=1969%2520-%2520Manama%2520%2526%2520AlJufayr&coords=26.20512%2C50.55151&zoom=16&base=Satellite&transparency=0"]]
      [:div.column
-      [linked-image "/img/posts/open-data/orthophoto-map.png" "Orthophoto map of Bilad al Qadim" "Bilad al Qadim, 1969" "https://mapbh.org/en/map-info?group=Manama&map-id=1969%20-%20Manama%20%26%20AlJufayr"]]]
+      [linked-image "/img/posts/open-data/orthophoto-map.png" "Orthophoto map of Bilad al Qadim" "Bilad al Qadim, 1969" "https://mapbh.org/en/map?map=1969%2520-%2520Manama%2520%2526%2520AlJufayr&coords=26.20512%2C50.55151&zoom=16&base=Satellite&transparency=1"]]]
 
     [:h3 {:style {:font-size "1.35em" :font-weight "600" :margin-top "1.25em" :margin-bottom "0.5em"}} "3. open source is a fort"]
 
