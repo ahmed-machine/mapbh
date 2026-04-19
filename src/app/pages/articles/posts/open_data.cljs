@@ -52,11 +52,11 @@
 
     [:p
      {}
-     "In most societies, maps are free to access in archives and libraries serve the purpose of decommodification by providing and structuring access to these materials freely. It\u2019s an abdication of responsibility of both our civic society and national institutions that libraries and national archives still don\u2019t fulfill this role. While the responsibility largely lies with state institutions to provide these resources, it's not uncommon for community and private archives to also fill the gap. For decades, we\u2019ve been able to freely access historic maps and transit data for major cities across the world. I\u2019ve made "
+     "In most countries, historic maps are free to access. Libraries and archives serve the purpose of decommodification of historical materials by providing and structuring access to materials freely. While the responsibility for this largely lies with state institutions, it's not uncommon for community and private personal archives to also fill this gap. For decades, we\u2019ve been able to freely access historic maps, census data, transit data, and more for major cities across the world. I\u2019ve personally made "
      [:a {:href "https://howfar.nyc"} "maps"]
-     " of other cities. Even spy satellite images are "
-     [:a {:href "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-1"} "declassified after a few decades"]
-     ". There was a widely felt desire in the community to change the existing terrain, but we had to first incentivise and build a new prevailing consensus ourselves:"]
+     " of other cities with such data. Even spy satellite images are "
+     [:a {:href "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-declassified-data-declassified-satellite-imagery-1"} "declassified to the public after a few decades"]
+     ". Bahrain's missing maps represented just a small part of a much larger issue of access; a continued abdication of duty to bring our own libraries and archives up to modern standards and make this information public. There was a widely felt desire in the community to change the existing terrain, but we had to first incentivise and build a new prevailing consensus ourselves:"]
 
     [:h3 {:style {:font-size "1.35em" :font-weight "600" :margin-top "1.25em" :margin-bottom "0.5em"}} "1. high-quality data, free forever"]
 
@@ -78,7 +78,7 @@
 
     [:p
      {}
-     "Maps are representations of a location in time. They depict a place, and a place is a set of immutable representations of locations in time. Bahrain in \u201962 is not Bahrain in \u201926. It may bear a resemblance (exercise for the reader: identify any continuity in Muharraq\u2019s shoreline), but cities and places never remain the same over time. If buildings and roads are the bones of a place, people and the natural world they tend to are its blood. You never truly visit the same place twice. Maps, like most things, have a validity date. After they serve their \u201cworking\u201d purpose, it\u2019s best to publicly release them for research. They are far more valuable to our society as subjects of collective study than safeguarded in dusty archives."]
+     "Maps are representations of a location in time. They depict a place, and a place is a set of immutable representations of locations in time. Bahrain in \u201962 is not Bahrain in \u201926. It may bear a resemblance (exercise for the reader: identify any continuity in Muharraq\u2019s shoreline), but cities and places never remain the same over time. If buildings and roads are the bones of a place, people and the natural world they tend to are its blood. You never truly visit the same place twice. Maps, like most things, have a validity date. After they serve their \u201cworking\u201d purpose, it\u2019s best to publicly release them for research. This is the reason why Bahrain's maps are accessible in other countries. Why should Bahrain's maps be publicly available to people in the US and UK but not to Bahrainis in Bahrain? They are far more valuable to our society as subjects of collective study than safeguarded in dusty archives."]
 
     [:p
      {}
@@ -108,7 +108,7 @@
      [:a {:href "https://mapbh.org/en/map"} "interactive map tool"]
      " to compare, export, and analyse them. Today, researchers proactively share their map material to have it added to the database and unlock the free tools available to use on the website. There\u2019s a persistent knowledge and skill gap to digitally transform historic maps and present them on the web which mapBH resolves. Each map on the website has been laboured over by me and members of the community to "
      [:a {:href "https://mapbh.org/en/articles/processing-pipeline"} "scan, stitch, and georeference"]
-     " it to a professional standard. We\u2019ve happily taken requests regarding materials that are difficult to work with and provided our expertise in making them available for researchers and students."]
+     " it to a professional standard. Ensuring high fidelity of these reprojections is essential to maintaining this project's value. We\u2019ve happily taken requests regarding materials that are difficult to work with and provided our expertise in making them available for researchers and students."]
 
     [:div.columns.is-centered
      [:div.column
@@ -122,13 +122,16 @@
      {}
      "None of the data or tools in this project have ever been secret. All of the code, all of the data, is freely available. You can self-host this project today (seriously, "
      [:a {:href "https://github.com/ahmed-machine/mapbh"} "do it"]
-     "). Thousands of copies of this codebase have been made and the entire map collection has been downloaded hundreds of times. The materials are in the public domain; not a single part of the code or data is proprietary. All of it is legal and intentional. This project would not be as successful had it come with a price tag for users. It would also be far more brittle and prone to takedown if it was reliant on a single person. With any open source project, we must note there are frequent attempts to capitalise off our free labour and resources to advance private careers and financial interests. Goodwill is built over years, but can be demolished in days. Everyone should clearly credit work which would allow others the same access they were given."]
+     "). Thousands of copies of this codebase have been made and the entire map collection has been downloaded hundreds of times. The materials are in the public domain; not a single part of the code or data is proprietary. All of it is legal and intentional. This project would not be as successful had it come with a price tag for users. It would also be far more brittle and prone to takedown if it was reliant on a single person."]
+    [:p "Free open source software is the backbone of all modern digital infrastructure and, at risk of giving away my \u201cprofessional\u201d hand, "
+     [:a {:href "https://www.youtube.com/watch?v=-6BsiVyC1kM"} "code " [:em "is"] " data"]
+     ". Our code, the tools we've built and the methods of digital transformation of historic maps to modern projections, changes how we perceive this information at a fine-grained level. In the past, cartographers made mistakes; map projections came with manuals to allow other experts to reproduce their observations and identify them. Similarly, mistakes made in digital depiction, transformation, and tooling can also misplace a building or plot dozens of meters away from where it actually was. Our open source code allows others to audit how we make our current observations but also serves as data to reproduce them in the past. As the project progressed and we gained expertise, our maps also gained precision and we had to revisit older reprojections to address issues within them."]
 
     [:h3 {:style {:font-size "1.35em" :font-weight "600" :margin-top "1.25em" :margin-bottom "0.5em"}} "4. build the institute"]
 
     [:p
      {}
-     "There\u2019s no singular bottleneck for mapBH. The maps are replicated and hosted globally. The community around it has developed legs to "
+     "There\u2019s no singular bottleneck for mapBH. The maps are replicated and hosted globally. If a car were to hit me tomorrow (not the first time), anyone can download the code, data, and stand up another mapbh website within a day. The community around the project has developed legs to branch out and "
      [:a {:href "https://mapbh.org/en/articles/wadi"} "advocate for conservation"]
      ", to build their own projects, and to develop a self-sustaining ecosystem. This required frequent engagement via social media, personal outreach, cultivation, and training. To survive, open source projects always need to build a community that will sustain it for years to come beyond the original founders. From the start, this project was always reliant on the free labour of several people who catalogued, scanned, translated, and digitised each of the maps. Where there were gaps in expertise (such as in GIS and navigating archives), friends and other similar projects provided invaluable advice to help push through plateaus. In time, we\u2019ve grown our local expertise considerably as well. Over the years, we\u2019ve shared our knowledge with other nascent projects in the region as well ("
      [:a {:href "mailto:mapbh.org@gmail.com"} "get in touch!"]
@@ -144,9 +147,7 @@
      [:a {:href "https://en.wikipedia.org/wiki/Sci-Hub"} "sci-hub"]
      ", "
      [:a {:href "https://palopenmaps.org/en"} "Palestine Open Maps"]
-     ", and other free open data initiatives have long served to neutralise the sharpest political attacks to guarantee the right to knowledge and transparency. Free open source software is the backbone of all modern digital infrastructure and, at risk of giving away my \u201cprofessional\u201d hand, "
-     [:a {:href "https://www.youtube.com/watch?v=-6BsiVyC1kM"} "code " [:em "is"] " data"]
-     ". We owe an irreparable debt to those that steward the world\u2019s free access to knowledge today or "
+     ", and other free open data initiatives have long served to neutralise the sharpest political attacks to guarantee the right to knowledge. We owe an irreparable debt to those that steward the world\u2019s free access to knowledge today or "
      [:a {:href "https://en.wikipedia.org/wiki/Aaron_Swartz"} "fought to keep it free ahead of their time"]
      ". Our modern world runs on institutions and foundations built for shared collective benefit and free access to knowledge. Bahrain is no exception."]
 
@@ -194,31 +195,35 @@
      [:a {:href "https://mapbh.org/en/catalogue"} "our catalogue"]
      " so check your local library or national archives for maps or aerial images of Bahrain and "
      [:a {:href "mailto:mapbh.org@gmail.com"} "get in touch"]
-     ". Beyond technical expertise, this project is kept alive by dozens and hundreds of users who regularly and freely contribute material, feedback, research, and social media content."]
+     "."]
+
+    [:p "Another weakness has been in the biased uptake of this project, and failures in promoting it. While the project was successful at weaving together a community drawing from a broad range of niche interests, from conservation to architecture to historians to students, it hasn't been able to penetrate beyond the self-selecting professional and hobbyist niches. There's certainly a ceiling for interest in a mapping project of a small place like Bahrain, but more can be done to bridge the gap in improving the accessibility of the user interface to accomodate a broader demographic and in initiatives to make stories, the very information in these maps, useful to a broader audience. There are many details unexplored in each map that could use a discerning experts' eye to bring a story to life."]
+
+    [:p "Not unlike other projects in Bahrain, this project faced strong pressures against it from the outset. Building free software to give away is rarely rational in our economic system and this type of project isn't incentivised in our current structures. Some history isn't convenient to narrative-making. Free software flies in the face of commerical interests. Free access empowers people without means otherwise to compete more fairly. A status quo can only exist if there are vested interests supporting it. For a new status quo to be established, a shared investment must be made in upholding it. This project was kept alive over the past five years by hundreds of users who regularly and freely contribute material, expertise, feedback, research, and social media content."]
 
     [:p
      {}
-     "Finally, maps of Bahrain aren\u2019t worth a " [:em "fils"] " today. Even initial hold-outs now proactively share their materials with the project. With every addition to the catalogue, it becomes less rational to hoard. You may keep a single sheet private, but if the other 29 are freely available and comparable maps exist from the same year, how valuable is the information on it really? Scarcity may be the name of the game for luxury collectibles and high-end art, but knowledge, like housing and food, shouldn\u2019t be subject to the same market forces."]
+     "Maps of Bahrain aren\u2019t worth a " [:em "fils"] " today. Even initial hold-outs now proactively share their map materials with the project. With every addition to the catalogue, it becomes less rational to hoard materials. We've inverted the scarcity equation. In the past, a collector may possess a single prized sheet from a 30 sheet map set with the rest unknown. Today, 29 of those sheets are freely available and only one is unknown. Archival materials shouldn't be treated like a luxury good or high-end art. Knowledge, like housing and food, shouldn\u2019t be subject to market forces that are a detriment to our society."]
 
     [:h2 {:style {:font-size "2.25em" :font-weight "600" :margin-top "1.5em" :margin-bottom "0.5em"}} "descent"]
 
     [:p
      {}
-     "A few months ago, I was in conversation with a recent college graduate I\u2019ve known since childhood. As we talked through career changes, I briefly mentioned a mapBH project I had recently completed. Unknowingly, she had used the site extensively in the past assuming it was an established institutional resource. Its existence had coincided with the entire duration of her undergraduate studies and early professional career \u2013 she doesn\u2019t know a time before the project. Unlike previous cohorts of students and enthusiasts, today\u2019s graduating cohorts don\u2019t have battle scars from trying to gain access to map materials. Students of all ages should regularly ask for help, and it felt natural to students that this repository of data on Bahrain was already easily and freely available online so they could focus on the hard part: understanding the historic and cultural developments at hand."]
+     "A few months ago, I chatted with a recent college graduate I know. As we talked through career changes, I briefly mentioned a mapBH project I had recently completed. Unknowingly, she had used the site extensively in the past assuming it was a long-established institutional resource. Its existence had coincided with the entire duration of her undergraduate studies and early professional career \u2013 she doesn\u2019t know a time before the project. Unlike previous cohorts of students and enthusiasts, today\u2019s graduating cohorts don\u2019t have battle scars from trying to gain access to map materials. It felt natural that this repository of data on Bahrain was easily and freely available online so they could focus on the hard part: learning."]
 
     [:p
      {}
-     "That was the point. It's normal for this information to be available. Our culture and history aren\u2019t commodities for speculation nor should information be used as a bartering chip. It belongs to everyone interested in cultivating and developing these small islands we call home, with the click of a button."]
+     "That was the point. It's "[:em "normal"] " for this information to be available. Our culture and history aren\u2019t commodities for speculation nor should information be used as a bartering chip. It belongs to everyone interested in cultivating and developing these small islands we call home."]
 
     [:p
      {}
-     "Over the course of the past five years, I\u2019ve met hundreds of Bahrainis who each shared phases of their lives portrayed in each map: constructing today\u2019s landmarks, working in those farms, fishing on that coastline, and what roads they walked every day over the course of their lives. Even my father\u2019s stories came alive when I saw the small hill where he\u2019d lay after working in the field with his grandfather, surrounded by greenery. With almost every natural feature and landmark destroyed, these memories have long felt disembodied and increasingly a figment of our collective imagination. On these maps, they\u2019ve become real once again."]
+     "Over the course of the past five years, I\u2019ve met hundreds of Bahrainis through this project who each shared how their lives were portrayed in each map: constructing today\u2019s landmarks, working in those farms, fishing on that coastline, and what roads they walked every day over the course of their lives. Even my father\u2019s stories came alive when I saw the small hill where he\u2019d lay after working in the field with his grandfather, surrounded by greenery. With almost every natural feature and landmark destroyed, these memories have long felt disembodied; almost a figment of our collective imagination. On these maps, they\u2019ve become real once again."]
 
     [linked-image "/img/posts/open-data/bahrain-1956.png" "Topographic map of Bahrain Island" "Bahrain Island, 1956" "https://mapbh.org/en/map-info?group=Bahrain&map-id=1956%20-%20Bahrain"]
 
     [:p
      {}
-     "As for the next five years, there still is a lot of work left to do. Whether it\u2019s completing the existing catalogue or opening up new areas of knowledge beyond maps for access, we hope you\u2019ll join us in our efforts."]
+     "As for the next five years, there still is a lot of work left to do. Whether it\u2019s filling in gaps in the existing catalogue or opening up new areas of knowledge beyond maps for access, we hope you\u2019ll join us in our efforts."]
 
     [:p
      {}
