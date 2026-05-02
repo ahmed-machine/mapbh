@@ -18,19 +18,19 @@
 
     [:p
      {}
-     "Maps are political, and it follows that any mapping project is political. As we mark five years of mapBH, I wanted to revisit the structural barriers that this project set out to overcome. The motivation behind mapBH was always that knowledge should be free, and information should be accessible. This project never came from a noble technical interest in maps \u2014 everything I know about maps and GIS has been self-taught. It began as a lockdown project, an attempt to record the history of these islands for future generations, in service of my community."]
+     "I grew up by the sea. My childhood memories retrace farms that are no longer there, swimming on shorelines that no longer exist, and playing in now-demolished homes. My childhood dreams, consisting of a farm and a fishing boat, now live on a "
+     [:a {:href "https://eros.usgs.gov/earthshots/bahrain"} "shoreline awash in asphalt"]
+     ". I was born in the 90s. My parents\u2019 and grandparents\u2019 memories are even further removed; the fresh water springs, fertile fields, and hills that animated the scenes of their childhood live on only in their stories. Every few months, a map or photograph goes viral on Bahrain\u2019s social media tugging at the heartstrings of those burdened by decades of loss of land, of water, and of memories. These maps have long acted as canvases for the stories that colour the lives and aspirations of our people."]
 
     [:p
      {}
-     "I grew up by the sea. My childhood memories retrace farms that are no longer there, swimming on shorelines that no longer exist, and playing in now-demolished homes. Even my childhood dreams, a farm and a fishing boat, now live on a "
-     [:a {:href "https://eros.usgs.gov/earthshots/bahrain"} "shoreline awash in asphalt"]
-     ". I was born in the 90s. My parents\u2019 and grandparents\u2019 memories are even further removed; the fresh water springs, fertile fields, and hills that animated the scenes of their childhood live on only in their stories. Every few months, a map or photograph goes viral on Bahrain\u2019s social media tugging at the heartstrings of those burdened by decades of loss: of land, and of memories. These maps have long acted as canvases for the stories that colour the lives and aspirations of our people."]
+     "Maps are political, and it follows that any mapping project is political. As we mark five years of mapBH, I wanted to revisit the structural barriers that this project set out to overcome. The principles guiding mapBH was always that knowledge should be free, and information should be accessible. mapBH didn't stem from a personal interest in maps \u2014 everything I know about maps and GIS has been self-taught. It began as a lockdown project, an attempt to record the history of these islands for future generations in service of my community."]
 
     [image "/img/posts/open-data/bahrain-farms.jpg" "Bahrain farmland and palm trees" "Cultivations in the North of Bahrain, 1986"]
 
     [:p
      {}
-     "This project isn\u2019t an ode to empty nostalgia. The purpose was never to display black-white maps in art exhibitions or to write tragic sonnets: it\u2019s to organise for a future that resembles this land and its people. The future we strive for is a land of a million palm trees, an endless public shoreline, the preservation of our cultural heritage, and children swimming again in the ancient water springs that defined Dilmun, Tylos, Awal, and Bahrain for centuries. We reject the destruction of this land and sea; we want a Bahrain we can live in. This is just one era, of many, in history: we can define the next one."]
+     "This project isn\u2019t an ode to empty nostalgia, we hope to push back against any hollow defeatist romanticism or nihilism about the present. The purpose was never to display black-white maps in art exhibitions or to write tragic sonnets: it\u2019s to organise for a future that resembles this land and its people. The future we try to strive for is a land of a million palm trees, an endless public shoreline, the preservation of our cultural heritage, and children swimming again in the ancient water springs that defined Dilmun, Tylos, Awal, and Bahrain for centuries. We continue to reject the destruction of our land and sea; we want a Bahrain we can live in. This is just one era, of many, in history: we can define the next one."]
 
     [:h2 {:style {:font-size "2.25em" :font-weight "600" :margin-top "1.5em" :margin-bottom "0.5em"}} "the terrain"]
 
@@ -211,13 +211,16 @@
      {}
      "A few months ago, I chatted with a recent college graduate I know. As we talked through career changes, I briefly mentioned a mapBH project I had recently completed. Unknowingly, she had used the site extensively in the past assuming it was a long-established institutional resource. Its existence had coincided with the entire duration of her undergraduate studies and early professional career \u2013 she doesn\u2019t know a time before the project. Unlike previous cohorts of students and enthusiasts, today\u2019s graduating cohorts don\u2019t have battle scars from trying to gain access to map materials. It felt natural that this repository of data on Bahrain was easily and freely available online so they could focus on the hard part: learning."]
 
-    [:p
-     {}
-     "That was the point. It's "[:em "normal"] " for this information to be available. Our culture and history aren\u2019t commodities for speculation nor should information be used as a bartering chip. It belongs to everyone interested in cultivating and developing these small islands we call home."]
+    [:p {}
+     "Over the course of the past five years, mapBH has been extensively used by a wide segment of Bahraini professionals and students. It was used to identify the location of ruins. It was used by students to design new urban initiatives. It commonly features in historical studies of various derelict Bahraini villages. Enthusiasts have used it to locate the dried remains of lost water springs and other natural features. School teachers have printed them for their students to describe geologic features and soil types. People have used it to print pictures of their old family homes."
+
+     [:p
+      {}
+      "That was the point. It's " [:em "normal"] " for this information to be available. Our culture and history aren\u2019t commodities for speculation nor should information be used as a bartering chip. It belongs to everyone interested in cultivating and developing these small islands we call home."]]
 
     [:p
      {}
-     "Over the course of the past five years, I\u2019ve met hundreds of Bahrainis through this project who each shared how their lives were portrayed in each map: constructing today\u2019s landmarks, working in those farms, fishing on that coastline, and what roads they walked every day over the course of their lives. Even my father\u2019s stories came alive when I saw the small hill where he\u2019d lay after working in the field with his grandfather, surrounded by greenery. With almost every natural feature and landmark destroyed, these memories have long felt disembodied; almost a figment of our collective imagination. On these maps, they\u2019ve become real once again."]
+     "Through this project, I\u2019ve met hundreds of Bahrainis who depicted their personal history in each map: constructing today\u2019s landmarks, working in those farms, fishing on that coastline, and what roads they'd walked every day over the course of their lives. Even my father\u2019s stories came alive when I saw the small hill where he\u2019d lay after working in the field with his grandfather, surrounded by greenery. With almost every natural feature and landmark destroyed, these memories have long been disembodied; almost a figment of our collective imagination. On these maps, they root once again."]
 
     [linked-image "/img/posts/open-data/bahrain-1956.png" "Topographic map of Bahrain Island" "Bahrain Island, 1956" "https://mapbh.org/en/map-info?group=Bahrain&map-id=1956%20-%20Bahrain"]
 
