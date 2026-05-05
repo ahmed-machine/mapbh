@@ -39,7 +39,6 @@
     "puppeteer": "^24.16.2",
     "react": "~16.8.0",
     "react-dom": "~16.8.0",
-    "sqlite3": "^5.0.2",
-    "tileserver-gl": "^3.1.1"
+    "sqlite3": "^5.0.2"
   }
 }
